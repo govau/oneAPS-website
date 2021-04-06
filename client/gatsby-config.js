@@ -1,8 +1,21 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Observatory`,
+    description: `The Observatory’s goal is to measure how people interact with government services. It empowers and supports teams to provide better services and outcomes for everyone.`,
+    author: `Digital Transformation Agency`,
+    siteUrl: `https://observatory.service.gov.au/`,
+    menuLinks: [
+      {
+        text: "Home",
+        link: "/",
+      },
+    ],
+    footerLinks: [
+      {
+        text: "Privacy Policy",
+        link: "/privacy",
+      },
+    ],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -33,4 +46,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};

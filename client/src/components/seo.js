@@ -2,15 +2,15 @@
  * SEO component that queries for data with
  *  Gatsby's useStaticQuery React hook
  *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
+ * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import * as React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import Helmet from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ description, lang, meta, title, canonical }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -23,10 +23,9 @@ function SEO({ description, lang, meta, title }) {
         }
       }
     `
-  )
+  );
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const metaDescription = description || site.siteMetadata.description;
 
   return (
     <Helmet
@@ -34,7 +33,7 @@ function SEO({ description, lang, meta, title }) {
         lang,
       }}
       title={title}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[
         {
           name: `description`,
@@ -58,7 +57,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata?.author || ``,
+          content: site.siteMetadata.author,
         },
         {
           name: `twitter:title`,
@@ -69,21 +68,31 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
-    />
-  )
+      bodyAttributes={{
+        class: "au-grid",
+      }}
+    >
+      <script>
+        {`var $html=document.documentElement;if($html.classList)$html.classList.remove("no-js"),$html.classList.add("js");else{var className="no-js";$html.className=$html.className.replace(new RegExp("(^|\\b)"+className.split(" ").join("|")+"(\\b|$)","gi")," "),$html.className+=" js",console.log("added js")}`}
+      </script>
+      {canonical.length > 0 && <link rel="canonical" href={canonical} />}
+    </Helmet>
+  );
 }
 
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
   description: ``,
-}
+  canonical: "",
+};
 
 SEO.propTypes = {
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
-}
+  canonical: PropTypes.string,
+};
 
-export default SEO
+export default SEO;

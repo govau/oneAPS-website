@@ -1,0 +1,347 @@
+// Dark theme overrides
+// $AU-colordark-foreground-text: #ffffff;
+$AU-colordark-foreground-action: #bdf4ff;
+// $AU-colordark-foreground-focus: #e48ffc;
+$AU-colordark-background: #1c304a;
+
+// Light theme overrides
+$AU-color-foreground-action: #046b99;
+$AU-color-foreground-text: #212121;
+// $AU-color-background: #fcfcfc;
+// $AU-color-foreground-focus: #e48ffc;
+//Main nav, set project specific breakpoint
+
+$AU-color-bright: #00cfff;
+$AU-color-alt-bg: #e9e9e9;
+
+$AU-media-xs: 0px;
+$AU-media-sm: 576px;
+$AU-media-md: 768px;
+$AU-media-lg: 992px;
+$AU-media-xl: 1200px;
+$AU-main-nav-breakpoint: sm;
+@import "../auds/auds.scss";
+@import "card";
+@import "grid";
+@import "form";
+@import "footer";
+
+// Reset the body
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.au-grid .container-fluid {
+  @include AU-space(max-width, 70unit);
+
+  @media screen and (min-width: 1400px) {
+    @include AU-space(max-width, 80unit);
+  }
+
+  @include AU-media(sm) {
+    @include AU-space(padding-left, 2unit);
+    @include AU-space(padding-right, 2unit);
+  }
+}
+
+main > .au-body {
+  @include AU-space(padding, 2unit 0);
+  @include AU-media(md) {
+    @include AU-space(padding, 3unit 0);
+  }
+}
+
+// Increase spacing between inline list items in footer
+.au-footer .au-link-list--inline li {
+  @include AU-space(padding-right, 1unit);
+}
+
+h1 {
+  word-wrap: break-word;
+}
+
+.au-body h2 {
+  @include AU-space(font-size, 1.75unit);
+}
+
+@media only screen and (max-width: $AU-media-xs) {
+  .au-body h1 {
+    @include AU-space(font-size, 2.45unit);
+  }
+
+  .au-body h2 {
+    @include AU-space(font-size, 2unit);
+  }
+}
+
+.header__badge {
+  @include AU-space(padding, 2px 0.5unit);
+  @include AU-space(margin-left, 0.5unit);
+  border: solid 2px $AU-colordark-foreground-text;
+  border-radius: 2em;
+  font-size: 12px;
+  font-size: 0.75rem;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+.mt-hero {
+  margin-top: 24px !important;
+  margin-top: 1.5rem !important;
+}
+
+.hero-image {
+  border-radius: $AU-border-radius;
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 0;
+  @include AU-space(padding, 1unit);
+  @include AU-space(margin-top, 1unit);
+  @include AU-media(xs) {
+    margin: 0;
+  }
+  @include AU-space(max-width, 500px);
+  background: white;
+}
+
+.au-breadcrumbs {
+  @include AU-space(margin-top, 1unit);
+}
+
+.au-header {
+  @include AU-space(padding, 3unit 0 1.5unit 0);
+}
+
+.intro-text {
+  color: #636363;
+  @include AU-fontgrid(lg);
+  max-width: 42rem !important;
+}
+
+.img-shadow {
+  border-radius: $AU-border-radius;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 42em !important;
+}
+
+.blog-heading {
+  @include AU-space(max-width, 42rem);
+}
+
+.au-btn {
+  background-color: $AU-color-foreground-action;
+  color: $AU-colordark-foreground-text;
+  border-color: $AU-color-foreground-action;
+  font-weight: 500;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+
+  &:hover:not(:disabled) {
+    background-color: #313131;
+    border-color: #313131;
+    text-decoration: underline;
+    color: $AU-colordark-foreground-text;
+  }
+
+  .ie8 &:hover {
+    background-color: $AU-color-foreground-text;
+    border-color: $AU-color-foreground-text;
+    color: $AU-color-background;
+    text-decoration: underline;
+  }
+
+  &.au-btn--tertiary {
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+.au-search {
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+  background-color: transparent;
+  border-radius: $AU-border-radius;
+}
+
+.au-btn.au-btn--bright {
+  background-color: lighten($AU-color-bright, 10);
+  border-color: lighten($AU-color-bright, 10);
+  color: $AU-color-foreground-text !important;
+  @include AU-space("font-size", 1.1rem);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+
+  .au-search__btn & {
+    box-shadow: none;
+  }
+
+  &:hover:not(:disabled) {
+    background-color: lighten($AU-color-bright, 15);
+    text-decoration: underline;
+    border-color: lighten($AU-color-bright, 15);
+    color: $AU-color-foreground-text;
+  }
+
+  .ie8 &:hover {
+    background-color: lighten($AU-color-bright, 2) !important;
+    border-color: lighten($AU-color-bright, 15) !important;
+    text-decoration: underline;
+  }
+}
+
+.au-header {
+  padding: 2.5rem 0 1rem 0 !important;
+  padding: 40px 0 16px 0 !important;
+}
+
+.header-buttons {
+  display: flex;
+  @include AU-space(margin-top, 1.5unit);
+
+  .au-btn + .au-btn {
+    @include AU-space(margin-left, 1unit);
+  }
+
+  @include AU-media(md) {
+    justify-content: flex-end;
+    margin-top: 0;
+  }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+h1.au-header__heading {
+  margin-top: 0;
+  @include AU-media(md) {
+    @include AU-space(margin-top, 0.5unit);
+  }
+}
+
+.blue-green-gradient {
+  background: linear-gradient(
+    89.2deg,
+    #c1f8ff 0%,
+    #c1f8ff 0.01%,
+    rgba(45, 255, 104, 0.24) 100%
+  );
+  padding: 16px 0 !important;
+  padding: 1rem 0 !important;
+}
+
+.bg-alt-grey {
+  background: #fcfcfc;
+}
+
+.au-body.au-body--alt {
+  background: #fcfcfc !important;
+}
+
+.font-weight-500 {
+  font-weight: 500 !important;
+}
+
+.question-image {
+  position: absolute;
+  top: 145px;
+  max-width: 320px !important;
+  @media only screen and (max-width: 992px) {
+    top: 100px;
+    max-width: 280px !important;
+  }
+}
+
+.border-right-0 {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.border-left-0 {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.metric-tags {
+  .au-tag {
+    border-color: gray !important;
+    color: gray !important;
+  }
+  li.active a {
+    color: #046b99 !important;
+    border-color: #046b99 !important;
+    border-width: 2px !important;
+  }
+}
+
+.au-sr-only,
+.visually-hidden {
+  @include AU-sronly();
+}
+
+// .au-table {
+//   border: solid 1px lightgray;
+//   border-radius: $AU-border-radius;
+// }
+
+.align-right {
+  float: right;
+}
+
+.metric-table {
+  .au-table__cell {
+    border-bottom: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.au-direction-link__arrow:after {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.au-body .disabled-link {
+  color: gray;
+  cursor: not-allowed;
+}
+
+.percentage-cell {
+  display: flex;
+  justify-content: flex-end;
+}
+.percentage-cell__inner {
+  display: flex;
+  @include AU-space(width, 3.5unit);
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.custom-tooltip {
+  @include AU-fontgrid(xs);
+  background-color: rgba(255, 255, 255, 1);
+  color: $AU-color-foreground-text;
+  border: solid 2px $AU-color-foreground-alt-hint;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  @include AU-space(padding, 0.35unit);
+  @include AU-space(max-width, 13unit);
+  border-radius: $AU-border-radius;
+
+  p + p {
+    @include AU-space(margin-top, 0.25unit);
+  }
+
+  &__text {
+    position: relative;
+
+    .color-square {
+      border: solid 1px #636363;
+      border-radius: 2px;
+      vertical-align: bottom;
+      @include AU-space(height, 0.75unit);
+      @include AU-space(width, 0.75unit);
+      display: inline-block;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+  }
+}

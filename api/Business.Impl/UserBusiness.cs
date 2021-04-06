@@ -38,8 +38,8 @@ namespace Dta.OneAps.Api.Business {
             if (user == null) {
                 throw new CannotAuthenticateException();
             }
-            var result = _mapper.Map<UserModel>(user);
-            return GenerateJSONWebToken(result);
+            // var result = _mapper.Map<UserModel>(user);
+            return GenerateJSONWebToken(user);
         }
 
         public async Task<UserModel> RegisterAsync(CreateUserModel model) {
@@ -57,7 +57,7 @@ namespace Dta.OneAps.Api.Business {
         }
         public async Task<IEnumerable<UserModel>> GetAllAsync() => _mapper.Map<IEnumerable<UserModel>>(await _userService.GetAllAsync());
         public async Task<UserModel> GetByIdAsync(int id) => _mapper.Map<UserModel>(await _userService.GetByIdAsync(id));
-        private string GenerateJSONWebToken(UserModel userModel) {
+        private string GenerateJSONWebToken(User user) {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 
             var key = Encoding.ASCII.GetBytes(_config["Jwt:Key"]);
@@ -65,10 +65,10 @@ namespace Dta.OneAps.Api.Business {
             var tokenDescriptor = new SecurityTokenDescriptor {
                 Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim("Id", userModel.Id.ToString()),
-                    new Claim("Email", userModel.EmailAddress),
-                    new Claim("Name", userModel.Name),
-                    new Claim("Role", userModel.Role),
+                    new Claim("Id", user.Id.ToString()),
+                    new Claim("Email", user.EmailAddress),
+                    new Claim("Name", user.Name),
+                    new Claim("Role", user.Role),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
                 IssuedAt = DateTime.UtcNow,

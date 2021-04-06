@@ -9,6 +9,10 @@ Scaffolding the database
 
 Create Database
 `export ConnectionString="Host=localhost;Port=15432;Database=oneaps;Username=postgres;Password=password"`
+`dotnet ef database update -p Services.Sql/Dta.OneAps.Api.Services.Sql.csproj`
+
+Add Migration
+`export ConnectionString="Host=localhost;Port=15432;Database=oneaps;Username=postgres;Password=password"`
 `dotnet ef migrations add Initial -p Services.Sql/Dta.OneAps.Api.Services.Sql.csproj`
 
 Run

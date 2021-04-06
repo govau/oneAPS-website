@@ -5,24 +5,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dta.OneAps.Api.Services.Entities
 {
-    [Table("brief_response_download")]
-    public partial class BriefResponseDownload
+    [Table("opportunity_response_download")]
+    public partial class OpportunityResponseDownload
     {
         [Key]
         [Column("id")]
         public int Id { get; set; }
-        [Column("brief_id")]
-        public int BriefId { get; set; }
+        [Column("opportunity_id")]
+        public int OpportunityId { get; set; }
         [Column("user_id")]
         public int UserId { get; set; }
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
 
-        [ForeignKey(nameof(BriefId))]
-        [InverseProperty("BriefResponseDownload")]
-        public virtual Brief Brief { get; set; }
+        [ForeignKey(nameof(OpportunityId))]
+        [InverseProperty("OpportunityResponseDownload")]
+        public virtual Opportunity Opportunity { get; set; }
         [ForeignKey(nameof(UserId))]
-        [InverseProperty("BriefResponseDownload")]
+        [InverseProperty("OpportunityResponseDownload")]
         public virtual User User { get; set; }
     }
 }

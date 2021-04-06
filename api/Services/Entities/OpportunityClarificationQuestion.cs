@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dta.OneAps.Api.Services.Entities
 {
-    [Table("brief_clarification_question")]
-    public partial class BriefClarificationQuestion
+    [Table("opportunity_clarification_question")]
+    public partial class OpportunityClarificationQuestion
     {
         [Key]
         [Column("id")]
         public int Id { get; set; }
-        [Column("brief_id")]
-        public int BriefId { get; set; }
+        [Column("opportunity_id")]
+        public int OpportunityId { get; set; }
         [Required]
         [Column("question", TypeName = "character varying")]
         public string Question { get; set; }
@@ -24,11 +24,11 @@ namespace Dta.OneAps.Api.Services.Entities
         [Column("user_id")]
         public int UserId { get; set; }
 
-        [ForeignKey(nameof(BriefId))]
-        [InverseProperty("BriefClarificationQuestion")]
-        public virtual Brief Brief { get; set; }
+        [ForeignKey(nameof(OpportunityId))]
+        [InverseProperty("OpportunityClarificationQuestion")]
+        public virtual Opportunity Opportunity { get; set; }
         [ForeignKey(nameof(UserId))]
-        [InverseProperty("BriefClarificationQuestion")]
+        [InverseProperty("OpportunityClarificationQuestion")]
         public virtual User User { get; set; }
     }
 }

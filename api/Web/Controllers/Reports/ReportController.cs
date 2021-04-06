@@ -20,15 +20,15 @@ namespace Dta.OneAps.Api.Web.Controllers.Reports {
             return Ok(results);
         }
         [Authorize(AuthenticationSchemes = Schemes.ApiKeyAuthenticationHandler)]
-        [HttpGet("brief")]
-        public async Task<IActionResult> GetPublishedBriefsAsync() {
-            var results = await _reportBusiness.GetPublishedBriefsAsync();
+        [HttpGet("opportunity")]
+        public async Task<IActionResult> GetPublishedOpportunitysAsync() {
+            var results = await _reportBusiness.GetPublishedOpportunitysAsync();
             return Ok(results);
         }
         [Authorize(AuthenticationSchemes = Schemes.ApiKeyAuthenticationHandler)]
-        [HttpGet("briefresponse")]
-        public async Task<IActionResult> GetSubmittedBriefResponsesAsync() {
-            var results = await _reportBusiness.GetSubmittedBriefResponsesAsync();
+        [HttpGet("opportunityresponse")]
+        public async Task<IActionResult> GetSubmittedOpportunityResponsesAsync() {
+            var results = await _reportBusiness.GetSubmittedOpportunityResponsesAsync();
             return Ok(results);
         }
         [Authorize(AuthenticationSchemes = Schemes.ApiKeyAuthenticationHandler)]

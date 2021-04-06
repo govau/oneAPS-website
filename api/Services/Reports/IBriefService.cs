@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Dta.OneAps.Api.Services.Reports {
-    public interface IBriefService {
-        Task<IEnumerable<dynamic>> GetPublishedBriefsAsync();
+    public interface IOpportunityService {
+        Task<IEnumerable<dynamic>> GetPublishedOpportunitysAsync();
     }
 }

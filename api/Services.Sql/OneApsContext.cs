@@ -14,15 +14,14 @@ namespace Dta.OneAps.Api.Services.Sql {
 
         public OneApsContext(DbContextOptions<OneApsContext> options)
             : base(options) {
-        }        public virtual DbSet<Brief> Brief { get; set; }
-        public virtual DbSet<BriefAssessment> BriefAssessment { get; set; }
-        public virtual DbSet<BriefAssessor> BriefAssessor { get; set; }
-        public virtual DbSet<BriefClarificationQuestion> BriefClarificationQuestion { get; set; }
-        public virtual DbSet<BriefHistory> BriefHistory { get; set; }
-        public virtual DbSet<BriefResponse> BriefResponse { get; set; }
-        public virtual DbSet<BriefResponseContact> BriefResponseContact { get; set; }
-        public virtual DbSet<BriefResponseDownload> BriefResponseDownload { get; set; }
-        public virtual DbSet<BriefUser> BriefUser { get; set; }
+        }        public virtual DbSet<Opportunity> Opportunity { get; set; }
+        public virtual DbSet<OpportunityAssessor> OpportunityAssessor { get; set; }
+        public virtual DbSet<OpportunityClarificationQuestion> OpportunityClarificationQuestion { get; set; }
+        public virtual DbSet<OpportunityHistory> OpportunityHistory { get; set; }
+        public virtual DbSet<OpportunityResponse> OpportunityResponse { get; set; }
+        public virtual DbSet<OpportunityResponseContact> OpportunityResponseContact { get; set; }
+        public virtual DbSet<OpportunityResponseDownload> OpportunityResponseDownload { get; set; }
+        public virtual DbSet<OpportunityUser> OpportunityUser { get; set; }
         public virtual DbSet<KeyValue> KeyValue { get; set; }
         public virtual DbSet<User> User { get; set; }
 
@@ -37,147 +36,136 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .HasPostgresEnum(null, "user_roles_enum", Enum.GetNames(typeof(UserRole)))
                 .HasPostgresExtension("pg_trgm");
 
-            modelBuilder.Entity<Brief>(entity => {
+            modelBuilder.Entity<Opportunity>(entity => {
                 entity.HasIndex(e => e.ClosedAt)
-                    .HasDatabaseName("ix_brief_closed_at");
+                    .HasDatabaseName("ix_opportunity_closed_at");
 
                 entity.HasIndex(e => e.CreatedAt)
-                    .HasDatabaseName("ix_brief_created_at");
+                    .HasDatabaseName("ix_opportunity_created_at");
 
                 entity.HasIndex(e => e.PublishedAt)
-                    .HasDatabaseName("ix_brief_published_at");
+                    .HasDatabaseName("ix_opportunity_published_at");
 
                 entity.HasIndex(e => e.QuestionsClosedAt)
-                    .HasDatabaseName("ix_brief_questions_closed_at");
+                    .HasDatabaseName("ix_opportunity_questions_closed_at");
 
                 entity.HasIndex(e => e.UpdatedAt)
-                    .HasDatabaseName("ix_brief_updated_at");
+                    .HasDatabaseName("ix_opportunity_updated_at");
 
                 entity.HasIndex(e => e.WithdrawnAt)
-                    .HasDatabaseName("ix_brief_withdrawn_at");
+                    .HasDatabaseName("ix_opportunity_withdrawn_at");
             });
 
-            modelBuilder.Entity<BriefAssessment>(entity => {
-                entity.HasKey(e => new { e.BriefId, e.AssessmentId })
-                    .HasName("brief_assessment_pkey");
-
-                entity.HasOne(d => d.Brief)
-                    .WithMany(p => p.BriefAssessment)
-                    .HasForeignKey(d => d.BriefId)
+            modelBuilder.Entity<OpportunityAssessor>(entity => {
+                entity.HasOne(d => d.Opportunity)
+                    .WithMany(p => p.OpportunityAssessor)
+                    .HasForeignKey(d => d.OpportunityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_assessment_brief_id_fkey");
-            });
-
-            modelBuilder.Entity<BriefAssessor>(entity => {
-                entity.HasOne(d => d.Brief)
-                    .WithMany(p => p.BriefAssessor)
-                    .HasForeignKey(d => d.BriefId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_assessor_brief_id_fkey");
+                    .HasConstraintName("opportunity_assessor_opportunity_id_fkey");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.BriefAssessor)
+                    .WithMany(p => p.OpportunityAssessor)
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("brief_assessor_user_id_fkey");
+                    .HasConstraintName("opportunity_assessor_user_id_fkey");
             });
 
-            modelBuilder.Entity<BriefClarificationQuestion>(entity => {
+            modelBuilder.Entity<OpportunityClarificationQuestion>(entity => {
                 entity.HasIndex(e => e.PublishedAt)
-                    .HasDatabaseName("ix_brief_clarification_question_published_at");
+                    .HasDatabaseName("ix_opportunity_clarification_question_published_at");
 
-                entity.HasOne(d => d.Brief)
-                    .WithMany(p => p.BriefClarificationQuestion)
-                    .HasForeignKey(d => d.BriefId)
+                entity.HasOne(d => d.Opportunity)
+                    .WithMany(p => p.OpportunityClarificationQuestion)
+                    .HasForeignKey(d => d.OpportunityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_clarification_question_brief_id_fkey");
+                    .HasConstraintName("opportunity_clarification_question_opportunity_id_fkey");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.BriefClarificationQuestion)
+                    .WithMany(p => p.OpportunityClarificationQuestion)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_clarification_question_user_id_fkey");
+                    .HasConstraintName("opportunity_clarification_question_user_id_fkey");
             });
 
-            modelBuilder.Entity<BriefHistory>(entity => {
-                entity.HasIndex(e => e.BriefId)
-                    .HasDatabaseName("ix_brief_history_brief_id");
+            modelBuilder.Entity<OpportunityHistory>(entity => {
+                entity.HasIndex(e => e.OpportunityId)
+                    .HasDatabaseName("ix_opportunity_history_opportunity_id");
 
                 entity.HasIndex(e => e.EditedAt)
-                    .HasDatabaseName("ix_brief_history_edited_at");
+                    .HasDatabaseName("ix_opportunity_history_edited_at");
 
                 entity.HasIndex(e => e.UserId)
-                    .HasDatabaseName("ix_brief_history_user_id");
+                    .HasDatabaseName("ix_opportunity_history_user_id");
 
-                entity.HasOne(d => d.Brief)
-                    .WithMany(p => p.BriefHistory)
-                    .HasForeignKey(d => d.BriefId)
+                entity.HasOne(d => d.Opportunity)
+                    .WithMany(p => p.OpportunityHistory)
+                    .HasForeignKey(d => d.OpportunityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_history_brief_id_fkey");
+                    .HasConstraintName("opportunity_history_opportunity_id_fkey");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.BriefHistory)
+                    .WithMany(p => p.OpportunityHistory)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_history_user_id_fkey");
+                    .HasConstraintName("opportunity_history_user_id_fkey");
             });
 
-            modelBuilder.Entity<BriefResponse>(entity => {
+            modelBuilder.Entity<OpportunityResponse>(entity => {
                 entity.HasIndex(e => e.CreatedAt)
-                    .HasDatabaseName("ix_brief_response_created_at");
+                    .HasDatabaseName("ix_opportunity_response_created_at");
 
                 entity.HasIndex(e => e.SubmittedAt)
-                    .HasDatabaseName("ix_brief_response_submitted_at");
+                    .HasDatabaseName("ix_opportunity_response_submitted_at");
 
                 entity.HasIndex(e => e.UpdatedAt)
-                    .HasDatabaseName("ix_brief_response_updated_at");
+                    .HasDatabaseName("ix_opportunity_response_updated_at");
 
-                entity.HasOne(d => d.Brief)
-                    .WithMany(p => p.BriefResponse)
-                    .HasForeignKey(d => d.BriefId)
+                entity.HasOne(d => d.Opportunity)
+                    .WithMany(p => p.OpportunityResponse)
+                    .HasForeignKey(d => d.OpportunityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_response_brief_id_fkey");
+                    .HasConstraintName("opportunity_response_opportunity_id_fkey");
             });
 
-            modelBuilder.Entity<BriefResponseContact>(entity => {
-                entity.HasOne(d => d.Brief)
-                    .WithMany(p => p.BriefResponseContact)
-                    .HasForeignKey(d => d.BriefId)
+            modelBuilder.Entity<OpportunityResponseContact>(entity => {
+                entity.HasOne(d => d.Opportunity)
+                    .WithMany(p => p.OpportunityResponseContact)
+                    .HasForeignKey(d => d.OpportunityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_response_brief_contact_id_fkey");
+                    .HasConstraintName("opportunity_response_opportunity_contact_id_fkey");
             });
 
-            modelBuilder.Entity<BriefResponseDownload>(entity => {
+            modelBuilder.Entity<OpportunityResponseDownload>(entity => {
                 entity.HasIndex(e => e.CreatedAt)
-                    .HasDatabaseName("ix_brief_response_download_created_at");
+                    .HasDatabaseName("ix_opportunity_response_download_created_at");
 
-                entity.HasOne(d => d.Brief)
-                    .WithMany(p => p.BriefResponseDownload)
-                    .HasForeignKey(d => d.BriefId)
+                entity.HasOne(d => d.Opportunity)
+                    .WithMany(p => p.OpportunityResponseDownload)
+                    .HasForeignKey(d => d.OpportunityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_response_download_brief_id_fkey");
+                    .HasConstraintName("opportunity_response_download_opportunity_id_fkey");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.BriefResponseDownload)
+                    .WithMany(p => p.OpportunityResponseDownload)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_response_download_user_id_fkey");
+                    .HasConstraintName("opportunity_response_download_user_id_fkey");
             });
 
-            modelBuilder.Entity<BriefUser>(entity => {
-                entity.HasKey(e => new { e.BriefId, e.UserId })
-                    .HasName("brief_user_pkey");
+            modelBuilder.Entity<OpportunityUser>(entity => {
+                entity.HasKey(e => new { e.OpportunityId, e.UserId })
+                    .HasName("opportunity_user_pkey");
 
-                entity.HasOne(d => d.Brief)
-                    .WithMany(p => p.BriefUser)
-                    .HasForeignKey(d => d.BriefId)
+                entity.HasOne(d => d.Opportunity)
+                    .WithMany(p => p.OpportunityUser)
+                    .HasForeignKey(d => d.OpportunityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_user_brief_id_fkey");
+                    .HasConstraintName("opportunity_user_opportunity_id_fkey");
 
                 entity.HasOne(d => d.User)
-                    .WithMany(p => p.BriefUser)
+                    .WithMany(p => p.OpportunityUser)
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("brief_user_user_id_fkey");
+                    .HasConstraintName("opportunity_user_user_id_fkey");
             });
 
             modelBuilder.Entity<KeyValue>(entity => {
@@ -204,17 +192,17 @@ namespace Dta.OneAps.Api.Services.Sql {
                     .HasDatabaseName("ix_user_supplier_code");
             });
 
-            modelBuilder.HasSequence("brief_assessor_id_seq");
+            modelBuilder.HasSequence("opportunity_assessor_id_seq");
 
-            modelBuilder.HasSequence("brief_history_id_seq");
+            modelBuilder.HasSequence("opportunity_history_id_seq");
 
-            modelBuilder.HasSequence("brief_question_id_seq");
+            modelBuilder.HasSequence("opportunity_question_id_seq");
 
-            modelBuilder.HasSequence("brief_response_answer_id_seq");
+            modelBuilder.HasSequence("opportunity_response_answer_id_seq");
 
-            modelBuilder.HasSequence("brief_response_contact_id_seq");
+            modelBuilder.HasSequence("opportunity_response_contact_id_seq");
 
-            modelBuilder.HasSequence("brief_response_download_id_seq");
+            modelBuilder.HasSequence("opportunity_response_download_id_seq");
 
             modelBuilder.HasSequence("key_value_id_seq");
 

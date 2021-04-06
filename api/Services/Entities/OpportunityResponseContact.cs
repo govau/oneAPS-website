@@ -5,22 +5,22 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dta.OneAps.Api.Services.Entities
 {
-    [Table("brief_response_contact")]
-    public partial class BriefResponseContact
+    [Table("opportunity_response_contact")]
+    public partial class OpportunityResponseContact
     {
         [Key]
         [Column("id")]
         public int Id { get; set; }
-        [Column("brief_id")]
-        public int BriefId { get; set; }
+        [Column("opportunity_id")]
+        public int OpportunityId { get; set; }
         [Column("supplier_code")]
         public long SupplierCode { get; set; }
         [Required]
         [Column("email_address", TypeName = "character varying")]
         public string EmailAddress { get; set; }
 
-        [ForeignKey(nameof(BriefId))]
-        [InverseProperty("BriefResponseContact")]
-        public virtual Brief Brief { get; set; }
+        [ForeignKey(nameof(OpportunityId))]
+        [InverseProperty("OpportunityResponseContact")]
+        public virtual Opportunity Opportunity { get; set; }
     }
 }

@@ -10,11 +10,11 @@ namespace Dta.OneAps.Api.Services.Entities
     {
         public User()
         {
-            BriefAssessor = new HashSet<BriefAssessor>();
-            BriefClarificationQuestion = new HashSet<BriefClarificationQuestion>();
-            BriefHistory = new HashSet<BriefHistory>();
-            BriefResponseDownload = new HashSet<BriefResponseDownload>();
-            BriefUser = new HashSet<BriefUser>();
+            OpportunityAssessor = new HashSet<OpportunityAssessor>();
+            OpportunityClarificationQuestion = new HashSet<OpportunityClarificationQuestion>();
+            OpportunityHistory = new HashSet<OpportunityHistory>();
+            OpportunityResponseDownload = new HashSet<OpportunityResponseDownload>();
+            OpportunityUser = new HashSet<OpportunityUser>();
         }
 
         [Key]
@@ -53,14 +53,14 @@ namespace Dta.OneAps.Api.Services.Entities
         public int? AgencyId { get; set; }
 
         [InverseProperty("User")]
-        public virtual ICollection<BriefAssessor> BriefAssessor { get; set; }
+        public virtual ICollection<OpportunityAssessor> OpportunityAssessor { get; set; }
         [InverseProperty("User")]
-        public virtual ICollection<BriefClarificationQuestion> BriefClarificationQuestion { get; set; }
+        public virtual ICollection<OpportunityClarificationQuestion> OpportunityClarificationQuestion { get; set; }
         [InverseProperty("User")]
-        public virtual ICollection<BriefHistory> BriefHistory { get; set; }
+        public virtual ICollection<OpportunityHistory> OpportunityHistory { get; set; }
         [InverseProperty("User")]
-        public virtual ICollection<BriefResponseDownload> BriefResponseDownload { get; set; }
+        public virtual ICollection<OpportunityResponseDownload> OpportunityResponseDownload { get; set; }
         [InverseProperty("User")]
-        public virtual ICollection<BriefUser> BriefUser { get; set; }
+        public virtual ICollection<OpportunityUser> OpportunityUser { get; set; }
     }
 }

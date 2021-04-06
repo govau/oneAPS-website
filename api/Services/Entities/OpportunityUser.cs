@@ -5,21 +5,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dta.OneAps.Api.Services.Entities
 {
-    [Table("brief_user")]
-    public partial class BriefUser
+    [Table("opportunity_user")]
+    public partial class OpportunityUser
     {
         [Key]
-        [Column("brief_id")]
-        public int BriefId { get; set; }
+        [Column("opportunity_id")]
+        public int OpportunityId { get; set; }
         [Key]
         [Column("user_id")]
         public int UserId { get; set; }
 
-        [ForeignKey(nameof(BriefId))]
-        [InverseProperty("BriefUser")]
-        public virtual Brief Brief { get; set; }
+        [ForeignKey(nameof(OpportunityId))]
+        [InverseProperty("OpportunityUser")]
+        public virtual Opportunity Opportunity { get; set; }
         [ForeignKey(nameof(UserId))]
-        [InverseProperty("BriefUser")]
+        [InverseProperty("OpportunityUser")]
         public virtual User User { get; set; }
     }
 }

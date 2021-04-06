@@ -1,0 +1,39 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - "~/oneaps/docker/postgresql/data:/var/lib/postgresql/data"
+    ports:
+      - 15432:5432
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - "~/oneaps/docker/pgadmin:/var/lib/pgadmin"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: a@b.cm
+      PGADMIN_DEFAULT_PASSWORD: 1234
+      
+  localstack:
+    image: localstack/localstack:latest
+    restart: always
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DATA_DIR=/tmp/localstack/data
+      - LAMBDA_EXECUTOR=local
+    volumes:
+      - "~/oneaps/docker/localstack/data:/tmp/localstack/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"

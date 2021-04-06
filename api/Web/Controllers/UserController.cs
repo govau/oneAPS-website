@@ -31,6 +31,17 @@ namespace Dta.OneAps.Api.Web.Controllers {
             }
         }
 
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public async Task<IActionResult> RegisterAsync([FromBody]UserModel model) {
+            try {
+                var user = await _userBusiness.RegisterAsync(model, "test");
+                return Ok(user);
+            } catch (CannotAuthenticateException) {
+                return BadRequest(new { message = "Username or password is incorrect" });
+            }
+        }
+
         [Authorize(Roles = Roles.Admin)]
         [HttpGet]
         public async Task<IActionResult> GetAll() {
@@ -43,7 +54,9 @@ namespace Dta.OneAps.Api.Web.Controllers {
             if (!_authorizationUtil.IsUserInRole(User, Roles.Admin) && !_authorizationUtil.IsUserTheSame(User, id)) {
                 return Forbid();
             }
-
+            System.Console.WriteLine("############################");
+            System.Console.WriteLine(User);
+            System.Console.WriteLine("############################");
             var user = await _userBusiness.GetByIdAsync(id);
             if (user == null) {
                 return NotFound();

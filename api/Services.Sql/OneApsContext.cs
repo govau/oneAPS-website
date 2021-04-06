@@ -5,9 +5,9 @@ using Dta.OneAps.Api.Services.Entities;
 
 namespace Dta.OneAps.Api.Services.Sql {
     public partial class OneApsContext : DbContext {
-        static OneApsContext() {
-            Npgsql.NpgsqlConnection.GlobalTypeMapper.MapEnum<UserRole>();
-        }
+        // static OneApsContext() {
+        //     Npgsql.NpgsqlConnection.GlobalTypeMapper.MapEnum<UserRole>("UserRole", new Npgsql.NameTranslation.NpgsqlNullNameTranslator());
+        // }
 
         public OneApsContext() {
         }
@@ -32,9 +32,6 @@ namespace Dta.OneAps.Api.Services.Sql {
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            modelBuilder
-                .HasPostgresEnum(null, "user_roles_enum", Enum.GetNames(typeof(UserRole)))
-                .HasPostgresExtension("pg_trgm");
 
             modelBuilder.Entity<Opportunity>(entity => {
                 entity.HasIndex(e => e.ClosedAt)

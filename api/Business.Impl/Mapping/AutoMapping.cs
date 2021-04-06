@@ -6,6 +6,7 @@ namespace Dta.OneAps.Api.Business.Mapping {
     public class AutoMapping : Profile {
         public AutoMapping() {
             CreateMap<User, UserModel>();
+            CreateMap<UserModel, User>();
         }
     }
 }

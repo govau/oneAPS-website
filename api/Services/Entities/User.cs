@@ -51,6 +51,8 @@ namespace Dta.OneAps.Api.Services.Entities
         public long? ApplicationId { get; set; }
         [Column("agency_id")]
         public int? AgencyId { get; set; }
+        [Column("role")]
+        public string Role { get; set; }
 
         [InverseProperty("User")]
         public virtual ICollection<OpportunityAssessor> OpportunityAssessor { get; set; }

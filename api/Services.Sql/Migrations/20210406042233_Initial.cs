@@ -1,5 +1,4 @@
 ﻿using System;
-using Dta.OneAps.Api.Services.Entities;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -9,10 +8,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterDatabase()
-                .Annotation("Npgsql:Enum:user_roles_enum", "buyer,supplier,admin,applicant")
-                .Annotation("Npgsql:PostgresExtension:pg_trgm", ",,");
-
             migrationBuilder.CreateSequence(
                 name: "key_value_id_seq");
 
@@ -92,7 +87,7 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                     terms_accepted_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     application_id = table.Column<long>(type: "bigint", nullable: true),
                     agency_id = table.Column<int>(type: "integer", nullable: true),
-                    role = table.Column<UserRole>(type: "user_roles_enum", nullable: false)
+                    role = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {

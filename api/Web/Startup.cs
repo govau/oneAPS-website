@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Identity;
 using Dta.OneAps.Api.Shared;
 using Dta.OneAps.Api.Web.Handlers;
 using Dta.OneAps.Api.Services.Sql;
@@ -30,19 +31,24 @@ namespace Dta.OneAps.Api.Web {
             services.Configure<AppSettings>(appSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();
 
-            services
-                .AddAuthentication(Schemes.UserAuthenticationHandler)
-                .AddJwtBearer(options => {
-                    options.TokenValidationParameters = new TokenValidationParameters {    
-                        ValidateIssuer = true,    
-                        ValidateAudience = true,    
-                        ValidateLifetime = true,    
-                        ValidateIssuerSigningKey = true,    
-                        ValidIssuer = Configuration["Jwt:Issuer"],    
-                        ValidAudience = Configuration["Jwt:Issuer"],    
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))    
-                    };  
-                });
+            services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options => {
+                options.TokenValidationParameters = new TokenValidationParameters {    
+                    ValidateIssuer = false,    
+                    ValidateAudience = false,    
+                    ValidateLifetime = true,    
+                    ValidateIssuerSigningKey = true,    
+                    // ValidIssuer = Configuration["Jwt:Issuer"],    
+                    // ValidAudience = Configuration["Jwt:Issuer"],    
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))    
+                };  
+            });
+                
+                
                 // .AddScheme<AuthenticationSchemeOptions, UserAuthenticationHandler>(Schemes.UserAuthenticationHandler, null)
                 // .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(Schemes.ApiKeyAuthenticationHandler, null);
 

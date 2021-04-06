@@ -3,6 +3,7 @@ using Dta.OneAps.Api.Business.Exceptions;
 using Dta.OneAps.Api.Business.Models;
 using Dta.OneAps.Api.Business.Utils;
 using Dta.OneAps.Api.Services;
+using Dta.OneAps.Api.Services.Entities;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -20,14 +21,12 @@ namespace Dta.OneAps.Api.Business {
     public class UserBusiness : IUserBusiness {
         private readonly IEncryptionUtil _encryptionUtil;
         private readonly IUserService _userService;
-        private readonly IUserSessionBusiness _userSessionBusiness;
         private readonly IMapper _mapper;
         private IConfiguration _config;   
 
-        public UserBusiness(IConfiguration config, IEncryptionUtil encryptionUtil, IUserService userService, IUserSessionBusiness userSessionBusiness, IMapper mapper) {
+        public UserBusiness(IConfiguration config, IEncryptionUtil encryptionUtil, IUserService userService, IMapper mapper) {
             _config = config;
             _userService = userService;
-            _userSessionBusiness = userSessionBusiness;
             _mapper = mapper;
             _encryptionUtil = encryptionUtil;
         }
@@ -35,13 +34,29 @@ namespace Dta.OneAps.Api.Business {
         public async Task<UserModel> AuthenticateAsync(AuthenticateModel model) {
             string encryptedPassword = _encryptionUtil.Encrypt(model.Password);
 
-            var user = await _userService.AuthenticateAsync(model.Username, encryptedPassword);
+            var user = await _userService.AuthenticateAsync(model.EmailAddress, encryptedPassword);
             if (user == null) {
                 throw new CannotAuthenticateException();
             }
             var result = _mapper.Map<UserModel>(user);
             // result.Token = await _userSessionBusiness.CreateSessionAsync(result);
             result.Token = GenerateJSONWebToken(result);
+            return result;
+        }
+
+        public async Task<UserModel> RegisterAsync(UserModel model, string password) {
+            string encryptedPassword = _encryptionUtil.Encrypt(password);
+
+            var toSave = _mapper.Map<User>(model);
+            toSave.Password = encryptedPassword;
+            var user = await _userService.RegisterAsync(toSave, encryptedPassword);
+
+            if (user == null) {
+                throw new CannotAuthenticateException();
+            }
+            var result = _mapper.Map<UserModel>(user);
+            // result.Token = await _userSessionBusiness.CreateSessionAsync(result);
+            // result.Token = GenerateJSONWebToken(result);
             return result;
         }
         public async Task<IEnumerable<UserModel>> GetAllAsync() => _mapper.Map<IEnumerable<UserModel>>(await _userService.GetAllAsync());

@@ -25,6 +25,13 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .SingleOrDefaultAsync()
         );
 
+        public async Task<User> RegisterAsync(User user, string password) {
+            var result = await _context.User.AddAsync(user);
+            await _context.SaveChangesAsync();
+
+            return result.Entity;
+        }
+
         public async Task<IEnumerable<User>> GetAllAsync() => await _context.User.ToListAsync();
         public async Task<User> GetByIdAsync(int id) => await _context.User.Where(x => x.Id == id).SingleOrDefaultAsync();
     }

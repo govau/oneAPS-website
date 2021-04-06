@@ -1,0 +1,7 @@
+**/bin/**/*.*
+**/obj/**/*.*
+**/TestResults/**/*.*
+**/node_modules/**/*
+**/build/**/*
+**/.DS_Store
+**/.vs

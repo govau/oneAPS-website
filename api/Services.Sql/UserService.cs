@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Dta.OneAps.Api.Services.Entities;
 
 namespace Dta.OneAps.Api.Services.Sql {
-    public class UserService : IUserService {
+    public class UserService : DatabaseOperationService, IUserService {
         private readonly OneApsContext _context;
 
-        public UserService(OneApsContext context) {
+        public UserService(OneApsContext context) : base (context) {
             _context = context;
         }
 
@@ -26,10 +26,9 @@ namespace Dta.OneAps.Api.Services.Sql {
         );
 
         public async Task<User> RegisterAsync(User user) {
-            var result = await _context.User.AddAsync(user);
-            await _context.SaveChangesAsync();
-
-            return result.Entity;
+            var newUser = await base.CreateAsync<User>(user);
+            await base.CommitAsync();
+            return newUser;
         }
 
         public async Task<IEnumerable<User>> GetAllAsync() => await _context.User.ToListAsync();

@@ -1,0 +1,203 @@
+version: 2.1
+commands:
+  dot_net_build:
+    description: "Build dot net project"
+    parameters:
+      path:
+        type: string
+    steps:
+      - run: 
+          name: Dotnet build
+          command: |
+            cd << parameters.path >>
+            dotnet build
+  
+  dot_net_test:
+    description: "Test dot net project"
+    parameters:
+      path:
+        type: string
+    steps:
+      - run: 
+          name: Dotnet test
+          command: |
+            cd << parameters.path >>
+            dotnet test
+  npm_build:
+    description: "build npm"
+    parameters:
+      path:
+        type: string
+    steps:
+      - run: 
+          name: Build npm
+          command: |
+            cd << parameters.path >>
+            npm install
+            npm run lint
+            npm run build
+            npm test
+  cf_deploy:
+    description: "cf deploy"
+    parameters:
+      cf_url:
+        type: string
+        default: https://api.system.y.cld.gov.au
+      cf_user:
+        type: string
+        default: $CF_USER_STAGING
+      cf_password:
+        type: string
+        default: $CF_PASSWORD_STAGING
+      cf_app_name:
+        type: string
+      cf_manifest:
+        type: string
+      cf_path:
+        type: string
+      cf_space:
+        type: string
+        default: marketplace
+    steps:
+      - run:
+          name: Deploy
+          command: |
+            cd << parameters.cf_path >>
+            cf login -a << parameters.cf_url >> -o dta -s << parameters.cf_space >> -u << parameters.cf_user >> -p << parameters.cf_password >>
+            cf zero-downtime-push << parameters.cf_app_name >> -f << parameters.cf_manifest >> --show-app-log
+jobs:
+  get_code:
+    docker:
+      - image: circleci/node:12-stretch
+    steps:
+      - attach_workspace:
+          at: .
+      - checkout
+      - persist_to_workspace:
+          root: .
+          paths:
+            - "**/*"
+
+  run_dot_net_builds:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:5.0
+    steps:
+      - attach_workspace:
+          at: .
+      - checkout
+      - dot_net_build: 
+          path: "api"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - "api/**/*"
+
+  run_npm_builds:
+    docker:
+      - image: circleci/node:12-stretch
+    steps:
+      - attach_workspace:
+          at: .
+      - npm_build:
+          path: "ui"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - "ui/**/*"
+    
+  deploy_ui_to_rc:
+    docker:
+      - image: govau/cf-cli
+    steps:
+      - cf_deploy:
+          cf_app_name: oneaps-rc-ui
+          cf_manifest: ../manifest.rc.yml
+          cf_path: ui/public
+    
+  deploy_api_to_rc:
+    docker:
+      - image: govau/cf-cli
+    steps:
+      - cf_deploy:
+          cf_app_name: oneaps-rc-api
+          cf_manifest: manifest.rc.yml
+          cf_path: api
+
+  deploy_ui_to_production:
+    docker:
+      - image: govau/cf-cli
+    steps:
+      - cf_deploy:
+          cf_url: https://api.system.b.cld.gov.au
+          cf_user: $CF_USER_PROD
+          cf_password: $CF_PASSWORD_PROD
+          cf_app_name: oneaps-ui
+          cf_manifest: ../manifest.prod.yml
+          cf_path: ui/public
+          cf_space: digitalsourcing
+
+  deploy_api_to_production:
+    docker:
+      - image: govau/cf-cli
+      - cf_deploy:
+          cf_url: https://api.system.b.cld.gov.au
+          cf_user: $CF_USER_PROD
+          cf_password: $CF_PASSWORD_PROD
+          cf_app_name: oneaps-api
+          cf_manifest: manifest.prod.yml
+          cf_path: api
+          cf_space: digitalsourcing
+
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - get_code
+      - run_dot_net_builds:
+          requires:
+            - get_code
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*/
+      - run_npm_builds:
+          requires:
+            - get_code
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*/
+      - deploy_ui_to_rc:
+          requires:
+            - run_dot_net_builds
+            - run_npm_builds
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              only: rc
+      - deploy_api_to_rc:
+          requires:
+            - run_dot_net_builds
+            - run_npm_builds
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              only: rc
+      - deploy_ui_to_production:
+          requires:
+            - run_dot_net_builds
+            - run_npm_builds
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*/
+            branches:
+              only: production
+      - deploy_api_to_production:
+          requires:
+            - run_dot_net_builds
+            - run_npm_builds
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*/
+            branches:
+              only: production

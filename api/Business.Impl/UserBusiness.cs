@@ -49,7 +49,6 @@ namespace Dta.OneAps.Api.Business {
             toSave.Role = "user";
             var user = await _userService.RegisterAsync(toSave);
 
-
             if (user == null) {
                 throw new CannotAuthenticateException();
             }

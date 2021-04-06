@@ -393,13 +393,9 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .HasColumnType("boolean")
                         .HasColumnName("active");
 
-                    b.Property<int?>("AgencyId")
-                        .HasColumnType("integer")
-                        .HasColumnName("agency_id");
-
-                    b.Property<long?>("ApplicationId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("application_id");
+                    b.Property<string>("Agency")
+                        .HasColumnType("text")
+                        .HasColumnName("agency");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone")
@@ -432,21 +428,9 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("password_changed_at");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("character varying")
-                        .HasColumnName("phone_number");
-
                     b.Property<string>("Role")
                         .HasColumnType("text")
                         .HasColumnName("role");
-
-                    b.Property<long?>("SupplierCode")
-                        .HasColumnType("bigint")
-                        .HasColumnName("supplier_code");
-
-                    b.Property<DateTime>("TermsAcceptedAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("terms_accepted_at");
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp without time zone")
@@ -454,18 +438,9 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AgencyId")
-                        .HasDatabaseName("ix_user_agency_id");
-
-                    b.HasIndex("ApplicationId")
-                        .HasDatabaseName("ix_user_application_id");
-
                     b.HasIndex("EmailAddress")
                         .IsUnique()
                         .HasDatabaseName("ix_user_email_address");
-
-                    b.HasIndex("SupplierCode")
-                        .HasDatabaseName("ix_user_supplier_code");
 
                     b.ToTable("user");
                 });

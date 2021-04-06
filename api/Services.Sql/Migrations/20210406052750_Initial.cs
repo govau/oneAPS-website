@@ -75,7 +75,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "character varying", nullable: false),
                     email_address = table.Column<string>(type: "character varying", nullable: false),
-                    phone_number = table.Column<string>(type: "character varying", nullable: true),
                     password = table.Column<string>(type: "character varying", nullable: false),
                     active = table.Column<bool>(type: "boolean", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
@@ -83,10 +82,7 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                     password_changed_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     logged_in_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     failed_login_count = table.Column<int>(type: "integer", nullable: false),
-                    supplier_code = table.Column<long>(type: "bigint", nullable: true),
-                    terms_accepted_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    application_id = table.Column<long>(type: "bigint", nullable: true),
-                    agency_id = table.Column<int>(type: "integer", nullable: true),
+                    agency = table.Column<string>(type: "text", nullable: true),
                     role = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
@@ -402,25 +398,10 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
-                name: "ix_user_agency_id",
-                table: "user",
-                column: "agency_id");
-
-            migrationBuilder.CreateIndex(
-                name: "ix_user_application_id",
-                table: "user",
-                column: "application_id");
-
-            migrationBuilder.CreateIndex(
                 name: "ix_user_email_address",
                 table: "user",
                 column: "email_address",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "ix_user_supplier_code",
-                table: "user",
-                column: "supplier_code");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

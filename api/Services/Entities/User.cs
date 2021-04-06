@@ -26,8 +26,6 @@ namespace Dta.OneAps.Api.Services.Entities
         [Required]
         [Column("email_address", TypeName = "character varying")]
         public string EmailAddress { get; set; }
-        [Column("phone_number", TypeName = "character varying")]
-        public string PhoneNumber { get; set; }
         [Required]
         [Column("password", TypeName = "character varying")]
         public string Password { get; set; }
@@ -43,14 +41,8 @@ namespace Dta.OneAps.Api.Services.Entities
         public DateTime? LoggedInAt { get; set; }
         [Column("failed_login_count")]
         public int FailedLoginCount { get; set; }
-        [Column("supplier_code")]
-        public long? SupplierCode { get; set; }
-        [Column("terms_accepted_at")]
-        public DateTime TermsAcceptedAt { get; set; }
-        [Column("application_id")]
-        public long? ApplicationId { get; set; }
-        [Column("agency_id")]
-        public int? AgencyId { get; set; }
+        [Column("agency")]
+        public string Agency { get; set; }
         [Column("role")]
         public string Role { get; set; }
 

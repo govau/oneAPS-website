@@ -175,18 +175,10 @@ namespace Dta.OneAps.Api.Services.Sql {
             });
 
             modelBuilder.Entity<User>(entity => {
-                entity.HasIndex(e => e.AgencyId)
-                    .HasDatabaseName("ix_user_agency_id");
-
-                entity.HasIndex(e => e.ApplicationId)
-                    .HasDatabaseName("ix_user_application_id");
 
                 entity.HasIndex(e => e.EmailAddress)
                     .HasDatabaseName("ix_user_email_address")
                     .IsUnique();
-
-                entity.HasIndex(e => e.SupplierCode)
-                    .HasDatabaseName("ix_user_supplier_code");
             });
 
             modelBuilder.HasSequence("opportunity_assessor_id_seq");

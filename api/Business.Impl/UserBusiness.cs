@@ -22,7 +22,7 @@ namespace Dta.OneAps.Api.Business {
         private readonly IEncryptionUtil _encryptionUtil;
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        private IConfiguration _config;   
+        private IConfiguration _config;
 
         public UserBusiness(IConfiguration config, IEncryptionUtil encryptionUtil, IUserService userService, IMapper mapper) {
             _config = config;
@@ -31,7 +31,7 @@ namespace Dta.OneAps.Api.Business {
             _encryptionUtil = encryptionUtil;
         }
 
-        public async Task<UserModel> AuthenticateAsync(AuthenticateModel model) {
+        public async Task<string> AuthenticateAsync(AuthenticateModel model) {
             string encryptedPassword = _encryptionUtil.Encrypt(model.Password);
 
             var user = await _userService.AuthenticateAsync(model.EmailAddress, encryptedPassword);
@@ -39,9 +39,7 @@ namespace Dta.OneAps.Api.Business {
                 throw new CannotAuthenticateException();
             }
             var result = _mapper.Map<UserModel>(user);
-            // result.Token = await _userSessionBusiness.CreateSessionAsync(result);
-            result.Token = GenerateJSONWebToken(result);
-            return result;
+            return GenerateJSONWebToken(result);
         }
 
         public async Task<UserModel> RegisterAsync(UserModel model, string password) {
@@ -55,40 +53,25 @@ namespace Dta.OneAps.Api.Business {
                 throw new CannotAuthenticateException();
             }
             var result = _mapper.Map<UserModel>(user);
-            // result.Token = await _userSessionBusiness.CreateSessionAsync(result);
-            // result.Token = GenerateJSONWebToken(result);
             return result;
         }
         public async Task<IEnumerable<UserModel>> GetAllAsync() => _mapper.Map<IEnumerable<UserModel>>(await _userService.GetAllAsync());
         public async Task<UserModel> GetByIdAsync(int id) => _mapper.Map<UserModel>(await _userService.GetByIdAsync(id));
         private string GenerateJSONWebToken(UserModel userModel) {
-            // var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));    
-            // var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);    
-    
-            // var token = new JwtSecurityToken(
-            //     _config["Jwt:Issuer"],    
-            //     _config["Jwt:Issuer"],    
-            //     null,    
-            //     expires: DateTime.Now.AddHours(8),    
-            //     signingCredentials: credentials
-            // );
-    
-            // return new JwtSecurityTokenHandler().WriteToken(token);    
-
-
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 
             var key = Encoding.ASCII.GetBytes(_config["Jwt:Key"]);
 
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new []
+            var tokenDescriptor = new SecurityTokenDescriptor {
+                Subject = new ClaimsIdentity(new[]
                 {
-                    new Claim("Id", userModel.Id.ToString()), 
-                    new Claim(JwtRegisteredClaimNames.Email, userModel.EmailAddress),
-                    new Claim(JwtRegisteredClaimNames.Sub, userModel.EmailAddress),
+                    new Claim("Id", userModel.Id.ToString()),
+                    new Claim("Email", userModel.EmailAddress),
+                    new Claim("Name", userModel.Name),
+                    new Claim("Role", userModel.Role),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
+                IssuedAt = DateTime.UtcNow,
                 Expires = DateTime.UtcNow.AddHours(6),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
@@ -97,6 +80,6 @@ namespace Dta.OneAps.Api.Business {
             var jwtToken = jwtTokenHandler.WriteToken(token);
 
             return jwtToken;
-        } 
+        }
     }
 }

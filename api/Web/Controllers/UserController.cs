@@ -12,7 +12,7 @@ namespace Dta.OneAps.Api.Web.Controllers {
     [ApiController]
     [Route("[controller]")]
     public class UserController : ControllerBase {
-        private readonly IAuthorizationUtil _authorizationUtil; 
+        private readonly IAuthorizationUtil _authorizationUtil;
         private readonly IUserBusiness _userBusiness;
 
         public UserController(IUserBusiness userBusiness, IAuthorizationUtil authorizationUtil) {
@@ -22,7 +22,7 @@ namespace Dta.OneAps.Api.Web.Controllers {
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public async Task<IActionResult> AuthenticateAsync([FromBody]AuthenticateModel model) {
+        public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticateModel model) {
             try {
                 var user = await _userBusiness.AuthenticateAsync(model);
                 return Ok(user);
@@ -33,13 +33,9 @@ namespace Dta.OneAps.Api.Web.Controllers {
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterAsync([FromBody]UserModel model) {
-            try {
-                var user = await _userBusiness.RegisterAsync(model, "test");
-                return Ok(user);
-            } catch (CannotAuthenticateException) {
-                return BadRequest(new { message = "Username or password is incorrect" });
-            }
+        public async Task<IActionResult> RegisterAsync([FromBody] UserModel model) {
+            var user = await _userBusiness.RegisterAsync(model, "test");
+            return Ok(user);
         }
 
         [Authorize(Roles = Roles.Admin)]
@@ -54,9 +50,6 @@ namespace Dta.OneAps.Api.Web.Controllers {
             if (!_authorizationUtil.IsUserInRole(User, Roles.Admin) && !_authorizationUtil.IsUserTheSame(User, id)) {
                 return Forbid();
             }
-            System.Console.WriteLine("############################");
-            System.Console.WriteLine(User);
-            System.Console.WriteLine("############################");
             var user = await _userBusiness.GetByIdAsync(id);
             if (user == null) {
                 return NotFound();

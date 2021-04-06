@@ -1,0 +1,9 @@
+buildpack: dotnet_core_buildpack
+health-check-type: process
+memory: 512M
+disk_quota: 512M
+instances: 2
+routes:
+- route: oneaps.apps.b.cld.gov.au/api
+services:
+- ups-oneaps-api

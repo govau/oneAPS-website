@@ -9,6 +9,10 @@ module.exports = {
         text: "Home",
         link: "/",
       },
+      {
+        text: "Register",
+        link: "/register",
+      },
     ],
     footerLinks: [
       {

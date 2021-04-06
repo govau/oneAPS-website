@@ -17,7 +17,7 @@ const RegisterForm: React.FC = () => {
 
   const handleRegisterUser = async (formData: IRegisterType) => {
     setSaving(true);
-    alert("submitted")
+    alert("submitted");
     const { email, password, name } = formData;
     try {
       // const result = await axios.post(
@@ -55,11 +55,7 @@ const RegisterForm: React.FC = () => {
           handleRegisterUser(values);
         }}
       >
-        {({
-          errors,
-          handleSubmit,
-          submitForm,
-        }) => (
+        {({ errors, handleSubmit, submitForm }) => (
           <Form
             method="post"
             noValidate
@@ -99,6 +95,21 @@ const RegisterForm: React.FC = () => {
               label="Email"
               width="lg"
               type="email"
+              required
+            />
+            <TextField
+              id="mobile"
+              label="Mobile number"
+              width="lg"
+              hint="We’ll send you a security code by text message"
+              type="text"
+              required
+            />
+            <TextField
+              id="agency"
+              label="Agency/Department name"
+              width="lg"
+              type="text"
               required
             />
             <PasswordField

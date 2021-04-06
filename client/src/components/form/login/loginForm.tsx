@@ -1,24 +1,13 @@
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
-import * as yup from "yup";
 import { Aubtn, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, ILoginType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
-import { emailValidation, passwordValidation } from "../../../util/yup";
 import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import PasswordField from "../fields/PasswordField";
 import TextField from "../fields/TextField";
-
-const initialValues = {
-  email: "",
-  password: "",
-};
-
-const validationSchema = yup.object().shape({
-  email: emailValidation,
-  password: passwordValidation,
-});
+import { initialValues, validationSchema } from "./loginSchema";
 
 const LoginForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);

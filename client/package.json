@@ -76,5 +76,51 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "pancake": {
+    "auto-save": true,
+    "plugins": true,
+    "ignore": [
+      "@gov.au/pancake-css",
+      "@gov.au/pancake-json"
+    ],
+    "json": {
+      "enable": false,
+      "location": "pancake/",
+      "name": "pancake",
+      "content": {
+        "name": true,
+        "version": true,
+        "dependencies": true,
+        "path": true,
+        "settings": true
+      }
+    },
+    "css": {
+      "minified": true,
+      "modules": false,
+      "browsers": [
+        "last 2 versions",
+        "ie 8",
+        "ie 9",
+        "ie 10"
+      ],
+      "location": false,
+      "name": false
+    },
+    "sass": {
+      "modules": false,
+      "location": "src/auds/sass/",
+      "name": "pancake.scss"
+    },
+    "js": {
+      "minified": true,
+      "modules": false,
+      "location": false,
+      "name": false
+    },
+    "react": {
+      "location": "src/auds/react/"
+    }
   }
 }

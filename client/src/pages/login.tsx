@@ -1,24 +1,26 @@
 import { Link } from "gatsby";
 import * as React from "react";
-import RegisterForm from "../components/form/registerForm/registerForm";
+import LoginForm from "../components/form/login/loginForm";
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
 import { PageContext } from "../types/types";
 
 // markup
-const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
+const LoginPage: React.FC<PageContext> = ({ pageContext, location }) => {
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
-        <SEO title="Register" />
+        <SEO title="Login" />
+
         <div className="container-fluid au-body">
-          <h1>Register</h1>
-          <p>Already have an account? {<Link to="/login">Login</Link>}</p>
-          <RegisterForm />
+          <h1>Login </h1>
+
+          <p>Don't have an account? {<Link to="/register">Register</Link>}</p>
+          <LoginForm />
         </div>
       </>
     </DefaultLayout>
   );
 };
 
-export default IndexPage;
+export default LoginPage;

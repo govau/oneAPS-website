@@ -42,12 +42,13 @@ namespace Dta.OneAps.Api.Business {
             return GenerateJSONWebToken(result);
         }
 
-        public async Task<UserModel> RegisterAsync(UserModel model, string password) {
-            string encryptedPassword = _encryptionUtil.Encrypt(password);
-
+        public async Task<UserModel> RegisterAsync(CreateUserModel model) {
             var toSave = _mapper.Map<User>(model);
-            toSave.Password = encryptedPassword;
-            var user = await _userService.RegisterAsync(toSave, encryptedPassword);
+            toSave.Password = _encryptionUtil.Encrypt(model.Password);
+            toSave.Active = true;
+            toSave.Role = "user";
+            var user = await _userService.RegisterAsync(toSave);
+
 
             if (user == null) {
                 throw new CannotAuthenticateException();

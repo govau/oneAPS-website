@@ -1,0 +1,8 @@
+.event {
+  @include AU-space(padding, 2unit 0);
+
+  + .event {
+    @include AU-space(margin-top, 1unit);
+    border-top: lightgrey solid 1px;
+  }
+}

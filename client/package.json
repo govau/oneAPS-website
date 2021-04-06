@@ -1,0 +1,126 @@
+{
+  "name": "gatsby-starter-default",
+  "private": true,
+  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "version": "0.1.0",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "dependencies": {
+    "@gov.au/accordion": "latest",
+    "@gov.au/animate": "latest",
+    "@gov.au/body": "latest",
+    "@gov.au/breadcrumbs": "latest",
+    "@gov.au/buttons": "latest",
+    "@gov.au/callout": "latest",
+    "@gov.au/card": "latest",
+    "@gov.au/control-input": "latest",
+    "@gov.au/core": "^3.4.2",
+    "@gov.au/cta-link": "latest",
+    "@gov.au/direction-links": "latest",
+    "@gov.au/footer": "latest",
+    "@gov.au/form": "latest",
+    "@gov.au/header": "latest",
+    "@gov.au/headings": "latest",
+    "@gov.au/inpage-nav": "latest",
+    "@gov.au/keyword-list": "latest",
+    "@gov.au/link-list": "latest",
+    "@gov.au/main-nav": "latest",
+    "@gov.au/page-alerts": "latest",
+    "@gov.au/progress-indicator": "latest",
+    "@gov.au/responsive-media": "latest",
+    "@gov.au/searchbox": "latest",
+    "@gov.au/select": "latest",
+    "@gov.au/side-nav": "latest",
+    "@gov.au/skip-link": "latest",
+    "@gov.au/table": "latest",
+    "@gov.au/tags": "latest",
+    "@gov.au/text-inputs": "latest",
+    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
+    "@types/axios": "^0.14.0",
+    "@types/yup": "^0.29.11",
+    "axios": "^0.21.1",
+    "formik": "^2.2.6",
+    "gatsby": "^3.2.1",
+    "gatsby-plugin-gatsby-cloud": "^2.2.0",
+    "gatsby-plugin-image": "^1.2.0",
+    "gatsby-plugin-manifest": "^3.2.0",
+    "gatsby-plugin-offline": "^4.2.0",
+    "gatsby-plugin-react-helmet": "^4.2.0",
+    "gatsby-plugin-sharp": "^3.2.0",
+    "gatsby-source-filesystem": "^3.2.0",
+    "gatsby-transformer-sharp": "^3.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-helmet": "^6.1.0"
+  },
+  "devDependencies": {
+    "prettier": "2.2.1"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "0BSD",
+  "scripts": {
+    "build": "gatsby build",
+    "watch": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+  },
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "pancake": {
+    "auto-save": true,
+    "plugins": true,
+    "ignore": [
+      "@gov.au/pancake-css",
+      "@gov.au/pancake-json"
+    ],
+    "json": {
+      "enable": false,
+      "location": "pancake/",
+      "name": "pancake",
+      "content": {
+        "name": true,
+        "version": true,
+        "dependencies": true,
+        "path": true,
+        "settings": true
+      }
+    },
+    "css": {
+      "minified": true,
+      "modules": false,
+      "browsers": [
+        "last 2 versions",
+        "ie 8",
+        "ie 9",
+        "ie 10"
+      ],
+      "location": false,
+      "name": false
+    },
+    "sass": {
+      "modules": false,
+      "location": "src/auds/sass/",
+      "name": "pancake.scss"
+    },
+    "js": {
+      "minified": true,
+      "modules": false,
+      "location": false,
+      "name": false
+    },
+    "react": {
+      "location": "src/auds/react/"
+    }
+  }
+}

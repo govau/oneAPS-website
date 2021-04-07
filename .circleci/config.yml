@@ -80,7 +80,7 @@ jobs:
 
   run_dot_net_builds:
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:5.0
+      - image: mcr.microsoft.com/dotnet/sdk:5.0
     steps:
       - attach_workspace:
           at: .

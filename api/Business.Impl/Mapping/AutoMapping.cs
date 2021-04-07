@@ -10,6 +10,7 @@ namespace Dta.OneAps.Api.Business.Mapping {
             CreateMap<CreateUserModel, User>();
             CreateMap<Lookup, LookupModel>();
             CreateMap<Opportunity, OpportunityModel>();
+            CreateMap<Opportunity, PublicOpportunityResponse>();
             CreateMap<OpportunityModel, Opportunity>();
         }
     }

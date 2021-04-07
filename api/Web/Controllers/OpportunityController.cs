@@ -32,13 +32,14 @@ namespace Dta.OneAps.Api.Web.Controllers {
             return Ok(user);
         }
 
-        [Authorize(Roles = Roles.Admin)]
+        [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> GetAll() => Ok(await _opportunityBusiness.GetAllAsync());
+        public async Task<IActionResult> List() => Ok(await _opportunityBusiness.List());
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdAsync(int id) {
-            var opportunity = await _opportunityBusiness.GetByIdAsync(id);
+        public async Task<IActionResult> Get(int id) {
+            var opportunity = await _opportunityBusiness.Get(id);
             if (opportunity == null) {
                 return NotFound();
             }

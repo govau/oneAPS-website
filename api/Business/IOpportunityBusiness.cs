@@ -6,7 +6,8 @@ namespace Dta.OneAps.Api.Business {
     public interface IOpportunityBusiness {
         Task<OpportunityModel> Create(OpportunityModel opportunityModel);
         Task<OpportunityModel> Update(OpportunityModel opportunityModel);
-        Task<IEnumerable<OpportunityModel>> GetAllAsync();
-        Task<OpportunityModel> GetByIdAsync(int id);
+        Task<IEnumerable<OpportunityModel>> ListAll();
+        Task<IEnumerable<PublicOpportunityResponse>> List();
+        Task<PublicOpportunityResponse> Get(int id);
     }
 }

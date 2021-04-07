@@ -3,27 +3,29 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Business\Dta.OneAps.Api.Business.csproj"/>
-    <ProjectReference Include="..\Shared\Dta.OneAps.Api.Shared.csproj"/>
-    <ProjectReference Include="..\Services\Dta.OneAps.Api.Services.csproj"/>
-    <ProjectReference Include="..\Business.Impl\Dta.OneAps.Api.Business.Impl.csproj"/>
-    <ProjectReference Include="..\Services.Sql\Dta.OneAps.Api.Services.Sql.csproj"/>
-    <ProjectReference Include="..\Services.Static\Dta.OneAps.Api.Services.Static.csproj"/>
+    <ProjectReference Include="..\Business\Dta.OneAps.Api.Business.csproj" />
+    <ProjectReference Include="..\Shared\Dta.OneAps.Api.Shared.csproj" />
+    <ProjectReference Include="..\Services\Dta.OneAps.Api.Services.csproj" />
+    <ProjectReference Include="..\Business.Impl\Dta.OneAps.Api.Business.Impl.csproj" />
+    <ProjectReference Include="..\Services.Sql\Dta.OneAps.Api.Services.Sql.csproj" />
+    <ProjectReference Include="..\Services.Static\Dta.OneAps.Api.Services.Static.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1"/>
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1"/>
-    <PackageReference Include="Lamar" Version="5.0.3"/>
-    <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="5.0.3"/>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4"/>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="FluentValidation" Version="10.0.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.0.0" />
+    <PackageReference Include="Lamar" Version="5.0.3" />
+    <PackageReference Include="Lamar.Microsoft.DependencyInjection" Version="5.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.4">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2"/>
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0"/>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
-    <PackageReference Include="Sentry" Version="3.2.0"/>
-    <PackageReference Include="Sentry.AspNetCore" Version="3.2.0"/>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.2" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Sentry" Version="3.2.0" />
+    <PackageReference Include="Sentry.AspNetCore" Version="3.2.0" />
   </ItemGroup>
 </Project>

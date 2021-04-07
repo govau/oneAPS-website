@@ -23,7 +23,13 @@ namespace Dta.OneAps.Api.Web {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddCors();
+            services.AddCors(options => {
+                options.AddPolicy(_devOrigins, builder => {
+                    builder.WithOrigins("http://localhost:8000")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
             services.AddControllers();
 
             // configure strongly typed settings objects

@@ -10,6 +10,10 @@ module.exports = {
         link: "/",
       },
       {
+        text: "About oneAPS",
+        link: "/about",
+      },
+      {
         text: "Register",
         link: "/register",
       },

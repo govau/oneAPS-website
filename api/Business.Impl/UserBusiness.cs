@@ -43,15 +43,17 @@ namespace Dta.OneAps.Api.Business {
         }
 
         public async Task<UserModel> RegisterAsync(CreateUserModel model) {
+            var exists = await _userService.GetByEmailAsync(model.EmailAddress);
+            if (exists != null) {
+                // TODO: send email to existing user
+                return null;
+            }
+
             var toSave = _mapper.Map<User>(model);
             toSave.Password = _encryptionUtil.Encrypt(model.Password);
             toSave.Active = true;
             toSave.Role = "user";
             var user = await _userService.RegisterAsync(toSave);
-
-            if (user == null) {
-                throw new CannotAuthenticateException();
-            }
             var result = _mapper.Map<UserModel>(user);
             return result;
         }

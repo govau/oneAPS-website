@@ -7,8 +7,7 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(u => u.Name).NotEmpty();
             RuleFor(u => u.EmailAddress)
                 .NotEmpty()
-                .Matches(".+@.+\\.gov\\.au").WithMessage("{PropertyValue} must be a gov.au {PropertyName}")
-                .MustAsync(async (e, c) => await userBusiness.GetByEmailAsync(e) == null).WithMessage("{PropertyValue} is already used.");
+                .Matches(".+@.+\\.gov\\.au").WithMessage("{PropertyValue} must be a gov.au {PropertyName}");
             RuleFor(u => u.Agency)
                 .NotEmpty()
                 .Must(e => lookupBusiness.Get("Agency", e) != null).WithMessage("{PropertyValue} is not a valid {PropertyName}.");

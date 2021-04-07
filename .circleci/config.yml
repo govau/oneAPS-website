@@ -34,7 +34,6 @@ commands:
           command: |
             cd << parameters.path >>
             npm install
-            npm run lint
             npm run build
             npm test
   cf_deploy:
@@ -80,7 +79,7 @@ jobs:
 
   run_dot_net_builds:
     docker:
-      - image: mcr.microsoft.com/dotnet/core/sdk:5.0
+      - image: mcr.microsoft.com/dotnet/sdk:5.0
     steps:
       - attach_workspace:
           at: .
@@ -99,11 +98,11 @@ jobs:
       - attach_workspace:
           at: .
       - npm_build:
-          path: "ui"
+          path: "client"
       - persist_to_workspace:
           root: .
           paths:
-            - "ui/**/*"
+            - "client/**/*"
     
   deploy_ui_to_rc:
     docker:
@@ -139,6 +138,7 @@ jobs:
   deploy_api_to_production:
     docker:
       - image: govau/cf-cli
+    steps:
       - cf_deploy:
           cf_url: https://api.system.b.cld.gov.au
           cf_user: $CF_USER_PROD

@@ -34,6 +34,8 @@ export interface IRegisterType {
   name: string;
   email: string;
   password: string;
+  agency: string;
+  mobile: string;
 }
 
 export interface ILoginType {

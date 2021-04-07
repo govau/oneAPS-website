@@ -17,6 +17,10 @@ module.exports = {
         text: "Register",
         link: "/register",
       },
+      {
+        text: "Post",
+        link: "/post-opportunity",
+      },
     ],
     footerLinks: [
       {
@@ -37,13 +41,13 @@ module.exports = {
       },
       __key: "pages",
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content`,
-        name: `markdown-pages`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     path: `${__dirname}/content`,
+    //     name: `markdown-pages`,
+    //   },
+    // },
     "gatsby-transformer-remark",
     {
       resolve: `gatsby-plugin-typescript`,

@@ -1,3 +1,4 @@
+import { Link } from "gatsby";
 import * as React from "react";
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
@@ -34,7 +35,9 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
                 guide.
               </p>
               <div style={{ marginTop: "3rem", marginBottom: "3rem" }}>
-                <button className="au-btn">Post an opportunity</button>
+                <Link to="post-opportunity" className="au-btn">
+                  Post an opportunity
+                </Link>
               </div>
               <p>
                 Want to find out more or have feedback? Contact{" "}

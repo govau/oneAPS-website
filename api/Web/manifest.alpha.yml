@@ -7,3 +7,4 @@ routes:
 - route: dm-alpha.apps.y.cld.gov.au/api/3
 services:
 - ups-dm-alpha-api
+- oneaps-db-dev

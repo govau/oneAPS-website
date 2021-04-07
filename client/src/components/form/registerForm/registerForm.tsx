@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Form, Formik } from "formik";
 import { navigate } from "gatsby";
 import React, { useState } from "react";
@@ -17,23 +18,26 @@ const RegisterForm: React.FC = () => {
 
   const handleRegisterUser = async (formData: IRegisterType) => {
     setSaving(true);
-    alert("submitted");
-    const { email, password, name } = formData;
+    const { email, password, name, agency } = formData;
+    console.log(process.env.GATSBY_API_URL);
     try {
-      // const result = await axios.post(
-      //   `${process.env.GATSBY_API_URL}/register`,
-      //   {
-      //     name,
-      //     email,
-      //     password,
-      //   }
-      // );
-      navigate("/submitted/", { state: { submitted: true } });
+      const result = await axios.post(
+        `${process.env.GATSBY_API_URL}/user/register`,
+        {
+          Name: name,
+          EmailAddress: email,
+          Password: password,
+          Agency: agency,
+        }
+      );
+      console.log(result);
+      navigate("/verify-account/", { state: { submitted: true } });
     } catch (e) {
       // const error = e.response.data;
       // if (error.errors) {
       //   setErrorList(error.errors);
       // }
+      console.log(e);
     }
     setSaving(false);
   };

@@ -69,6 +69,7 @@ namespace Dta.OneAps.Api.Business {
                     new Claim("Email", user.EmailAddress),
                     new Claim("Name", user.Name),
                     new Claim("Role", user.Role),
+                    new Claim(ClaimTypes.Role, user.Role),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
                 IssuedAt = DateTime.UtcNow,

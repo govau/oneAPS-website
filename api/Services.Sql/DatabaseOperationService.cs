@@ -16,6 +16,12 @@ namespace Dta.OneAps.Api.Services.Sql {
             var result = await _context.AddAsync<T>(entity);
             return result.Entity;
         }
+
+        public T Update<T>(T entity) where T : class {
+            var result =  _context.Update<T>(entity);
+            return result.Entity;
+        }
+        
         public async Task<int> CommitAsync() {
             return await _context.SaveChangesAsync();
         }

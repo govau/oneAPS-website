@@ -1,9 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Dta.OneAps.Api.Business.Models
-{
-    public class CreateUserModel
-    {
+namespace Dta.OneAps.Api.Business.Models {
+    public class CreateUserModel {
         [Required]
         public string EmailAddress { get; set; }
 

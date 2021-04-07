@@ -16,7 +16,7 @@ namespace Dta.OneAps.Api.Tests.Controllers.UsersControllerTests {
             _userBusinessMock = new Mock<IUserBusiness>();
             _userBusinessMock
                 .Setup(m => m.GetByIdAsync(1))
-                .ReturnsAsync(new UserModel {
+                .ReturnsAsync(new UserResponse {
                     Id = 1
                 });
         }
@@ -44,8 +44,8 @@ namespace Dta.OneAps.Api.Tests.Controllers.UsersControllerTests {
             Assert.IsType<OkObjectResult>(result);
             var okResult = result as OkObjectResult;
 
-            Assert.IsType<UserModel>(okResult.Value);
-            var userModel = okResult.Value as UserModel;
+            Assert.IsType<UserResponse>(okResult.Value);
+            var userModel = okResult.Value as UserResponse;
 
             Assert.Equal(1, userModel.Id);
         }

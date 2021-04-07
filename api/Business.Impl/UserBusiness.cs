@@ -31,7 +31,7 @@ namespace Dta.OneAps.Api.Business {
             _encryptionUtil = encryptionUtil;
         }
 
-        public async Task<string> AuthenticateAsync(AuthenticateModel model) {
+        public async Task<string> AuthenticateAsync(AuthenticateUserRequest model) {
             string encryptedPassword = _encryptionUtil.Encrypt(model.Password);
 
             var user = await _userService.AuthenticateAsync(model.EmailAddress, encryptedPassword);
@@ -42,7 +42,7 @@ namespace Dta.OneAps.Api.Business {
             return GenerateJSONWebToken(user);
         }
 
-        public async Task<UserModel> RegisterAsync(CreateUserModel model) {
+        public async Task<UserResponse> RegisterAsync(CreateUserRequest model) {
             var exists = await _userService.GetByEmailAsync(model.EmailAddress);
             if (exists != null) {
                 // TODO: send email to existing user
@@ -54,12 +54,12 @@ namespace Dta.OneAps.Api.Business {
             toSave.Active = true;
             toSave.Role = "user";
             var user = await _userService.RegisterAsync(toSave);
-            var result = _mapper.Map<UserModel>(user);
+            var result = _mapper.Map<UserResponse>(user);
             return result;
         }
-        public async Task<IEnumerable<UserModel>> GetAllAsync() => _mapper.Map<IEnumerable<UserModel>>(await _userService.GetAllAsync());
-        public async Task<UserModel> GetByIdAsync(int id) => _mapper.Map<UserModel>(await _userService.GetByIdAsync(id));
-        public async Task<UserModel> GetByEmailAsync(string email) => _mapper.Map<UserModel>(await _userService.GetByEmailAsync(email));
+        public async Task<IEnumerable<UserResponse>> GetAllAsync() => _mapper.Map<IEnumerable<UserResponse>>(await _userService.GetAllAsync());
+        public async Task<UserResponse> GetByIdAsync(int id) => _mapper.Map<UserResponse>(await _userService.GetByIdAsync(id));
+        public async Task<UserResponse> GetByEmailAsync(string email) => _mapper.Map<UserResponse>(await _userService.GetByEmailAsync(email));
         private string GenerateJSONWebToken(User user) {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 

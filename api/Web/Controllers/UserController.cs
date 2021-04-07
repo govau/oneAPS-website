@@ -22,7 +22,7 @@ namespace Dta.OneAps.Api.Web.Controllers {
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticateModel model) {
+        public async Task<IActionResult> AuthenticateAsync([FromBody] AuthenticateUserRequest model) {
             try {
                 var user = await _userBusiness.AuthenticateAsync(model);
                 return Ok(user);
@@ -33,7 +33,7 @@ namespace Dta.OneAps.Api.Web.Controllers {
 
         [AllowAnonymous]
         [HttpPost("register")]
-        public async Task<IActionResult> RegisterAsync([FromBody] CreateUserModel model) {
+        public async Task<IActionResult> RegisterAsync([FromBody] CreateUserRequest model) {
             var user = await _userBusiness.RegisterAsync(model);
             return Ok(user);
         }

@@ -1,5 +1,5 @@
 ﻿namespace Dta.OneAps.Api.Business.Models {
-    public class LookupModel {
+    public class LookupResponse {
         public string Value { get; set; }
         public string Text { get; set; }
     }

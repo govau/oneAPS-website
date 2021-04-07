@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -11,6 +12,7 @@ using Dta.OneAps.Api.Shared;
 using Dta.OneAps.Api.Web.Handlers;
 using Dta.OneAps.Api.Services.Sql;
 using Dta.OneAps.Api.Business.Mapping;
+using Dta.OneAps.Api.Business.Validators;
 using System.Text;
 
 namespace Dta.OneAps.Api.Web {
@@ -30,7 +32,11 @@ namespace Dta.OneAps.Api.Web {
                         .AllowAnyMethod();
                 });
             });
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddFluentValidation(fv => {
+                    fv.RegisterValidatorsFromAssemblyContaining<CreateUserModelValidator>();
+                });
 
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");

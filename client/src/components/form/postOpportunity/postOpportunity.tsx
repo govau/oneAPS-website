@@ -14,7 +14,7 @@ const PostOpportunityForm: React.FC = () => {
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
-  const HandleLoginUser = async (formData: ILoginType) => {
+  const handlePostOpporunity = async (formData: ILoginType) => {
     setSaving(true);
 
     const { email, password } = formData;
@@ -51,7 +51,7 @@ const PostOpportunityForm: React.FC = () => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
-          HandleLoginUser(values);
+          handlePostOpporunity(values);
         }}
       >
         {({ errors, handleSubmit, submitForm }) => (

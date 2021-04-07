@@ -34,23 +34,14 @@ namespace Dta.OneAps.Api.Services.Sql {
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
 
             modelBuilder.Entity<Opportunity>(entity => {
-                entity.HasIndex(e => e.ClosedAt)
-                    .HasDatabaseName("ix_opportunity_closed_at");
+                entity.HasIndex(e => e.JobTitle)
+                    .HasDatabaseName("ix_opportunity_job_title");
 
-                entity.HasIndex(e => e.CreatedAt)
-                    .HasDatabaseName("ix_opportunity_created_at");
+                entity.HasIndex(e => e.StartDate)
+                    .HasDatabaseName("ix_opportunity_start_date");
 
-                entity.HasIndex(e => e.PublishedAt)
-                    .HasDatabaseName("ix_opportunity_published_at");
-
-                entity.HasIndex(e => e.QuestionsClosedAt)
-                    .HasDatabaseName("ix_opportunity_questions_closed_at");
-
-                entity.HasIndex(e => e.UpdatedAt)
-                    .HasDatabaseName("ix_opportunity_updated_at");
-
-                entity.HasIndex(e => e.WithdrawnAt)
-                    .HasDatabaseName("ix_opportunity_withdrawn_at");
+                entity.HasIndex(e => e.EndDate)
+                    .HasDatabaseName("ix_opportunity_end_date");
             });
 
             modelBuilder.Entity<OpportunityAssessor>(entity => {
@@ -163,6 +154,17 @@ namespace Dta.OneAps.Api.Services.Sql {
                     .HasForeignKey(d => d.UserId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("opportunity_user_user_id_fkey");
+            });
+
+            modelBuilder.Entity<OpportunitySkill>(entity => {
+                entity.HasKey(e => new { e.Id })
+                    .HasName("opportunity_skill_pkey");
+
+                entity.HasOne(d => d.Opportunity)
+                    .WithMany(p => p.OpportunitySkills)
+                    .HasForeignKey(d => d.OpportunityId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("opportunity_skill_opportunity_id_fkey");
             });
 
             modelBuilder.Entity<KeyValue>(entity => {

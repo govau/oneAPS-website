@@ -3,15 +3,17 @@ using System;
 using Dta.OneAps.Api.Services.Sql;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Dta.OneAps.Api.Services.Sql.Migrations
 {
     [DbContext(typeof(OneApsContext))]
-    partial class OneApsContextModelSnapshot : ModelSnapshot
+    [Migration("20210407021438_OpportunityInitial")]
+    partial class OpportunityInitial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -149,7 +151,7 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
 
                     b.Property<string>("WhatYoullGain")
                         .HasColumnType("text")
-                        .HasColumnName("what_you_gain");
+                        .HasColumnName("whatYoullGain");
 
                     b.HasKey("Id");
 

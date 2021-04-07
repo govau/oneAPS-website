@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dta.OneAps.Api.Services.Entities {
     [Table("opportunity")]
-    public partial class Opportunity {
+    public partial class Opportunity : IAggregateRoot {
         public Opportunity() {
             OpportunityAssessor = new HashSet<OpportunityAssessor>();
             OpportunityClarificationQuestion = new HashSet<OpportunityClarificationQuestion>();

@@ -26,6 +26,12 @@ namespace Dta.OneAps.Api.Web.Controllers {
             return Ok(user);
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] OpportunityModel model) {
+            var user = await _opportunityBusiness.Update(model);
+            return Ok(user);
+        }
+
         [Authorize(Roles = Roles.Admin)]
         [HttpGet]
         public async Task<IActionResult> GetAll() => Ok(await _opportunityBusiness.GetAllAsync());

@@ -43,8 +43,8 @@ namespace Dta.OneAps.Api.Business {
         }
 
         public async Task<OpportunityModel> Update(OpportunityModel model) {
-            var toSave = _mapper.Map<Opportunity>(model);
-            var existing = _opportunityService.GetByIdAsync(model.Id);
+            var existing = await _opportunityService.GetByIdAsync(model.Id);
+            var toSave = _mapper.Map(model, existing);
             var saved = await _opportunityService.Update(toSave);
 
             if (saved == null) {

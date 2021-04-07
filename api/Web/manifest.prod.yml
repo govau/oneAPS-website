@@ -8,3 +8,4 @@ routes:
 - route: digitalsourcing.gov.au/api/3
 services:
 - ups-dm-api
+- oneaps-db-dev

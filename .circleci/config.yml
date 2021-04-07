@@ -139,6 +139,7 @@ jobs:
   deploy_api_to_production:
     docker:
       - image: govau/cf-cli
+    steps:
       - cf_deploy:
           cf_url: https://api.system.b.cld.gov.au
           cf_user: $CF_USER_PROD

@@ -34,7 +34,6 @@ commands:
           command: |
             cd << parameters.path >>
             npm install
-            npm run lint
             npm run build
             npm test
   cf_deploy:
@@ -99,11 +98,11 @@ jobs:
       - attach_workspace:
           at: .
       - npm_build:
-          path: "ui"
+          path: "client"
       - persist_to_workspace:
           root: .
           paths:
-            - "ui/**/*"
+            - "client/**/*"
     
   deploy_ui_to_rc:
     docker:

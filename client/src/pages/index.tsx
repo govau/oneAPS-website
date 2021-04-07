@@ -13,14 +13,12 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
         <SEO title="Home" />
         <div className="au-body hero">
           <section className="container-fluid">
-            <div className="col-sm-12 col-md-6 col-md-push-6">
-              <div className="intro__img">
-                <img
-                  className="au-responsive-media-img"
-                  src="../../homepage-workingtogether.png"
-                  alt="Four people holding a sign that says 'working together as one APS'"
-                ></img>
-              </div>
+            <div className="col-sm-12 col-md-6 col-md-push-6 intro__img">
+              <img
+                className="au-responsive-media-img"
+                src="../../homepage-workingtogether.png"
+                alt="Four people holding a sign that says 'working together as one APS'"
+              ></img>
             </div>
             <div className="intro__text col-sm-12 col-md-6 col-md-pull-6">
               <p>
@@ -81,8 +79,8 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
           </div>
         </section>
         <section className="au-body center-align">
-          This site ia prt of a 3-month pilot program from March to May 2021 run
-          by the Digital Squads team at the Digital Transformation Agency.
+          This site is part of a 3-month pilot program from March to May 2021
+          run by the Digital Squads team at the Digital Transformation Agency.
           <br />
           If you have any questions or feedback, please contact us at
           <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>

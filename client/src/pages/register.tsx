@@ -6,7 +6,7 @@ import SEO from "../components/seo";
 import { PageContext } from "../types/types";
 
 // markup
-const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
+const RegisterPage: React.FC<PageContext> = ({ pageContext, location }) => {
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
@@ -21,4 +21,4 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
   );
 };
 
-export default IndexPage;
+export default RegisterPage;

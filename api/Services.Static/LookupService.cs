@@ -21,5 +21,9 @@ namespace Dta.OneAps.Api.Services.Static {
             }
             return null;
         }
+        public Lookup Get(string name, string value) {
+            var list = Get(name);
+            return list.SingleOrDefault(i => i.Value == value);
+        }
     }
 }

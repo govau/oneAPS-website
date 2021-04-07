@@ -14,5 +14,6 @@ namespace Dta.OneAps.Api.Business {
         }
 
         public IEnumerable<LookupModel> Get(string name) => _mapper.Map<List<LookupModel>>(_lookupService.Get(name));
+        public LookupModel Get(string name, string value) => _mapper.Map<LookupModel>(_lookupService.Get(name, value));
     }
 }

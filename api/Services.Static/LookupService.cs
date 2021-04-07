@@ -12,6 +12,12 @@ namespace Dta.OneAps.Api.Services.Static {
             switch (name) {
                 case "OpportunityStatus":
                     return OpportunityStatus.List;
+                case "Skills":
+                    return Skill.List;
+                case "SecurityClearance":
+                    return SecurityClearance.List;
+                case "Agency":
+                    return Agency.List;
             }
             return null;
         }

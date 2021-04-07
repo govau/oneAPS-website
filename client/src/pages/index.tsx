@@ -82,7 +82,7 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
           by the Digital Squads team at the Digital Transformation Agency.
           <br />
           If you have any questions or feedback, please contact us at
-          digitalsquads@dta.gov.au
+          <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>
         </section>
       </>
     </DefaultLayout>

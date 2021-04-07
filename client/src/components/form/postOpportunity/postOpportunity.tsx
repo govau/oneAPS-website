@@ -1,10 +1,11 @@
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
-import { Aubtn, AuFormGroup } from "../../../types/auds";
+import { Aubtn, AuFieldset, AuFormGroup, AuLegend } from "../../../types/auds";
 import { IApiFormError, ILoginType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
 import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
+import SelectField from "../fields/SelectField";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./postOpportunitySchema";
 
@@ -78,40 +79,53 @@ const PostOpportunityForm: React.FC = () => {
             {isError && Object.keys(errors).length > 0 && (
               <ClientErrorDisplay errors={errors} />
             )}
-            <TextField id="title" label="Opportuity title" required />
-            <TextField
-              id="description"
-              label="What you'll do"
-              required
-              as="textarea"
-              width="xl"
-            />
-            <TextField
-              id="gain"
-              label="What you'll gain from this experience"
-              required
-              as="textarea"
-              width="xl"
-            />
-            <TextField
-              id="aboutTeam"
-              label="About our team"
-              required
-              as="textarea"
-              width="xl"
-            />
-            <TextField
-              id="numberOfPeople"
-              label="Number of people needed"
-              type="number"
-              required
-            />
-            <TextField
-              id="numberOfPeople"
-              label="Number of people needed"
-              type="number"
-              required
-            />
+
+            <AuFieldset className="mt-2 mb-0">
+              <AuLegend level="3">
+                <h2>About job</h2>
+              </AuLegend>
+              <TextField id="jobTitle" label="Opportuity title" required />
+              <TextField
+                id="jobDescription"
+                label="What you'll do"
+                required
+                as="textarea"
+                width="xl"
+              />
+              <TextField
+                id="whatYoullGain"
+                label="What you'll gain from this experience"
+                required
+                as="textarea"
+                width="xl"
+              />
+              <TextField
+                id="aboutTeam"
+                label="About our team"
+                required
+                as="textarea"
+                width="xl"
+              />
+              <TextField
+                id="numberOfPeople"
+                label="Number of people needed"
+                type="number"
+                required
+              />
+              <TextField id="location" label="Location" type="text" required />
+              <TextField
+                id="skills"
+                label="Relevant skills"
+                hint="Seperate by commas, e.g. photoshop, web design, logo design"
+                as="textarea"
+                required
+              />
+              <TextField
+                id="additionalInfo"
+                label="Additional information (optional)"
+                as="textarea"
+              />
+            </AuFieldset>
             <TextField
               id="startDate"
               label="Estimated start date"
@@ -159,19 +173,19 @@ const PostOpportunityForm: React.FC = () => {
               label="Contact person phone (optional)"
               type="text"
             />
-            <TextField id="location" label="Location" type="text" required />
-            <TextField
-              id="skills"
-              label="Relevant skills"
-              hint="Seperate by commas, e.g. photoshop, web design, logo design"
-              as="textarea"
-              required
-            />
-            <TextField
-              id="additionalInfo"
-              label="Additional information (optional)"
-              as="textarea"
-            />
+
+            <SelectField
+              id="securityClearance"
+              label="Security Clearance"
+              options={[
+                { text: "Select", value: "" },
+                { text: "Baseline", value: "baseline" },
+                { text: "nv1", value: "nv1" },
+                { text: "nv2", value: "nv2" },
+                { text: "pv", value: "pv" },
+                { text: "None", value: "none" },
+              ]}
+            ></SelectField>
 
             <AuFormGroup>
               <Aubtn type="submit" onClick={submitForm} disabled={saving}>

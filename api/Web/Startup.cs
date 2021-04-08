@@ -64,7 +64,7 @@ namespace Dta.OneAps.Api.Web {
 
 
             services.AddSwaggerGen(c => {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OneAPS", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OneAPS Api", Version = "v1" });
 
                 var securityScheme = new OpenApiSecurityScheme {
                     Name = "JWT Authentication",
@@ -109,8 +109,8 @@ namespace Dta.OneAps.Api.Web {
 
             app.UseSwagger();
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("./swagger/v1/swagger.json", "JWT Auth Demo V1");
-                c.DocumentTitle = "OneAPS";
+                c.SwaggerEndpoint("./swagger/v1/swagger.json", "OneAPS Api V1");
+                c.DocumentTitle = "OneAPS Api";
                 c.RoutePrefix = string.Empty;
             });
 

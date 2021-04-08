@@ -128,7 +128,7 @@ jobs:
       - cf_deploy:
           cf_app_name: oneaps-rc-ui
           cf_manifest: ../manifest.rc.yml
-          cf_path: ui/public
+          cf_path: client/public
     
   deploy_api_to_rc:
     docker:
@@ -148,7 +148,7 @@ jobs:
           cf_password: $CF_PASSWORD_PROD
           cf_app_name: oneaps-ui
           cf_manifest: ../manifest.prod.yml
-          cf_path: ui/public
+          cf_path: client/public
           cf_space: $CF_SPACE
 
   deploy_api_to_production:

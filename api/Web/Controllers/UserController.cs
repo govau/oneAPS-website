@@ -19,6 +19,10 @@ namespace Dta.OneAps.Api.Web.Controllers {
             _userBusiness = userBusiness;
             _authorizationUtil = authorizationUtil;
         }
+        [HttpGet("ping")]
+        public Task<IActionResult> Ping() {
+            return Ok();
+        }
 
         [AllowAnonymous]
         [HttpPost("authenticate")]

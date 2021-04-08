@@ -8,7 +8,6 @@ using Dta.OneAps.Api.Web.Utils;
 using System.Threading.Tasks;
 
 namespace Dta.OneAps.Api.Web.Controllers {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class LookupController : ControllerBase {

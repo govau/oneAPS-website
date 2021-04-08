@@ -2,7 +2,7 @@ using FluentValidation;
 using Dta.OneAps.Api.Business.Models;
 
 namespace Dta.OneAps.Api.Business.Validators {
-    public class OpportunityModelValidator : AbstractValidator<OpportunityModel> {
+    public class OpportunityModelValidator : AbstractValidator<OpportunitySaveRequest> {
         public OpportunityModelValidator() {
             RuleFor(u => u.JobTitle).NotEmpty();
 

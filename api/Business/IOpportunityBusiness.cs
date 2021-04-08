@@ -4,10 +4,10 @@ using Dta.OneAps.Api.Business.Models;
 
 namespace Dta.OneAps.Api.Business {
     public interface IOpportunityBusiness {
-        Task<OpportunityModel> Create(OpportunityModel opportunityModel);
-        Task<OpportunityModel> Update(OpportunityModel opportunityModel);
-        Task<IEnumerable<OpportunityModel>> ListAll();
-        Task<IEnumerable<PublicOpportunityResponse>> List();
-        Task<PublicOpportunityResponse> Get(int id);
+        Task<OpportunityPublicResponse> Create(OpportunitySaveRequest opportunityModel);
+        Task<OpportunityPublicResponse> Update(OpportunitySaveRequest opportunityModel);
+        Task<IEnumerable<OpportunityAdminResponse>> ListAll();
+        Task<IEnumerable<OpportunityPublicResponse>> List();
+        Task<OpportunityPublicResponse> Get(int id);
     }
 }

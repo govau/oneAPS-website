@@ -21,13 +21,13 @@ namespace Dta.OneAps.Api.Web.Controllers {
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] OpportunityModel model) {
+        public async Task<IActionResult> Create([FromBody] OpportunitySaveRequest model) {
             var user = await _opportunityBusiness.Create(model);
             return Ok(user);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] OpportunityModel model) {
+        public async Task<IActionResult> Update(int id, [FromBody] OpportunitySaveRequest model) {
             var user = await _opportunityBusiness.Update(model);
             return Ok(user);
         }

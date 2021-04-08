@@ -6,12 +6,13 @@ namespace Dta.OneAps.Api.Business.Mapping {
     public class AutoMapping : Profile {
         public AutoMapping() {
             CreateMap<User, UserResponse>();
-            CreateMap<UserResponse, User>();
-            CreateMap<CreateUserRequest, User>();
             CreateMap<Lookup, LookupResponse>();
-            CreateMap<Opportunity, OpportunityModel>();
-            CreateMap<Opportunity, PublicOpportunityResponse>();
-            CreateMap<OpportunityModel, Opportunity>();
+            CreateMap<Opportunity, OpportunityResponse>();
+            CreateMap<Opportunity, OpportunityPublicResponse>();
+
+
+            CreateMap<CreateUserRequest, User>();
+            CreateMap<OpportunitySaveRequest, Opportunity>();
         }
     }
 }

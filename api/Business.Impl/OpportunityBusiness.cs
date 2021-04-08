@@ -31,32 +31,24 @@ namespace Dta.OneAps.Api.Business {
             _encryptionUtil = encryptionUtil;
         }
 
-        public async Task<OpportunityModel> Create(OpportunityModel model) {
+        public async Task<OpportunityPublicResponse> Create(OpportunitySaveRequest model) {
             var toSave = _mapper.Map<Opportunity>(model);
             var saved = await _opportunityService.Create(toSave);
-
-            if (saved == null) {
-                throw new CannotAuthenticateException();
-            }
-            var result = _mapper.Map<OpportunityModel>(saved);
+            var result = _mapper.Map<OpportunityPublicResponse>(saved);
             return result;
         }
 
-        public async Task<OpportunityModel> Update(OpportunityModel model) {
+        public async Task<OpportunityPublicResponse> Update(OpportunitySaveRequest model) {
             var existing = await _opportunityService.GetByIdAsync(model.Id);
             var toSave = _mapper.Map(model, existing);
             var saved = await _opportunityService.Update(toSave);
-
-            if (saved == null) {
-                throw new CannotAuthenticateException();
-            }
-            var result = _mapper.Map<OpportunityModel>(saved);
+            var result = _mapper.Map<OpportunityPublicResponse>(saved);
             return result;
         }
-        public async Task<IEnumerable<PublicOpportunityResponse>> List() => (
-            _mapper.Map<IEnumerable<PublicOpportunityResponse>>(await _opportunityService.GetAllAsync())
+        public async Task<IEnumerable<OpportunityPublicResponse>> List() => (
+            _mapper.Map<IEnumerable<OpportunityPublicResponse>>(await _opportunityService.GetAllAsync())
         );
-        public async Task<IEnumerable<OpportunityModel>> ListAll() => _mapper.Map<IEnumerable<OpportunityModel>>(await _opportunityService.GetAllAsync());
-        public async Task<PublicOpportunityResponse> Get(int id) => _mapper.Map<PublicOpportunityResponse>(await _opportunityService.GetByIdAsync(id));
+        public async Task<IEnumerable<OpportunityAdminResponse>> ListAll() => _mapper.Map<IEnumerable<OpportunityAdminResponse>>(await _opportunityService.GetAllAsync());
+        public async Task<OpportunityPublicResponse> Get(int id) => _mapper.Map<OpportunityPublicResponse>(await _opportunityService.GetByIdAsync(id));
     }
 }

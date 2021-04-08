@@ -35,16 +35,15 @@ commands:
             cd << parameters.path >>
             npm install
             npm run build
-            npm test
   cf_deploy:
     description: "cf deploy"
     parameters:
       cf_url:
         type: string
-        default: https://api.system.y.cld.gov.au
+        default: $CF_API_STAGING
       cf_user:
         type: string
-        default: $CF_USER_STAGING
+        default: $CF_USERNAME
       cf_password:
         type: string
         default: $CF_PASSWORD_STAGING
@@ -56,7 +55,7 @@ commands:
         type: string
       cf_space:
         type: string
-        default: marketplace
+        default: $CF_SPACE
     steps:
       - run:
           name: Deploy
@@ -127,26 +126,25 @@ jobs:
       - image: govau/cf-cli
     steps:
       - cf_deploy:
-          cf_url: https://api.system.b.cld.gov.au
-          cf_user: $CF_USER_PROD
+          cf_url: $CF_API_PROD
           cf_password: $CF_PASSWORD_PROD
           cf_app_name: oneaps-ui
           cf_manifest: ../manifest.prod.yml
           cf_path: ui/public
-          cf_space: digitalsourcing
+          cf_space: $CF_SPACE
 
   deploy_api_to_production:
     docker:
       - image: govau/cf-cli
     steps:
       - cf_deploy:
-          cf_url: https://api.system.b.cld.gov.au
-          cf_user: $CF_USER_PROD
+          cf_url: $CF_API_PROD
+          cf_user: $CF_USERNAME
           cf_password: $CF_PASSWORD_PROD
           cf_app_name: oneaps-api
           cf_manifest: manifest.prod.yml
           cf_path: api
-          cf_space: digitalsourcing
+          cf_space: $CF_SPACE
 
 workflows:
   version: 2

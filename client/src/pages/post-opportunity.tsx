@@ -13,6 +13,16 @@ const PostOpportunityPage: React.FC<PageContext> = ({
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
         <SEO title="Post opporunity" />
+        <div className="container-fluid">
+          <nav className="au-breadcrumbs" aria-label="breadcrumb">
+            <ul className="au-link-list au-link-list--inline">
+              <li>
+                <a href="../#">Home</a>
+              </li>
+              <li>Post an Opportunity</li>
+            </ul>
+          </nav>
+        </div>
         <div className="container-fluid au-body">
           <h1>Post Opportunity</h1>
           <PostOpportunityForm />

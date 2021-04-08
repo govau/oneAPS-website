@@ -84,7 +84,7 @@ const PostOpportunityForm: React.FC = () => {
               <AuLegend level="3">
                 <h2>About job</h2>
               </AuLegend>
-              <TextField id="jobTitle" label="Opportuity title" required />
+              <TextField id="jobTitle" label="Opportunity title" required />
               <TextField
                 id="jobDescription"
                 label="What you'll do"

@@ -1,9 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Observatory`,
-    description: `The Observatory’s goal is to measure how people interact with government services. It empowers and supports teams to provide better services and outcomes for everyone.`,
+    title: `oneAPS Opportunities`,
+    description: `A place to find flexible work opportunities across the APS to
+    help deliver outcomes for government and the citizens we all
+    serve.`,
     author: `Digital Transformation Agency`,
-    siteUrl: `https://observatory.service.gov.au/`,
+    siteUrl: `https://oneAPS.gov.au/`,
     menuLinks: [
       {
         text: "Home",

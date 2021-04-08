@@ -18,7 +18,7 @@ const Header: React.FC<Props> = ({ siteTitle }) => {
                     {siteTitle} <span className="header__badge"> alpha</span>
                   </>
                 }
-                subline="Empowering data practitioners to improve government services"
+                subline="A Digital Profession Program"
                 link="/"
                 brandImage={"../../coat-of-arms.svg"}
                 brandImageAlt="The Australian Government Coat of Arms"

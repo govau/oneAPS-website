@@ -11,6 +11,16 @@ const RegisterPage: React.FC<PageContext> = ({ pageContext, location }) => {
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
         <SEO title="Register" />
+        <div className="container-fluid">
+          <nav className="au-breadcrumbs" aria-label="breadcrumb">
+            <ul className="au-link-list au-link-list--inline">
+              <li>
+                <a href="../#">Home</a>
+              </li>
+              <li>Register</li>
+            </ul>
+          </nav>
+        </div>
         <div className="container-fluid au-body">
           <h1>Register</h1>
           <p>Already have an account? {<Link to="/login">Login</Link>}</p>

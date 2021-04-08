@@ -10,6 +10,17 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
       <>
         <SEO title="About oneAPS" />
         <div className="au-body hero">
+          <nav class="au-breadcrumbs" aria-label="breadcrumb">
+            <ul class="au-link-list au-link-list--inline">
+              <li>
+                <a href="#">Home</a>
+              </li>
+              <li>
+                <a href="#">Parent</a>
+              </li>
+              <li>Current page</li>
+            </ul>
+          </nav>
           <section className="container-fluid">
             <div className="col-sm-12 col-md-6 col-md-push-6 intro__img">
               <img

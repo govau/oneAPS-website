@@ -48,35 +48,32 @@ namespace Dta.OneAps.Api.Web {
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
                 .AddJwtBearer(options => {
-                    options.TokenValidationParameters = new TokenValidationParameters {    
-                        ValidateIssuer = false,    
-                        ValidateAudience = false,    
-                        ValidateLifetime = true,    
-                        ValidateIssuerSigningKey = true,    
+                    options.TokenValidationParameters = new TokenValidationParameters {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
                         // ValidIssuer = Configuration["Jwt:Issuer"],    
                         // ValidAudience = Configuration["Jwt:Issuer"],    
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))    
-                    };  
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
                 });
-                
-                // .AddScheme<AuthenticationSchemeOptions, UserAuthenticationHandler>(Schemes.UserAuthenticationHandler, null)
-                // .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(Schemes.ApiKeyAuthenticationHandler, null);
+
+            // .AddScheme<AuthenticationSchemeOptions, UserAuthenticationHandler>(Schemes.UserAuthenticationHandler, null)
+            // .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(Schemes.ApiKeyAuthenticationHandler, null);
 
 
-            services.AddSwaggerGen(c =>
-            {
+            services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "OneAPS", Version = "v1" });
 
-                var securityScheme = new OpenApiSecurityScheme
-                {
+                var securityScheme = new OpenApiSecurityScheme {
                     Name = "JWT Authentication",
                     Description = "Enter JWT Bearer token **_only_**",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.Http,
                     Scheme = "bearer", // must be lower case
                     BearerFormat = "JWT",
-                    Reference = new OpenApiReference
-                    {
+                    Reference = new OpenApiReference {
                         Id = JwtBearerDefaults.AuthenticationScheme,
                         Type = ReferenceType.SecurityScheme
                     }
@@ -111,8 +108,7 @@ namespace Dta.OneAps.Api.Web {
 
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
+            app.UseSwaggerUI(c => {
                 c.SwaggerEndpoint("./swagger/v1/swagger.json", "JWT Auth Demo V1");
                 c.DocumentTitle = "OneAPS";
                 c.RoutePrefix = string.Empty;

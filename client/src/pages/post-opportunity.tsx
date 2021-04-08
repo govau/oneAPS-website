@@ -12,7 +12,7 @@ const PostOpportunityPage: React.FC<PageContext> = ({
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
-        <SEO title="Post opporunity" />
+        <SEO title="Post an Opportunity" />
         <div className="container-fluid">
           <nav className="au-breadcrumbs" aria-label="breadcrumb">
             <ul className="au-link-list au-link-list--inline">
@@ -24,7 +24,7 @@ const PostOpportunityPage: React.FC<PageContext> = ({
           </nav>
         </div>
         <div className="container-fluid au-body">
-          <h1>Post Opportunity</h1>
+          <h1>Post an Opportunity</h1>
           <PostOpportunityForm />
         </div>
       </>

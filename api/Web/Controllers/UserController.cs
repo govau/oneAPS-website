@@ -20,7 +20,7 @@ namespace Dta.OneAps.Api.Web.Controllers {
             _authorizationUtil = authorizationUtil;
         }
         [HttpGet("ping")]
-        public Task<IActionResult> Ping() {
+        public IActionResult Ping() {
             return Ok();
         }
 

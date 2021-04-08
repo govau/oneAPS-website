@@ -7,3 +7,4 @@ routes:
 - route: oneaps.apps.b.cld.gov.au/api
 services:
 - ups-oneaps-api
+- oneaps-db

@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using FluentValidation.AspNetCore;
+﻿using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,9 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
 using Dta.OneAps.Api.Shared;
-using Dta.OneAps.Api.Web.Handlers;
 using Dta.OneAps.Api.Services.Sql;
 using Dta.OneAps.Api.Business.Mapping;
 using Dta.OneAps.Api.Business.Validators;
@@ -50,20 +48,42 @@ namespace Dta.OneAps.Api.Web {
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
                 .AddJwtBearer(options => {
-                    options.TokenValidationParameters = new TokenValidationParameters {    
-                        ValidateIssuer = false,    
-                        ValidateAudience = false,    
-                        ValidateLifetime = true,    
-                        ValidateIssuerSigningKey = true,    
+                    options.TokenValidationParameters = new TokenValidationParameters {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
                         // ValidIssuer = Configuration["Jwt:Issuer"],    
                         // ValidAudience = Configuration["Jwt:Issuer"],    
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))    
-                    };  
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
                 });
-                
-                
-                // .AddScheme<AuthenticationSchemeOptions, UserAuthenticationHandler>(Schemes.UserAuthenticationHandler, null)
-                // .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(Schemes.ApiKeyAuthenticationHandler, null);
+
+            // .AddScheme<AuthenticationSchemeOptions, UserAuthenticationHandler>(Schemes.UserAuthenticationHandler, null)
+            // .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationHandler>(Schemes.ApiKeyAuthenticationHandler, null);
+
+
+            services.AddSwaggerGen(c => {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OneAPS Api", Version = "v1" });
+
+                var securityScheme = new OpenApiSecurityScheme {
+                    Name = "JWT Authentication",
+                    Description = "Enter JWT Bearer token **_only_**",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer", // must be lower case
+                    BearerFormat = "JWT",
+                    Reference = new OpenApiReference {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+                c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {securityScheme, new string[] { }}
+                });
+            });
 
             services
                 .AddEntityFrameworkNpgsql()
@@ -85,6 +105,14 @@ namespace Dta.OneAps.Api.Web {
             //     .AllowAnyHeader());
 
             app.UseCors(_devOrigins);
+
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+                c.SwaggerEndpoint("./swagger/v1/swagger.json", "OneAPS Api V1");
+                c.DocumentTitle = "OneAPS Api";
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseAuthentication();
             app.UseAuthorization();

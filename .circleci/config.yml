@@ -28,23 +28,25 @@ commands:
     parameters:
       path:
         type: string
+      gatsby_api_url:
+        type: string
     steps:
       - run: 
           name: Build npm
           command: |
             cd << parameters.path >>
             npm install
+            export GATSBY_API_URL="<< parameters.gatsby_api_url >>"
             npm run build
-            npm test
   cf_deploy:
     description: "cf deploy"
     parameters:
       cf_url:
         type: string
-        default: https://api.system.y.cld.gov.au
+        default: $CF_API_STAGING
       cf_user:
         type: string
-        default: $CF_USER_STAGING
+        default: $CF_USERNAME
       cf_password:
         type: string
         default: $CF_PASSWORD_STAGING
@@ -56,7 +58,7 @@ commands:
         type: string
       cf_space:
         type: string
-        default: marketplace
+        default: $CF_SPACE
     steps:
       - run:
           name: Deploy
@@ -91,7 +93,7 @@ jobs:
           paths:
             - "api/**/*"
 
-  run_npm_builds:
+  run_npm_builds_rc:
     docker:
       - image: circleci/node:12-stretch
     steps:
@@ -99,6 +101,21 @@ jobs:
           at: .
       - npm_build:
           path: "client"
+          gatsby_api_url: "https://oneaps-rc.apps.y.cld.gov.au/api"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - "client/**/*"
+
+  run_npm_builds_prod:
+    docker:
+      - image: circleci/node:12-stretch
+    steps:
+      - attach_workspace:
+          at: .
+      - npm_build:
+          path: "client"
+          gatsby_api_url: "https://oneaps.apps.b.cld.gov.au/api"
       - persist_to_workspace:
           root: .
           paths:
@@ -108,15 +125,19 @@ jobs:
     docker:
       - image: govau/cf-cli
     steps:
+      - attach_workspace:
+          at: .
       - cf_deploy:
           cf_app_name: oneaps-rc-ui
           cf_manifest: ../manifest.rc.yml
-          cf_path: ui/public
+          cf_path: client/public
     
   deploy_api_to_rc:
     docker:
       - image: govau/cf-cli
     steps:
+      - attach_workspace:
+          at: .
       - cf_deploy:
           cf_app_name: oneaps-rc-api
           cf_manifest: manifest.rc.yml
@@ -126,27 +147,30 @@ jobs:
     docker:
       - image: govau/cf-cli
     steps:
+      - attach_workspace:
+          at: .
       - cf_deploy:
-          cf_url: https://api.system.b.cld.gov.au
-          cf_user: $CF_USER_PROD
+          cf_url: $CF_API_PROD
           cf_password: $CF_PASSWORD_PROD
           cf_app_name: oneaps-ui
           cf_manifest: ../manifest.prod.yml
-          cf_path: ui/public
-          cf_space: digitalsourcing
+          cf_path: client/public
+          cf_space: $CF_SPACE
 
   deploy_api_to_production:
     docker:
       - image: govau/cf-cli
     steps:
+      - attach_workspace:
+          at: .
       - cf_deploy:
-          cf_url: https://api.system.b.cld.gov.au
-          cf_user: $CF_USER_PROD
+          cf_url: $CF_API_PROD
+          cf_user: $CF_USERNAME
           cf_password: $CF_PASSWORD_PROD
           cf_app_name: oneaps-api
           cf_manifest: manifest.prod.yml
           cf_path: api
-          cf_space: digitalsourcing
+          cf_space: $CF_SPACE
 
 workflows:
   version: 2
@@ -159,7 +183,13 @@ workflows:
           filters:
             tags:
               only: /[0-9]+(\.[0-9]+)*/
-      - run_npm_builds:
+      - run_npm_builds_rc:
+          requires:
+            - get_code
+          filters:
+            tags:
+              only: /[0-9]+(\.[0-9]+)*/
+      - run_npm_builds_prod:
           requires:
             - get_code
           filters:
@@ -168,7 +198,7 @@ workflows:
       - deploy_ui_to_rc:
           requires:
             - run_dot_net_builds
-            - run_npm_builds
+            - run_npm_builds_rc
           filters:
             tags:
               ignore: /.*/
@@ -177,7 +207,7 @@ workflows:
       - deploy_api_to_rc:
           requires:
             - run_dot_net_builds
-            - run_npm_builds
+            - run_npm_builds_rc
           filters:
             tags:
               ignore: /.*/
@@ -186,7 +216,7 @@ workflows:
       - deploy_ui_to_production:
           requires:
             - run_dot_net_builds
-            - run_npm_builds
+            - run_npm_builds_prod
           filters:
             tags:
               only: /[0-9]+(\.[0-9]+)*/
@@ -195,7 +225,7 @@ workflows:
       - deploy_api_to_production:
           requires:
             - run_dot_net_builds
-            - run_npm_builds
+            - run_npm_builds_prod
           filters:
             tags:
               only: /[0-9]+(\.[0-9]+)*/

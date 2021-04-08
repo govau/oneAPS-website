@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Dta.OneAps.Api.Services.Sql.Migrations
 {
     [DbContext(typeof(OneApsContext))]
-    [Migration("20210407021609_OpportunityInitialv2")]
-    partial class OpportunityInitialv2
+    [Migration("20210408022506_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,9 +103,8 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("created");
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("text")
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("integer")
                         .HasColumnName("created_by");
 
                     b.Property<DateTime>("EndDate")
@@ -129,8 +128,8 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("modifed");
 
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("text")
+                    b.Property<int?>("ModifiedBy")
+                        .HasColumnType("integer")
                         .HasColumnName("modified_by");
 
                     b.Property<string>("NumberOfPeople")
@@ -155,11 +154,15 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatedBy");
+
                     b.HasIndex("EndDate")
                         .HasDatabaseName("ix_opportunity_end_date");
 
                     b.HasIndex("JobTitle")
                         .HasDatabaseName("ix_opportunity_job_title");
+
+                    b.HasIndex("ModifiedBy");
 
                     b.HasIndex("StartDate")
                         .HasDatabaseName("ix_opportunity_start_date");
@@ -496,6 +499,24 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                     b.ToTable("user");
                 });
 
+            modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.Opportunity", b =>
+                {
+                    b.HasOne("Dta.OneAps.Api.Services.Entities.User", "CreatedByUser")
+                        .WithMany("OpportunityCreatedByUser")
+                        .HasForeignKey("CreatedBy")
+                        .HasConstraintName("opportunity_created_by_user_id_fkey")
+                        .IsRequired();
+
+                    b.HasOne("Dta.OneAps.Api.Services.Entities.User", "ModifiedByUser")
+                        .WithMany("OpportunityModifiedByUser")
+                        .HasForeignKey("ModifiedBy")
+                        .HasConstraintName("opportunity_modified_by_user_id_fkey");
+
+                    b.Navigation("CreatedByUser");
+
+                    b.Navigation("ModifiedByUser");
+                });
+
             modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.OpportunityAssessor", b =>
                 {
                     b.HasOne("Dta.OneAps.Api.Services.Entities.Opportunity", "Opportunity")
@@ -648,7 +669,11 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
 
                     b.Navigation("OpportunityClarificationQuestion");
 
+                    b.Navigation("OpportunityCreatedByUser");
+
                     b.Navigation("OpportunityHistory");
+
+                    b.Navigation("OpportunityModifiedByUser");
 
                     b.Navigation("OpportunityResponseDownload");
 

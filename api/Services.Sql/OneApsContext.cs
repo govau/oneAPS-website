@@ -42,6 +42,16 @@ namespace Dta.OneAps.Api.Services.Sql {
 
                 entity.HasIndex(e => e.EndDate)
                     .HasDatabaseName("ix_opportunity_end_date");
+
+                entity.HasOne(d => d.CreatedByUser)
+                    .WithMany(p => p.OpportunityCreatedByUser)
+                    .HasForeignKey(d => d.CreatedBy)
+                    .HasConstraintName("opportunity_created_by_user_id_fkey");
+
+                entity.HasOne(d => d.ModifiedByUser)
+                    .WithMany(p => p.OpportunityModifiedByUser)
+                    .HasForeignKey(d => d.ModifiedBy)
+                    .HasConstraintName("opportunity_modified_by_user_id_fkey");
             });
 
             modelBuilder.Entity<OpportunityAssessor>(entity => {

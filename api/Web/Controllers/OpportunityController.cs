@@ -22,14 +22,16 @@ namespace Dta.OneAps.Api.Web.Controllers {
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] OpportunitySaveRequest model) {
-            var user = await _opportunityBusiness.Create(model);
-            return Ok(user);
+            var user = await _authorizationUtil.GetUser(User);
+            var created = await _opportunityBusiness.Create(model, user);
+            return Ok(created);
         }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] OpportunitySaveRequest model) {
-            var user = await _opportunityBusiness.Update(model);
-            return Ok(user);
+            var user = await _authorizationUtil.GetUser(User);
+            var updated = await _opportunityBusiness.Update(model, user);
+            return Ok(updated);
         }
 
         [AllowAnonymous]

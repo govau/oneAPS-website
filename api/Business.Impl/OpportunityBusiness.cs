@@ -21,27 +21,31 @@ namespace Dta.OneAps.Api.Business {
     public class OpportunityBusiness : IOpportunityBusiness {
         private readonly IEncryptionUtil _encryptionUtil;
         private readonly IOpportunityService _opportunityService;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
         private IConfiguration _config;
 
-        public OpportunityBusiness(IConfiguration config, IEncryptionUtil encryptionUtil, IOpportunityService opportunityService, IMapper mapper) {
+        public OpportunityBusiness(IConfiguration config, IEncryptionUtil encryptionUtil, IOpportunityService opportunityService, IUserService userService, IMapper mapper) {
             _config = config;
             _opportunityService = opportunityService;
+            _userService = userService;
             _mapper = mapper;
             _encryptionUtil = encryptionUtil;
         }
 
-        public async Task<OpportunityPublicResponse> Create(OpportunitySaveRequest model) {
+        public async Task<OpportunityPublicResponse> Create(OpportunitySaveRequest model, UserResponse creatorUser) {
             var toSave = _mapper.Map<Opportunity>(model);
-            var saved = await _opportunityService.Create(toSave);
+            var user = await _userService.GetByIdAsync(creatorUser.Id);
+            var saved = await _opportunityService.Create(toSave, user);
             var result = _mapper.Map<OpportunityPublicResponse>(saved);
             return result;
         }
 
-        public async Task<OpportunityPublicResponse> Update(OpportunitySaveRequest model) {
+        public async Task<OpportunityPublicResponse> Update(OpportunitySaveRequest model, UserResponse modiferUser) {
             var existing = await _opportunityService.GetByIdAsync(model.Id);
+            var user = await _userService.GetByIdAsync(modiferUser.Id);
             var toSave = _mapper.Map(model, existing);
-            var saved = await _opportunityService.Update(toSave);
+            var saved = await _opportunityService.Update(toSave, user);
             var result = _mapper.Map<OpportunityPublicResponse>(saved);
             return result;
         }

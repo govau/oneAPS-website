@@ -45,29 +45,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "opportunity",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    framework_id = table.Column<int>(type: "integer", nullable: false),
-                    lot_id = table.Column<int>(type: "integer", nullable: false),
-                    data = table.Column<string>(type: "json", nullable: true),
-                    created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    published_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    withdrawn_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    domain_id = table.Column<int>(type: "integer", nullable: true),
-                    closed_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    questions_closed_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    responses_zip_filesize = table.Column<long>(type: "bigint", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_opportunity", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "user",
                 columns: table => new
                 {
@@ -91,47 +68,44 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "opportunity_response",
+                name: "opportunity",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    data = table.Column<string>(type: "json", nullable: false),
-                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
-                    supplier_code = table.Column<long>(type: "bigint", nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    withdrawn_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    submitted_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    job_title = table.Column<string>(type: "text", nullable: false),
+                    job_description = table.Column<string>(type: "text", nullable: true),
+                    what_you_gain = table.Column<string>(type: "text", nullable: true),
+                    about_team = table.Column<string>(type: "text", nullable: true),
+                    number_of_people = table.Column<string>(type: "text", nullable: true),
+                    start_date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    end_date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    commitment_time = table.Column<string>(type: "text", nullable: true),
+                    agency = table.Column<string>(type: "text", nullable: true),
+                    contact_person_name = table.Column<string>(type: "text", nullable: true),
+                    contact_person_phone = table.Column<string>(type: "text", nullable: true),
+                    location = table.Column<string>(type: "text", nullable: true),
+                    skills = table.Column<string>(type: "text", nullable: true),
+                    additional_info = table.Column<string>(type: "text", nullable: true),
+                    security_clearance = table.Column<string>(name: "security_clearance ", type: "text", nullable: true),
+                    modifed = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    created_by = table.Column<int>(type: "integer", nullable: false),
+                    modified_by = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_opportunity_response", x => x.id);
+                    table.PrimaryKey("PK_opportunity", x => x.id);
                     table.ForeignKey(
-                        name: "opportunity_response_opportunity_id_fkey",
-                        column: x => x.opportunity_id,
-                        principalTable: "opportunity",
+                        name: "opportunity_created_by_user_id_fkey",
+                        column: x => x.created_by,
+                        principalTable: "user",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "opportunity_response_contact",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
-                    supplier_code = table.Column<long>(type: "bigint", nullable: false),
-                    email_address = table.Column<string>(type: "character varying", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_opportunity_response_contact", x => x.id);
                     table.ForeignKey(
-                        name: "opportunity_response_opportunity_contact_id_fkey",
-                        column: x => x.opportunity_id,
-                        principalTable: "opportunity",
+                        name: "opportunity_modified_by_user_id_fkey",
+                        column: x => x.modified_by,
+                        principalTable: "user",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -221,6 +195,52 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "opportunity_response",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    data = table.Column<string>(type: "json", nullable: false),
+                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
+                    supplier_code = table.Column<long>(type: "bigint", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    withdrawn_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    submitted_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_opportunity_response", x => x.id);
+                    table.ForeignKey(
+                        name: "opportunity_response_opportunity_id_fkey",
+                        column: x => x.opportunity_id,
+                        principalTable: "opportunity",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "opportunity_response_contact",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
+                    supplier_code = table.Column<long>(type: "bigint", nullable: false),
+                    email_address = table.Column<string>(type: "character varying", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_opportunity_response_contact", x => x.id);
+                    table.ForeignKey(
+                        name: "opportunity_response_opportunity_contact_id_fkey",
+                        column: x => x.opportunity_id,
+                        principalTable: "opportunity",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "opportunity_response_download",
                 columns: table => new
                 {
@@ -243,6 +263,26 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         name: "opportunity_response_download_user_id_fkey",
                         column: x => x.user_id,
                         principalTable: "user",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "opportunity_skill",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
+                    skill_key = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("opportunity_skill_pkey", x => x.id);
+                    table.ForeignKey(
+                        name: "opportunity_skill_opportunity_id_fkey",
+                        column: x => x.opportunity_id,
+                        principalTable: "opportunity",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -283,34 +323,29 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "ix_opportunity_closed_at",
+                name: "IX_opportunity_created_by",
                 table: "opportunity",
-                column: "closed_at");
+                column: "created_by");
 
             migrationBuilder.CreateIndex(
-                name: "ix_opportunity_created_at",
+                name: "ix_opportunity_end_date",
                 table: "opportunity",
-                column: "created_at");
+                column: "end_date");
 
             migrationBuilder.CreateIndex(
-                name: "ix_opportunity_published_at",
+                name: "ix_opportunity_job_title",
                 table: "opportunity",
-                column: "published_at");
+                column: "job_title");
 
             migrationBuilder.CreateIndex(
-                name: "ix_opportunity_questions_closed_at",
+                name: "IX_opportunity_modified_by",
                 table: "opportunity",
-                column: "questions_closed_at");
+                column: "modified_by");
 
             migrationBuilder.CreateIndex(
-                name: "ix_opportunity_updated_at",
+                name: "ix_opportunity_start_date",
                 table: "opportunity",
-                column: "updated_at");
-
-            migrationBuilder.CreateIndex(
-                name: "ix_opportunity_withdrawn_at",
-                table: "opportunity",
-                column: "withdrawn_at");
+                column: "start_date");
 
             migrationBuilder.CreateIndex(
                 name: "IX_opportunity_assessor_opportunity_id",
@@ -393,6 +428,11 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 column: "user_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_opportunity_skill_opportunity_id",
+                table: "opportunity_skill",
+                column: "opportunity_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_opportunity_user_user_id",
                 table: "opportunity_user",
                 column: "user_id");
@@ -426,6 +466,9 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
 
             migrationBuilder.DropTable(
                 name: "opportunity_response_download");
+
+            migrationBuilder.DropTable(
+                name: "opportunity_skill");
 
             migrationBuilder.DropTable(
                 name: "opportunity_user");

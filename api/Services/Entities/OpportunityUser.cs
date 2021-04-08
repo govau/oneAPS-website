@@ -11,6 +11,7 @@ namespace Dta.OneAps.Api.Services.Entities
         [Key]
         [Column("opportunity_id")]
         public int OpportunityId { get; set; }
+
         [Key]
         [Column("user_id")]
         public int UserId { get; set; }
@@ -18,6 +19,7 @@ namespace Dta.OneAps.Api.Services.Entities
         [ForeignKey(nameof(OpportunityId))]
         [InverseProperty("OpportunityUser")]
         public virtual Opportunity Opportunity { get; set; }
+
         [ForeignKey(nameof(UserId))]
         [InverseProperty("OpportunityUser")]
         public virtual User User { get; set; }

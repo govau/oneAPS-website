@@ -18,9 +18,5 @@ namespace Dta.OneAps.Api.Business.Models {
         public string Skills { get; set; }
         public string AdditionalInfo { get; set; }
         public string SecurityClearance { get; set; }
-        public DateTime? Modifed { get; set; }
-        public DateTime Created { get; set; }
-        public string CreatedBy { get; set; }
-        public string ModifiedBy { get; set; }
     }
 }

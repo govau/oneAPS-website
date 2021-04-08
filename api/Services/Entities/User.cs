@@ -15,6 +15,8 @@ namespace Dta.OneAps.Api.Services.Entities
             OpportunityHistory = new HashSet<OpportunityHistory>();
             OpportunityResponseDownload = new HashSet<OpportunityResponseDownload>();
             OpportunityUser = new HashSet<OpportunityUser>();
+            OpportunityCreatedByUser = new HashSet<Opportunity>();
+            OpportunityModifiedByUser = new HashSet<Opportunity>();
         }
 
         [Key]
@@ -56,5 +58,10 @@ namespace Dta.OneAps.Api.Services.Entities
         public virtual ICollection<OpportunityResponseDownload> OpportunityResponseDownload { get; set; }
         [InverseProperty("User")]
         public virtual ICollection<OpportunityUser> OpportunityUser { get; set; }
+        [InverseProperty("CreatedByUser")]
+        public virtual ICollection<Opportunity> OpportunityCreatedByUser { get; set; }
+
+        [InverseProperty("ModifiedByUser")]
+        public virtual ICollection<Opportunity> OpportunityModifiedByUser { get; set; }
     }
 }

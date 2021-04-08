@@ -14,6 +14,8 @@ namespace Dta.OneAps.Api.Services.Entities {
             OpportunityResponseContact = new HashSet<OpportunityResponseContact>();
             OpportunityResponseDownload = new HashSet<OpportunityResponseDownload>();
             OpportunityUser = new HashSet<OpportunityUser>();
+            // CreatedByUser = null;
+            // ModifiedByUser = new User();
         }
 
         [Key]
@@ -74,10 +76,18 @@ namespace Dta.OneAps.Api.Services.Entities {
 
         [Required]
         [Column("created_by")]
-        public string CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
+
+        [ForeignKey(nameof(CreatedBy))]
+        [InverseProperty("OpportunityCreatedByUser")]
+        public User CreatedByUser { get; set; }
 
         [Column("modified_by")]
-        public string ModifiedBy { get; set; }
+        public int? ModifiedBy { get; set; }
+
+        [ForeignKey(nameof(ModifiedBy))]
+        [InverseProperty("OpportunityModifiedByUser")]
+        public User ModifiedByUser { get; set; }
 
 
         [InverseProperty("Opportunity")]

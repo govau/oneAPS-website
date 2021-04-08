@@ -12,19 +12,26 @@ namespace Dta.OneAps.Api.Services.Sql {
             _context = context;
         }
 
-        public async Task<Opportunity> Create(Opportunity opportunity) {
-            var newOpportunity = await base.CreateAsync<Opportunity>(opportunity);
+        public async Task<Opportunity> Create(Opportunity opportunity, User creatorUser) {
+            var newOpportunity = await base.CreateAsync<Opportunity>(opportunity, creatorUser);
             await base.CommitAsync();
             return newOpportunity;
         }
 
-        public async Task<Opportunity> Update(Opportunity opportunity) {
-            var newUser = base.Update<Opportunity>(opportunity);
+        public async Task<Opportunity> Update(Opportunity opportunity, User modiferUser) {
+            var newObj = base.Update<Opportunity>(opportunity, modiferUser);
             await base.CommitAsync();
-            return newUser;
+            return newObj;
         }
 
         public async Task<IEnumerable<Opportunity>> GetAllAsync() => await _context.Opportunity.ToListAsync();
-        public async Task<Opportunity> GetByIdAsync(int id) => await _context.Opportunity.Where(x => x.Id == id).SingleOrDefaultAsync();
+        public async Task<Opportunity> GetByIdAsync(int id) => (
+            await _context
+                .Opportunity
+                .Include(x => x.CreatedByUser)
+                .Include(x => x.ModifiedByUser)
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync()
+        );
     }
 }

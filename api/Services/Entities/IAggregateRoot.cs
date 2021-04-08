@@ -7,7 +7,9 @@ namespace Dta.OneAps.Api.Services.Entities {
         int Id { get; set; }
         DateTime? Modifed { get; set; }
         DateTime Created { get; set; }
-        string CreatedBy { get; set; }
-        string ModifiedBy { get; set; }
+        int CreatedBy { get; set; }
+        User CreatedByUser { get; set; }
+        int? ModifiedBy { get; set; }
+        User ModifiedByUser { get; set; }
     }
 }

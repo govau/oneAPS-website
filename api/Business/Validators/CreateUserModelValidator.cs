@@ -2,7 +2,7 @@ using FluentValidation;
 using Dta.OneAps.Api.Business.Models;
 
 namespace Dta.OneAps.Api.Business.Validators {
-    public class CreateUserModelValidator : AbstractValidator<CreateUserRequest> {
+    public class CreateUserModelValidator : AbstractValidator<UserCreateRequest> {
         public CreateUserModelValidator(IUserBusiness userBusiness, ILookupBusiness lookupBusiness) {
             RuleFor(u => u.Name).NotEmpty();
             RuleFor(u => u.EmailAddress)

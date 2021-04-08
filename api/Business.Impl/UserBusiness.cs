@@ -42,7 +42,7 @@ namespace Dta.OneAps.Api.Business {
             return GenerateJSONWebToken(user);
         }
 
-        public async Task<UserResponse> RegisterAsync(CreateUserRequest model) {
+        public async Task<UserResponse> RegisterAsync(UserCreateRequest model) {
             var exists = await _userService.GetByEmailAsync(model.EmailAddress);
             if (exists != null) {
                 // TODO: send email to existing user

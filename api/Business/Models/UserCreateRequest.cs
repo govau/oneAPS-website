@@ -1,5 +1,5 @@
 namespace Dta.OneAps.Api.Business.Models {
-    public class CreateUserRequest {
+    public class UserCreateRequest {
         public string EmailAddress { get; set; }
 
         public string Name { get; set; }

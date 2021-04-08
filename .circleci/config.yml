@@ -125,6 +125,8 @@ jobs:
     docker:
       - image: govau/cf-cli
     steps:
+      - attach_workspace:
+          at: .
       - cf_deploy:
           cf_app_name: oneaps-rc-ui
           cf_manifest: ../manifest.rc.yml

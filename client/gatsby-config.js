@@ -16,16 +16,16 @@ module.exports = {
         link: "/about",
       },
       {
+        text: "Post",
+        link: "/post-opportunity",
+      },
+      {
         text: "Help",
         link: "/help",
       },
       {
         text: "Register",
         link: "/register",
-      },
-      {
-        text: "Post",
-        link: "/post-opportunity",
       },
     ],
     footerLinks: [

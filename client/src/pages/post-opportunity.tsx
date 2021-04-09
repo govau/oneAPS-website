@@ -19,7 +19,7 @@ const PostOpportunityPage: React.FC<PageContext> = ({
               <li>
                 <a href="../#">Home</a>
               </li>
-              <li>Post an Opportunity</li>
+              <li>Post an opportunity</li>
             </ul>
           </nav>
         </div>

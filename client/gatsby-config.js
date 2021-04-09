@@ -16,7 +16,11 @@ module.exports = {
         link: "/about",
       },
       {
-        text: "Post",
+        text: "Find opportunities",
+        link: "/find-opportunities",
+      },
+      {
+        text: "Post opportunity",
         link: "/post-opportunity",
       },
       {

@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
-import { Aubtn, AuFieldset, AuFormGroup, AuLegend } from "../../../types/auds";
+import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, ILoginType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
 import ClientErrorDisplay from "../../blocks/clientErrors";
@@ -81,20 +81,17 @@ const PostOpportunityForm: React.FC = () => {
             )}
 
             <AuFieldset className="mt-2 mb-0">
-              <AuLegend level="3">
-                <h2>About job</h2>
-              </AuLegend>
               <TextField
                 id="jobTitle"
                 label="Opportunity name:"
-                hint="About 10-15 words"
+                hint="The title is the first thing an opportunity seeker will see. Write a catchy title that's descriptive of what the opportunity is - think about skills you need or the outcome you are trying to achieve, not just a job title. Avoid jargon."
                 width="xl"
                 required
               />
               <TextField
                 id="jobDescription"
                 label="What you'll do:"
-                hint="About one or two paragraphs"
+                hint="In one or two paragraphs, provide a description of the opportunity. Include the intended outcome of the work, problem you are trying to solve and alignment to government strategic priorities (these can be for your department,agency or cross government)"
                 required
                 as="textarea"
                 width="xl"
@@ -102,7 +99,7 @@ const PostOpportunityForm: React.FC = () => {
               <TextField
                 id="whatYoullGain"
                 label="What you'll gain from this experience:"
-                hint="For example, build skills and experience, increase departmental knowledge, connect with subject matter reports."
+                hint="In a few sentences, add what the participant will gain or learn from this experience (e.g. build skills and experience, increase departmental knowledge,connect with subject matter experts)"
                 required
                 as="textarea"
                 width="xl"
@@ -110,7 +107,7 @@ const PostOpportunityForm: React.FC = () => {
               <TextField
                 id="aboutTeam"
                 label="About our team:"
-                hint="About one or two paragraphs"
+                hint="In one or two paragraphs, describe your team, your culture and how you work. Avoid using acronyms."
                 required
                 as="textarea"
                 width="xl"
@@ -125,14 +122,14 @@ const PostOpportunityForm: React.FC = () => {
               <TextField
                 id="location"
                 label="Location:"
-                hint="State / Territory name, or type e.g. Virtual"
+                hint="Any preference to be in a certain location, or is it flexible to be virtual?"
                 type="text"
                 required
               />
               <TextField
                 id="skills"
                 label="Relevant skills:"
-                hint="Separate by commas, e.g. photoshop, web design, logo design"
+                hint="Separate by commas, e.g. photoshop, web design, logo design."
                 as="textarea"
                 width="xl"
                 required
@@ -140,6 +137,7 @@ const PostOpportunityForm: React.FC = () => {
               <TextField
                 id="additionalInfo"
                 label="Additional information (optional):"
+                hint="Is there anything else you would like to add?"
                 as="textarea"
                 width="xl"
               />
@@ -147,12 +145,13 @@ const PostOpportunityForm: React.FC = () => {
             <TextField
               id="startDate"
               label="Estimated start date:"
+              hint="When would you be ready to onboard the participant?"
               type="date"
               required
             />
             <TextField
               id="endDate"
-              label="Estimated end date:"
+              label="When would you like the opportunity to be completed?"
               type="date"
               required
             />
@@ -160,7 +159,7 @@ const PostOpportunityForm: React.FC = () => {
             <TextField
               id="commitmentTime"
               label="Commitment time:"
-              hint="Example: 2-4 hours per week on a Monday or Tuesday"
+              hint="Enter a particular amount of hours or days per week or whether it's negotiable. For example, 2 - 4 hours per week on a Monday or Tuesday."
               type="text"
               width="xl"
               required
@@ -175,6 +174,7 @@ const PostOpportunityForm: React.FC = () => {
             <TextField
               id="contactPersonName"
               label="Contact person name:"
+              hint="Contact name for this opportunity"
               type="text"
               width="lg"
               required
@@ -182,6 +182,7 @@ const PostOpportunityForm: React.FC = () => {
             <TextField
               id="contactPersonEmail"
               label="Contact person email:"
+              hint="Contact e-mail address for this opportunity"
               type="email"
               width="lg"
               required
@@ -189,12 +190,14 @@ const PostOpportunityForm: React.FC = () => {
             <TextField
               id="contactPersonPhone"
               label="Contact person phone (optional):"
+              hint="Contact phone number for this opportunity"
               type="text"
             />
 
             <SelectField
               id="securityClearance"
               label="Security Clearance:"
+              hint="What level of security clearance is needed to complete theopportunity?"
               options={[
                 { text: "Select", value: "" },
                 { text: "Baseline", value: "baseline" },

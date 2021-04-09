@@ -84,105 +84,123 @@ const PostOpportunityForm: React.FC = () => {
               <AuLegend level="3">
                 <h2>About job</h2>
               </AuLegend>
-              <TextField id="jobTitle" label="Opportunity title" required />
+              <TextField
+                id="jobTitle"
+                label="Opportunity name:"
+                hint="About 10-15 words"
+                width="xl"
+                required
+              />
               <TextField
                 id="jobDescription"
-                label="What you'll do"
+                label="What you'll do:"
+                hint="About one or two paragraphs"
                 required
                 as="textarea"
                 width="xl"
               />
               <TextField
                 id="whatYoullGain"
-                label="What you'll gain from this experience"
+                label="What you'll gain from this experience:"
+                hint="For example, build skills and experience, increase departmental knowledge, connect with subject matter reports."
                 required
                 as="textarea"
                 width="xl"
               />
               <TextField
                 id="aboutTeam"
-                label="About our team"
+                label="About our team:"
+                hint="About one or two paragraphs"
                 required
                 as="textarea"
                 width="xl"
               />
               <TextField
                 id="numberOfPeople"
-                label="Number of people needed"
+                label="Number of people needed:"
                 type="number"
+                width="xs"
                 required
               />
-              <TextField id="location" label="Location" type="text" required />
+              <TextField
+                id="location"
+                label="Location:"
+                hint="State / Territory name, or type e.g. Virtual"
+                type="text"
+                required
+              />
               <TextField
                 id="skills"
-                label="Relevant skills"
-                hint="Seperate by commas, e.g. photoshop, web design, logo design"
+                label="Relevant skills:"
+                hint="Separate by commas, e.g. photoshop, web design, logo design"
                 as="textarea"
+                width="xl"
                 required
               />
               <TextField
                 id="additionalInfo"
-                label="Additional information (optional)"
+                label="Additional information (optional):"
                 as="textarea"
+                width="xl"
               />
             </AuFieldset>
             <TextField
               id="startDate"
-              label="Estimated start date"
-              type="text"
+              label="Estimated start date:"
+              type="date"
               required
             />
             <TextField
               id="endDate"
-              label="Estimated end date"
-              type="text"
+              label="Estimated end date:"
+              type="date"
               required
             />
-            <TextField
-              id="endDate"
-              label="Estimated end date"
-              type="text"
-              required
-            />
+
             <TextField
               id="commitmentTime"
-              label="Commitment Time"
+              label="Commitment time:"
+              hint="Example: 2-4 hours per week on a Monday or Tuesday"
               type="text"
+              width="xl"
               required
             />
             <TextField
               id="agency"
-              label="Department/Agency name"
+              label="Department/Agency name:"
               type="text"
+              width="lg"
               required
             />
             <TextField
               id="contactPersonName"
-              label="Contact person name"
+              label="Contact person name:"
               type="text"
+              width="lg"
               required
             />
             <TextField
               id="contactPersonEmail"
-              label="Contact person name"
-              type="text"
+              label="Contact person email:"
+              type="email"
+              width="lg"
               required
             />
             <TextField
               id="contactPersonPhone"
-              label="Contact person phone (optional)"
+              label="Contact person phone (optional):"
               type="text"
             />
 
             <SelectField
               id="securityClearance"
-              label="Security Clearance"
+              label="Security Clearance:"
               options={[
                 { text: "Select", value: "" },
                 { text: "Baseline", value: "baseline" },
-                { text: "nv1", value: "nv1" },
-                { text: "nv2", value: "nv2" },
-                { text: "pv", value: "pv" },
+                { text: "Negative Vetting Level 1", value: "nv1" },
+                { text: "Negative Vetting Level 2", value: "nv2" },
+                { text: "Positive Vetting", value: "pv" },
                 { text: "None", value: "none" },
               ]}
             ></SelectField>

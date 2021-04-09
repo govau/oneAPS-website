@@ -104,14 +104,14 @@ const RegisterForm: React.FC = () => {
             <TextField
               id="mobile"
               label="Mobile number"
-              width="lg"
+              width="m"
               hint="We’ll send you a security code by text message"
               type="text"
               required
             />
             <TextField
               id="agency"
-              label="Agency/Department name"
+              label="Department/Agency name"
               width="lg"
               type="text"
               required
@@ -120,6 +120,13 @@ const RegisterForm: React.FC = () => {
               id="password"
               hint="Minimum 8 characters, including one uppercase, one lowercase, one number and one special case character"
               label="Create a password"
+              width="lg"
+              required
+            />
+            <TextField
+              id="password-confirm"
+              label="Confirm your password"
+              type="password"
               width="lg"
               required
             />

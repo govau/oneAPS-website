@@ -21,33 +21,22 @@ const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
         </div>
         <div className="au-body container-fluid">
           <section>
-            <h1>About oneAPS</h1>
-            <ul>
-              <li>
-                <a href="./help-pages/current-managers/what-is-oneAPS">
-                  What is oneAPS?
-                </a>
-              </li>
-              <li>
-                <a href="./help-pages/digital-professionals/who-can-participate">
-                  Who can participate?
-                </a>
-              </li>
-            </ul>
+            <h1>Help & FAQs</h1>
           </section>
           <section>
             <div className="row">
               <div className="col-md-4">
-                <div className="centre-align">
+                <div className="center-align">
                   <h2>Opportunity creators</h2>
                   <img
                     src="../../opportunity-creators.png"
                     alt="opportunity creators"
+                    style={{ width: "10rem" }}
                   ></img>
                 </div>
                 <ul>
                   <li>
-                    <a href="./help-pages/opportunity-creators/write-a-great-opportunity">
+                    <a href="/help-pages/opportunity-creators/write-a-great-opportunity">
                       How to write a great opportunity
                     </a>
                   </li>
@@ -73,16 +62,17 @@ const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
                     </a>
                   </li>
                   <li>
-                    <a href="../#">Example opportunity (external)</a>
+                    <a href="../#">Example opportunity</a> (external)
                   </li>
                 </ul>
               </div>
               <div className="col-md-4">
-                <div className="centre-align">
+                <div className="center-align">
                   <h2>Digital professionals</h2>
                   <img
                     src="../../digital-professionals.png"
                     alt="digital-professionals"
+                    style={{ width: "10rem" }}
                   ></img>
                 </div>
                 <ul>
@@ -118,36 +108,45 @@ const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
                   </li>
                 </ul>
               </div>
-            </div>
-            <div className="col-md-4">
-              <div className="centre-align">
-                <h2>Current managers</h2>
-                <img
-                  src="../../current-managers.png"
-                  alt="current managers"
-                ></img>
+              <div className="col-md-4">
+                <div className="center-align">
+                  <h2>Current managers</h2>
+                  <img
+                    src="../../current-managers.png"
+                    alt="current managers"
+                    style={{ width: "10rem" }}
+                  ></img>
+                </div>
+                <ul>
+                  <li>
+                    <a href="./help-pages/current-managers/what-is-oneAPS">
+                      What is oneAPS?
+                    </a>
+                  </li>
+                  <li>
+                    <a href="./help-pages/digital-professions/using-mobility-as-manager">
+                      Using mobility as a manager
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://www.apsc.gov.au/advancing-professional-development-through-planned-mobility">
+                      Advancing professional development through planned
+                      mobility
+                    </a>{" "}
+                    (external)
+                  </li>
+                </ul>
               </div>
-              <ul>
-                <li>
-                  <a href="./help-pages/current-managers/what-is-oneAPS">
-                    What is oneAPS?
-                  </a>
-                </li>
-                <li>
-                  <a href="./help-pages/digital-professions/using-mobility-as-manager">
-                    Using mobility as a manager
-                  </a>
-                </li>
-                <li>
-                  <a href="https://www.apsc.gov.au/advancing-professional-development-through-planned-mobility">
-                    Advancing professional development through planned mobility
-                  </a>
-                  (external site)
-                </li>
-              </ul>
             </div>
           </section>
         </div>
+        <section className="au-body center-align">
+          This site is part of a 3-month pilot program from March to May 2021
+          run by the Digital Squads team at the Digital Transformation Agency.
+          <br />
+          If you have any questions or feedback, please contact us at{" "}
+          <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>
+        </section>
       </>
     </DefaultLayout>
   );

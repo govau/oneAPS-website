@@ -21,11 +21,12 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
               ></img>
             </div>
             <div className="intro__text col-sm-12 col-md-6 col-md-pull-6">
-              <p>
+              <h2>
                 A place to find flexible work opportunities across the APS to
                 help deliver outcomes for government and the citizens we all
                 serve.
-              </p>
+              </h2>
+              <br />
               <p>
                 <p className="bolden-text">Want to post an opportunity?</p>
                 Anyone can post an opportunity on oneAPS.

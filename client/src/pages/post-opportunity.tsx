@@ -27,6 +27,13 @@ const PostOpportunityPage: React.FC<PageContext> = ({
           <h1>Post an Opportunity</h1>
           <PostOpportunityForm />
         </div>
+        <section className="au-body center-align">
+          This site is part of a 3-month pilot program from March to May 2021
+          run by the Digital Squads team at the Digital Transformation Agency.
+          <br />
+          If you have any questions or feedback, please contact us at{" "}
+          <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>
+        </section>
       </>
     </DefaultLayout>
   );

@@ -20,7 +20,7 @@ module.exports = {
         link: "/find-opportunities",
       },
       {
-        text: "Post opportunity",
+        text: "Post an opportunity",
         link: "/post-opportunity",
       },
       {

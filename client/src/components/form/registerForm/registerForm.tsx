@@ -19,10 +19,9 @@ const RegisterForm: React.FC = () => {
   const handleRegisterUser = async (formData: IRegisterType) => {
     setSaving(true);
     const { email, password, name, agency } = formData;
-    console.log(process.env.GATSBY_API_URL);
     try {
       const result = await axios.post(
-        `${process.env.GATSBY_API_URL}/user/register`,
+        `/api/user/register`,
         {
           Name: name,
           EmailAddress: email,

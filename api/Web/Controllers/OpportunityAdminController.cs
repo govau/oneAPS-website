@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Dta.OneAps.Api.Web.Controllers {
     [Authorize(Roles = Roles.Admin)]
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class OpportunityAdminController : ControllerBase {
         private readonly IAuthorizationUtil _authorizationUtil;
         private readonly IOpportunityBusiness _opportunityBusiness;

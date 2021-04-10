@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Dta.OneAps.Api.Web.Controllers {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class LookupController : ControllerBase {
         private readonly ILookupBusiness _lookupBusiness;
 

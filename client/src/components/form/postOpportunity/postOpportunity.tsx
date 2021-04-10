@@ -20,7 +20,7 @@ const PostOpportunityForm: React.FC = () => {
     const { email, password } = formData;
     try {
       // const result = await axios.post(
-      //   `${process.env.GATSBY_API_URL}/register`,
+      //   `/api/user/register`,
       //   {
       //     name,
       //     email,

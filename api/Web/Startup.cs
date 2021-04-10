@@ -18,18 +18,18 @@ namespace Dta.OneAps.Api.Web {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
         }
-        private readonly string _devOrigins = "_devOrigins";
+        // private readonly string _devOrigins = "_devOrigins";
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddCors(options => {
-                options.AddPolicy(_devOrigins, builder => {
-                    builder.WithOrigins("http://localhost:8000")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                });
-            });
+            // services.AddCors(options => {
+            //     options.AddPolicy(_devOrigins, builder => {
+            //         builder.WithOrigins("http://localhost:8000")
+            //             .AllowAnyHeader()
+            //             .AllowAnyMethod();
+            //     });
+            // });
             services
                 .AddControllers()
                 .AddFluentValidation(fv => {
@@ -104,7 +104,7 @@ namespace Dta.OneAps.Api.Web {
             //     .AllowAnyMethod()
             //     .AllowAnyHeader());
 
-            app.UseCors(_devOrigins);
+            // app.UseCors(_devOrigins);
 
 
             app.UseSwagger();

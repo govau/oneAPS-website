@@ -1,4 +1,8 @@
 module.exports = {
+  proxy: {
+    prefix: "/api",
+    url: "http://localhost:5001",
+  },
   siteMetadata: {
     title: `oneAPS Opportunities`,
     description: `A place to find flexible work opportunities across the APS to

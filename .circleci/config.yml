@@ -28,15 +28,12 @@ commands:
     parameters:
       path:
         type: string
-      gatsby_api_url:
-        type: string
     steps:
       - run: 
           name: Build npm
           command: |
             cd << parameters.path >>
             npm install
-            export GATSBY_API_URL="<< parameters.gatsby_api_url >>"
             npm run build
   cf_deploy:
     description: "cf deploy"
@@ -93,7 +90,7 @@ jobs:
           paths:
             - "api/**/*"
 
-  run_npm_builds_rc:
+  run_npm_buildsc:
     docker:
       - image: circleci/node:12-stretch
     steps:
@@ -101,21 +98,6 @@ jobs:
           at: .
       - npm_build:
           path: "client"
-          gatsby_api_url: "https://oneaps-rc.apps.y.cld.gov.au/api"
-      - persist_to_workspace:
-          root: .
-          paths:
-            - "client/**/*"
-
-  run_npm_builds_prod:
-    docker:
-      - image: circleci/node:12-stretch
-    steps:
-      - attach_workspace:
-          at: .
-      - npm_build:
-          path: "client"
-          gatsby_api_url: "https://oneaps.apps.b.cld.gov.au/api"
       - persist_to_workspace:
           root: .
           paths:
@@ -183,13 +165,7 @@ workflows:
           filters:
             tags:
               only: /[0-9]+(\.[0-9]+)*/
-      - run_npm_builds_rc:
-          requires:
-            - get_code
-          filters:
-            tags:
-              only: /[0-9]+(\.[0-9]+)*/
-      - run_npm_builds_prod:
+      - run_npm_builds:
           requires:
             - get_code
           filters:
@@ -198,7 +174,7 @@ workflows:
       - deploy_ui_to_rc:
           requires:
             - run_dot_net_builds
-            - run_npm_builds_rc
+            - run_npm_builds
           filters:
             tags:
               ignore: /.*/
@@ -207,7 +183,7 @@ workflows:
       - deploy_api_to_rc:
           requires:
             - run_dot_net_builds
-            - run_npm_builds_rc
+            - run_npm_builds
           filters:
             tags:
               ignore: /.*/
@@ -216,7 +192,7 @@ workflows:
       - deploy_ui_to_production:
           requires:
             - run_dot_net_builds
-            - run_npm_builds_prod
+            - run_npm_builds
           filters:
             tags:
               only: /[0-9]+(\.[0-9]+)*/
@@ -225,7 +201,7 @@ workflows:
       - deploy_api_to_production:
           requires:
             - run_dot_net_builds
-            - run_npm_builds_prod
+            - run_npm_builds
           filters:
             tags:
               only: /[0-9]+(\.[0-9]+)*/

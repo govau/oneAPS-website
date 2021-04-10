@@ -90,7 +90,7 @@ jobs:
           paths:
             - "api/**/*"
 
-  run_npm_buildsc:
+  run_npm_builds:
     docker:
       - image: circleci/node:12-stretch
     steps:

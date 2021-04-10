@@ -5,6 +5,7 @@ using Dta.OneAps.Api.Business;
 using Dta.OneAps.Api.Shared;
 using Dta.OneAps.Api.Business.Models;
 using Dta.OneAps.Api.Web.Utils;
+using System;
 using System.Threading.Tasks;
 
 namespace Dta.OneAps.Api.Web.Controllers {
@@ -21,7 +22,9 @@ namespace Dta.OneAps.Api.Web.Controllers {
         }
         [HttpGet("ping")]
         public IActionResult Ping() {
-            return Ok();
+            return Ok(new UserSessionResponse {
+                RefreshToken = Guid.NewGuid().ToString().Replace("-", "")
+            });
         }
 
         [AllowAnonymous]

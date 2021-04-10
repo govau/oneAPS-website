@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
+import { navigate } from "@reach/router";
 import { Aubtn, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, ILoginType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
@@ -19,23 +20,27 @@ const LoginForm: React.FC = () => {
     setSaving(true);
 
     const { email, password } = formData;
-    try {
-      const result = await axios.post(
-        `/api/user/authenticate`,
-        {
-          EmailAddress: email,
-          password,
-        }
-      );
-      
-        // navigate("/submitted/", { state: { submitted: true } });
-    } catch (e) {
-      // const error = e.response.data;
-      // if (error.errors) {
-      //   setErrorList(error.errors);
-      // }
-    }
+    
+    const result = await axios.post(
+      `/api/user/authenticate`,
+      {
+        EmailAddress: email,
+        password,
+      }
+    );
+    localStorage.setItem("session", null);
+    
+  
+    // const error = e.response.data;
+    // if (error.errors) {
+    //   setErrorList(error.errors);
+    // }
+    
     setSaving(false);
+    if (result.status === 200) {
+      localStorage.setItem("session", JSON.stringify(result.data));
+      navigate("/find-opportunities");
+    }
   };
 
   return (

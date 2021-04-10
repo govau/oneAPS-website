@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import axios from "axios";
 import { Location } from "@reach/router";
 import { graphql, useStaticQuery } from "gatsby";
 import _ from "lodash";
-import React from "react";
+import React, { useEffect } from "react";
+import { navigate } from "@reach/router";
 import "../../sass/main.scss";
 import Breadcrumbs from "../navigation/breadcrumb";
 import Footer from "../navigation/footer";
@@ -15,11 +17,45 @@ interface Props {
   location: any;
 }
 
+const logout = () => {
+  localStorage.setItem("session", null);
+  // navigate("/find-opportunities/");
+}
+
 const DefaultLayout: React.FC<Props> = ({
   pageContext,
   location,
   children,
 }) => {
+  useEffect(() => {
+    const ping = async () => {
+      const sessionStr = localStorage.getItem("session");
+      if (!sessionStr) {
+        logout();
+        return;
+      }
+      let session = JSON.parse(sessionStr);
+      const result = await axios.get(
+        `/api/user/ping`, {
+          headers: {
+            'Authorization': `bearer ${session.token}`
+          }
+        }
+      );
+      if (result.status === 200) {
+        
+        session.refreshToken = result.data.refreshToken;
+        localStorage.setItem("session", JSON.stringify(session));
+        return;
+      } else {
+        logout();
+        return;
+      }
+    }
+    ping();
+  }, []);
+
+
   let crumbs = [];
 
   if (pageContext && pageContext.breadcrumb) {

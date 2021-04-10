@@ -31,7 +31,7 @@ namespace Dta.OneAps.Api.Business {
             _encryptionUtil = encryptionUtil;
         }
 
-        public async Task<string> AuthenticateAsync(AuthenticateUserRequest model) {
+        public async Task<UserSessionResponse> AuthenticateAsync(AuthenticateUserRequest model) {
             string encryptedPassword = _encryptionUtil.Encrypt(model.Password);
 
             var user = await _userService.AuthenticateAsync(model.EmailAddress, encryptedPassword);
@@ -39,7 +39,10 @@ namespace Dta.OneAps.Api.Business {
                 throw new CannotAuthenticateException();
             }
             // var result = _mapper.Map<UserModel>(user);
-            return GenerateJSONWebToken(user);
+            return new UserSessionResponse() {
+                Token = GenerateJSONWebToken(user),
+                RefreshToken = Guid.NewGuid().ToString().Replace("-", "")
+            };
         }
 
         public async Task<UserResponse> RegisterAsync(UserCreateRequest model) {

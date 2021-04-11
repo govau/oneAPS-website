@@ -3,12 +3,13 @@ import axios from "axios";
 import { Location } from "@reach/router";
 import { graphql, useStaticQuery, navigate } from "gatsby";
 import _ from "lodash";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../../sass/main.scss";
 import Breadcrumbs from "../navigation/breadcrumb";
 import Footer from "../navigation/footer";
 import Header from "../navigation/header";
 import MainNav from "../navigation/main-nav";
+import { UserContext, UserContextType } from "../../context/UserContext";
 
 interface Props {
   children: React.ReactElement;
@@ -16,8 +17,26 @@ interface Props {
   location: any;
 }
 
-const logout = () => {
+
+const getSession = () => {
+  const sessionStr = localStorage.getItem("session");
+  if (!sessionStr) {
+    return undefined;
+  }
+  return JSON.parse(sessionStr);
+}
+
+
+const setSession = (session) => {
+  localStorage.setItem("session", JSON.stringify(session));
+}
+
+const removeSession = () => {
   localStorage.removeItem("session");
+}
+
+const logout = () => {
+  removeSession();
   navigate("/");
 
 }
@@ -27,13 +46,45 @@ const DefaultLayout: React.FC<Props> = ({
   location,
   children,
 }) => {
+
+  const updateToken = (token: string, refreshToken: string) => {
+    if (token) {
+      setSession({
+        token,
+        refreshToken
+      });
+    } else {
+      removeSession();
+    }
+    currentUser.token = token;
+    currentUser.refreshToken = refreshToken;
+    setCurrentUserState(currentUser);
+  
+  };
+  const updateRefreshToken = (refreshToken: string) => {
+    const session = getSession();
+    if (session) {
+      session.refreshToken = refreshToken;
+      setSession(session);
+    }
+    currentUser.refreshToken = refreshToken;
+    setCurrentUserState(currentUser);
+  };
+
+  const session = getSession();
+  const [currentUser, setCurrentUserState] = useState<UserContextType>({
+    token: session && session.token,
+    refreshToken: session && session.refreshToken,
+    updateToken,
+    updateRefreshToken,
+  });
+
   useEffect(() => {
     const ping = async () => {
-      const sessionStr = localStorage.getItem("session");
-      if (!sessionStr) {
+      let session = getSession();
+      if (!session) {
         return;
       }
-      let session = JSON.parse(sessionStr);
       try {
         const result = await axios.get(
           `/api/user/ping`, {
@@ -44,7 +95,7 @@ const DefaultLayout: React.FC<Props> = ({
         );
         if (result.status === 200) {
           session.refreshToken = result.data.refreshToken;
-          localStorage.setItem("session", JSON.stringify(session));
+          setSession(session);
           return;
         }
       } catch (e) {
@@ -73,23 +124,25 @@ const DefaultLayout: React.FC<Props> = ({
 
   return (
     <>
-      {/* <AlphaHeader /> */}
-      {/* <SEO title={data.site.siteMetadata.title} /> */}
-      <div className="header-wrapper">
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <Location>
-          {({ navigate, location }) => <MainNav path={location.pathname} />}
-        </Location>
-      </div>
-      <main>
-        {/* {!_.isEmpty(crumbs) && crumbs.length > 2 && (
-          <div className="container-fluid">
-            <Breadcrumbs crumbs={crumbs} />
-          </div>
-        )} */}
-        {children}
-      </main>
-      <Footer path={location.pathname} />
+    <UserContext.Provider value={currentUser}>
+        {/* <AlphaHeader /> */}
+        {/* <SEO title={data.site.siteMetadata.title} /> */}
+        <div className="header-wrapper">
+          <Header siteTitle={data.site.siteMetadata.title} />
+          <Location>
+            {({ navigate, location }) => <MainNav path={location.pathname} />}
+          </Location>
+        </div>
+        <main>
+          {/* {!_.isEmpty(crumbs) && crumbs.length > 2 && (
+            <div className="container-fluid">
+              <Breadcrumbs crumbs={crumbs} />
+            </div>
+          )} */}
+            {children}
+        </main>
+        <Footer path={location.pathname} />
+      </UserContext.Provider>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { navigate } from "gatsby";
 import { Aubtn, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, ILoginType } from "../../../types/types";
@@ -10,28 +10,29 @@ import PageAlert from "../../blocks/pageAlert";
 import PasswordField from "../fields/PasswordField";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./loginSchema";
+import { UserContext } from "../../../context/UserContext";
 
 const LoginForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const user = useContext(UserContext);
 
   const HandleLoginUser = async (formData: ILoginType) => {
     setSaving(true);
     setErrorList([]);
 
     const { email, password } = formData;
+    user.updateToken(null, null);
     try {
       const result = await axios.post(`/api/user/authenticate`, {
           EmailAddress: email,
           password,
         }
       );
-      localStorage.setItem("session", null);
-
       
       if (result.status === 200) {
-        localStorage.setItem("session", JSON.stringify(result.data));
+        user.updateToken(result.data.token, result.data.refreshToken);
         navigate("/find-opportunities");
         return;
       }

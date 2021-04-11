@@ -9,14 +9,14 @@ namespace Dta.OneAps.Api.Services.Static {
         public LookupService() { }
 
         public IEnumerable<Lookup> Get(string name) {
-            switch (name) {
-                case "OpportunityStatus":
+            switch (name.ToLower()) {
+                case "opportunitystatus":
                     return OpportunityStatus.List;
-                case "Skills":
+                case "skills":
                     return Skill.List;
-                case "SecurityClearance":
+                case "securityclearance":
                     return SecurityClearance.List;
-                case "Agency":
+                case "agency":
                     return Agency.List;
             }
             return null;

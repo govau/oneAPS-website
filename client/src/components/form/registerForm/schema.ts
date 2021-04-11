@@ -3,7 +3,7 @@ import { emailValidation, passwordValidation } from "../../../util/yup";
 
 export const InitialValues = {
   name: "",
-  email: "",
+  emailAddress: "",
   mobile: "",
   agency: "",
   password: "",
@@ -11,7 +11,7 @@ export const InitialValues = {
 
 export const validationSchema = yup.object().shape({
   name: yup.string().trim().required("Name is required").min(2).max(30),
-  email: emailValidation,
+  emailAddress: emailValidation,
   password: passwordValidation,
   agency: yup
     .string()

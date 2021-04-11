@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
 import { navigate } from "gatsby";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Aubtn, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, IRegisterType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
@@ -9,34 +9,61 @@ import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import PasswordField from "../fields/PasswordField";
 import TextField from "../fields/TextField";
+import SelectField from "../fields/SelectField";
 import { InitialValues, validationSchema } from "./schema";
 
 const RegisterForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const [agency, setAgency] = useState<{ loaded: boolean, data: { value: string, text: string }[] }>({ loaded: false, data: [] });
+
+  useEffect(() => {
+    if (agency.loaded) {
+      return;
+    }
+    const loadAgency = async () => {
+      const result = await axios.get(`/api/lookup`, {
+        params: {
+          name: 'agency'
+        }
+      }
+      );
+      const data = [{ text: 'Please select an agency', value: null }].concat(result.data);
+      setAgency({
+        loaded: true,
+        data
+      });
+    }
+    loadAgency();
+  }, []);
 
   const handleRegisterUser = async (formData: IRegisterType) => {
     setSaving(true);
-    const { email, password, name, agency } = formData;
+    setErrorList([]);
+    const { emailAddress, password, name, agency } = formData;
     try {
-      const result = await axios.post(
-        `/api/user/register`,
-        {
-          Name: name,
-          EmailAddress: email,
-          Password: password,
-          Agency: agency,
-        }
+      const result = await axios.post(`/api/user/register`, {
+        name,
+        emailAddress,
+        password,
+        agency,
+      }
       );
-      console.log(result);
       navigate("/verify-account/", { state: { submitted: true } });
     } catch (e) {
-      // const error = e.response.data;
-      // if (error.errors) {
-      //   setErrorList(error.errors);
-      // }
-      console.log(e);
+      if (e.response.status === 400) {
+        let errors: IApiFormError[] = [];
+        for (const property in e.response.data.errors) {
+          for (const message of e.response.data.errors[property]) {
+            errors.push({
+              message,
+              path: property
+            })
+          }
+        }
+        setErrorList(errors);
+      }
     }
     setSaving(false);
   };
@@ -87,43 +114,43 @@ const RegisterForm: React.FC = () => {
             )}
 
             <TextField
-              id="name"
+              id="Name"
               label="Your name"
               width="lg"
               type="text"
               required
             />
             <TextField
-              id="email"
+              id="EmailAddress"
               label="Email"
               width="lg"
               type="email"
               required
             />
             <TextField
-              id="mobile"
+              id="Mobile"
               label="Mobile number"
               width="m"
               hint="We’ll send you a security code by text message"
               type="text"
               required
             />
-            <TextField
-              id="agency"
+            <SelectField
+              id="Agency"
               label="Department/Agency name"
               width="lg"
-              type="text"
+              options={agency.data}
               required
             />
             <PasswordField
-              id="password"
+              id="Password"
               hint="Minimum 8 characters, including one uppercase, one lowercase, one number and one special case character"
               label="Create a password"
               width="lg"
               required
             />
             <TextField
-              id="password-confirm"
+              id="PasswordConfirm"
               label="Confirm your password"
               type="password"
               width="lg"

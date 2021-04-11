@@ -103,6 +103,28 @@ jobs:
           paths:
             - "client/**/*"
     
+  deploy_ui_to_master:
+    docker:
+      - image: govau/cf-cli
+    steps:
+      - attach_workspace:
+          at: .
+      - cf_deploy:
+          cf_app_name: oneaps-master-ui
+          cf_manifest: ../manifest.master.yml
+          cf_path: client/public
+    
+  deploy_api_to_master:
+    docker:
+      - image: govau/cf-cli
+    steps:
+      - attach_workspace:
+          at: .
+      - cf_deploy:
+          cf_app_name: oneaps-master-api
+          cf_manifest: manifest.master.yml
+          cf_path: api
+    
   deploy_ui_to_rc:
     docker:
       - image: govau/cf-cli
@@ -171,6 +193,24 @@ workflows:
           filters:
             tags:
               only: /[0-9]+(\.[0-9]+)*/
+      - deploy_ui_to_master:
+          requires:
+            - run_dot_net_builds
+            - run_npm_builds
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              only: master
+      - deploy_api_to_master:
+          requires:
+            - run_dot_net_builds
+            - run_npm_builds
+          filters:
+            tags:
+              ignore: /.*/
+            branches:
+              only: master
       - deploy_ui_to_rc:
           requires:
             - run_dot_net_builds

@@ -4,7 +4,7 @@ import { Location } from "@reach/router";
 import { graphql, useStaticQuery } from "gatsby";
 import _ from "lodash";
 import React, { useEffect } from "react";
-import { navigate } from "@reach/router";
+import { navigate, Redirect } from "@reach/router";
 import "../../sass/main.scss";
 import Breadcrumbs from "../navigation/breadcrumb";
 import Footer from "../navigation/footer";
@@ -18,8 +18,9 @@ interface Props {
 }
 
 const logout = () => {
-  localStorage.setItem("session", null);
-  // navigate("/find-opportunities/");
+  localStorage.removeItem("session");
+  navigate("/");
+
 }
 
 const DefaultLayout: React.FC<Props> = ({
@@ -31,7 +32,6 @@ const DefaultLayout: React.FC<Props> = ({
     const ping = async () => {
       const sessionStr = localStorage.getItem("session");
       if (!sessionStr) {
-        logout();
         return;
       }
       let session = JSON.parse(sessionStr);
@@ -43,14 +43,11 @@ const DefaultLayout: React.FC<Props> = ({
         }
       );
       if (result.status === 200) {
-        
         session.refreshToken = result.data.refreshToken;
         localStorage.setItem("session", JSON.stringify(session));
         return;
-      } else {
-        logout();
-        return;
       }
+      logout();
     }
     ping();
   }, []);

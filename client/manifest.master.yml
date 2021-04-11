@@ -4,5 +4,3 @@ disk_quota: 512M
 instances: 2
 routes:
 - route: oneaps-master.apps.y.cld.gov.au
-services:
-- ups-oneaps-master-ui

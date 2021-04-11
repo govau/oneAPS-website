@@ -16,6 +16,7 @@ setup:
 	# Add .NET tools\
 	export DOTNET_ROOT=/snap/dotnet-sdk/current\
 	EOF)
+	(cd api && docker-compose up -d)
 
 update_db:
 	(cd api/Services.Sql &&\

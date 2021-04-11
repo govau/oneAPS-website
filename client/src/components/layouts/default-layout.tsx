@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import axios from "axios";
 import { Location } from "@reach/router";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery, navigate } from "gatsby";
 import _ from "lodash";
 import React, { useEffect } from "react";
-import { navigate, Redirect } from "@reach/router";
 import "../../sass/main.scss";
 import Breadcrumbs from "../navigation/breadcrumb";
 import Footer from "../navigation/footer";
@@ -35,19 +34,22 @@ const DefaultLayout: React.FC<Props> = ({
         return;
       }
       let session = JSON.parse(sessionStr);
-      const result = await axios.get(
-        `/api/user/ping`, {
-          headers: {
-            'Authorization': `bearer ${session.token}`
+      try {
+        const result = await axios.get(
+          `/api/user/ping`, {
+            headers: {
+              'Authorization': `bearer ${session.token}`
+            }
           }
+        );
+        if (result.status === 200) {
+          session.refreshToken = result.data.refreshToken;
+          localStorage.setItem("session", JSON.stringify(session));
+          return;
         }
-      );
-      if (result.status === 200) {
-        session.refreshToken = result.data.refreshToken;
-        localStorage.setItem("session", JSON.stringify(session));
-        return;
+      } catch (e) {
+        logout();
       }
-      logout();
     }
     ping();
   }, []);

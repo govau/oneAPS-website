@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
-import { navigate } from "@reach/router";
+import { navigate } from "gatsby";
 import { Aubtn, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, ILoginType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
@@ -18,29 +18,32 @@ const LoginForm: React.FC = () => {
 
   const HandleLoginUser = async (formData: ILoginType) => {
     setSaving(true);
+    setErrorList([]);
 
     const { email, password } = formData;
-    
-    const result = await axios.post(
-      `/api/user/authenticate`,
-      {
-        EmailAddress: email,
-        password,
+    try {
+      const result = await axios.post(`/api/user/authenticate`, {
+          EmailAddress: email,
+          password,
+        }
+      );
+      localStorage.setItem("session", null);
+
+      
+      if (result.status === 200) {
+        localStorage.setItem("session", JSON.stringify(result.data));
+        navigate("/find-opportunities");
+        return;
       }
-    );
-    localStorage.setItem("session", null);
-    
-  
-    // const error = e.response.data;
-    // if (error.errors) {
-    //   setErrorList(error.errors);
-    // }
-    
-    setSaving(false);
-    if (result.status === 200) {
-      localStorage.setItem("session", JSON.stringify(result.data));
-      navigate("/find-opportunities");
+    } catch (e) {
+      setErrorList([
+        {
+          message: e.response.data.message,
+          path: 'Invalid'
+        }
+      ])
     }
+    setSaving(false);
   };
 
   return (

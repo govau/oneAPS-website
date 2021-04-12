@@ -9,6 +9,10 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
   pageContext,
   location,
 }) => {
+  if (location.state.id) {
+    console.log(location.state.id);
+  }
+
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>

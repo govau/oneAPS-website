@@ -47,3 +47,23 @@ export interface IApiFormError {
   path: string;
   message: string;
 }
+
+export interface IOpportunityType {
+  id: string;
+  jobTitle: string;
+  jobDescription: string;
+  whatYoullGain: string;
+  aboutTeam: string;
+  numberOfPeople: string;
+  location: string;
+  skills: string;
+  additionalInfo: string;
+  startDate: string;
+  endDate: string;
+  commitmentTime: string;
+  agency: string;
+  contactPersonName: string;
+  contactPersonEmail: string;
+  contactPersonPhone: string;
+  securityClearance: string;
+}

@@ -4,7 +4,7 @@ import SEO from "../../../components/seo";
 import { PageContext } from "../../../types/types";
 
 // markup
-const WhatIsOneAPS: React.FC<PageContext> = ({ pageContext, location }) => {
+const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
@@ -13,71 +13,52 @@ const WhatIsOneAPS: React.FC<PageContext> = ({ pageContext, location }) => {
           <nav className="au-breadcrumbs" aria-label="breadcrumb">
             <ul className="au-link-list au-link-list--inline">
               <li>
-                <a href="../../#">Home</a>
+                <a href="../../../#">Home</a>
               </li>
               <li>
                 <a href="../../help">Help</a>
               </li>
-              <li>What is oneAPS?</li>
+              <li>
+                How long does it take to post an opportunity and review
+                applicants?
+              </li>
             </ul>
           </nav>
         </div>
         <div className="au-body container-fluid">
-          <h1>What is oneAPS?</h1>
+          <h1>
+            How long does it take to post an opportunity and review applicants?
+          </h1>
           <p>
-            oneAPS is a government wide{" "}
-            <span className="bolden-text">Digital Professions</span> pilot
-            program offering professional development opportunities to current
-            Australian Public Service (APS) employees. The program facilitates
-            collaboration and knowledge sharing across the Australian
-            Government.
+            It only takes a few minutes to create and post an opportunity.
+            Before you get started,{" "}
+            <a href="write-a-great-opportunity">
+              read these tips on how to write a great opportunity.
+            </a>
           </p>
-          <h2>Benefits for APS employees</h2>
-          oneAPS is for APS employees looking to gain additional experience. The
-          program offers a wide variety of real world projects to work on. By
-          participating you can:
-          <ul>
-            <li>
-              Advance your career by sharpening skills, or learning new ones.
-            </li>
-            <li>
-              Break out of your routine - collaborate with other employees
-              across different agencies.
-            </li>
-            <li>Make new contacts and join a community of innovators.</li>
-            <li>
-              Work remotely or in-person - in fact 99.9% can be done remotely,
-              so there are no travel costs (some internships are in-person
-              only).
-            </li>
-            <li>
-              Choose from a wide range of projects across the government - some
-              may take as little as 1-2 hours, while others may take 20% time
-              over several months.
-            </li>
-          </ul>
-          <h2>Benefits for agencies and managers</h2>
-          oneAPS offers an easy way for agencies, departments and other areas of
-          the Australian Government to:
-          <ul>
-            <li>
-              Connect the APS workforce—learn what other areas of the government
-              are doing and share best practices.
-            </li>
-            <li>Gain interagency insights and points of contact. </li>
-            <li>
-              Tap into the talent and expertise that’s often buried in agency
-              silos.
-            </li>
-            <li>
-              Meet their mission, while offering professional development to
-              fellow feds.
-            </li>
-          </ul>
+          <p>
+            How you review applicants is up to you. We encourage you to review
+            each applicant profile and have a quick phone call or email exchange
+            to see if they’re the right person for the work.
+          </p>
+          <p>
+            Once you have chosen an applicant for your opportunity, please
+            inform{" "}
+            <a href="mailto:digitalsquads@dta.gov.au">
+              The DTA Digital Squads team
+            </a>
+          </p>
         </div>
+        <section className="au-body center-align">
+          This site is part of a 3-month pilot program from March to May 2021
+          run by the Digital Squads team at the Digital Transformation Agency.
+          <br />
+          If you have any questions or feedback, please contact us at{" "}
+          <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>
+        </section>
       </>
     </DefaultLayout>
   );
 };
 
-export default WhatIsOneAPS;
+export default AboutPage;

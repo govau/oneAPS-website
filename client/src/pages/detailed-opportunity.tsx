@@ -1,14 +1,32 @@
+import axios from "axios";
 import { Link } from "gatsby";
 import * as React from "react";
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
-import { PageContext } from "../types/types";
-
+import { IOpportunityType, PageContext } from "../types/types";
 // markup
 const DetailedOpportunityPage: React.FC<PageContext> = ({
   pageContext,
   location,
 }) => {
+  const [oppData, setOppData] = React.useState<IOpportunityType[]>([]);
+  React.useEffect(() => {
+    async function getData() {
+      try {
+        const result = await axios.get("/api/Opportunity/" + location.state.id);
+        if (result.status === 200) {
+          setOppData(result.data);
+        }
+        console.log(result.data);
+      } catch (e) {}
+    }
+    getData();
+  }, []);
+
+  function contentOrNA(c) {
+    return c ? c : "N/A";
+  }
+
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
@@ -22,19 +40,13 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
               <li>
                 <a href="../find-opportunities">Find opportunities</a>
               </li>
-              <li>
-                Creative video and photo person to follow our pilot and create
-                amazing case studies
-              </li>
+              <li>{contentOrNA(oppData.jobTitle)}</li>
             </ul>
           </nav>
         </div>
         <div className="au-body container-fluid">
           <div className="row">
-            <h2>
-              Creative video and photo person to follow our pilot and create
-              amazing case studies
-            </h2>
+            <h2>{contentOrNA(oppData.jobTitle)}</h2>
             <div
               className="col-md-8"
               style={{ borderRight: "1px solid black", marginTop: "2rem" }}
@@ -42,110 +54,83 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
               <p>
                 <span className="bolden-text">What you'll do:</span>
                 <br />
-                We need a storyteller to help create case studies for the OneAPS
-                pilot. OneAPS is testing short-term opportunities to promote
-                mobility and capability uplift in the APS. Working with our user
-                researcher, you will capture images and video of people working
-                on opportunities across various government agencies. You will
-                then create case studies which will form a library to show how
-                OneAPS opportunities work. You will need your own camera and
-                access to editing software. The ability to travel around
-                Canberra would be good. We don't necessarily require a
-                communications specialist - we need someone who can tell a story
-                well and communicate in a creative way. We would be very happy
-                to discuss this opportunity with you if you'd like to bounce
-                ideas of how it could work.
+                {contentOrNA(oppData.jobDescription)}
               </p>
               <p>
                 <span className="bolden-text">
                   What you'll gain from this experience:
                 </span>
                 <br />
-                From this opportunity you may learn about:
-                <ul className="no-space">
-                  <li>Design thinking</li>
-                  <li>Research interviews</li>
-                  <li>Connections at the DTA</li>
-                  <li>How OneAPS works</li>
-                  <li>What the Digital Profession is about</li>
-                </ul>
+                {contentOrNA(oppData.whatYoullGain)}
               </p>
               <p>
                 <span className="bolden-text">About our team:</span>
                 <br />
-                OneAPS is a pilot of short-term mobility opportunities. It is
-                closely linked to the Digital Profession. OneAPS is developed by
-                the Digital Squads team in the Digital Transformation Agency.
+                {contentOrNA(oppData.aboutTeam)}
               </p>
               <p>
                 <span className="bolden-text">Relevant skills:</span>
                 <br />
-                <ul className="no-space">
-                  <li>Collaboration</li>
-                  <li>Communication</li>
-                  <li>Content Design</li>
-                </ul>
+                {contentOrNA(oppData.skills)}
               </p>
               <p>
                 <span className="bolden-text">
                   Additional information (optional):
                 </span>
                 <br />
-                Days may vary depending on bookings with people participating in
-                OneAPS opportunities. This would involve a bit of travel as you
-                will need to visit with the participants in their workplaces to
-                shoot video and photos as well as write stories.
+                {contentOrNA(oppData.additionalInfo)}
               </p>
               <p>
                 <span className="bolden-text">Number of people needed:</span>
-                <br />1
+                <br />
+                {contentOrNA(oppData.numberOfPeople)}
               </p>
               <p>
                 <span className="bolden-text">Commitment time:</span>
                 <br />
-                approx 1 day each week
+                {contentOrNA(oppData.commitmentTime)}
               </p>
               <p>
                 <span className="bolden-text">Location:</span>
                 <br />
-                Virtual; Canberra
+                {contentOrNA(oppData.location)}
               </p>
               <p>
                 <span className="bolden-text">Security clearance needed:</span>
                 <br />
-                Baseline
+                {contentOrNA(oppData.securityClearance)}
               </p>
               <p>
                 <span className="bolden-text">Estimated start date:</span>
                 <br />
-                01/03/2021
+                {contentOrNA(oppData.startDate)}
               </p>
               <p>
                 <span className="bolden-text">Estimated end date:</span>
                 <br />
-                03/05/2021
+                {contentOrNA(oppData.endDate)}
               </p>
             </div>
             <div className="col-md-4" style={{ marginTop: "2rem" }}>
               <p>
                 <span className="bolden-text">Contact person:</span>
                 <br />
-                Belle Hogg
+                {contentOrNA(oppData.contactPersonName)}
               </p>
               <p>
                 <span className="bolden-text">Contact email:</span>
                 <br />
-                digitalsquads@dta.gov.au
+                {contentOrNA(oppData.contactPersonEmail)}
               </p>
               <p>
                 <span className="bolden-text">Contact phone (optional):</span>
                 <br />
-                N/A
+                {contentOrNA(oppData.contactPersonPhone)}
               </p>
               <p>
                 <span className="bolden-text">Department / Agency:</span>
                 <br />
-                Digital Transformation Agency
+                {contentOrNA(oppData.agency)}
               </p>
             </div>
           </div>

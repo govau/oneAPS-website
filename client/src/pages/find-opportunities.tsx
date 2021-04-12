@@ -1,14 +1,28 @@
+import axios from "axios";
 import { Link } from "gatsby";
 import * as React from "react";
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
-import { PageContext } from "../types/types";
+import { IOpportunityType, PageContext } from "../types/types";
 
 // markup
 const FindOpportunitiesPage: React.FC<PageContext> = ({
   pageContext,
   location,
 }) => {
+  const [oppData, setOppData] = React.useState<IOpportunityType[]>([]);
+  React.useEffect(() => {
+    async function getData() {
+      try {
+        const result = await axios.get("/api/Opportunity");
+        console.log(result.data);
+        if (result.status === 200) {
+          setOppData(result.data);
+        }
+      } catch (e) {}
+    }
+    getData();
+  }, []);
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
@@ -23,6 +37,9 @@ const FindOpportunitiesPage: React.FC<PageContext> = ({
             </ul>
           </nav>
         </div>
+        {oppData.map((opp) => {
+          console.log("Opp", opp);
+        })}
         <div className="container-fluid au-body">
           <h1>Find opportunities</h1>
           <div className="row">

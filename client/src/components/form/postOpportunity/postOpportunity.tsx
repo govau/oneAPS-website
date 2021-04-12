@@ -1,5 +1,6 @@
 import { Form, Formik } from "formik";
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../../../context/UserContext";
 import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, ILoginType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
@@ -8,7 +9,6 @@ import PageAlert from "../../blocks/pageAlert";
 import SelectField from "../fields/SelectField";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./postOpportunitySchema";
-import { UserContext } from "../../../context/UserContext";
 
 const PostOpportunityForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);

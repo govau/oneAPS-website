@@ -78,6 +78,7 @@ const PostOpportunityForm: React.FC = () => {
         agency,
         contactPersonName,
         contactPersonPhone,
+        contactPersonEmail,
         location,
         skills,
         additionalInfo,
@@ -253,7 +254,7 @@ const PostOpportunityForm: React.FC = () => {
             <SelectField
               id="securityClearance"
               label="Security Clearance:"
-              hint="What level of security clearance is needed to complete theopportunity?"
+              hint="What level of security clearance is needed to complete the opportunity?"
               options={[
                 { text: "Select", value: "" },
                 { text: "Baseline", value: "baseline" },

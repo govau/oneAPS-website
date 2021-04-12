@@ -1,22 +1,25 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
 import { navigate } from "gatsby";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Aubtn, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, IRegisterType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
 import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import PasswordField from "../fields/PasswordField";
-import TextField from "../fields/TextField";
 import SelectField from "../fields/SelectField";
+import TextField from "../fields/TextField";
 import { InitialValues, validationSchema } from "./schema";
 
 const RegisterForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const [agency, setAgency] = useState<{ loaded: boolean, data: { value: string, text: string }[] }>({ loaded: false, data: [] });
+  const [agency, setAgency] = useState<{
+    loaded: boolean;
+    data: { value: string; text: string }[];
+  }>({ loaded: false, data: [] });
 
   useEffect(() => {
     if (agency.loaded) {
@@ -25,16 +28,17 @@ const RegisterForm: React.FC = () => {
     const loadAgency = async () => {
       const result = await axios.get(`/api/lookup`, {
         params: {
-          name: 'agency'
-        }
-      }
+          name: "agency",
+        },
+      });
+      const data = [{ text: "Please select an agency", value: null }].concat(
+        result.data
       );
-      const data = [{ text: 'Please select an agency', value: null }].concat(result.data);
       setAgency({
         loaded: true,
-        data
+        data,
       });
-    }
+    };
     loadAgency();
   }, []);
 
@@ -48,8 +52,7 @@ const RegisterForm: React.FC = () => {
         emailAddress,
         password,
         agency,
-      }
-      );
+      });
       navigate("/verify-account/", { state: { submitted: true } });
     } catch (e) {
       if (e.response.status === 400) {
@@ -58,8 +61,8 @@ const RegisterForm: React.FC = () => {
           for (const message of e.response.data.errors[property]) {
             errors.push({
               message,
-              path: property
-            })
+              path: property,
+            });
           }
         }
         setErrorList(errors);

@@ -54,7 +54,7 @@ export interface IOpportunityType {
   jobDescription: string;
   whatYoullGain: string;
   aboutTeam: string;
-  numberOfPeople: string;
+  numberOfPeople: number;
   location: string;
   skills: string;
   additionalInfo: string;

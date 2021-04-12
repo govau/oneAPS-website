@@ -20,19 +20,19 @@ namespace Dta.OneAps.Api.Services.Entities
         [Column("user_id")]
         public int UserId { get; set; }
         
-        [Column("Agency")]
+        [Column("agency")]
         public string Agency { get; set; }
 
-        [Column("PhoneNumber")]
+        [Column("phone_number")]
         public string PhoneNumber { get; set; }
 
-        [Column("WhyPickMe")]
+        [Column("why_pick_me")]
         public string WhyPickMe { get; set; }
 
-        [Column("ResumeLink")]
+        [Column("resume_link")]
         public string ResumeLink { get; set; }
 
-        [Column("ResumeUpload")]
+        [Column("resume_upload")]
         public string ResumeUpload { get; set; }
 
         [Column("created_at")]

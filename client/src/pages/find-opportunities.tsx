@@ -66,7 +66,7 @@ const FindOpportunitiesPage: React.FC<PageContext> = ({
                           <p>{contentOrNA(opp.agency)}</p>
                           <p>{contentOrNA(opp.commitmentTime)}</p>
                           <p>{contentOrNA(opp.startDate)}</p>
-                          <p>{contentOrNA(opp.startDate)}</p>
+                          <p>{contentOrNA(opp.endDate)}</p>
                           <p>{contentOrNA(opp.skills)}</p>
                           <p>
                             <Link

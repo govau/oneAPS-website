@@ -33,9 +33,9 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 name: "key_value",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(nullable: false),
                     key = table.Column<string>(type: "character varying", nullable: true),
                     data = table.Column<string>(type: "json", nullable: true)
                 },
@@ -48,19 +48,19 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 name: "user",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     name = table.Column<string>(type: "character varying", nullable: false),
                     email_address = table.Column<string>(type: "character varying", nullable: false),
                     password = table.Column<string>(type: "character varying", nullable: false),
-                    active = table.Column<bool>(type: "boolean", nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    password_changed_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    logged_in_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    failed_login_count = table.Column<int>(type: "integer", nullable: false),
-                    agency = table.Column<string>(type: "text", nullable: true),
-                    role = table.Column<string>(type: "text", nullable: true)
+                    active = table.Column<bool>(nullable: false),
+                    created_at = table.Column<DateTime>(nullable: false),
+                    updated_at = table.Column<DateTime>(nullable: false),
+                    password_changed_at = table.Column<DateTime>(nullable: false),
+                    logged_in_at = table.Column<DateTime>(nullable: true),
+                    failed_login_count = table.Column<int>(nullable: false),
+                    agency = table.Column<string>(nullable: true),
+                    role = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -71,27 +71,27 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 name: "opportunity",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    job_title = table.Column<string>(type: "text", nullable: false),
-                    job_description = table.Column<string>(type: "text", nullable: true),
-                    what_you_gain = table.Column<string>(type: "text", nullable: true),
-                    about_team = table.Column<string>(type: "text", nullable: true),
-                    number_of_people = table.Column<string>(type: "text", nullable: true),
-                    start_date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    end_date = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    commitment_time = table.Column<string>(type: "text", nullable: true),
-                    agency = table.Column<string>(type: "text", nullable: true),
-                    contact_person_name = table.Column<string>(type: "text", nullable: true),
-                    contact_person_phone = table.Column<string>(type: "text", nullable: true),
-                    location = table.Column<string>(type: "text", nullable: true),
-                    skills = table.Column<string>(type: "text", nullable: true),
-                    additional_info = table.Column<string>(type: "text", nullable: true),
-                    security_clearance = table.Column<string>(name: "security_clearance ", type: "text", nullable: true),
-                    modifed = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    created_by = table.Column<int>(type: "integer", nullable: false),
-                    modified_by = table.Column<int>(type: "integer", nullable: true)
+                    job_title = table.Column<string>(nullable: false),
+                    job_description = table.Column<string>(nullable: true),
+                    what_you_gain = table.Column<string>(nullable: true),
+                    about_team = table.Column<string>(nullable: true),
+                    number_of_people = table.Column<string>(nullable: true),
+                    start_date = table.Column<DateTime>(nullable: false),
+                    end_date = table.Column<DateTime>(nullable: false),
+                    commitment_time = table.Column<string>(nullable: true),
+                    agency = table.Column<string>(nullable: true),
+                    contact_person_name = table.Column<string>(nullable: true),
+                    contact_person_phone = table.Column<string>(nullable: true),
+                    location = table.Column<string>(nullable: true),
+                    skills = table.Column<string>(nullable: true),
+                    additional_info = table.Column<string>(nullable: true),
+                    security_clearance = table.Column<string>(name: "security_clearance ", nullable: true),
+                    modifed = table.Column<DateTime>(nullable: true),
+                    created = table.Column<DateTime>(nullable: false),
+                    created_by = table.Column<int>(nullable: false),
+                    modified_by = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,7 +101,7 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         column: x => x.created_by,
                         principalTable: "user",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "opportunity_modified_by_user_id_fkey",
                         column: x => x.modified_by,
@@ -114,10 +114,10 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 name: "opportunity_assessor",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
-                    user_id = table.Column<int>(type: "integer", nullable: true),
+                    opportunity_id = table.Column<int>(nullable: false),
+                    user_id = table.Column<int>(nullable: true),
                     email_address = table.Column<string>(type: "character varying", nullable: true)
                 },
                 constraints: table =>
@@ -141,13 +141,13 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 name: "opportunity_clarification_question",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
+                    opportunity_id = table.Column<int>(nullable: false),
                     question = table.Column<string>(type: "character varying", nullable: false),
                     answer = table.Column<string>(type: "character varying", nullable: false),
-                    published_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    user_id = table.Column<int>(type: "integer", nullable: false)
+                    published_at = table.Column<DateTime>(nullable: false),
+                    user_id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -170,11 +170,11 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 name: "opportunity_history",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
-                    user_id = table.Column<int>(type: "integer", nullable: false),
-                    edited_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    opportunity_id = table.Column<int>(nullable: false),
+                    user_id = table.Column<int>(nullable: false),
+                    edited_at = table.Column<DateTime>(nullable: false),
                     data = table.Column<string>(type: "json", nullable: false)
                 },
                 constraints: table =>
@@ -198,15 +198,15 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 name: "opportunity_response",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     data = table.Column<string>(type: "json", nullable: false),
-                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
-                    supplier_code = table.Column<long>(type: "bigint", nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    withdrawn_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    submitted_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    updated_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    opportunity_id = table.Column<int>(nullable: false),
+                    supplier_code = table.Column<long>(nullable: false),
+                    created_at = table.Column<DateTime>(nullable: false),
+                    withdrawn_at = table.Column<DateTime>(nullable: true),
+                    submitted_at = table.Column<DateTime>(nullable: true),
+                    updated_at = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -223,10 +223,10 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 name: "opportunity_response_contact",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
-                    supplier_code = table.Column<long>(type: "bigint", nullable: false),
+                    opportunity_id = table.Column<int>(nullable: false),
+                    supplier_code = table.Column<long>(nullable: false),
                     email_address = table.Column<string>(type: "character varying", nullable: false)
                 },
                 constraints: table =>
@@ -244,11 +244,11 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 name: "opportunity_response_download",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
-                    user_id = table.Column<int>(type: "integer", nullable: false),
-                    created_at = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    opportunity_id = table.Column<int>(nullable: false),
+                    user_id = table.Column<int>(nullable: false),
+                    created_at = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -271,10 +271,10 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 name: "opportunity_skill",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "integer", nullable: false)
+                    id = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
-                    skill_key = table.Column<int>(type: "integer", nullable: false)
+                    opportunity_id = table.Column<int>(nullable: false),
+                    skill_key = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -291,8 +291,8 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 name: "opportunity_user",
                 columns: table => new
                 {
-                    opportunity_id = table.Column<int>(type: "integer", nullable: false),
-                    user_id = table.Column<int>(type: "integer", nullable: false)
+                    opportunity_id = table.Column<int>(nullable: false),
+                    user_id = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -312,15 +312,15 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "ix_key_value_updated_at",
-                table: "key_value",
-                column: "updated_at");
-
-            migrationBuilder.CreateIndex(
                 name: "key_value_key_key",
                 table: "key_value",
                 column: "key",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "ix_key_value_updated_at",
+                table: "key_value",
+                column: "updated_at");
 
             migrationBuilder.CreateIndex(
                 name: "IX_opportunity_created_by",

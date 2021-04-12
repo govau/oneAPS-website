@@ -15,52 +15,45 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
+                .HasAnnotation("ProductVersion", "3.1.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.4")
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-            modelBuilder.HasSequence("key_value_id_seq");
-
-            modelBuilder.HasSequence("opportunity_assessor_id_seq");
-
-            modelBuilder.HasSequence("opportunity_history_id_seq");
-
-            modelBuilder.HasSequence("opportunity_question_id_seq");
-
-            modelBuilder.HasSequence("opportunity_response_answer_id_seq");
-
-            modelBuilder.HasSequence("opportunity_response_contact_id_seq");
-
-            modelBuilder.HasSequence("opportunity_response_download_id_seq");
+                .HasAnnotation("Relational:Sequence:.key_value_id_seq", "'key_value_id_seq', '', '1', '1', '', '', 'Int64', 'False'")
+                .HasAnnotation("Relational:Sequence:.opportunity_assessor_id_seq", "'opportunity_assessor_id_seq', '', '1', '1', '', '', 'Int64', 'False'")
+                .HasAnnotation("Relational:Sequence:.opportunity_history_id_seq", "'opportunity_history_id_seq', '', '1', '1', '', '', 'Int64', 'False'")
+                .HasAnnotation("Relational:Sequence:.opportunity_question_id_seq", "'opportunity_question_id_seq', '', '1', '1', '', '', 'Int64', 'False'")
+                .HasAnnotation("Relational:Sequence:.opportunity_response_answer_id_seq", "'opportunity_response_answer_id_seq', '', '1', '1', '', '', 'Int64', 'False'")
+                .HasAnnotation("Relational:Sequence:.opportunity_response_contact_id_seq", "'opportunity_response_contact_id_seq', '', '1', '1', '', '', 'Int64', 'False'")
+                .HasAnnotation("Relational:Sequence:.opportunity_response_download_id_seq", "'opportunity_response_download_id_seq', '', '1', '1', '', '', 'Int64', 'False'");
 
             modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.KeyValue", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
                         .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Data")
-                        .HasColumnType("json")
-                        .HasColumnName("data");
+                        .HasColumnName("data")
+                        .HasColumnType("json");
 
                     b.Property<string>("Key")
-                        .HasColumnType("character varying")
-                        .HasColumnName("key");
+                        .HasColumnName("key")
+                        .HasColumnType("character varying");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("updated_at");
+                        .HasColumnName("updated_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Key")
                         .IsUnique()
-                        .HasDatabaseName("key_value_key_key");
+                        .HasName("key_value_key_key");
 
                     b.HasIndex("UpdatedAt")
-                        .HasDatabaseName("ix_key_value_updated_at");
+                        .HasName("ix_key_value_updated_at");
 
                     b.ToTable("key_value");
                 });
@@ -69,101 +62,101 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
                         .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("AboutTeam")
-                        .HasColumnType("text")
-                        .HasColumnName("about_team");
+                        .HasColumnName("about_team")
+                        .HasColumnType("text");
 
                     b.Property<string>("AdditionalInfo")
-                        .HasColumnType("text")
-                        .HasColumnName("additional_info");
+                        .HasColumnName("additional_info")
+                        .HasColumnType("text");
 
                     b.Property<string>("Agency")
-                        .HasColumnType("text")
-                        .HasColumnName("agency");
+                        .HasColumnName("agency")
+                        .HasColumnType("text");
 
                     b.Property<string>("CommitmentTime")
-                        .HasColumnType("text")
-                        .HasColumnName("commitment_time");
+                        .HasColumnName("commitment_time")
+                        .HasColumnType("text");
 
                     b.Property<string>("ContactPersonName")
-                        .HasColumnType("text")
-                        .HasColumnName("contact_person_name");
+                        .HasColumnName("contact_person_name")
+                        .HasColumnType("text");
 
                     b.Property<string>("ContactPersonPhone")
-                        .HasColumnType("text")
-                        .HasColumnName("contact_person_phone");
+                        .HasColumnName("contact_person_phone")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("created");
+                        .HasColumnName("created")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("CreatedBy")
-                        .HasColumnType("integer")
-                        .HasColumnName("created_by");
+                        .HasColumnName("created_by")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("EndDate")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("end_date");
+                        .HasColumnName("end_date")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("JobDescription")
-                        .HasColumnType("text")
-                        .HasColumnName("job_description");
+                        .HasColumnName("job_description")
+                        .HasColumnType("text");
 
                     b.Property<string>("JobTitle")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("job_title");
+                        .HasColumnName("job_title")
+                        .HasColumnType("text");
 
                     b.Property<string>("Location")
-                        .HasColumnType("text")
-                        .HasColumnName("location");
+                        .HasColumnName("location")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("Modifed")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("modifed");
+                        .HasColumnName("modifed")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int?>("ModifiedBy")
-                        .HasColumnType("integer")
-                        .HasColumnName("modified_by");
+                        .HasColumnName("modified_by")
+                        .HasColumnType("integer");
 
                     b.Property<string>("NumberOfPeople")
-                        .HasColumnType("text")
-                        .HasColumnName("number_of_people");
+                        .HasColumnName("number_of_people")
+                        .HasColumnType("text");
 
                     b.Property<string>("SecurityClearance")
-                        .HasColumnType("text")
-                        .HasColumnName("security_clearance ");
+                        .HasColumnName("security_clearance ")
+                        .HasColumnType("text");
 
                     b.Property<string>("Skills")
-                        .HasColumnType("text")
-                        .HasColumnName("skills");
+                        .HasColumnName("skills")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("StartDate")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("start_date");
+                        .HasColumnName("start_date")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WhatYoullGain")
-                        .HasColumnType("text")
-                        .HasColumnName("what_you_gain");
+                        .HasColumnName("what_you_gain")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedBy");
 
                     b.HasIndex("EndDate")
-                        .HasDatabaseName("ix_opportunity_end_date");
+                        .HasName("ix_opportunity_end_date");
 
                     b.HasIndex("JobTitle")
-                        .HasDatabaseName("ix_opportunity_job_title");
+                        .HasName("ix_opportunity_job_title");
 
                     b.HasIndex("ModifiedBy");
 
                     b.HasIndex("StartDate")
-                        .HasDatabaseName("ix_opportunity_start_date");
+                        .HasName("ix_opportunity_start_date");
 
                     b.ToTable("opportunity");
                 });
@@ -172,21 +165,21 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
                         .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("EmailAddress")
-                        .HasColumnType("character varying")
-                        .HasColumnName("email_address");
+                        .HasColumnName("email_address")
+                        .HasColumnType("character varying");
 
                     b.Property<int>("OpportunityId")
-                        .HasColumnType("integer")
-                        .HasColumnName("opportunity_id");
+                        .HasColumnName("opportunity_id")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("UserId")
-                        .HasColumnType("integer")
-                        .HasColumnName("user_id");
+                        .HasColumnName("user_id")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -201,38 +194,38 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
                         .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Answer")
                         .IsRequired()
-                        .HasColumnType("character varying")
-                        .HasColumnName("answer");
+                        .HasColumnName("answer")
+                        .HasColumnType("character varying");
 
                     b.Property<int>("OpportunityId")
-                        .HasColumnType("integer")
-                        .HasColumnName("opportunity_id");
+                        .HasColumnName("opportunity_id")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("PublishedAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("published_at");
+                        .HasColumnName("published_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Question")
                         .IsRequired()
-                        .HasColumnType("character varying")
-                        .HasColumnName("question");
+                        .HasColumnName("question")
+                        .HasColumnType("character varying");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("integer")
-                        .HasColumnName("user_id");
+                        .HasColumnName("user_id")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OpportunityId");
 
                     b.HasIndex("PublishedAt")
-                        .HasDatabaseName("ix_opportunity_clarification_question_published_at");
+                        .HasName("ix_opportunity_clarification_question_published_at");
 
                     b.HasIndex("UserId");
 
@@ -243,37 +236,37 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
                         .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("Data")
                         .IsRequired()
-                        .HasColumnType("json")
-                        .HasColumnName("data");
+                        .HasColumnName("data")
+                        .HasColumnType("json");
 
                     b.Property<DateTime>("EditedAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("edited_at");
+                        .HasColumnName("edited_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("OpportunityId")
-                        .HasColumnType("integer")
-                        .HasColumnName("opportunity_id");
+                        .HasColumnName("opportunity_id")
+                        .HasColumnType("integer");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("integer")
-                        .HasColumnName("user_id");
+                        .HasColumnName("user_id")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EditedAt")
-                        .HasDatabaseName("ix_opportunity_history_edited_at");
+                        .HasName("ix_opportunity_history_edited_at");
 
                     b.HasIndex("OpportunityId")
-                        .HasDatabaseName("ix_opportunity_history_opportunity_id");
+                        .HasName("ix_opportunity_history_opportunity_id");
 
                     b.HasIndex("UserId")
-                        .HasDatabaseName("ix_opportunity_history_user_id");
+                        .HasName("ix_opportunity_history_user_id");
 
                     b.ToTable("opportunity_history");
                 });
@@ -282,51 +275,51 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
                         .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("created_at");
+                        .HasColumnName("created_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Data")
                         .IsRequired()
-                        .HasColumnType("json")
-                        .HasColumnName("data");
+                        .HasColumnName("data")
+                        .HasColumnType("json");
 
                     b.Property<int>("OpportunityId")
-                        .HasColumnType("integer")
-                        .HasColumnName("opportunity_id");
+                        .HasColumnName("opportunity_id")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("SubmittedAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("submitted_at");
+                        .HasColumnName("submitted_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<long>("SupplierCode")
-                        .HasColumnType("bigint")
-                        .HasColumnName("supplier_code");
+                        .HasColumnName("supplier_code")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("updated_at");
+                        .HasColumnName("updated_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("WithdrawnAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("withdrawn_at");
+                        .HasColumnName("withdrawn_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedAt")
-                        .HasDatabaseName("ix_opportunity_response_created_at");
+                        .HasName("ix_opportunity_response_created_at");
 
                     b.HasIndex("OpportunityId");
 
                     b.HasIndex("SubmittedAt")
-                        .HasDatabaseName("ix_opportunity_response_submitted_at");
+                        .HasName("ix_opportunity_response_submitted_at");
 
                     b.HasIndex("UpdatedAt")
-                        .HasDatabaseName("ix_opportunity_response_updated_at");
+                        .HasName("ix_opportunity_response_updated_at");
 
                     b.ToTable("opportunity_response");
                 });
@@ -335,22 +328,22 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
                         .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasColumnType("character varying")
-                        .HasColumnName("email_address");
+                        .HasColumnName("email_address")
+                        .HasColumnType("character varying");
 
                     b.Property<int>("OpportunityId")
-                        .HasColumnType("integer")
-                        .HasColumnName("opportunity_id");
+                        .HasColumnName("opportunity_id")
+                        .HasColumnType("integer");
 
                     b.Property<long>("SupplierCode")
-                        .HasColumnType("bigint")
-                        .HasColumnName("supplier_code");
+                        .HasColumnName("supplier_code")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -363,26 +356,26 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
                         .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("created_at");
+                        .HasColumnName("created_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("OpportunityId")
-                        .HasColumnType("integer")
-                        .HasColumnName("opportunity_id");
+                        .HasColumnName("opportunity_id")
+                        .HasColumnType("integer");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("integer")
-                        .HasColumnName("user_id");
+                        .HasColumnName("user_id")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedAt")
-                        .HasDatabaseName("ix_opportunity_response_download_created_at");
+                        .HasName("ix_opportunity_response_download_created_at");
 
                     b.HasIndex("OpportunityId");
 
@@ -395,17 +388,17 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
                         .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("OpportunityId")
-                        .HasColumnType("integer")
-                        .HasColumnName("opportunity_id");
+                        .HasColumnName("opportunity_id")
+                        .HasColumnType("integer");
 
                     b.Property<int>("SkillKey")
-                        .HasColumnType("integer")
-                        .HasColumnName("skill_key");
+                        .HasColumnName("skill_key")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id")
                         .HasName("opportunity_skill_pkey");
@@ -418,12 +411,12 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
             modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.OpportunityUser", b =>
                 {
                     b.Property<int>("OpportunityId")
-                        .HasColumnType("integer")
-                        .HasColumnName("opportunity_id");
+                        .HasColumnName("opportunity_id")
+                        .HasColumnType("integer");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("integer")
-                        .HasColumnName("user_id");
+                        .HasColumnName("user_id")
+                        .HasColumnType("integer");
 
                     b.HasKey("OpportunityId", "UserId")
                         .HasName("opportunity_user_pkey");
@@ -437,62 +430,62 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
                         .HasColumnName("id")
+                        .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<bool>("Active")
-                        .HasColumnType("boolean")
-                        .HasColumnName("active");
+                        .HasColumnName("active")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Agency")
-                        .HasColumnType("text")
-                        .HasColumnName("agency");
+                        .HasColumnName("agency")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("created_at");
+                        .HasColumnName("created_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasColumnType("character varying")
-                        .HasColumnName("email_address");
+                        .HasColumnName("email_address")
+                        .HasColumnType("character varying");
 
                     b.Property<int>("FailedLoginCount")
-                        .HasColumnType("integer")
-                        .HasColumnName("failed_login_count");
+                        .HasColumnName("failed_login_count")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("LoggedInAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("logged_in_at");
+                        .HasColumnName("logged_in_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("character varying")
-                        .HasColumnName("name");
+                        .HasColumnName("name")
+                        .HasColumnType("character varying");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("character varying")
-                        .HasColumnName("password");
+                        .HasColumnName("password")
+                        .HasColumnType("character varying");
 
                     b.Property<DateTime>("PasswordChangedAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("password_changed_at");
+                        .HasColumnName("password_changed_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Role")
-                        .HasColumnType("text")
-                        .HasColumnName("role");
+                        .HasColumnName("role")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("updated_at");
+                        .HasColumnName("updated_at")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EmailAddress")
                         .IsUnique()
-                        .HasDatabaseName("ix_user_email_address");
+                        .HasName("ix_user_email_address");
 
                     b.ToTable("user");
                 });
@@ -503,16 +496,13 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .WithMany("OpportunityCreatedByUser")
                         .HasForeignKey("CreatedBy")
                         .HasConstraintName("opportunity_created_by_user_id_fkey")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Dta.OneAps.Api.Services.Entities.User", "ModifiedByUser")
                         .WithMany("OpportunityModifiedByUser")
                         .HasForeignKey("ModifiedBy")
                         .HasConstraintName("opportunity_modified_by_user_id_fkey");
-
-                    b.Navigation("CreatedByUser");
-
-                    b.Navigation("ModifiedByUser");
                 });
 
             modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.OpportunityAssessor", b =>
@@ -527,10 +517,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .WithMany("OpportunityAssessor")
                         .HasForeignKey("UserId")
                         .HasConstraintName("opportunity_assessor_user_id_fkey");
-
-                    b.Navigation("Opportunity");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.OpportunityClarificationQuestion", b =>
@@ -546,10 +532,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .HasForeignKey("UserId")
                         .HasConstraintName("opportunity_clarification_question_user_id_fkey")
                         .IsRequired();
-
-                    b.Navigation("Opportunity");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.OpportunityHistory", b =>
@@ -565,10 +547,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .HasForeignKey("UserId")
                         .HasConstraintName("opportunity_history_user_id_fkey")
                         .IsRequired();
-
-                    b.Navigation("Opportunity");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.OpportunityResponse", b =>
@@ -578,8 +556,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .HasForeignKey("OpportunityId")
                         .HasConstraintName("opportunity_response_opportunity_id_fkey")
                         .IsRequired();
-
-                    b.Navigation("Opportunity");
                 });
 
             modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.OpportunityResponseContact", b =>
@@ -589,8 +565,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .HasForeignKey("OpportunityId")
                         .HasConstraintName("opportunity_response_opportunity_contact_id_fkey")
                         .IsRequired();
-
-                    b.Navigation("Opportunity");
                 });
 
             modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.OpportunityResponseDownload", b =>
@@ -606,10 +580,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .HasForeignKey("UserId")
                         .HasConstraintName("opportunity_response_download_user_id_fkey")
                         .IsRequired();
-
-                    b.Navigation("Opportunity");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.OpportunitySkill", b =>
@@ -619,8 +589,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .HasForeignKey("OpportunityId")
                         .HasConstraintName("opportunity_skill_opportunity_id_fkey")
                         .IsRequired();
-
-                    b.Navigation("Opportunity");
                 });
 
             modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.OpportunityUser", b =>
@@ -636,46 +604,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                         .HasForeignKey("UserId")
                         .HasConstraintName("opportunity_user_user_id_fkey")
                         .IsRequired();
-
-                    b.Navigation("Opportunity");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.Opportunity", b =>
-                {
-                    b.Navigation("OpportunityAssessor");
-
-                    b.Navigation("OpportunityClarificationQuestion");
-
-                    b.Navigation("OpportunityHistory");
-
-                    b.Navigation("OpportunityResponse");
-
-                    b.Navigation("OpportunityResponseContact");
-
-                    b.Navigation("OpportunityResponseDownload");
-
-                    b.Navigation("OpportunitySkills");
-
-                    b.Navigation("OpportunityUser");
-                });
-
-            modelBuilder.Entity("Dta.OneAps.Api.Services.Entities.User", b =>
-                {
-                    b.Navigation("OpportunityAssessor");
-
-                    b.Navigation("OpportunityClarificationQuestion");
-
-                    b.Navigation("OpportunityCreatedByUser");
-
-                    b.Navigation("OpportunityHistory");
-
-                    b.Navigation("OpportunityModifiedByUser");
-
-                    b.Navigation("OpportunityResponseDownload");
-
-                    b.Navigation("OpportunityUser");
                 });
 #pragma warning restore 612, 618
         }

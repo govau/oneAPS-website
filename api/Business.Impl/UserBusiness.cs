@@ -4,17 +4,14 @@ using Dta.OneAps.Api.Business.Models;
 using Dta.OneAps.Api.Business.Utils;
 using Dta.OneAps.Api.Services;
 using Dta.OneAps.Api.Services.Entities;
+using Dta.OneAps.Api.Shared;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Dta.OneAps.Api.Business {
@@ -22,10 +19,10 @@ namespace Dta.OneAps.Api.Business {
         private readonly IEncryptionUtil _encryptionUtil;
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        private IConfiguration _config;
+        private readonly IOptions<AppSettings> _appSettings;
 
-        public UserBusiness(IConfiguration config, IEncryptionUtil encryptionUtil, IUserService userService, IMapper mapper) {
-            _config = config;
+        public UserBusiness(IOptions<AppSettings> appSettings, IEncryptionUtil encryptionUtil, IUserService userService, IMapper mapper) {
+            _appSettings = appSettings;
             _userService = userService;
             _mapper = mapper;
             _encryptionUtil = encryptionUtil;
@@ -66,7 +63,7 @@ namespace Dta.OneAps.Api.Business {
         private string GenerateJSONWebToken(User user) {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 
-            var key = Encoding.ASCII.GetBytes(_config["Jwt:Key"]);
+            var key = Encoding.ASCII.GetBytes(_appSettings.Value.JwtKey);
 
             var tokenDescriptor = new SecurityTokenDescriptor {
                 Subject = new ClaimsIdentity(new[]

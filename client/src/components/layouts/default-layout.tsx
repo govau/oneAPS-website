@@ -17,22 +17,30 @@ interface Props {
   location: any;
 }
 
+const isBrowser = typeof window !== "undefined"
 
 const getSession = () => {
-  const sessionStr = localStorage.getItem("session");
-  if (!sessionStr) {
-    return undefined;
+  if (isBrowser) {
+    const sessionStr = localStorage.getItem("session");
+    if (!sessionStr) {
+      return undefined;
+    }
+    return JSON.parse(sessionStr);
   }
-  return JSON.parse(sessionStr);
+  return undefined;
 }
 
 
 const setSession = (session) => {
-  localStorage.setItem("session", JSON.stringify(session));
+  if (isBrowser) {
+    localStorage.setItem("session", JSON.stringify(session));
+  }
 }
 
 const removeSession = () => {
-  localStorage.removeItem("session");
+  if (isBrowser) {
+    localStorage.removeItem("session");
+  }
 }
 
 const logout = () => {

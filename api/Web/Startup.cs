@@ -1,9 +1,11 @@
-﻿using FluentValidation.AspNetCore;
+﻿using AutoMapper;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -11,6 +13,7 @@ using Dta.OneAps.Api.Shared;
 using Dta.OneAps.Api.Services.Sql;
 using Dta.OneAps.Api.Business.Mapping;
 using Dta.OneAps.Api.Business.Validators;
+using System;
 using System.Text;
 
 namespace Dta.OneAps.Api.Web {
@@ -41,6 +44,16 @@ namespace Dta.OneAps.Api.Web {
             services.Configure<AppSettings>(appSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();
 
+            var host = Environment.GetEnvironmentVariable("ENDPOINT_ADDRESS");
+            var port = Environment.GetEnvironmentVariable("DB_PORT");
+            var name = Environment.GetEnvironmentVariable("DB_NAME");
+            var username = Environment.GetEnvironmentVariable("MASTER_USERNAME");
+            var password = Environment.GetEnvironmentVariable("MASTER_PASSWORD");
+            
+            var connectionString = $"Host={host};Port={port};Database={name};Username={username};Password={password}";
+            // appSettings.OneApsConnectionString = appSettings.OneApsConnectionString;
+            // appSettings.JwtKey = Environment.GetEnvironmentVariable("JwtKey");
+
             services
                 .AddAuthentication(options => {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -55,7 +68,7 @@ namespace Dta.OneAps.Api.Web {
                         ValidateIssuerSigningKey = true,
                         // ValidIssuer = Configuration["Jwt:Issuer"],    
                         // ValidAudience = Configuration["Jwt:Issuer"],    
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JwtKey")))
                     };
                 });
 
@@ -88,7 +101,7 @@ namespace Dta.OneAps.Api.Web {
             services
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<OneApsContext>(options => {
-                    options.UseNpgsql(appSettings.OneApsConnectionString);
+                    options.UseNpgsql(connectionString);
                 });
 
             services.AddAutoMapper(typeof(AutoMapping));

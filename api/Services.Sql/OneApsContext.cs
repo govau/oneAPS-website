@@ -35,13 +35,13 @@ namespace Dta.OneAps.Api.Services.Sql {
 
             modelBuilder.Entity<Opportunity>(entity => {
                 entity.HasIndex(e => e.JobTitle)
-                    .HasDatabaseName("ix_opportunity_job_title");
+                    .HasName("ix_opportunity_job_title");
 
                 entity.HasIndex(e => e.StartDate)
-                    .HasDatabaseName("ix_opportunity_start_date");
+                    .HasName("ix_opportunity_start_date");
 
                 entity.HasIndex(e => e.EndDate)
-                    .HasDatabaseName("ix_opportunity_end_date");
+                    .HasName("ix_opportunity_end_date");
 
                 entity.HasOne(d => d.CreatedByUser)
                     .WithMany(p => p.OpportunityCreatedByUser)
@@ -69,7 +69,7 @@ namespace Dta.OneAps.Api.Services.Sql {
 
             modelBuilder.Entity<OpportunityClarificationQuestion>(entity => {
                 entity.HasIndex(e => e.PublishedAt)
-                    .HasDatabaseName("ix_opportunity_clarification_question_published_at");
+                    .HasName("ix_opportunity_clarification_question_published_at");
 
                 entity.HasOne(d => d.Opportunity)
                     .WithMany(p => p.OpportunityClarificationQuestion)
@@ -86,13 +86,13 @@ namespace Dta.OneAps.Api.Services.Sql {
 
             modelBuilder.Entity<OpportunityHistory>(entity => {
                 entity.HasIndex(e => e.OpportunityId)
-                    .HasDatabaseName("ix_opportunity_history_opportunity_id");
+                    .HasName("ix_opportunity_history_opportunity_id");
 
                 entity.HasIndex(e => e.EditedAt)
-                    .HasDatabaseName("ix_opportunity_history_edited_at");
+                    .HasName("ix_opportunity_history_edited_at");
 
                 entity.HasIndex(e => e.UserId)
-                    .HasDatabaseName("ix_opportunity_history_user_id");
+                    .HasName("ix_opportunity_history_user_id");
 
                 entity.HasOne(d => d.Opportunity)
                     .WithMany(p => p.OpportunityHistory)
@@ -109,13 +109,13 @@ namespace Dta.OneAps.Api.Services.Sql {
 
             modelBuilder.Entity<OpportunityResponse>(entity => {
                 entity.HasIndex(e => e.CreatedAt)
-                    .HasDatabaseName("ix_opportunity_response_created_at");
+                    .HasName("ix_opportunity_response_created_at");
 
                 entity.HasIndex(e => e.SubmittedAt)
-                    .HasDatabaseName("ix_opportunity_response_submitted_at");
+                    .HasName("ix_opportunity_response_submitted_at");
 
                 entity.HasIndex(e => e.UpdatedAt)
-                    .HasDatabaseName("ix_opportunity_response_updated_at");
+                    .HasName("ix_opportunity_response_updated_at");
 
                 entity.HasOne(d => d.Opportunity)
                     .WithMany(p => p.OpportunityResponse)
@@ -134,7 +134,7 @@ namespace Dta.OneAps.Api.Services.Sql {
 
             modelBuilder.Entity<OpportunityResponseDownload>(entity => {
                 entity.HasIndex(e => e.CreatedAt)
-                    .HasDatabaseName("ix_opportunity_response_download_created_at");
+                    .HasName("ix_opportunity_response_download_created_at");
 
                 entity.HasOne(d => d.Opportunity)
                     .WithMany(p => p.OpportunityResponseDownload)
@@ -179,17 +179,17 @@ namespace Dta.OneAps.Api.Services.Sql {
 
             modelBuilder.Entity<KeyValue>(entity => {
                 entity.HasIndex(e => e.Key)
-                    .HasDatabaseName("key_value_key_key")
+                    .HasName("key_value_key_key")
                     .IsUnique();
 
                 entity.HasIndex(e => e.UpdatedAt)
-                    .HasDatabaseName("ix_key_value_updated_at");
+                    .HasName("ix_key_value_updated_at");
             });
 
             modelBuilder.Entity<User>(entity => {
 
                 entity.HasIndex(e => e.EmailAddress)
-                    .HasDatabaseName("ix_user_email_address")
+                    .HasName("ix_user_email_address")
                     .IsUnique();
             });
 

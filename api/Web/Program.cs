@@ -22,6 +22,16 @@ namespace Dta.OneAps.Api.Web {
                         Environment.SetEnvironmentVariable(credentialProps.Name, credentialProps.Values().SingleOrDefault().Value<string>());
                     }
                 }
+                foreach (JObject ups in vcapServices["postgresql"]) {
+                    var credentials = JObject.FromObject(ups["credentials"]);
+                    foreach (var credentialProps in credentials.Properties()) {
+                        if (credentialProps.Name == "PORT") {
+                            Environment.SetEnvironmentVariable(string.Format("DB_PORT"), credentialProps.Values().SingleOrDefault().Value<string>());
+                        } else {
+                            Environment.SetEnvironmentVariable(credentialProps.Name, credentialProps.Values().SingleOrDefault().Value<string>());
+                        }
+                    }
+                }
             }
             CreateHostBuilder(args).Build().Run();
         }

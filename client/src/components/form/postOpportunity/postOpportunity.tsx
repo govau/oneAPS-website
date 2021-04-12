@@ -1,8 +1,9 @@
+import axios from "axios";
 import { Form, Formik } from "formik";
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
-import { IApiFormError, ILoginType } from "../../../types/types";
+import { IApiFormError, IOpportunityType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
 import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
@@ -14,27 +15,80 @@ const PostOpportunityForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const [agency, setAgency] = useState<{
+    loaded: boolean;
+    data: { value: string; text: string }[];
+  }>({ loaded: false, data: [] });
   const user = useContext(UserContext);
 
-  const handlePostOpporunity = async (formData: ILoginType) => {
+  React.useEffect(() => {
+    if (agency.loaded) {
+      return;
+    }
+    const loadAgency = async () => {
+      const result = await axios.get(`/api/lookup`, {
+        params: {
+          name: "agency",
+        },
+      });
+      const data = [{ text: "Please select an agency", value: null }].concat(
+        result.data
+      );
+      setAgency({
+        loaded: true,
+        data,
+      });
+    };
+    loadAgency();
+  }, []);
+
+  const handlePostOpporunity = async (formData: IOpportunityType) => {
     setSaving(true);
 
-    const { email, password } = formData;
+    const {
+      id,
+      jobTitle,
+      jobDescription,
+      whatYoullGain,
+      aboutTeam,
+      numberOfPeople,
+      startDate,
+      endDate,
+      commitmentTime,
+      agency,
+      contactPersonName,
+      contactPersonEmail,
+      contactPersonPhone,
+      location,
+      skills,
+      additionalInfo,
+      securityClearance,
+    } = formData;
     try {
-      // const result = await axios.post(
-      //   `/api/user/register`,
-      //   {
-      //     name,
-      //     email,
-      //     password,
-      //   }
-      // );
-      //   navigate("/submitted/", { state: { submitted: true } });
+      const result = await axios.post(`/api/Opportunity`, {
+        id,
+        jobTitle,
+        jobDescription,
+        whatYoullGain,
+        aboutTeam,
+        numberOfPeople,
+        startDate,
+        endDate,
+        commitmentTime,
+        agency,
+        contactPersonName,
+        contactPersonPhone,
+        location,
+        skills,
+        additionalInfo,
+        securityClearance,
+      });
     } catch (e) {
-      // const error = e.response.data;
-      // if (error.errors) {
-      //   setErrorList(error.errors);
-      // }
+      const error = e.response.data;
+      if (error.errors) {
+        console.log(error.errors);
+        setErrorList(error.errors);
+      }
     }
     setSaving(false);
   };
@@ -166,11 +220,11 @@ const PostOpportunityForm: React.FC = () => {
               width="xl"
               required
             />
-            <TextField
+            <SelectField
               id="agency"
-              label="Department/Agency name:"
-              type="text"
+              label="Department/Agency name"
               width="lg"
+              options={agency.data}
               required
             />
             <TextField

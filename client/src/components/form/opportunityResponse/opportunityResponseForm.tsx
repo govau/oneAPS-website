@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, IOpportunityResponseType } from "../../../types/types";
@@ -20,6 +20,7 @@ const OpportunityResponseForm: React.FC = () => {
     data: { value: string; text: string }[];
   }>({ loaded: false, data: [] });
   const user = useContext(UserContext);
+  const fileUploadRef = useRef();
 
   React.useEffect(() => {
     if (agency.loaded) {
@@ -137,6 +138,24 @@ const OpportunityResponseForm: React.FC = () => {
             )}
 
             <AuFieldset className="mt-2 mb-0">
+              hello
+              <input type="file" id="myfile" ref={fileUploadRef} />
+              <input type="button" onClick={async () => {
+                const fileUpload = fileUploadRef.current
+                if (fileUpload) { 
+                  const file = fileUpload.files[0];
+                  // var xhr = new XMLHttpRequest();                 
+                  // var file = document.getElementById('myfile').files[0];
+                  // xhr.open("POST", "api/myfileupload");
+                  // xhr.setRequestHeader("filename", file.name);
+                  // xhr.send(file);
+                  await axios.post('api/OpportunityResponse/fileupload', {
+                    headers: {
+                      "filename": file.name
+                    }
+                  });
+                }
+              }} value="Upload" />
               <TextField
                 id="jobTitle"
                 label="Opportunity name:"

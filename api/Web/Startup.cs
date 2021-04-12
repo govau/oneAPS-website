@@ -44,13 +44,22 @@ namespace Dta.OneAps.Api.Web {
             services.Configure<AppSettings>(appSettingsSection);
             var appSettings = appSettingsSection.Get<AppSettings>();
 
-            var host = Environment.GetEnvironmentVariable("ENDPOINT_ADDRESS");
-            var port = Environment.GetEnvironmentVariable("DB_PORT");
-            var name = Environment.GetEnvironmentVariable("DB_NAME");
-            var username = Environment.GetEnvironmentVariable("MASTER_USERNAME");
-            var password = Environment.GetEnvironmentVariable("MASTER_PASSWORD");
+            var connectionString = string.Empty;
+            if (appSettings == null || string.IsNullOrEmpty(appSettings.OneApsConnectionString)) {
+                var host = Environment.GetEnvironmentVariable("ENDPOINT_ADDRESS");
+                var port = Environment.GetEnvironmentVariable("DB_PORT");
+                var name = Environment.GetEnvironmentVariable("DB_NAME");
+                var username = Environment.GetEnvironmentVariable("MASTER_USERNAME");
+                var password = Environment.GetEnvironmentVariable("MASTER_PASSWORD");
+                connectionString = $"Host={host};Port={port};Database={name};Username={username};Password={password}";
+            } else {
+                connectionString = appSettings.OneApsConnectionString;
+            }
+            var jwtKey = Environment.GetEnvironmentVariable("JwtKey");
+            if (string.IsNullOrEmpty(jwtKey)) {
+                jwtKey = appSettings.JwtKey;
+            }
             
-            var connectionString = $"Host={host};Port={port};Database={name};Username={username};Password={password}";
             // appSettings.OneApsConnectionString = appSettings.OneApsConnectionString;
             // appSettings.JwtKey = Environment.GetEnvironmentVariable("JwtKey");
 
@@ -68,7 +77,7 @@ namespace Dta.OneAps.Api.Web {
                         ValidateIssuerSigningKey = true,
                         // ValidIssuer = Configuration["Jwt:Issuer"],    
                         // ValidAudience = Configuration["Jwt:Issuer"],    
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable("JwtKey")))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
                     };
                 });
 

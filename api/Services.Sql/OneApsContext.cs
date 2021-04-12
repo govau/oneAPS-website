@@ -122,6 +122,12 @@ namespace Dta.OneAps.Api.Services.Sql {
                     .HasForeignKey(d => d.OpportunityId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("opportunity_response_opportunity_id_fkey");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.OpportunityResponses)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("opportunity_response_user_id_fkey");
             });
 
             modelBuilder.Entity<OpportunityResponseContact>(entity => {

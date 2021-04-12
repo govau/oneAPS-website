@@ -63,5 +63,8 @@ namespace Dta.OneAps.Api.Services.Entities
 
         [InverseProperty("ModifiedByUser")]
         public virtual ICollection<Opportunity> OpportunityModifiedByUser { get; set; }
+
+        [InverseProperty("User")]
+        public virtual ICollection<OpportunityResponse> OpportunityResponses { get; set; }
     }
 }

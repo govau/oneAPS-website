@@ -20,10 +20,15 @@ dotnet dotnet-ef database update -p Services.Sql/Dta.OneAps.Api.Services.Sql.csp
 ## Add Migration
 ```
 export ConnectionString="Host=localhost;Port=15432;Database=oneaps;Username=postgres;Password=password" &&
-dotnet ef migrations add <MIGRATION NAME> -p Services.Sql/Dta.OneAps.Api.Services.Sql.csproj
+dotnet dotnet-ef migrations add <MIGRATION NAME> -p Services.Sql/Dta.OneAps.Api.Services.Sql.csproj
 ```
 
 ## Run
 ```
 dotnet watch run -p Web/Dta.OneAps.Api.Web.csproj
 ```
+
+
+## symbolic link
+https://github.com/OmniSharp/omnisharp-vscode/issues/4037#issuecomment-765084998
+sudo ln -s /snap/dotnet-sdk/current/dotnet /usr/local/bin/

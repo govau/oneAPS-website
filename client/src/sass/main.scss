@@ -133,7 +133,6 @@ h1 {
   color: $AU-colordark-foreground-text;
   border-color: $AU-color-foreground-action;
   font-weight: 500;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 
   &:hover:not(:disabled) {
     background-color: #313131;

@@ -10,7 +10,7 @@ const ErrorPage: React.FC<PageContext> = ({ pageContext, location }) => {
       <>
         <SEO title="404" />
         <div className="container-fluid au-body">
-          <h1>404 - not found</h1>
+          <h1>404 - page not found</h1>
         </div>
         <section className="au-body center-align">
           This site is part of a 3-month pilot program from March to May 2021

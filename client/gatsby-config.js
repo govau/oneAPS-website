@@ -31,10 +31,6 @@ module.exports = {
         text: "Help",
         link: "/help",
       },
-      {
-        text: "Register",
-        link: "/register",
-      },
     ],
     footerLinks: [
       {

@@ -30,9 +30,6 @@ const OpportunityResponseForm: React.FC = () => {
 
   const [oppData, setOppData] = React.useState<IOpportunityType[]>([]);
 
-  var jobTitle: string = "";
-  var jobDescription: string = "";
-
   useEffect(() => {
     if (agency.loaded) {
       return;
@@ -67,20 +64,28 @@ const OpportunityResponseForm: React.FC = () => {
     getData();
   }, []);
 
-  const handlePostOpporunity = async (formData: IOpportunityResponseType) => {
+  const handlePostOpporunity = async (opportunityResponse: IOpportunityResponseType) => {
     setSaving(true);
 
-    const { resumeLink, whyPickMe } = formData;
+    const { resumeLink, whyPickMe } = opportunityResponse;
+    const formData = new FormData();
+    const fileUpload = fileUploadRef.current
+    if (fileUpload) {
+      for (const file of fileUpload.files) {
+        formData.append('file', file, file.name);
+      }
+    }
+    formData.append('data', JSON.stringify({
+      opportunityId: oppData.id,
+      resumeLink,
+      userId: user.user.userId,
+      whyPickMe,
+    }));
+    
     try {
       const result = await axios.post(
         `/api/OpportunityResponse`,
-        {
-          opportunityId: oppData.id,
-          resumeLink,
-          userId: user.user.userId,
-          whyPickMe,
-        },
-        {
+        formData, {
           headers: {
             Authorization: `bearer ${user.token}`,
           },
@@ -174,23 +179,29 @@ const OpportunityResponseForm: React.FC = () => {
                     required
                   />
 
-                  {/* <input type="file" id="myfile" ref={fileUploadRef} />
-              <input type="button" onClick={async () => {
-                const fileUpload = fileUploadRef.current
-                if (fileUpload) {
-                  const file = fileUpload.files[0];
-                  // var xhr = new XMLHttpRequest();                 
-                  // var file = document.getElementById('myfile').files[0];
-                  // xhr.open("POST", "api/myfileupload");
-                  // xhr.setRequestHeader("filename", file.name);
-                  // xhr.send(file);
-                  await axios.post('/api/OpportunityResponse/fileupload', {
-                    headers: {
-                      "filename": file.name
+                  <input type="file" ref={fileUploadRef} />
+                  {/* <input type="button" onClick={async () => {
+                    const fileUpload = fileUploadRef.current
+                    if (fileUpload) {
+                      const formData = new FormData();
+                      for (const file of fileUpload.files) {
+                        // const file = fileUpload.files[0];
+                        formData.append('file', file, file.name);
+                      }
+                      formData.append('userId', 2);
+                      // var xhr = new XMLHttpRequest();                 
+                      // var file = document.getElementById('myfile').files[0];
+                      // xhr.open("POST", "api/myfileupload");
+                      // xhr.setRequestHeader("filename", file.name);
+                      // xhr.send(file);
+                      await axios.post('/api/OpportunityResponse/fileupload', formData, {
+                        headers: {
+                          Authorization: `bearer ${user.token}`,
+                          // "filename": file.name
+                        }
+                      });
                     }
-                  });
-                }
-              }} value="Upload" /> */}
+                  }} value="Upload" /> */}
                   <AuFormGroup>
                     <Aubtn type="submit" onClick={submitForm} disabled={saving}>
                       {saving ? "Submitting" : "Post"}

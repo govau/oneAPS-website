@@ -18,34 +18,18 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
               <li>
                 <a href="../../help">Help</a>
               </li>
-              <li>
-                How long does it take to post an opportunity and review
-                applicants?
-              </li>
+              <li>How to withdraw an application</li>
             </ul>
           </nav>
         </div>
         <div className="au-body container-fluid">
-          <h1>
-            How long does it take to post an opportunity and review applicants?
-          </h1>
+          <h1>How to withdraw an application</h1>
           <p>
-            It only takes a few minutes to create and post an opportunity.
-            Before you get started,{" "}
-            <a href="write-a-great-opportunity">
-              read these tips on how to write a great opportunity.
-            </a>
-          </p>
-          <p>
-            How you review applicants is up to you. We encourage you to review
-            each applicant profile and have a quick phone call or email exchange
-            to see if they’re the right person for the work.
-          </p>
-          <p>
-            Once you have chosen an applicant for your opportunity, please
-            inform{" "}
+            Currently the <span className="bolden-text">oneAPS platform</span>{" "}
+            does not provide functionality to withdraw applications online. If
+            you wish to withdraw an application, please contact{" "}
             <a href="mailto:digitalsquads@dta.gov.au">
-              The DTA Digital Squads team
+              digitalsquads@dta.gov.au
             </a>
           </p>
         </div>

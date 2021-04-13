@@ -18,35 +18,16 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
               <li>
                 <a href="../../help">Help</a>
               </li>
-              <li>
-                How long does it take to post an opportunity and review
-                applicants?
-              </li>
+              <li>Can my work count as training?</li>
             </ul>
           </nav>
         </div>
         <div className="au-body container-fluid">
-          <h1>
-            How long does it take to post an opportunity and review applicants?
-          </h1>
+          <h1>Can my work count as training?</h1>
           <p>
-            It only takes a few minutes to create and post an opportunity.
-            Before you get started,{" "}
-            <a href="write-a-great-opportunity">
-              read these tips on how to write a great opportunity.
-            </a>
-          </p>
-          <p>
-            How you review applicants is up to you. We encourage you to review
-            each applicant profile and have a quick phone call or email exchange
-            to see if they’re the right person for the work.
-          </p>
-          <p>
-            Once you have chosen an applicant for your opportunity, please
-            inform{" "}
-            <a href="mailto:digitalsquads@dta.gov.au">
-              The DTA Digital Squads team
-            </a>
+            Yes, <span className="bolden-text">oneAPS</span> offers short term
+            opportunities that can equate to training. Talk to your manager
+            about how your work can count as training.
           </p>
         </div>
         <section className="au-body center-align">

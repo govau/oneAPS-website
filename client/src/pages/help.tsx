@@ -62,7 +62,13 @@ const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
                     </a>
                   </li>
                   <li>
-                    <a href="../#">Example opportunity</a> (external)
+                    <a
+                      href="https://govteams.sharepoint.com/:b:/s/openopportunities/Ebzro6TYP1JBtvTakRKGZYkBG2OKsskaCVW0qPQeKQeubA?e=xn5das"
+                      target="_blank"
+                    >
+                      Example opportunity
+                    </a>{" "}
+                    (external)
                   </li>
                 </ul>
               </div>
@@ -77,32 +83,32 @@ const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
                 </div>
                 <ul>
                   <li>
-                    <a href="./help-pages/digital-professions/how-to-apply-to-opportunity">
+                    <a href="./help-pages/digital-professionals/how-to-apply-to-opportunity">
                       How to apply to an opportunity
                     </a>
                   </li>
                   <li>
-                    <a href="./help-pages/digital-professions/who-can-participate">
+                    <a href="./help-pages/digital-professionals/who-can-participate">
                       Who can participate?
                     </a>
                   </li>
                   <li>
-                    <a href="./help-pages/opportunity-creators/can-work-count-as-training">
+                    <a href="./help-pages/digital-professionals/can-work-count-as-training">
                       Can my work count as training?
                     </a>
                   </li>
                   <li>
-                    <a href="./help-pages/opportunity-creators/recognition-for-participating-in-opportunity">
+                    <a href="./help-pages/digital-professionals/recognition-for-participating-in-opportunity">
                       Do I get recognition for participating in an opportunity?
                     </a>
                   </li>
                   <li>
-                    <a href="./help-pages/opportunity-creators/writing-personal-pitch">
+                    <a href="./help-pages/digital-professionals/writing-personal-pitch">
                       Writing a personal pitch
                     </a>
                   </li>
                   <li>
-                    <a href="./help-pages/opportunity-creators/how-to-withdraw-application">
+                    <a href="./help-pages/digital-professionals/how-to-withdraw-application">
                       How to withdraw an application
                     </a>
                   </li>
@@ -124,12 +130,15 @@ const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
                     </a>
                   </li>
                   <li>
-                    <a href="./help-pages/digital-professions/using-mobility-as-manager">
+                    <a href="./help-pages/current-managers/using-mobility-as-manager">
                       Using mobility as a manager
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.apsc.gov.au/advancing-professional-development-through-planned-mobility">
+                    <a
+                      href="https://legacy.apsc.gov.au/advancing-professional-development-through-planned-mobility"
+                      target="_blank"
+                    >
                       Advancing professional development through planned
                       mobility
                     </a>{" "}

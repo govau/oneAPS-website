@@ -18,35 +18,20 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
               <li>
                 <a href="../../help">Help</a>
               </li>
-              <li>
-                How long does it take to post an opportunity and review
-                applicants?
-              </li>
+              <li>Do I get recognition for participating in an opportunity?</li>
             </ul>
           </nav>
         </div>
         <div className="au-body container-fluid">
-          <h1>
-            How long does it take to post an opportunity and review applicants?
-          </h1>
+          <h1>Do I get recognition for participating in an opportunity?</h1>
           <p>
             It only takes a few minutes to create and post an opportunity.
-            Before you get started,{" "}
-            <a href="write-a-great-opportunity">
-              read these tips on how to write a great opportunity.
-            </a>
-          </p>
-          <p>
-            How you review applicants is up to you. We encourage you to review
-            each applicant profile and have a quick phone call or email exchange
-            to see if they’re the right person for the work.
-          </p>
-          <p>
-            Once you have chosen an applicant for your opportunity, please
-            inform{" "}
-            <a href="mailto:digitalsquads@dta.gov.au">
-              The DTA Digital Squads team
-            </a>
+            Before you get started, If you work on and complete an opportunity,
+            you will see a <span className="bolden-text">Completed status</span>{" "}
+            for that opportunity. You will also see a link to download and print
+            a <span className="bolden-text">Certificate of Completion</span>.
+            You may also receive a badge based on the number of opportunities
+            you complete.
           </p>
         </div>
         <section className="au-body center-align">

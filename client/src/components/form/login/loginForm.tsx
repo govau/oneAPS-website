@@ -40,7 +40,8 @@ const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
           name: result.data.name,
           role: result.data.role,
         });
-        navigate(fromPage ? "../#" : fromPage);
+        setSaving(false);
+        navigate(fromPage ? fromPage: '/');
         return;
       }
     } catch (e) {

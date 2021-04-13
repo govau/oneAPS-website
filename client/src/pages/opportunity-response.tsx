@@ -9,7 +9,6 @@ const PostOpportunityPage: React.FC<PageContext> = ({
   pageContext,
   location,
 }) => {
-  console.log(location);
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>

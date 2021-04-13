@@ -5,7 +5,11 @@ import { Link, navigate } from "gatsby";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
-import { IApiFormError, IOpportunityResponseType } from "../../../types/types";
+import {
+  IApiFormError,
+  IOpportunityResponseType,
+  IOpportunityType,
+} from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
 import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
@@ -23,6 +27,11 @@ const OpportunityResponseForm: React.FC = () => {
   const user = useContext(UserContext);
   const fileUploadRef = useRef();
   const location = useLocation();
+
+  const [oppData, setOppData] = React.useState<IOpportunityType[]>([]);
+
+  var jobTitle: string = "";
+  var jobDescription: string = "";
 
   useEffect(() => {
     if (agency.loaded) {
@@ -43,6 +52,19 @@ const OpportunityResponseForm: React.FC = () => {
       });
     };
     loadAgency();
+
+    async function getData() {
+      try {
+        var cardID = location.state.id
+          ? location.state.id
+          : location.search.slice(13, location.search.length); //get the card id
+        const result = await axios.get("/api/Opportunity/" + cardID);
+        if (result.status === 200) {
+          setOppData(result.data);
+        }
+      } catch (e) {}
+    }
+    getData();
   }, []);
 
   const handlePostOpporunity = async (formData: IOpportunityResponseType) => {
@@ -53,7 +75,7 @@ const OpportunityResponseForm: React.FC = () => {
       const result = await axios.post(
         `/api/OpportunityResponse`,
         {
-          opportunityId: location.state.id,
+          opportunityId: oppData.id,
           resumeLink,
           userId: user.user.userId,
           whyPickMe,
@@ -132,8 +154,8 @@ const OpportunityResponseForm: React.FC = () => {
                   <div>Opportunity</div>
                   <br />
                   <div>
-                    <h3>{location.state.jobTitle}</h3>
-                    {location.state.jobDescription}
+                    <h3>{oppData.jobTitle}</h3>
+                    {oppData.jobDescription}
                   </div>
                   <TextField
                     id="whyPickMe"

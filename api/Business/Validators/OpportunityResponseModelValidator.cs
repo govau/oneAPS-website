@@ -1,5 +1,6 @@
 using FluentValidation;
 using Dta.OneAps.Api.Business.Models;
+using System.Collections.Generic;
 
 namespace Dta.OneAps.Api.Business.Validators {
     public class OpportunityResponseModelValidator : AbstractValidator<OpportunityResponseSaveRequest> {
@@ -15,7 +16,8 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(u => u.WhyPickMe).NotEmpty();
             RuleFor(u => u)
                 .MustAsync(async (or, c) => {
-                    return await opportunityResponseBusiness.List(or.OpportunityId, or.UserId) == null;
+                    var list = new List<OpportunityResponsePublicResponse>(await opportunityResponseBusiness.List(or.OpportunityId, or.UserId));
+                    return list.Count == 0;
                 }).WithMessage("You have already applied for this opportunity.");
         }
     }

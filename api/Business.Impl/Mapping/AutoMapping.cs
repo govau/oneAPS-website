@@ -11,6 +11,7 @@ namespace Dta.OneAps.Api.Business.Mapping {
             CreateMap<Opportunity, OpportunityPublicResponse>();
             CreateMap<Opportunity, OpportunityAdminResponse>();
             CreateMap<OpportunityResponse, OpportunityResponseSaveResponse>();
+            CreateMap<OpportunityResponse, OpportunityResponsePublicResponse>();
 
             CreateMap<UserCreateRequest, User>();
             CreateMap<OpportunitySaveRequest, Opportunity>();

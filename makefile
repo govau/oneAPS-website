@@ -4,7 +4,7 @@ run_client:
 	(cd client && npm run watch)
 
 run_api:
-	(cd api/Web && dotnet run watch)
+	(cd api/Web && dotnet watch run)
 
 setup:
 	(cd client && npm i)

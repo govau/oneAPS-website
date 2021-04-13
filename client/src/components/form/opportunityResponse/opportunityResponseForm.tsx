@@ -128,7 +128,7 @@ const OpportunityResponseForm: React.FC = () => {
 
             <AuFieldset className="mt-2 mb-0">
               <div>Opportunity</div>
-              <div>{location.state.jobTitle}</div>
+              <div>{location.state && location.state.jobTitle}</div>
               <TextField
                 id="whyPickMe"
                 label="Why me (pitch)"

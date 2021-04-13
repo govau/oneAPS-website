@@ -49,12 +49,12 @@ namespace Dta.OneAps.Api.Business {
             var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
             return result;
         }
-        public async Task<IEnumerable<OpportunityPublicResponse>> List(int opportunityId, int userId) => (
-            _mapper.Map<IEnumerable<OpportunityPublicResponse>>(await _opportunityResponseService.List(opportunityId, userId))
+        public async Task<IEnumerable<OpportunityResponsePublicResponse>> List(int opportunityId, int userId) => (
+            _mapper.Map<IEnumerable<OpportunityResponsePublicResponse>>(await _opportunityResponseService.List(opportunityId, userId))
         );
-        public async Task<IEnumerable<OpportunityPublicResponse>> ListByOpportunityId(int opportunityId) => (
-            _mapper.Map<IEnumerable<OpportunityPublicResponse>>(await _opportunityResponseService.ListByOpportunityId(opportunityId))
+        public async Task<IEnumerable<OpportunityResponsePublicResponse>> ListByOpportunityId(int opportunityId) => (
+            _mapper.Map<IEnumerable<OpportunityResponsePublicResponse>>(await _opportunityResponseService.ListByOpportunityId(opportunityId))
         );
-        public async Task<OpportunityPublicResponse> Get(int id) => _mapper.Map<OpportunityPublicResponse>(await _opportunityResponseService.GetById(id));
+        public async Task<OpportunityResponsePublicResponse> Get(int id) => _mapper.Map<OpportunityResponsePublicResponse>(await _opportunityResponseService.GetById(id));
     }
 }

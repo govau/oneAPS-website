@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
+import { Link } from "gatsby";
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
@@ -100,7 +101,6 @@ const PostOpportunityForm: React.FC = () => {
 
   return (
     <>
-      {" "}
       {user.token ? (
         <>
           {errorList && errorList.length > 0 && (
@@ -282,7 +282,10 @@ const PostOpportunityForm: React.FC = () => {
           </Formik>
         </>
       ) : (
-        <div>Go to login screen</div>
+        <p>
+          You must be <Link to="../../login">logged in</Link> to post an
+          opportunity.
+        </p>
       )}
     </>
   );

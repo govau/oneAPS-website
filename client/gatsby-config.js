@@ -35,6 +35,10 @@ module.exports = {
         text: "Register",
         link: "/register",
       },
+      {
+        text: "Login",
+        link: "/login",
+      },
     ],
     footerLinks: [
       {

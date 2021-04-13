@@ -2,7 +2,6 @@ import * as yup from "yup";
 import { emailValidation } from "../../../util/yup";
 
 export const initialValues = {
-  id: "",
   jobTitle: "",
   jobDescription: "",
   whatYoullGain: "",
@@ -22,12 +21,11 @@ export const initialValues = {
 };
 
 export const validationSchema = yup.object().shape({
-  id: yup.string(),
   jobTitle: yup.string().required("Opportunity name is required"),
   jobDescription: yup.string().required("What You'll Do is required"),
   whatYoullGain: yup.string().required("What You'll Gain is required"),
   aboutTeam: yup.string().required("About Your Team is required"),
-  numberOfPeople: yup.number().required("Number of people must be >= 1").min(1),
+  numberOfPeople: yup.string().required("Number of people is required"),
   location: yup.string().required("Location is required"),
   skills: yup.string().required("Skills is required"),
   additionalInfo: yup.string(),
@@ -41,11 +39,7 @@ export const validationSchema = yup.object().shape({
     .min(2, "Enter a valid agency"),
   contactPersonName: yup.string().required("Contact Person Name is required"),
   contactPersonEmail: emailValidation,
-  contactPersonPhone: yup
-    .string()
-    .trim()
-    .required("Mobile number is required")
-    .length(10),
+  contactPersonPhone: yup.string().trim().length(10),
   securityClearance: yup
     .string()
     .required("Security Clearance Level is required"),

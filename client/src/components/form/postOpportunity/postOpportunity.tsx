@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
-import { Link } from "gatsby";
+import { Link, navigate } from "gatsby";
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
@@ -89,11 +89,21 @@ const PostOpportunityForm: React.FC = () => {
         },
         { headers: { Authorization: `bearer ${user.token}` } }
       );
+      console.log("navigated");
+      navigate("/find-opportunities");
+      return;
     } catch (e) {
-      const error = e.response.data;
-      if (error.errors) {
-        console.log(error.errors);
-        setErrorList(error.errors);
+      if (e.response.status === 400) {
+        let errors: IApiFormError[] = [];
+        for (const property in e.response.data.errors) {
+          for (const message of e.response.data.errors[property]) {
+            errors.push({
+              message,
+              path: property,
+            });
+          }
+        }
+        setErrorList(errors);
       }
     }
     setSaving(false);

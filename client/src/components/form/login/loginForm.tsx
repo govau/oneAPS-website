@@ -40,7 +40,7 @@ const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
           name: result.data.name,
           role: result.data.role,
         });
-        navigate(fromPage);
+        navigate(fromPage ? "../#" : fromPage);
         return;
       }
     } catch (e) {

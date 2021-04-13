@@ -38,7 +38,10 @@ namespace Dta.OneAps.Api.Business {
             // var result = _mapper.Map<UserModel>(user);
             return new UserSessionResponse() {
                 Token = GenerateJSONWebToken(user),
-                RefreshToken = Guid.NewGuid().ToString().Replace("-", "")
+                RefreshToken = Guid.NewGuid().ToString().Replace("-", ""),
+                UserId = user.Id,
+                Name = user.Name,
+                Role = user.Role
             };
         }
 

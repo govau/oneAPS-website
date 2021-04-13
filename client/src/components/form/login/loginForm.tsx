@@ -23,7 +23,7 @@ const LoginForm: React.FC = () => {
     setErrorList([]);
 
     const { email, password } = formData;
-    user.updateToken(null, null);
+    user.updateToken();
     try {
       const result = await axios.post(`/api/user/authenticate`, {
           EmailAddress: email,
@@ -32,7 +32,13 @@ const LoginForm: React.FC = () => {
       );
       
       if (result.status === 200) {
-        user.updateToken(result.data.token, result.data.refreshToken);
+        user.updateToken(
+          result.data.token,
+          result.data.refreshToken, {
+            userId: result.data.userId,
+            name: result.data.name,
+            role: result.data.role
+        });
         navigate("/find-opportunities");
         return;
       }

@@ -17,7 +17,6 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
         if (result.status === 200) {
           setOppData(result.data);
         }
-        console.log(result.data);
       } catch (e) {}
     }
     getData();
@@ -135,7 +134,10 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
             </div>
           </div>
           <div style={{ marginTop: "2rem" }}>
-            <Link to="apply" className="au-btn">
+            <Link
+              to={`/opportunity-response?opportunity=${oppData.id}`}
+              state={{...oppData}}
+              className="au-btn">
               Apply for opportunity
             </Link>
           </div>

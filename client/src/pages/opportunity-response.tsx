@@ -19,12 +19,12 @@ const PostOpportunityPage: React.FC<PageContext> = ({
               <li>
                 <a href="../#">Home</a>
               </li>
-              <li>Post an opportunity</li>
+              <li>Apply for opportunity</li>
             </ul>
           </nav>
         </div>
         <div className="container-fluid au-body">
-          <h1>Post an Opportunity</h1>
+          <h1>Apply for opportunity</h1>
           <OpportunityResponseForm />
         </div>
         <section className="au-body center-align">

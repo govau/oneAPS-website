@@ -1,9 +1,18 @@
 import * as yup from "yup";
 
 export const initialValues = {
-  jobTitle: "",
+  opportunityId: null,
+  resumeLink: '',
+  userId: null,
+  agency: '',
+  whyPickMe: ''
 };
 
 export const validationSchema = yup.object().shape({
-  jobTitle: yup.string().required()
+  // jobTitle: yup.string().required(),
+  // opportunityId: yup.number().required(),
+  // resumeLink: yup.string().required(),
+  // userId: yup.number().required().moreThan(0),
+  // agency: yup.string().required(),
+  whyPickMe: yup.string().required(),
 });

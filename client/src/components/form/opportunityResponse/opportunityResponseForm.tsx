@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
-import React, { useContext, useRef, useState } from "react";
+import { useLocation } from "@reach/router"
+import { navigate } from "gatsby";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, IOpportunityResponseType } from "../../../types/types";
@@ -21,8 +23,9 @@ const OpportunityResponseForm: React.FC = () => {
   }>({ loaded: false, data: [] });
   const user = useContext(UserContext);
   const fileUploadRef = useRef();
+  const location = useLocation();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (agency.loaded) {
       return;
     }
@@ -47,48 +50,34 @@ const OpportunityResponseForm: React.FC = () => {
     setSaving(true);
 
     const {
-      id,
-      jobTitle,
-      jobDescription,
-      whatYoullGain,
-      aboutTeam,
-      numberOfPeople,
-      startDate,
-      endDate,
-      commitmentTime,
-      agency,
-      contactPersonName,
-      contactPersonEmail,
-      contactPersonPhone,
-      location,
-      skills,
-      additionalInfo,
-      securityClearance,
+      resumeLink,
+      whyPickMe
     } = formData;
     try {
       const result = await axios.post(`/api/OpportunityResponse`, {
-        id,
-        jobTitle,
-        jobDescription,
-        whatYoullGain,
-        aboutTeam,
-        numberOfPeople,
-        startDate,
-        endDate,
-        commitmentTime,
-        agency,
-        contactPersonName,
-        contactPersonPhone,
-        location,
-        skills,
-        additionalInfo,
-        securityClearance,
+        opportunityId: location.state.id,
+        resumeLink,
+        userId: user.user.userId,
+        whyPickMe
+      }, {
+        headers: {
+          'Authorization': `bearer ${user.token}`
+        }
       });
+      navigate("/find-opportunities");
+      return;
     } catch (e) {
-      const error = e.response.data;
-      if (error.errors) {
-        console.log(error.errors);
-        setErrorList(error.errors);
+      if (e.response.status === 400) {
+        let errors: IApiFormError[] = [];
+        for (const property in e.response.data.errors) {
+          for (const message of e.response.data.errors[property]) {
+            errors.push({
+              message,
+              path: property
+            })
+          }
+        }
+        setErrorList(errors);
       }
     }
     setSaving(false);
@@ -138,156 +127,47 @@ const OpportunityResponseForm: React.FC = () => {
             )}
 
             <AuFieldset className="mt-2 mb-0">
-              hello
-              <input type="file" id="myfile" ref={fileUploadRef} />
+              <div>Opportunity</div>
+              <div>{location.state.jobTitle}</div>
+              <TextField
+                id="whyPickMe"
+                label="Why me (pitch)"
+                hint=""
+                required
+                as="textarea"
+                width="xl"
+              />
+              <TextField
+                id="resumeLink"
+                label="LinkedIn Profile URL"
+                hint="Ensure your LinkedIn profile is publicly accessible"
+                type="text"
+                required
+              />
+
+              {/* <input type="file" id="myfile" ref={fileUploadRef} />
               <input type="button" onClick={async () => {
                 const fileUpload = fileUploadRef.current
-                if (fileUpload) { 
+                if (fileUpload) {
                   const file = fileUpload.files[0];
                   // var xhr = new XMLHttpRequest();                 
                   // var file = document.getElementById('myfile').files[0];
                   // xhr.open("POST", "api/myfileupload");
                   // xhr.setRequestHeader("filename", file.name);
                   // xhr.send(file);
-                  await axios.post('api/OpportunityResponse/fileupload', {
+                  await axios.post('/api/OpportunityResponse/fileupload', {
                     headers: {
                       "filename": file.name
                     }
                   });
                 }
-              }} value="Upload" />
-              <TextField
-                id="jobTitle"
-                label="Opportunity name:"
-                hint="The title is the first thing an opportunity seeker will see. Write a catchy title that's descriptive of what the opportunity is - think about skills you need or the outcome you are trying to achieve, not just a job title. Avoid jargon."
-                width="xl"
-                required
-              />
-              <TextField
-                id="jobDescription"
-                label="What you'll do:"
-                hint="In one or two paragraphs, provide a description of the opportunity. Include the intended outcome of the work, problem you are trying to solve and alignment to government strategic priorities (these can be for your department,agency or cross government)"
-                required
-                as="textarea"
-                width="xl"
-              />
-              <TextField
-                id="whatYoullGain"
-                label="What you'll gain from this experience:"
-                hint="In a few sentences, add what the participant will gain or learn from this experience (e.g. build skills and experience, increase departmental knowledge,connect with subject matter experts)"
-                required
-                as="textarea"
-                width="xl"
-              />
-              <TextField
-                id="aboutTeam"
-                label="About our team:"
-                hint="In one or two paragraphs, describe your team, your culture and how you work. Avoid using acronyms."
-                required
-                as="textarea"
-                width="xl"
-              />
-              <TextField
-                id="numberOfPeople"
-                label="Number of people needed:"
-                type="number"
-                width="xs"
-                required
-              />
-              <TextField
-                id="location"
-                label="Location:"
-                hint="Any preference to be in a certain location, or is it flexible to be virtual?"
-                type="text"
-                required
-              />
-              <TextField
-                id="skills"
-                label="Relevant skills:"
-                hint="Separate by commas, e.g. photoshop, web design, logo design."
-                as="textarea"
-                width="xl"
-                required
-              />
-              <TextField
-                id="additionalInfo"
-                label="Additional information (optional):"
-                hint="Is there anything else you would like to add?"
-                as="textarea"
-                width="xl"
-              />
+              }} value="Upload" /> */}
+              <AuFormGroup>
+                <Aubtn type="submit" onClick={submitForm} disabled={saving}>
+                  {saving ? "Submitting" : "Post"}
+                </Aubtn>
+              </AuFormGroup>
             </AuFieldset>
-            <TextField
-              id="startDate"
-              label="Estimated start date:"
-              hint="When would you be ready to onboard the participant?"
-              type="date"
-              required
-            />
-            <TextField
-              id="endDate"
-              label="When would you like the opportunity to be completed?"
-              type="date"
-              required
-            />
-
-            <TextField
-              id="commitmentTime"
-              label="Commitment time:"
-              hint="Enter a particular amount of hours or days per week or whether it's negotiable. For example, 2 - 4 hours per week on a Monday or Tuesday."
-              type="text"
-              width="xl"
-              required
-            />
-            <SelectField
-              id="agency"
-              label="Department/Agency name"
-              width="lg"
-              options={agency.data}
-              required
-            />
-            <TextField
-              id="contactPersonName"
-              label="Contact person name:"
-              hint="Contact name for this opportunity"
-              type="text"
-              width="lg"
-              required
-            />
-            <TextField
-              id="contactPersonEmail"
-              label="Contact person email:"
-              hint="Contact e-mail address for this opportunity"
-              type="email"
-              width="lg"
-              required
-            />
-            <TextField
-              id="contactPersonPhone"
-              label="Contact person phone (optional):"
-              hint="Contact phone number for this opportunity"
-              type="text"
-            />
-
-            <SelectField
-              id="securityClearance"
-              label="Security Clearance:"
-              hint="What level of security clearance is needed to complete theopportunity?"
-              options={[
-                { text: "Select", value: "" },
-                { text: "Baseline", value: "baseline" },
-                { text: "Negative Vetting Level 1", value: "nv1" },
-                { text: "Negative Vetting Level 2", value: "nv2" },
-                { text: "Positive Vetting", value: "pv" },
-                { text: "None", value: "none" },
-              ]}
-            ></SelectField>
-
-            <AuFormGroup>
-              <Aubtn type="submit" onClick={submitForm} disabled={saving}>
-                {saving ? "Submitting" : "Post"}
-              </Aubtn>
-            </AuFormGroup>
           </Form>
         )}
       </Formik>

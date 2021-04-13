@@ -9,7 +9,7 @@ import Breadcrumbs from "../navigation/breadcrumb";
 import Footer from "../navigation/footer";
 import Header from "../navigation/header";
 import MainNav from "../navigation/main-nav";
-import { UserContext, UserContextType } from "../../context/UserContext";
+import { UserContext, UserContextType, UserType } from "../../context/UserContext";
 
 interface Props {
   children: React.ReactElement;
@@ -55,17 +55,19 @@ const DefaultLayout: React.FC<Props> = ({
   children,
 }) => {
 
-  const updateToken = (token: string, refreshToken: string) => {
+  const updateToken = (token: string, refreshToken: string, user: UserType) => {
     if (token) {
       setSession({
         token,
-        refreshToken
+        refreshToken,
+        user
       });
     } else {
       removeSession();
     }
     currentUser.token = token;
     currentUser.refreshToken = refreshToken;
+    currentUser.user = user;
     setCurrentUserState(currentUser);
   
   };
@@ -83,6 +85,11 @@ const DefaultLayout: React.FC<Props> = ({
   const [currentUser, setCurrentUserState] = useState<UserContextType>({
     token: session && session.token,
     refreshToken: session && session.refreshToken,
+    user: {
+      userId: session && session.user.userId,
+      name: session && session.user.name,
+      role: session && session.user.role,
+    },
     updateToken,
     updateRefreshToken,
   });

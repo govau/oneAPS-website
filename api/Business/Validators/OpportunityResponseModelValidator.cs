@@ -4,9 +4,9 @@ using Dta.OneAps.Api.Business.Models;
 namespace Dta.OneAps.Api.Business.Validators {
     public class OpportunityResponseModelValidator : AbstractValidator<OpportunityResponseSaveRequest> {
         public OpportunityResponseModelValidator(ILookupBusiness lookupBusiness, IOpportunityBusiness opportunityBusiness, IOpportunityResponseBusiness opportunityResponseBusiness) {
-            RuleFor(u => u.Agency)
-                .NotEmpty()
-                .Must(e => lookupBusiness.Get("Agency", e) != null).WithMessage("{PropertyValue} is not a valid {PropertyName}.");
+            // RuleFor(u => u.Agency)
+            //     .NotEmpty()
+            //     .Must(e => lookupBusiness.Get("Agency", e) != null).WithMessage("{PropertyValue} is not a valid {PropertyName}.");
             RuleFor(u => u.OpportunityId)
                 .NotEmpty()
                 .MustAsync(async (or, c) => {

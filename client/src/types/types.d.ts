@@ -69,21 +69,9 @@ export interface IOpportunityType {
 }
 
 export interface IOpportunityResponseType {
-  id: string;
-  jobTitle: string;
-  jobDescription: string;
-  whatYoullGain: string;
-  aboutTeam: string;
-  numberOfPeople: string;
-  location: string;
-  skills: string;
-  additionalInfo: string;
-  startDate: string;
-  endDate: string;
-  commitmentTime: string;
+  opportunityId: number;
+  resumeLink: string;
+  userId: number;
   agency: string;
-  contactPersonName: string;
-  contactPersonEmail: string;
-  contactPersonPhone: string;
-  securityClearance: string;
+  whyPickMe: string;
 }

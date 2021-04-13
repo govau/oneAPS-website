@@ -70,7 +70,7 @@ const FindOpportunitiesPage: React.FC<PageContext> = ({
                           <p>{contentOrNA(opp.skills)}</p>
                           <p>
                             <Link
-                              to="../detailed-opportunity"
+                              to={`/detailed-opportunity?opportunityId=${opp.id}`}
                               state={{ id: opp.id }}
                             >
                               more

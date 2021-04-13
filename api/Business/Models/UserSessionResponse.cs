@@ -5,5 +5,9 @@ namespace Dta.OneAps.Api.Business.Models {
         public string Token { get; set; }
 
         public string RefreshToken { get; set; }
+        public string Name { get; set; }
+
+        public int UserId { get; set; }
+        public string Role { get; set; }
     }
 }

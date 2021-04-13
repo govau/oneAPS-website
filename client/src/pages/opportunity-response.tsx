@@ -9,15 +9,19 @@ const PostOpportunityPage: React.FC<PageContext> = ({
   pageContext,
   location,
 }) => {
+  console.log(location);
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
-        <SEO title="Post an Opportunity" />
+        <SEO title="Apply for Opportunity" />
         <div className="container-fluid">
           <nav className="au-breadcrumbs" aria-label="breadcrumb">
             <ul className="au-link-list au-link-list--inline">
               <li>
                 <a href="../#">Home</a>
+              </li>
+              <li>
+                <a href="../find-opportunities">Find opportunities</a>
               </li>
               <li>Apply for opportunity</li>
             </ul>

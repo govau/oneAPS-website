@@ -16,7 +16,7 @@ const LoginPage: React.FC<PageContext> = ({ pageContext, location }) => {
           <h1>Login </h1>
 
           <p>Don't have an account? {<Link to="/register">Register</Link>}</p>
-          <LoginForm />
+          <LoginForm fromPage={location.state.fromPage} />
         </div>
       </>
     </DefaultLayout>

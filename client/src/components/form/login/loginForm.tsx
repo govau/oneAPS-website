@@ -12,7 +12,11 @@ import PasswordField from "../fields/PasswordField";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./loginSchema";
 
-const LoginForm: React.FC = () => {
+interface LoginProps {
+  fromPage: string;
+}
+
+const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
@@ -31,14 +35,12 @@ const LoginForm: React.FC = () => {
       });
 
       if (result.status === 200) {
-        user.updateToken(
-          result.data.token,
-          result.data.refreshToken, {
-            userId: result.data.userId,
-            name: result.data.name,
-            role: result.data.role
+        user.updateToken(result.data.token, result.data.refreshToken, {
+          userId: result.data.userId,
+          name: result.data.name,
+          role: result.data.role,
         });
-        navigate("/post-opportunity");
+        navigate(fromPage);
         return;
       }
     } catch (e) {

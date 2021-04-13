@@ -2,10 +2,10 @@ import * as yup from "yup";
 
 export const initialValues = {
   opportunityId: null,
-  resumeLink: '',
+  resumeLink: "",
   userId: null,
-  agency: '',
-  whyPickMe: ''
+  agency: "",
+  whyPickMe: "",
 };
 
 export const validationSchema = yup.object().shape({
@@ -14,5 +14,5 @@ export const validationSchema = yup.object().shape({
   // resumeLink: yup.string().required(),
   // userId: yup.number().required().moreThan(0),
   // agency: yup.string().required(),
-  whyPickMe: yup.string().required(),
+  whyPickMe: yup.string().required("This is a required field"),
 });

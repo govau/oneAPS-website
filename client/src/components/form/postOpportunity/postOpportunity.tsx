@@ -283,8 +283,11 @@ const PostOpportunityForm: React.FC = () => {
         </>
       ) : (
         <p>
-          You must be <Link to="../../login">logged in</Link> to post an
-          opportunity.
+          You must be{" "}
+          <Link to="../../login" state={{ fromPage: "/post-opportunity" }}>
+            logged in
+          </Link>{" "}
+          to post an opportunity.
         </p>
       )}
     </>

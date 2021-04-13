@@ -1,15 +1,14 @@
+import { useLocation } from "@reach/router";
 import axios from "axios";
 import { Form, Formik } from "formik";
-import { useLocation } from "@reach/router"
-import { navigate } from "gatsby";
-import React, { useContext, useRef, useState, useEffect } from "react";
+import { Link, navigate } from "gatsby";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
 import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, IOpportunityResponseType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
 import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
-import SelectField from "../fields/SelectField";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./opportunityResponseSchema";
 
@@ -49,21 +48,22 @@ const OpportunityResponseForm: React.FC = () => {
   const handlePostOpporunity = async (formData: IOpportunityResponseType) => {
     setSaving(true);
 
-    const {
-      resumeLink,
-      whyPickMe
-    } = formData;
+    const { resumeLink, whyPickMe } = formData;
     try {
-      const result = await axios.post(`/api/OpportunityResponse`, {
-        opportunityId: location.state.id,
-        resumeLink,
-        userId: user.user.userId,
-        whyPickMe
-      }, {
-        headers: {
-          'Authorization': `bearer ${user.token}`
+      const result = await axios.post(
+        `/api/OpportunityResponse`,
+        {
+          opportunityId: location.state.id,
+          resumeLink,
+          userId: user.user.userId,
+          whyPickMe,
+        },
+        {
+          headers: {
+            Authorization: `bearer ${user.token}`,
+          },
         }
-      });
+      );
       navigate("/find-opportunities");
       return;
     } catch (e) {
@@ -73,8 +73,8 @@ const OpportunityResponseForm: React.FC = () => {
           for (const message of e.response.data.errors[property]) {
             errors.push({
               message,
-              path: property
-            })
+              path: property,
+            });
           }
         }
         setErrorList(errors);
@@ -85,67 +85,74 @@ const OpportunityResponseForm: React.FC = () => {
 
   return (
     <>
-      {errorList && errorList.length > 0 && (
-        <PageAlert type="error" className="max-30">
-          <>
-            <h2>There was an error</h2>
-            {formatApiError(errorList)}
-          </>
-        </PageAlert>
-      )}
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={(values, actions) => {
-          handlePostOpporunity(values);
-        }}
-      >
-        {({ errors, handleSubmit, submitForm }) => (
-          <Form
-            method="post"
-            onSubmit={(e) => {
-              handleSubmit(e);
-              if (Object.keys(errors).length < 1) return;
-              setIsError(true);
-              document.title = "Errors | Sign up form";
-              const timeout = setTimeout(() => {
-                const errorSum = document.getElementById(
-                  "error-heading"
-                ) as any;
-                if (errorSum && errorSum.focus()) {
-                  errorSum.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
-                }
-                clearTimeout(timeout);
-              }, 500);
+      {user.token ? (
+        <>
+          {errorList && errorList.length > 0 && (
+            <PageAlert type="error" className="max-30">
+              <>
+                <h2>There was an error</h2>
+                {formatApiError(errorList)}
+              </>
+            </PageAlert>
+          )}
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={(values, actions) => {
+              handlePostOpporunity(values);
             }}
           >
-            {isError && Object.keys(errors).length > 0 && (
-              <ClientErrorDisplay errors={errors} />
-            )}
+            {({ errors, handleSubmit, submitForm }) => (
+              <Form
+                method="post"
+                onSubmit={(e) => {
+                  handleSubmit(e);
+                  if (Object.keys(errors).length < 1) return;
+                  setIsError(true);
+                  document.title = "Errors | Sign up form";
+                  const timeout = setTimeout(() => {
+                    const errorSum = document.getElementById(
+                      "error-heading"
+                    ) as any;
+                    if (errorSum && errorSum.focus()) {
+                      errorSum.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                    }
+                    clearTimeout(timeout);
+                  }, 500);
+                }}
+              >
+                {isError && Object.keys(errors).length > 0 && (
+                  <ClientErrorDisplay errors={errors} />
+                )}
 
-            <AuFieldset className="mt-2 mb-0">
-              <div>Opportunity</div>
-              <div>{location.state.jobTitle}</div>
-              <TextField
-                id="whyPickMe"
-                label="Why me (pitch)"
-                hint=""
-                required
-                as="textarea"
-                width="xl"
-              />
-              <TextField
-                id="resumeLink"
-                label="LinkedIn Profile URL"
-                hint="Ensure your LinkedIn profile is publicly accessible"
-                type="text"
-                required
-              />
+                <AuFieldset className="mt-2 mb-0">
+                  <div>Opportunity</div>
+                  <br />
+                  <div>
+                    <h3>{location.state.jobTitle}</h3>
+                    {location.state.jobDescription}
+                  </div>
+                  <TextField
+                    id="whyPickMe"
+                    label="Why me? (Your pitch)"
+                    hint=""
+                    required
+                    as="textarea"
+                    width="xl"
+                  />
+                  <TextField
+                    id="resumeLink"
+                    label="LinkedIn Profile URL"
+                    hint="Ensure your LinkedIn profile is publicly accessible"
+                    type="text"
+                    width="xl"
+                    required
+                  />
 
-              {/* <input type="file" id="myfile" ref={fileUploadRef} />
+                  {/* <input type="file" id="myfile" ref={fileUploadRef} />
               <input type="button" onClick={async () => {
                 const fileUpload = fileUploadRef.current
                 if (fileUpload) {
@@ -162,15 +169,28 @@ const OpportunityResponseForm: React.FC = () => {
                   });
                 }
               }} value="Upload" /> */}
-              <AuFormGroup>
-                <Aubtn type="submit" onClick={submitForm} disabled={saving}>
-                  {saving ? "Submitting" : "Post"}
-                </Aubtn>
-              </AuFormGroup>
-            </AuFieldset>
-          </Form>
-        )}
-      </Formik>
+                  <AuFormGroup>
+                    <Aubtn type="submit" onClick={submitForm} disabled={saving}>
+                      {saving ? "Submitting" : "Post"}
+                    </Aubtn>
+                  </AuFormGroup>
+                </AuFieldset>
+              </Form>
+            )}
+          </Formik>
+        </>
+      ) : (
+        <p>
+          You must be{" "}
+          <Link
+            to="../../login"
+            state={{ fromPage: location.pathname + location.search }}
+          >
+            logged in
+          </Link>{" "}
+          to apply for an opportunity.
+        </p>
+      )}
     </>
   );
 };

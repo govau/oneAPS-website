@@ -102,12 +102,12 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
               <p>
                 <span className="bolden-text">Estimated start date:</span>
                 <br />
-                {contentOrNA(oppData.startDate)}
+                {contentOrNA(oppData.startDate).slice(0, 10)}
               </p>
               <p>
                 <span className="bolden-text">Estimated end date:</span>
                 <br />
-                {contentOrNA(oppData.endDate)}
+                {contentOrNA(oppData.endDate).slice(0, 10)}
               </p>
             </div>
             <div className="col-md-4" style={{ marginTop: "2rem" }}>
@@ -136,8 +136,9 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
           <div style={{ marginTop: "2rem" }}>
             <Link
               to={`/opportunity-response?opportunity=${oppData.id}`}
-              state={{...oppData}}
-              className="au-btn">
+              state={{ ...oppData }}
+              className="au-btn"
+            >
               Apply for opportunity
             </Link>
           </div>

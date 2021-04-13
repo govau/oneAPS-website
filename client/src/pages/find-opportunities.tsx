@@ -59,13 +59,36 @@ const FindOpportunitiesPage: React.FC<PageContext> = ({
                     <div className="au-card">
                       <div className="au-card__inner">
                         <div className="au-card__title">
-                          <h3>{contentOrNA(opp.jobTitle)}</h3>
+                          <h3>
+                            <br />
+                            {contentOrNA(opp.jobTitle)}
+                          </h3>
                         </div>
-                        <p>{contentOrNA(opp.agency)}</p>
-                        <p>{contentOrNA(opp.commitmentTime)}</p>
-                        <p>{contentOrNA(opp.startDate).slice(0, 10)}</p>
-                        <p>{contentOrNA(opp.endDate).slice(0, 10)}</p>
-                        <p>{contentOrNA(opp.skills)}</p>
+                        <p>
+                          <span className="desc-text">Agency/Department:</span>
+                          <br />
+                          {contentOrNA(opp.agency)}
+                        </p>
+                        <p>
+                          <span className="desc-text">Commitment Time:</span>
+                          <br />
+                          {contentOrNA(opp.commitmentTime)}
+                        </p>
+                        <p>
+                          <span className="desc-text">Start date:</span>
+                          <br />
+                          {contentOrNA(opp.startDate).slice(0, 10)}
+                        </p>
+                        <p>
+                          <span className="desc-text">End date:</span>
+                          <br />
+                          {contentOrNA(opp.endDate).slice(0, 10)}
+                        </p>
+                        <p>
+                          <span className="desc-text">Required skills:</span>
+                          <br />
+                          {contentOrNA(opp.skills)}
+                        </p>
                         <p>
                           <Link
                             to="../detailed-opportunity"

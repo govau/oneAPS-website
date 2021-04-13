@@ -46,7 +46,6 @@ const removeSession = () => {
 const logout = () => {
   removeSession();
   navigate("/");
-
 }
 
 const DefaultLayout: React.FC<Props> = ({

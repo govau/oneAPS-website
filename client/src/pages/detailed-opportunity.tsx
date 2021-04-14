@@ -1,33 +1,26 @@
-import axios from "axios";
 import { Link } from "gatsby";
 import * as React from "react";
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
-import { IOpportunityType, PageContext } from "../types/types";
-// markup
+import { PageContext } from 'types';
+import { useOpportunityHook } from 'hooks';
+
+
+const contentOrNA = (c) => {
+  return c ? c : "N/A";
+}
+
 const DetailedOpportunityPage: React.FC<PageContext> = ({
   pageContext,
   location,
 }) => {
-  const [oppData, setOppData] = React.useState<IOpportunityType[]>([]);
-  React.useEffect(() => {
-    async function getData() {
-      try {
-        const result = await axios.get("/api/Opportunity/" + location.state.id);
-        if (result.status === 200) {
-          setOppData(result.data);
-        }
-      } catch (e) {}
-    }
-    getData();
-  }, []);
-
-  function contentOrNA(c) {
-    return c ? c : "N/A";
-  }
+  const params = new URLSearchParams(location.search);
+  const opportunityId = parseInt(params.get('opportunityId'), 10);
+  const oppData = useOpportunityHook(opportunityId);
 
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
+      {oppData && (
       <>
         <SEO title="About oneAPS" />
         <div className="container-fluid">
@@ -135,7 +128,7 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
           </div>
           <div style={{ marginTop: "2rem" }}>
             <Link
-              to={`/opportunity-response?opportunity=${oppData.id}`}
+              to={`/opportunity-response?opportunityId=${oppData.id}`}
               state={{ ...oppData }}
               className="au-btn"
             >
@@ -151,6 +144,7 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
           <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>
         </section>
       </>
+    )}
     </DefaultLayout>
   );
 };

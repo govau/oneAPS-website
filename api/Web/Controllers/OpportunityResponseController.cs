@@ -6,6 +6,11 @@ using Dta.OneAps.Api.Shared;
 using Dta.OneAps.Api.Business.Models;
 using Dta.OneAps.Api.Web.Utils;
 using System.Threading.Tasks;
+using System;
+using System.IO;
+using System.Net.Http.Headers;
+using System.Collections.Generic;
+using System.Text.Json;
 
 namespace Dta.OneAps.Api.Web.Controllers {
     [Authorize]
@@ -19,22 +24,24 @@ namespace Dta.OneAps.Api.Web.Controllers {
             _opportunityResponseBusiness = opportunityResponseBusiness;
             _authorizationUtil = authorizationUtil;
         }
-        // [HttpPost("fileupload")]
-        // public async Task<IHttpActionResult> Upload() {
-        //     if (!Request.Content.IsMimeMultipartContent()) {
-        //         throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
-        //     }
-
-        //     var provider = new MultipartMemoryStreamProvider();
-        //     await Request.Content.ReadAsMultipartAsync(provider);
-        //     foreach (var file in provider.Contents) {
-        //         var filename = file.Headers.ContentDisposition.FileName.Trim('\"');
-        //         var buffer = await file.ReadAsByteArrayAsync();
-        //         //Do whatever you want with filename and its binary data.
-        //     }
-
-        //     return Ok();
-        // }
+        
+        [HttpPost("fileupload"), DisableRequestSizeLimit]
+        public async Task<IActionResult> Upload([FromQuery] int opportunityId) {
+            var user = await _authorizationUtil.GetUser(User);
+            var processedFiles = new List<string>();
+            foreach (var file in Request.Form.Files) {
+                if (file.Length > 0) {
+                    using (var stream = new MemoryStream()) {
+                        await file.CopyToAsync(stream);
+                    }
+                    processedFiles.Add(file.FileName);
+                } else {
+                    return BadRequest();
+                } 
+            }
+            return Ok(processedFiles);
+            
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] OpportunityResponseSaveRequest model) {

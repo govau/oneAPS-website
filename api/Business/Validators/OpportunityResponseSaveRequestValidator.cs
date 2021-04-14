@@ -3,8 +3,8 @@ using Dta.OneAps.Api.Business.Models;
 using System.Collections.Generic;
 
 namespace Dta.OneAps.Api.Business.Validators {
-    public class OpportunityResponseModelValidator : AbstractValidator<OpportunityResponseSaveRequest> {
-        public OpportunityResponseModelValidator(ILookupBusiness lookupBusiness, IOpportunityBusiness opportunityBusiness, IOpportunityResponseBusiness opportunityResponseBusiness) {
+    public class OpportunityResponseSaveRequestValidator : AbstractValidator<OpportunityResponseSaveRequest> {
+        public OpportunityResponseSaveRequestValidator(ILookupBusiness lookupBusiness, IOpportunityBusiness opportunityBusiness, IOpportunityResponseBusiness opportunityResponseBusiness) {
             // RuleFor(u => u.Agency)
             //     .NotEmpty()
             //     .Must(e => lookupBusiness.Get("Agency", e) != null).WithMessage("{PropertyValue} is not a valid {PropertyName}.");

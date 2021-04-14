@@ -11,36 +11,13 @@ import PasswordField from "../fields/PasswordField";
 import SelectField from "../fields/SelectField";
 import TextField from "../fields/TextField";
 import { InitialValues, validationSchema } from "./schema";
+import { useLookupHook } from "hooks";
 
 const RegisterForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const [agency, setAgency] = useState<{
-    loaded: boolean;
-    data: { value: string; text: string }[];
-  }>({ loaded: false, data: [] });
-
-  useEffect(() => {
-    if (agency.loaded) {
-      return;
-    }
-    const loadAgency = async () => {
-      const result = await axios.get(`/api/lookup`, {
-        params: {
-          name: "agency",
-        },
-      });
-      const data = [{ text: "Please select an agency", value: null }].concat(
-        result.data
-      );
-      setAgency({
-        loaded: true,
-        data,
-      });
-    };
-    loadAgency();
-  }, []);
+  const agency = useLookupHook('agency');
 
   const handleRegisterUser = async (formData: IRegisterType) => {
     setSaving(true);

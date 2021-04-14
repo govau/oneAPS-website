@@ -9,6 +9,7 @@
     <ProjectReference Include="..\Business.Impl\Dta.OneAps.Api.Business.Impl.csproj" />
     <ProjectReference Include="..\Services.Sql\Dta.OneAps.Api.Services.Sql.csproj" />
     <ProjectReference Include="..\Services.Static\Dta.OneAps.Api.Services.Static.csproj" />
+    <ProjectReference Include="..\Services.S3\Dta.OneAps.Api.Services.S3.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />

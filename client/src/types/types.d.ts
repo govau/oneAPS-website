@@ -32,7 +32,7 @@ interface SelectOptionType {
 
 export interface IRegisterType {
   name: string;
-  email: string;
+  emailAddress: string;
   password: string;
   agency: string;
   mobile: string;
@@ -49,7 +49,7 @@ export interface IApiFormError {
 }
 
 export interface IOpportunityType {
-  id: string;
+  id: number;
   jobTitle: string;
   jobDescription: string;
   whatYoullGain: string;
@@ -69,9 +69,9 @@ export interface IOpportunityType {
 }
 
 export interface IOpportunityResponseType {
+  id?: number;
   opportunityId: number;
-  resumeLink: string;
+  resumeLink?: string;
   userId: number;
-  agency: string;
-  whyPickMe: string;
+  whyPickMe?: string;
 }

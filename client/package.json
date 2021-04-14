@@ -60,6 +60,7 @@
   },
   "devDependencies": {
     "@types/yup": "^0.29.11",
+    "gatsby-plugin-tsconfig-paths": "^1.0.3",
     "prettier": "2.2.1"
   },
   "keywords": [

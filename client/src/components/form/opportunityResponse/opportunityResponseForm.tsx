@@ -4,7 +4,12 @@ import { Form, Formik } from "formik";
 import { Link, navigate } from "gatsby";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { UserContext } from "../../../context/UserContext";
-import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
+import { 
+  Aubtn,
+  AuFieldset,
+  AuFormGroup,
+  AuLabel
+} from "../../../types/auds";
 import {
   IApiFormError,
   IOpportunityResponseType,
@@ -68,24 +73,28 @@ const OpportunityResponseForm: React.FC = () => {
     setSaving(true);
 
     const { resumeLink, whyPickMe } = opportunityResponse;
-    const formData = new FormData();
-    const fileUpload = fileUploadRef.current
-    if (fileUpload) {
-      for (const file of fileUpload.files) {
-        formData.append('file', file, file.name);
-      }
-    }
-    formData.append('data', JSON.stringify({
-      opportunityId: oppData.id,
-      resumeLink,
-      userId: user.user.userId,
-      whyPickMe,
-    }));
+    // const formData = new FormData();
+    // const fileUpload = fileUploadRef.current
+    // if (fileUpload) {
+    //   for (const file of fileUpload.files) {
+    //     formData.append('file', file, file.name);
+    //   }
+    // }
+    // formData.append('data', JSON.stringify({
+    //   opportunityId: oppData.id,
+    //   resumeLink,
+    //   userId: user.user.userId,
+    //   whyPickMe,
+    // }));
     
     try {
       const result = await axios.post(
-        `/api/OpportunityResponse`,
-        formData, {
+        `/api/OpportunityResponse`,{
+          opportunityId: oppData.id,
+          resumeLink,
+          userId: user.user.userId,
+          whyPickMe,
+        }, {
           headers: {
             Authorization: `bearer ${user.token}`,
           },
@@ -178,33 +187,30 @@ const OpportunityResponseForm: React.FC = () => {
                     width="xl"
                     required
                   />
-
-                  <input type="file" ref={fileUploadRef} />
-                  {/* <input type="button" onClick={async () => {
-                    const fileUpload = fileUploadRef.current
-                    if (fileUpload) {
-                      const formData = new FormData();
-                      for (const file of fileUpload.files) {
-                        // const file = fileUpload.files[0];
-                        formData.append('file', file, file.name);
-                      }
-                      formData.append('userId', 2);
-                      // var xhr = new XMLHttpRequest();                 
-                      // var file = document.getElementById('myfile').files[0];
-                      // xhr.open("POST", "api/myfileupload");
-                      // xhr.setRequestHeader("filename", file.name);
-                      // xhr.send(file);
-                      await axios.post('/api/OpportunityResponse/fileupload', formData, {
-                        headers: {
-                          Authorization: `bearer ${user.token}`,
-                          // "filename": file.name
+                  <AuFormGroup>
+                    <AuLabel htmlFor="resume" text="Resume (optional)" />
+                    <input type="file" id="resume" ref={fileUploadRef} />
+                    <input type="button" className="au-btn" onClick={async () => {
+                      const fileUpload = fileUploadRef.current
+                      if (fileUpload) {
+                        const formData = new FormData();
+                        for (const file of fileUpload.files) {
+                          formData.append('file', file, file.name);
                         }
-                      });
-                    }
-                  }} value="Upload" /> */}
+                        await axios.post('/api/OpportunityResponse/fileupload', formData, {
+                          params: {
+                            opportunityId: oppData.id,
+                          },
+                          headers: {
+                            Authorization: `bearer ${user.token}`
+                          }
+                        });
+                      }
+                    }} value="Upload" />
+                  </AuFormGroup>
                   <AuFormGroup>
                     <Aubtn type="submit" onClick={submitForm} disabled={saving}>
-                      {saving ? "Submitting" : "Post"}
+                      {saving ? "Submitting" : "Apply"}
                     </Aubtn>
                   </AuFormGroup>
                 </AuFieldset>

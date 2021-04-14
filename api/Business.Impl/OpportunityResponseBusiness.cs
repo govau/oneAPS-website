@@ -33,11 +33,14 @@ namespace Dta.OneAps.Api.Business {
             _encryptionUtil = encryptionUtil;
         }
 
-        public async Task<OpportunityResponseSaveResponse> Create(OpportunityResponseSaveRequest model, UserResponse creatorUser) {
-            var toSave = _mapper.Map<OpportunityResponse>(model);
-            var user = await _userService.GetByIdAsync(creatorUser.Id);
-            var saved = await _opportunityResponseService.Create(toSave, user);
-            var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
+        public async Task<OpportunityResponseSaveResponse> Create(OpportunityResponseSaveRequest model, UserResponse userModel) {
+            var user = await _userService.GetByIdAsync(userModel.Id);
+            var existing = await _opportunityResponseService.Get(model.OpportunityId, user.Id);
+            if (existing == null) {
+                var toSave = _mapper.Map<OpportunityResponse>(model);
+                existing = await _opportunityResponseService.Create(toSave, user);
+            }
+            var result = _mapper.Map<OpportunityResponseSaveResponse>(existing);
             return result;
         }
 
@@ -49,8 +52,8 @@ namespace Dta.OneAps.Api.Business {
             var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
             return result;
         }
-        public async Task<IEnumerable<OpportunityResponsePublicResponse>> List(int opportunityId, int userId) => (
-            _mapper.Map<IEnumerable<OpportunityResponsePublicResponse>>(await _opportunityResponseService.List(opportunityId, userId))
+        public async Task<OpportunityResponsePrivateResponse> Get(int opportunityId, int userId) => (
+            _mapper.Map<OpportunityResponsePrivateResponse>(await _opportunityResponseService.Get(opportunityId, userId))
         );
         public async Task<IEnumerable<OpportunityResponsePublicResponse>> ListByOpportunityId(int opportunityId) => (
             _mapper.Map<IEnumerable<OpportunityResponsePublicResponse>>(await _opportunityResponseService.ListByOpportunityId(opportunityId))

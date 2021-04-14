@@ -1,10 +1,10 @@
 import axios from "axios";
-import { IOpportunityResponseType } from 'types';
+import { useContext } from 'react';
+import { IOpportunityResponseType } from '../types';
 
-
-export const upsertOpportunityResponse = async (data: IOpportunityResponseType, token: string) => {
+export const createOpportunityResponse = async (toSave: IOpportunityResponseType, token: string) => {
   const result = await axios.post(`/api/OpportunityResponse`,
-  data, {
+  toSave, {
     headers: {
       Authorization: `bearer ${token}`,
     }
@@ -19,15 +19,5 @@ export const loadOpportunityResponse = async (id: number, token: string) => {
     }
   });
   const data = result.data as IOpportunityResponseType;
-  return data;
-}
-
-export const loadOpportunityResponses = async (token: string) => {
-  const result = await axios.get(`/api/OpportunityResponse`, {
-    headers: {
-      Authorization: `bearer ${token}`,
-    }
-  });
-  const data = result.data as IOpportunityResponseType[];
   return data;
 }

@@ -43,11 +43,24 @@ namespace Dta.OneAps.Api.Web.Controllers {
             
         }
 
+        // [HttpPost]
+        // public async Task<IActionResult> Upsert([FromBody] OpportunityResponseSaveRequest model) {
+        //     var user = await _authorizationUtil.GetUser(User);
+        //     var created = await _opportunityResponseBusiness.Upsert(model, user);
+        //     return Ok(created);
+        // }
+
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] OpportunityResponseSaveRequest model) {
+        public async Task<IActionResult> Create([FromBody] OpportunityResponseSaveRequest request) {
             var user = await _authorizationUtil.GetUser(User);
-            var created = await _opportunityResponseBusiness.Create(model, user);
-            return Ok(created);
+            
+            var newOpportunityResponse = new OpportunityResponseSaveRequest() {
+                OpportunityId = request.OpportunityId,
+                UserId = user.Id
+            };
+            var opportunityResponse = await _opportunityResponseBusiness.Create(newOpportunityResponse, user);
+
+            return Ok(opportunityResponse);
         }
 
         [HttpPut("{id}")]
@@ -57,17 +70,22 @@ namespace Dta.OneAps.Api.Web.Controllers {
             return Ok(updated);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> ListByOpportunityId(int opportunityId) => Ok(await _opportunityResponseBusiness.ListByOpportunityId(opportunityId));
+        // [HttpGet]
+        // public async Task<IActionResult> ListByOpportunityId(int opportunityId) => Ok(await _opportunityResponseBusiness.ListByOpportunityId(opportunityId));
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id) {
-            var opportunity = await _opportunityResponseBusiness.Get(id);
-            if (opportunity == null) {
-                return NotFound();
-            }
+        // [HttpGet("{id}")]
+        // public async Task<IActionResult> Get(int id) {
+        //     var user = await _authorizationUtil.GetUser(User);
+        //     var opportunityResponse = await _opportunityResponseBusiness.Get(id);
+        //     if (user.Id != opportunityResponse.userId) {
+        //         return Unauthorized();
+        //     }
 
-            return Ok(opportunity);
-        }
+        //     if (opportunityResponse == null) {
+        //         return NotFound();
+        //     }
+
+        //     return Ok(opportunityResponse);
+        // }
     }
 }

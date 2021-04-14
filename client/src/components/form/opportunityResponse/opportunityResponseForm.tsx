@@ -16,7 +16,7 @@ import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./opportunityResponseSchema";
-import { useUpsertOpportunityResponseHook, useOpportunityHook } from '../../../hooks';
+import { useCreateOpportunityResponseHook, useOpportunityHook } from '../../../hooks';
 import { IOpportunityResponseType } from "../../../types";
 
 const OpportunityResponseForm: React.FC = () => {
@@ -26,16 +26,27 @@ const OpportunityResponseForm: React.FC = () => {
   const fileUploadRef = useRef();
   const location = useLocation();
 
-  const upsertOpportunityResponse = useUpsertOpportunityResponseHook();
+  const createOpportunityResponse = useCreateOpportunityResponseHook();
   const params = new URLSearchParams(location.search);
   const opportunityId = parseInt(params.get('opportunityId'), 10);
   const opportunity = useOpportunityHook(opportunityId);
+  // const opportunityResponse = useLoadOpportunityResponseHook(opportunityId);
+
+  useEffect(() => {
+    const load = async () => {
+      var result = await createOpportunityResponse.saveFn({
+        opportunityId: opportunityId,
+        userId: user.user.userId,
+      });
+    };
+    load();
+  }, []);
 
   const handlePostOpporunity = async (opportunityResponse: IOpportunityResponseType) => {
     setSaving(true);
 
     const { resumeLink, whyPickMe } = opportunityResponse;
-    var result = await upsertOpportunityResponse.saveFn({
+    var result = await createOpportunityResponse.saveFn({
       opportunityId: opportunity.id,
       resumeLink,
       userId: user.user.userId,
@@ -53,11 +64,11 @@ const OpportunityResponseForm: React.FC = () => {
     <>
       {opportunity && user.token ? (
         <>
-          {upsertOpportunityResponse.errors && upsertOpportunityResponse.errors.length > 0 && (
+          {createOpportunityResponse.errors && createOpportunityResponse.errors.length > 0 && (
             <PageAlert type="error" className="max-30">
               <>
                 <h2>There was an error</h2>
-                {formatApiError(upsertOpportunityResponse.errors)}
+                {formatApiError(createOpportunityResponse.errors)}
               </>
             </PageAlert>
           )}

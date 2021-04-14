@@ -7,7 +7,7 @@ namespace Dta.OneAps.Api.Services {
         Task<OpportunityResponse> Create(OpportunityResponse opportunityResponse, User creatorUser);
         Task<OpportunityResponse> Update(OpportunityResponse opportunityResponse, User modiferUser);
         Task<IEnumerable<OpportunityResponse>> ListByOpportunityId(int opportunityId);
-        Task<IEnumerable<OpportunityResponse>> List(int opportunityId, int userId);
+        Task<OpportunityResponse> Get(int opportunityId, int userId);
         Task<OpportunityResponse> GetById(int id);
     }
 }

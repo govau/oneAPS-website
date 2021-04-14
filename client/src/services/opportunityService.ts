@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IOpportunityType } from 'types';
+import { IOpportunityType } from '../types';
 
 
 export const loadOpportunity = async (opportunityId: number) => {

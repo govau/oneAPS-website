@@ -1,10 +1,10 @@
 import { useContext, useState, useEffect } from 'react';
-import { upsertOpportunityResponse } from '../services';
+import { createOpportunityResponse, loadOpportunityResponse } from '../services';
 import { IOpportunityResponseType, IApiFormError } from '../types';
 import { UserContext } from '../context';
 
 
-export const useUpsertOpportunityResponseHook = () => {
+export const useCreateOpportunityResponseHook = () => {
   const [data, setData] = useState<IOpportunityResponseType>();
   const [errors, setErrors] = useState<IApiFormError[]>();
   const user = useContext(UserContext);
@@ -12,7 +12,7 @@ export const useUpsertOpportunityResponseHook = () => {
     toSave.userId = user.user.userId;
     let errors: IApiFormError[] = [];
     try {
-      const result = await upsertOpportunityResponse(toSave, user.token);
+      const result = await createOpportunityResponse(toSave, user.token);
       setData(result);
       return true;
     } catch (e) {
@@ -31,4 +31,18 @@ export const useUpsertOpportunityResponseHook = () => {
     }
   };
   return {saveFn: save, updatedData: data, errors};
+};
+
+export const useLoadOpportunityResponseHook = (id: number) => {
+  const [data, setData] = useState<IOpportunityResponseType>();
+  const user = useContext(UserContext);
+
+  useEffect(() => {
+    const load = async () => {
+      const result = await loadOpportunityResponse(id, user.token);
+      setData(result);
+    };
+    load();
+  }, []);
+  return data;
 };

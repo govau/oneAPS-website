@@ -30,11 +30,11 @@ namespace Dta.OneAps.Api.Services.Sql {
             return newObj;
         }
 
-        public async Task<IEnumerable<OpportunityResponse>> List(int opportunityId, int userId) => (
+        public async Task<OpportunityResponse> Get(int opportunityId, int userId) => (
             await _context.OpportunityResponse
                 .Where(or => or.OpportunityId == opportunityId)
                 .Where(or => or.UserId == userId)
-                .ToListAsync()
+                .SingleOrDefaultAsync()
         );
         public async Task<IEnumerable<OpportunityResponse>> ListByOpportunityId(int opportunityId) => (
             await _context.OpportunityResponse.Where(or => or.OpportunityId == opportunityId).ToListAsync()

@@ -51,7 +51,7 @@ namespace Dta.OneAps.Api.Web {
                 var name = Environment.GetEnvironmentVariable("DB_NAME");
                 var username = Environment.GetEnvironmentVariable("MASTER_USERNAME");
                 var password = Environment.GetEnvironmentVariable("MASTER_PASSWORD");
-                connectionString = $"Host={host};Port={port};Database={name};Username={username};Password={password}";
+                connectionString = $"Host=\"{host}\";Port=\"{port}\";Database=\"{name}\";Username=\"{username}\";Password=\"{password}\"";
             } else {
                 connectionString = appSettings.OneApsConnectionString;
             }

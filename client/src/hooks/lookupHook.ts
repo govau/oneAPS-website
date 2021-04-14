@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { loadLookup, lookupType } from 'services';
+import { loadLookup, lookupType } from '../services';
 
 export const useLookupHook = (name: lookupType) => {
   const [lookupData, setLookupData] = useState<{

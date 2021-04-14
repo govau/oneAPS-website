@@ -11,7 +11,7 @@ import PasswordField from "../fields/PasswordField";
 import SelectField from "../fields/SelectField";
 import TextField from "../fields/TextField";
 import { InitialValues, validationSchema } from "./schema";
-import { useLookupHook } from "hooks";
+import { useLookupHook } from "../../../hooks";
 
 const RegisterForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);

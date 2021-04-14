@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { loadOpportunity, loadOpportunities } from 'services';
-import { IOpportunityType } from 'types';
+import { loadOpportunity, loadOpportunities } from '../services';
+import { IOpportunityType } from '../types';
 
 export const useOpportunityHook = (id: number) => {
   const [data, setData] = useState<IOpportunityType>();

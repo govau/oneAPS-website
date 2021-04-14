@@ -16,8 +16,8 @@ import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./opportunityResponseSchema";
-import { useUpsertOpportunityResponseHook, useOpportunityHook } from 'hooks';
-import { IOpportunityResponseType } from "types";
+import { useUpsertOpportunityResponseHook, useOpportunityHook } from '../../../hooks';
+import { IOpportunityResponseType } from "../../../types";
 
 const OpportunityResponseForm: React.FC = () => {
   const [saving, setSaving] = useState<boolean>(false);

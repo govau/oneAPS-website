@@ -2,8 +2,8 @@ import { Link } from "gatsby";
 import * as React from "react";
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
-import { PageContext } from "types";
-import { useOpportunitiesHook } from 'hooks';
+import { PageContext } from "../types";
+import { useOpportunitiesHook } from '../hooks';
 
 
 const contentOrNA = (c) => {

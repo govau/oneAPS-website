@@ -59,6 +59,7 @@ module.exports = {
     //   },
     // },
     "gatsby-transformer-remark",
+    //'gatsby-plugin-tsconfig-paths',
     {
       resolve: `gatsby-plugin-typescript`,
       options: {
@@ -67,6 +68,5 @@ module.exports = {
         allExtensions: true, // defaults to false
       },
     },
-    'gatsby-plugin-tsconfig-paths',
   ],
 };

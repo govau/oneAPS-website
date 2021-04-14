@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
-import { upsertOpportunityResponse } from 'services';
-import { IOpportunityResponseType, IApiFormError } from 'types';
-import { UserContext } from 'context';
+import { upsertOpportunityResponse } from '../services';
+import { IOpportunityResponseType, IApiFormError } from '../types';
+import { UserContext } from '../context';
 
 
 export const useUpsertOpportunityResponseHook = () => {

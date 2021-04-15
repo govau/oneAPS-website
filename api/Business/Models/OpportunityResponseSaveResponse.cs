@@ -16,6 +16,8 @@ namespace Dta.OneAps.Api.Business.Models {
         public string ResumeUpload { get; set; }
 
         public UserResponse User { get; set; }
+        
+        public OpportunityPublicResponse Opportunity { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime? WithdrawnAt { get; set; }

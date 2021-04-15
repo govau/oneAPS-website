@@ -26,15 +26,13 @@ const OpportunityResponseForm: React.FC = () => {
   const fileUploadRef = useRef();
   const location = useLocation();
 
-  const createOpportunityResponse = useCreateOpportunityResponseHook();
+  const {saveFn, updatedData, errors} = useCreateOpportunityResponseHook();
   const params = new URLSearchParams(location.search);
   const opportunityId = parseInt(params.get('opportunityId'), 10);
-  const opportunity = useOpportunityHook(opportunityId);
-  // const opportunityResponse = useLoadOpportunityResponseHook(opportunityId);
 
   useEffect(() => {
     const load = async () => {
-      var result = await createOpportunityResponse.saveFn({
+      var result = await saveFn({
         opportunityId: opportunityId,
         userId: user.user.userId,
       });
@@ -46,8 +44,8 @@ const OpportunityResponseForm: React.FC = () => {
     setSaving(true);
 
     const { resumeLink, whyPickMe } = opportunityResponse;
-    var result = await createOpportunityResponse.saveFn({
-      opportunityId: opportunity.id,
+    var result = await saveFn({
+      opportunityId: updatedData.opportunity.id,
       resumeLink,
       userId: user.user.userId,
       whyPickMe,
@@ -62,13 +60,13 @@ const OpportunityResponseForm: React.FC = () => {
 
   return (
     <>
-      {opportunity && user.token ? (
+      {updatedData && user.token ? (
         <>
-          {createOpportunityResponse.errors && createOpportunityResponse.errors.length > 0 && (
+          {errors && errors.length > 0 && (
             <PageAlert type="error" className="max-30">
               <>
                 <h2>There was an error</h2>
-                {formatApiError(createOpportunityResponse.errors)}
+                {formatApiError(errors)}
               </>
             </PageAlert>
           )}
@@ -106,11 +104,15 @@ const OpportunityResponseForm: React.FC = () => {
                 )}
 
                 <AuFieldset className="mt-2 mb-0">
-                  <div>Opportunity</div>
-                  <br />
                   <div>
-                    <h3>{opportunity.jobTitle}</h3>
-                    {opportunity.jobDescription}
+                    <h3>Opportunity details</h3>
+                    <div>Job title: {updatedData.opportunity.jobTitle}</div>
+                    <div>Description: {updatedData.opportunity.jobDescription}</div>
+                  </div>
+                  <div>
+                    <h3>My details</h3>
+                    <div>Name: {updatedData.user.name}</div>
+                    <div>Email: {updatedData.user.emailAddress}</div>                    
                   </div>
                   <TextField
                     id="whyPickMe"
@@ -132,7 +134,7 @@ const OpportunityResponseForm: React.FC = () => {
                     <AuLabel htmlFor="resume" text="Resume (optional)" />
                     <input type="file" id="resume" ref={fileUploadRef} />
                     <input type="button" className="au-btn" onClick={async () => {
-                      const fileUpload = fileUploadRef.current
+                      const fileUpload = fileUploadRef.current;
                       if (fileUpload) {
                         const formData = new FormData();
                         for (const file of fileUpload.files) {
@@ -140,7 +142,7 @@ const OpportunityResponseForm: React.FC = () => {
                         }
                         await axios.post('/api/OpportunityResponse/fileupload', formData, {
                           params: {
-                            opportunityId: opportunity.id,
+                            opportunityId: updatedData.opportunity.id,
                           },
                           headers: {
                             Authorization: `bearer ${user.token}`

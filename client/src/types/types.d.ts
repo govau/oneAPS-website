@@ -74,4 +74,13 @@ export interface IOpportunityResponseType {
   resumeLink?: string;
   userId: number;
   whyPickMe?: string;
+  opportunity?: IOpportunityType; 
+  user?: IUserType;
+}
+
+export interface IUserType {
+  id?: number;
+  name: number;
+  emailAddress: string;
+  userId: number;
 }

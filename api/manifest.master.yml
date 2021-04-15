@@ -8,3 +8,4 @@ routes:
 services:
 - ups-oneaps-master-api
 - oneaps-db-dev
+- oneaps-s3-master

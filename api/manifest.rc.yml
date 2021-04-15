@@ -8,3 +8,4 @@ routes:
 services:
 - ups-oneaps-rc-api
 - oneaps-db-rc
+- oneaps-s3-rc

@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { emailValidation, passwordValidation } from "../../../util/yup";
+import { emailValidation } from "../../../util/yup";
 
 export const initialValues = {
   email: "",
@@ -8,5 +8,5 @@ export const initialValues = {
 
 export const validationSchema = yup.object().shape({
   email: emailValidation,
-  password: passwordValidation,
+  password: yup.string().required(),
 });

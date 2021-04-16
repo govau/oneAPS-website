@@ -22,7 +22,7 @@ const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
   const [isError, setIsError] = useState<boolean>(false);
   const user = useContext(UserContext);
 
-  const HandleLoginUser = async (formData: ILoginType) => {
+  const handleLoginUser = async (formData: ILoginType) => {
     setSaving(true);
     setErrorList([]);
 
@@ -69,7 +69,7 @@ const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
-          HandleLoginUser(values);
+          handleLoginUser(values);
         }}
       >
         {({ errors, handleSubmit, submitForm }) => (

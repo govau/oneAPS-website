@@ -13,10 +13,11 @@ namespace Dta.OneAps.Api.Business.Mapping {
             CreateMap<OpportunityResponse, OpportunityResponseSaveResponse>();
             CreateMap<OpportunityResponse, OpportunityResponsePublicResponse>();
             CreateMap<OpportunityResponse, OpportunityResponsePrivateResponse>();
-
+            
             CreateMap<UserCreateRequest, User>();
             CreateMap<OpportunitySaveRequest, Opportunity>();
             CreateMap<OpportunityResponseSaveRequest, OpportunityResponse>();
+            CreateMap<OpportunityResponseApplyRequest, OpportunityResponse>();
         }
     }
 }

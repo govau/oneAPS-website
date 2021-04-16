@@ -1,62 +1,51 @@
 import { useContext, useState, useEffect } from 'react';
-import { applyOpportunityResponse, createOpportunityResponse, loadOpportunityResponse } from '../services';
+import { 
+  applyOpportunityResponse,
+  createOpportunityResponse,
+  updateOpportunityResponse,
+  loadOpportunityResponse } from '../services';
 import { IOpportunityResponseType, IApiFormError } from '../types';
 import { UserContext } from '../context';
 
-
-export const useCreateOpportunityResponseHook = () => {
+const processErrors = (e) => {
+  let errors = [];
+  if (e.response.status === 400) {
+    for (const property in e.response.data.errors) {
+      for (const message of e.response.data.errors[property]) {
+        errors.push({
+          message,
+          path: property,
+        });
+      }
+    }
+    return errors;
+  }
+}
+export const useOpportunityResponseOperationsHook = () => {
   const [data, setData] = useState<IOpportunityResponseType>();
   const [errors, setErrors] = useState<IApiFormError[]>();
   const user = useContext(UserContext);
-  const save = async (toSave: IOpportunityResponseType) => {
+  const callService = async(fn, toSave: IOpportunityResponseType) => {
     toSave.userId = user.user.userId;
-    let errors: IApiFormError[] = [];
     try {
-      const result = await createOpportunityResponse(toSave, user.token);
+      const result = await fn(toSave, user.token);
       setData(result);
       return true;
     } catch (e) {
-      if (e.response.status === 400) {
-        for (const property in e.response.data.errors) {
-          for (const message of e.response.data.errors[property]) {
-            errors.push({
-              message,
-              path: property,
-            });
-          }
-        }
-        setErrors(errors);
-      }
+      setErrors(processErrors(e));
       return false;
     }
+  }
+  const updateFn = async (toSave: IOpportunityResponseType) => {
+    return await callService(updateOpportunityResponse, toSave);
   };
-  return {saveFn: save, updatedData: data, errors};
-};
-
-export const useApplyOpportunityResponseHook = () => {
-  const [errors, setErrors] = useState<IApiFormError[]>();
-  const user = useContext(UserContext);
-  const apply = async (id: number) => {
-    let errors: IApiFormError[] = [];
-    try {
-      await applyOpportunityResponse(id, user.token);
-      return true;
-    } catch (e) {
-      if (e.response.status === 400) {
-        for (const property in e.response.data.errors) {
-          for (const message of e.response.data.errors[property]) {
-            errors.push({
-              message,
-              path: property,
-            });
-          }
-        }
-        setErrors(errors);
-      }
-      return false;
-    }
+  const createFn = async (toSave: IOpportunityResponseType) => {
+    return await callService(createOpportunityResponse, toSave);
   };
-  return {applyFn: apply, errors};
+  const applyFn = async (toSave: IOpportunityResponseType) => {
+    return await callService(applyOpportunityResponse, toSave);
+  };
+  return {applyFn, createFn, updateFn, updatedData: data, errors};
 };
 
 export const useLoadOpportunityResponseHook = (id: number) => {

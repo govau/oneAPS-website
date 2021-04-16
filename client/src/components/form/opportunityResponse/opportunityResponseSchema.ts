@@ -6,6 +6,7 @@ export const initialValues = {
   userId: null,
   agency: "",
   whyPickMe: "",
+  isApply: false
 };
 
 export const validationSchema = yup.object().shape({

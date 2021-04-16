@@ -16,7 +16,7 @@ import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./opportunityResponseSchema";
-import { useCreateOpportunityResponseHook, useApplyOpportunityResponseHook } from '../../../hooks';
+import { useOpportunityResponseOperationsHook } from '../../../hooks';
 import { IApiFormError, IOpportunityResponseType } from "../../../types";
 
 const OpportunityResponseForm: React.FC = () => {
@@ -26,25 +26,25 @@ const OpportunityResponseForm: React.FC = () => {
   const fileUploadRef = useRef();
   const location = useLocation();
 
-  const {saveFn, updatedData, errors: createErrors} = useCreateOpportunityResponseHook();
-  const {applyFn, errors: applyErrors  } = useApplyOpportunityResponseHook();
+  const {createFn, updateFn, applyFn, updatedData, errors} = useOpportunityResponseOperationsHook();
   const params = new URLSearchParams(location.search);
   const opportunityId = parseInt(params.get('opportunityId'), 10);
 
   useEffect(() => {
     const load = async () => {
-      var result = await saveFn({
+      var result = await createFn({
         opportunityId: opportunityId,
         userId: user.user.userId,
       });
+      console.log(updatedData)      
     };
     load();
   }, []);
 
-  const applyForOpportunity = async () => {
+  const applyForOpportunity = async (opportunityResponse: IOpportunityResponseType) => {
     setSaving(true);
     
-    var result = await applyFn(updatedData.id);
+    var result = await applyFn(updatedData);
     if (result) {
       setSaving(false);
       navigate('/find-opportunities');
@@ -57,21 +57,20 @@ const OpportunityResponseForm: React.FC = () => {
     setSaving(true);
 
     const { resumeLink, whyPickMe } = opportunityResponse;
-    var result = await saveFn({
-      opportunityId: updatedData.opportunity.id,
+    var result = await updateFn({
+      id: updatedData.id,
+      opportunityId: updatedData.opportunityId,
       resumeLink,
       userId: user.user.userId,
       whyPickMe,
     });
     if (result) {
       setSaving(false);
-      navigate('/find-opportunities');
     } else {
       setSaving(false);
     }
   };
 
-  const errors: IApiFormError[] = (createErrors || []).concat(applyErrors || []);
   return (
     <>
       {updatedData && user.token ? (
@@ -85,20 +84,29 @@ const OpportunityResponseForm: React.FC = () => {
             </PageAlert>
           )}
           <Formik
-            initialValues={initialValues}
+            initialValues={{
+              initialValues,
+              ...updatedData
+            }}
             validationSchema={validationSchema}
             onSubmit={(values, actions) => {
-              saveChanges(values);
+              if (values.isApply) {
+                applyForOpportunity(values);
+              } else {
+                saveChanges(values);
+              }
             }}
           >
-            {({ errors, handleSubmit, submitForm }) => (
+            {({ errors, handleSubmit, submitForm, setFieldValue }) => (
               <Form
                 method="post"
                 onSubmit={(e) => {
                   handleSubmit(e);
-                  if (Object.keys(errors).length < 1) return;
+                  if (Object.keys(errors).length < 1) {
+                    return;
+                  }
                   setIsError(true);
-                  document.title = "Errors | Sign up form";
+                  document.title = "Errors | Apply for Opportunity";
                   const timeout = setTimeout(() => {
                     const errorSum = document.getElementById(
                       "error-heading"
@@ -118,16 +126,16 @@ const OpportunityResponseForm: React.FC = () => {
                 )}
 
                 <AuFieldset className="mt-2 mb-0">
-                  <div>
+                  <AuFormGroup>
                     <h3>Opportunity details</h3>
                     <div>Job title: {updatedData.opportunity.jobTitle}</div>
                     <div>Description: {updatedData.opportunity.jobDescription}</div>
-                  </div>
-                  <div>
+                  </AuFormGroup>
+                  <AuFormGroup>
                     <h3>My details</h3>
                     <div>Name: {updatedData.user.name}</div>
                     <div>Email: {updatedData.user.emailAddress}</div>                    
-                  </div>
+                  </AuFormGroup>
                   <TextField
                     id="whyPickMe"
                     label="Why me? (Your pitch)"
@@ -135,6 +143,7 @@ const OpportunityResponseForm: React.FC = () => {
                     required
                     as="textarea"
                     width="xl"
+                    defaultValue={updatedData.whyPickMe}
                   />
                   <TextField
                     id="resumeLink"
@@ -143,7 +152,9 @@ const OpportunityResponseForm: React.FC = () => {
                     type="text"
                     width="xl"
                     required
+                    defaultValue={updatedData.resumeLink}
                   />
+                  <input type="hidden" id="isApply" value="false" />
                   <AuFormGroup>
                     <AuLabel htmlFor="resume" text="Resume (optional)" />
                     <input type="file" id="resume" ref={fileUploadRef} />
@@ -166,10 +177,15 @@ const OpportunityResponseForm: React.FC = () => {
                     }} value="Upload" />
                   </AuFormGroup>
                   <AuFormGroup>
-                    <Aubtn type="submit" onClick={submitForm} disabled={saving}>
+                    <Aubtn type="submit" onClick={() => {
+                        setFieldValue('isApply', false);
+                      }
+                    } disabled={saving}>
                       {saving ? "Saving" : "Save"}
                     </Aubtn>
-                    <Aubtn type="submit" onClick={applyForOpportunity} disabled={saving}>
+                    <Aubtn type="submit" onClick={() => {
+                        setFieldValue('isApply', true);}
+                    } disabled={saving}>
                       {saving ? "Applying" : "Apply"}
                     </Aubtn>
                   </AuFormGroup>

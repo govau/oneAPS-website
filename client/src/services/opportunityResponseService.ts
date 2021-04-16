@@ -13,7 +13,7 @@ export const createOpportunityResponse = async (toSave: IOpportunityResponseType
 }
 
 export const updateOpportunityResponse = async (toSave: IOpportunityResponseType, token: string) => {
-  const result = await axios.post(`/api/OpportunityResponse/${toSave.id}`,
+  const result = await axios.put(`/api/OpportunityResponse/${toSave.id}`,
   toSave, {
     headers: {
       Authorization: `bearer ${token}`,
@@ -22,9 +22,9 @@ export const updateOpportunityResponse = async (toSave: IOpportunityResponseType
   return result.data as IOpportunityResponseType;
 }
 
-export const applyOpportunityResponse = async (id: number, token: string) => {
-  const result = await axios.put(`/api/OpportunityResponse/${id}/apply`,
-  null, {
+export const applyOpportunityResponse = async (toSave: IOpportunityResponseType, token: string) => {
+  const result = await axios.put(`/api/OpportunityResponse/${toSave.id}/apply`,
+  toSave, {
     headers: {
       Authorization: `bearer ${token}`,
     }

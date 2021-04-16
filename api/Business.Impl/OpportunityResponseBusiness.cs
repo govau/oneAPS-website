@@ -27,7 +27,8 @@ namespace Dta.OneAps.Api.Business {
             var existing = await _opportunityResponseService.Get(model.OpportunityId, user.Id);
             if (existing == null) {
                 var toSave = _mapper.Map<OpportunityResponse>(model);
-                existing = await _opportunityResponseService.Create(toSave, user);
+                var saved = await _opportunityResponseService.Create(toSave, user);
+                existing = await _opportunityResponseService.Get(saved.OpportunityId, user.Id);
             }
 
             var result = _mapper.Map<OpportunityResponseSaveResponse>(existing);
@@ -43,8 +44,8 @@ namespace Dta.OneAps.Api.Business {
             return result;
         }
 
-        public async Task<OpportunityResponseSaveResponse> Apply(int id, UserResponse userResponse) {
-            var existing = await _opportunityResponseService.GetById(id);
+        public async Task<OpportunityResponseSaveResponse> Apply(OpportunityResponseApplyRequest model, UserResponse userResponse) {
+            var existing = await _opportunityResponseService.GetById(model.Id);
             var user = await _userService.GetByIdAsync(userResponse.Id);
             existing.SubmittedAt = DateTime.UtcNow;
             var saved = await _opportunityResponseService.Update(existing, user);

@@ -66,14 +66,20 @@ namespace Dta.OneAps.Api.Web.Controllers {
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] OpportunityResponseSaveRequest model) {
             var user = await _authorizationUtil.GetUser(User);
+            if (user.Id != model.UserId) {
+                return Forbid();
+            }
             var updated = await _opportunityResponseBusiness.Update(model, user);
             return Ok(updated);
         }
 
         [HttpPut("{id}/apply")]
-        public async Task<IActionResult> Apply(int id) {
+        public async Task<IActionResult> Apply(int id, [FromBody] OpportunityResponseApplyRequest model) {
             var user = await _authorizationUtil.GetUser(User);
-            var updated = await _opportunityResponseBusiness.Apply(id, user);
+            if (user.Id != model.UserId) {
+                return Forbid();
+            }
+            var updated = await _opportunityResponseBusiness.Apply(model, user);
             return Ok(updated);
         }
 

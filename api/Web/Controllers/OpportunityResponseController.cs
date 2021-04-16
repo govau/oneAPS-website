@@ -70,6 +70,13 @@ namespace Dta.OneAps.Api.Web.Controllers {
             return Ok(updated);
         }
 
+        [HttpPut("{id}/apply")]
+        public async Task<IActionResult> Apply(int id) {
+            var user = await _authorizationUtil.GetUser(User);
+            var updated = await _opportunityResponseBusiness.Apply(id, user);
+            return Ok(updated);
+        }
+
         // [HttpGet]
         // public async Task<IActionResult> ListByOpportunityId(int opportunityId) => Ok(await _opportunityResponseBusiness.ListByOpportunityId(opportunityId));
 

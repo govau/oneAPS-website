@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Services\Dta.OneAps.Api.Services.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="GovAU.Notify" Version="2.7.0" />
+  </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+</Project>

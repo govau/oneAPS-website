@@ -24,10 +24,10 @@ namespace Dta.OneAps.Api.Services.Sql {
         }
 
         public async Task<OpportunityResponse> Update(OpportunityResponse opportunity, User modiferUser) {
-            var newObj = base.Update<OpportunityResponse>(opportunity, modiferUser);
-            newObj.UpdatedAt = DateTime.UtcNow;
+            var saved = base.Update<OpportunityResponse>(opportunity, modiferUser);
+            saved.UpdatedAt = DateTime.UtcNow;
             await base.CommitAsync();
-            return newObj;
+            return saved;
         }
 
         public async Task<OpportunityResponse> Get(int opportunityId, int userId) => (
@@ -44,6 +44,7 @@ namespace Dta.OneAps.Api.Services.Sql {
             await _context
                 .OpportunityResponse
                 .Include(x => x.User)
+                .Include(x => x.Opportunity)
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync()
         );

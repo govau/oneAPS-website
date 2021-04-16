@@ -16,8 +16,8 @@ import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./opportunityResponseSchema";
-import { useCreateOpportunityResponseHook, useOpportunityHook } from '../../../hooks';
-import { IOpportunityResponseType } from "../../../types";
+import { useCreateOpportunityResponseHook, useApplyOpportunityResponseHook } from '../../../hooks';
+import { IApiFormError, IOpportunityResponseType } from "../../../types";
 
 const OpportunityResponseForm: React.FC = () => {
   const [saving, setSaving] = useState<boolean>(false);
@@ -26,7 +26,8 @@ const OpportunityResponseForm: React.FC = () => {
   const fileUploadRef = useRef();
   const location = useLocation();
 
-  const {saveFn, updatedData, errors} = useCreateOpportunityResponseHook();
+  const {saveFn, updatedData, errors: createErrors} = useCreateOpportunityResponseHook();
+  const {applyFn, errors: applyErrors  } = useApplyOpportunityResponseHook();
   const params = new URLSearchParams(location.search);
   const opportunityId = parseInt(params.get('opportunityId'), 10);
 
@@ -40,7 +41,19 @@ const OpportunityResponseForm: React.FC = () => {
     load();
   }, []);
 
-  const handlePostOpporunity = async (opportunityResponse: IOpportunityResponseType) => {
+  const applyForOpportunity = async () => {
+    setSaving(true);
+    
+    var result = await applyFn(updatedData.id);
+    if (result) {
+      setSaving(false);
+      navigate('/find-opportunities');
+    } else {
+      setSaving(false);
+    }
+  };
+
+  const saveChanges = async (opportunityResponse: IOpportunityResponseType) => {
     setSaving(true);
 
     const { resumeLink, whyPickMe } = opportunityResponse;
@@ -58,6 +71,7 @@ const OpportunityResponseForm: React.FC = () => {
     }
   };
 
+  const errors: IApiFormError[] = (createErrors || []).concat(applyErrors || []);
   return (
     <>
       {updatedData && user.token ? (
@@ -74,7 +88,7 @@ const OpportunityResponseForm: React.FC = () => {
             initialValues={initialValues}
             validationSchema={validationSchema}
             onSubmit={(values, actions) => {
-              handlePostOpporunity(values);
+              saveChanges(values);
             }}
           >
             {({ errors, handleSubmit, submitForm }) => (
@@ -153,8 +167,13 @@ const OpportunityResponseForm: React.FC = () => {
                   </AuFormGroup>
                   <AuFormGroup>
                     <Aubtn type="submit" onClick={submitForm} disabled={saving}>
-                      {saving ? "Submitting" : "Apply"}
+                      {saving ? "Saving" : "Save"}
                     </Aubtn>
+                    <Aubtn type="submit" onClick={applyForOpportunity} disabled={saving}>
+                      {saving ? "Applying" : "Apply"}
+                    </Aubtn>
+                  </AuFormGroup>
+                  <AuFormGroup>
                   </AuFormGroup>
                 </AuFieldset>
               </Form>

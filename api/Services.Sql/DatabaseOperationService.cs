@@ -27,6 +27,14 @@ namespace Dta.OneAps.Api.Services.Sql {
             return result.Entity;
         }
 
+        public T Update<T>(T entity) where T : class {
+            if (entity is IAggregateRoot) {
+                throw new Exception("Use Update overload");
+            }
+            var result =  _context.Update<T>(entity);
+            return result.Entity;
+        }
+
         public T Update<T>(T entity, User modiferUser) where T : class {
             if (entity is IAggregateRoot) {
                 var aggregateRoot = entity as IAggregateRoot;

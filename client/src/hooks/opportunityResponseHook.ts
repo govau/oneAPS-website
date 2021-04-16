@@ -3,7 +3,10 @@ import {
   applyOpportunityResponse,
   createOpportunityResponse,
   updateOpportunityResponse,
-  loadOpportunityResponse } from '../services';
+  loadOpportunityResponse,
+  uploadFile,
+  downloadFile,
+ } from '../services';
 import { IOpportunityResponseType, IApiFormError } from '../types';
 import { UserContext } from '../context';
 
@@ -45,7 +48,20 @@ export const useOpportunityResponseOperationsHook = () => {
   const applyFn = async (toSave: IOpportunityResponseType) => {
     return await callService(applyOpportunityResponse, toSave);
   };
-  return {applyFn, createFn, updateFn, updatedData: data, errors};
+  const uploadFn = async (id: number, toSave: FormData) => {
+    try {
+      const result = await uploadFile(id, toSave, user.token);
+      setData(result);
+      return true;
+    } catch (e) {
+      setErrors(processErrors(e));
+      return false;
+    }
+  };
+  const downloadFileFn = async (id: number, filename: string) => {
+    return await downloadFile(id, filename, user.token);
+  };
+  return {applyFn, createFn, updateFn, uploadFn, downloadFileFn, updatedData: data, errors};
 };
 
 export const useLoadOpportunityResponseHook = (id: number) => {

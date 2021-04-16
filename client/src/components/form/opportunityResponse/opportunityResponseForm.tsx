@@ -26,7 +26,7 @@ const OpportunityResponseForm: React.FC = () => {
   const fileUploadRef = useRef();
   const location = useLocation();
 
-  const {createFn, updateFn, applyFn, updatedData, errors} = useOpportunityResponseOperationsHook();
+  const {createFn, updateFn, applyFn, uploadFn, downloadFileFn, updatedData, errors} = useOpportunityResponseOperationsHook();
   const params = new URLSearchParams(location.search);
   const opportunityId = parseInt(params.get('opportunityId'), 10);
 
@@ -42,18 +42,11 @@ const OpportunityResponseForm: React.FC = () => {
   }, []);
 
   const fileDownload = async () => {
-    var response = await axios({
-      url: `/api/opportunityresponse/${updatedData.id}/download?filename=Count_daily_R4_20201208.txt`, //your url
-      method: 'GET',
-      responseType: 'blob', // important
-      headers: {
-        Authorization: `bearer ${user.token}`,
-      }
-    });
-    const url = window.URL.createObjectURL(new Blob([response.data]));
+    var response = await downloadFileFn(updatedData.id, updatedData.resumeUpload);
+    const url = window.URL.createObjectURL(response);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'Count_daily_R4_20201208.txt'); //or any other extension
+    link.setAttribute('download', updatedData.resumeUpload);
     document.body.appendChild(link);
     link.click();
   }
@@ -174,10 +167,10 @@ const OpportunityResponseForm: React.FC = () => {
                   />
                   <input type="hidden" id="isApply" value="false" />
 
-                  <Aubtn type="button" onClick={() => {
+                  <Aubtn type="button" as="tertiary" onClick={() => {
                         fileDownload();
                     }} disabled={saving}>
-                      Download
+                      Download {updatedData.resumeUpload}
                     </Aubtn>
                   <AuFormGroup>
                     <AuLabel htmlFor="resume" text="Resume (optional)" />
@@ -189,11 +182,7 @@ const OpportunityResponseForm: React.FC = () => {
                         for (const file of fileUpload.files) {
                           formData.append('file', file, file.name);
                         }
-                        await axios.post(`/api/OpportunityResponse/${updatedData.id}/fileupload`, formData, {
-                          headers: {
-                            Authorization: `bearer ${user.token}`
-                          }
-                        });
+                        await uploadFn(updatedData.id, formData);
                       }
                     }} value="Upload" />
                   </AuFormGroup>

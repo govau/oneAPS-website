@@ -72,6 +72,7 @@ export interface IOpportunityResponseType {
   id?: number;
   opportunityId: number;
   resumeLink?: string;
+  resumeUpload?: string;
   userId: number;
   whyPickMe?: string;
   opportunity?: IOpportunityType; 

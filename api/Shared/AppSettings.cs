@@ -41,68 +41,55 @@ namespace Dta.OneAps.Api.Shared {
             }
         }
 
-        private string _databaseName;
-        public string DatabaseName {
+        private string _bucketName;
+        public string BucketName {
             get {
-                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("DB_NAME"))) {
-                    _databaseName = Environment.GetEnvironmentVariable("DB_NAME");
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("BUCKET_NAME"))) {
+                    _bucketName = Environment.GetEnvironmentVariable("BUCKET_NAME");
                 }
-                return _databaseName;
+                return _bucketName;
             }
             set {
-                _databaseName = value;
+                _bucketName = value;
             }
         }
 
-        private string _databaseHost;
-        public string DatabaseHost {
+        private string _s3AwsAccessKeyId;
+        public string S3AwsAccessKeyId {
             get {
-                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("ENDPOINT_ADDRESS"))) {
-                    _databaseHost = Environment.GetEnvironmentVariable("ENDPOINT_ADDRESS");
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("S3_AWS_ACCESS_KEY_ID"))) {
+                    _s3AwsAccessKeyId = Environment.GetEnvironmentVariable("S3_AWS_ACCESS_KEY_ID");
                 }
-                return _databaseHost;
+                return _s3AwsAccessKeyId;
             }
             set {
-                _databaseHost = value;
+                _s3AwsAccessKeyId = value;
             }
         }
 
-        private string _databasePassword;
-        public string DatabasePassword {
+        private string _s3AwsSecretAccessKey;
+        public string S3AwsSecretAccessKey {
             get {
-                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("MASTER_PASSWORD"))) {
-                    _databasePassword = Environment.GetEnvironmentVariable("MASTER_PASSWORD");
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("S3_AWS_SECRET_ACCESS_KEY"))) {
+                    _s3AwsSecretAccessKey = Environment.GetEnvironmentVariable("S3_AWS_SECRET_ACCESS_KEY");
                 }
-                return _databasePassword;
+                return _s3AwsSecretAccessKey;
             }
             set {
-                _databasePassword = value;
+                _s3AwsSecretAccessKey = value;
             }
         }
 
-        private string _databasePort;
-        public string DatabasePort {
+        private string _s3Region;
+        public string S3Region {
             get {
-                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("DB_PORT"))) {
-                    _databasePort = Environment.GetEnvironmentVariable("DB_PORT");
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("S3_REGION"))) {
+                    _s3Region = Environment.GetEnvironmentVariable("S3_REGION");
                 }
-                return _databasePort;
+                return _s3Region;
             }
             set {
-                _databasePort = value;
-            }
-        }
-
-        private string _databaseUsername;
-        public string DatabaseUsername {
-            get {
-                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("MASTER_USERNAME"))) {
-                    _databaseUsername = Environment.GetEnvironmentVariable("MASTER_USERNAME");
-                }
-                return _databaseUsername;
-            }
-            set {
-                _databaseUsername = value;
+                _s3Region = value;
             }
         }
     }

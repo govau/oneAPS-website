@@ -32,6 +32,12 @@ namespace Dta.OneAps.Api.Web {
                         }
                     }
                 }
+                foreach (JObject ups in vcapServices["s3"]) {
+                    var credentials = JObject.FromObject(ups["credentials"]);
+                    foreach (var credentialProps in credentials.Properties()) {
+                        Environment.SetEnvironmentVariable(credentialProps.Name, credentialProps.Values().SingleOrDefault().Value<string>());
+                    }
+                }
             }
             CreateHostBuilder(args).Build().Run();
         }

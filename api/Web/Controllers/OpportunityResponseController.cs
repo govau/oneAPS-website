@@ -19,28 +19,32 @@ namespace Dta.OneAps.Api.Web.Controllers {
     public class OpportunityResponseController : ControllerBase {
         private readonly IAuthorizationUtil _authorizationUtil;
         private readonly IOpportunityResponseBusiness _opportunityResponseBusiness;
+        private readonly IFileBusiness _fileBusiness;
 
-        public OpportunityResponseController(IOpportunityResponseBusiness opportunityResponseBusiness, IAuthorizationUtil authorizationUtil) {
+        public OpportunityResponseController(IOpportunityResponseBusiness opportunityResponseBusiness, IFileBusiness fileBusiness, IAuthorizationUtil authorizationUtil) {
             _opportunityResponseBusiness = opportunityResponseBusiness;
             _authorizationUtil = authorizationUtil;
+            _fileBusiness = fileBusiness;
         }
-        
-        [HttpPost("fileupload"), DisableRequestSizeLimit]
-        public async Task<IActionResult> Upload([FromQuery] int opportunityId) {
+
+        [HttpPost("{id}/fileupload"), DisableRequestSizeLimit]
+        public async Task<IActionResult> Upload(int id) {
             var user = await _authorizationUtil.GetUser(User);
-            var processedFiles = new List<string>();
             foreach (var file in Request.Form.Files) {
                 if (file.Length > 0) {
                     using (var stream = new MemoryStream()) {
                         await file.CopyToAsync(stream);
+                        try {
+                            return Ok(await _opportunityResponseBusiness.UploadFile(id, file.FileName, stream, user));
+                        } catch (UnauthorisedException) {
+                            return Forbid();
+                        } catch (NotFoundException) {
+                            return NotFound();
+                        }
                     }
-                    processedFiles.Add(file.FileName);
-                } else {
-                    return BadRequest();
-                } 
+                }
             }
-            return Ok(processedFiles);
-            
+            return BadRequest();
         }
 
         // [HttpPost]
@@ -53,7 +57,7 @@ namespace Dta.OneAps.Api.Web.Controllers {
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] OpportunityResponseSaveRequest request) {
             var user = await _authorizationUtil.GetUser(User);
-            
+
             var newOpportunityResponse = new OpportunityResponseSaveRequest() {
                 OpportunityId = request.OpportunityId,
                 UserId = user.Id
@@ -86,19 +90,20 @@ namespace Dta.OneAps.Api.Web.Controllers {
         // [HttpGet]
         // public async Task<IActionResult> ListByOpportunityId(int opportunityId) => Ok(await _opportunityResponseBusiness.ListByOpportunityId(opportunityId));
 
-        // [HttpGet("{id}")]
-        // public async Task<IActionResult> Get(int id) {
-        //     var user = await _authorizationUtil.GetUser(User);
-        //     var opportunityResponse = await _opportunityResponseBusiness.Get(id);
-        //     if (user.Id != opportunityResponse.userId) {
-        //         return Unauthorized();
-        //     }
-
-        //     if (opportunityResponse == null) {
-        //         return NotFound();
-        //     }
-
-        //     return Ok(opportunityResponse);
-        // }
+        [HttpGet("{id}/download")]
+        public async Task<IActionResult> Get(int id, [FromQuery] string filename) {
+            if (string.IsNullOrWhiteSpace(filename)) {
+                return NotFound();
+            }
+            var user = await _authorizationUtil.GetUser(User);
+            try {
+                var stream = await _opportunityResponseBusiness.DownloadFile(id, user);
+                return Ok(stream);
+            } catch (UnauthorisedException) {
+                return Forbid();
+            } catch (NotFoundException) {
+                return NotFound();
+            }
+        }
     }
 }

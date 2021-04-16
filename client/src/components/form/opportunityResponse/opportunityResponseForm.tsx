@@ -41,6 +41,23 @@ const OpportunityResponseForm: React.FC = () => {
     load();
   }, []);
 
+  const fileDownload = async () => {
+    var response = await axios({
+      url: `/api/opportunityresponse/${updatedData.id}/download?filename=Count_daily_R4_20201208.txt`, //your url
+      method: 'GET',
+      responseType: 'blob', // important
+      headers: {
+        Authorization: `bearer ${user.token}`,
+      }
+    });
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'Count_daily_R4_20201208.txt'); //or any other extension
+    document.body.appendChild(link);
+    link.click();
+  }
+
   const applyForOpportunity = async (opportunityResponse: IOpportunityResponseType) => {
     setSaving(true);
     
@@ -145,6 +162,7 @@ const OpportunityResponseForm: React.FC = () => {
                     width="xl"
                     defaultValue={updatedData.whyPickMe}
                   />
+                  
                   <TextField
                     id="resumeLink"
                     label="LinkedIn Profile URL"
@@ -155,6 +173,12 @@ const OpportunityResponseForm: React.FC = () => {
                     defaultValue={updatedData.resumeLink}
                   />
                   <input type="hidden" id="isApply" value="false" />
+
+                  <Aubtn type="button" onClick={() => {
+                        fileDownload();
+                    }} disabled={saving}>
+                      Download
+                    </Aubtn>
                   <AuFormGroup>
                     <AuLabel htmlFor="resume" text="Resume (optional)" />
                     <input type="file" id="resume" ref={fileUploadRef} />
@@ -165,10 +189,7 @@ const OpportunityResponseForm: React.FC = () => {
                         for (const file of fileUpload.files) {
                           formData.append('file', file, file.name);
                         }
-                        await axios.post('/api/OpportunityResponse/fileupload', formData, {
-                          params: {
-                            opportunityId: updatedData.opportunity.id,
-                          },
+                        await axios.post(`/api/OpportunityResponse/${updatedData.id}/fileupload`, formData, {
                           headers: {
                             Authorization: `bearer ${user.token}`
                           }

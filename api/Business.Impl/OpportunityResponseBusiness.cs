@@ -1,10 +1,12 @@
 using AutoMapper;
+using Dta.OneAps.Api.Business.Exceptions;
 using Dta.OneAps.Api.Business.Models;
 using Dta.OneAps.Api.Services;
 using Dta.OneAps.Api.Services.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Dta.OneAps.Api.Business {
     public class OpportunityResponseBusiness : IOpportunityResponseBusiness {
@@ -12,9 +14,11 @@ namespace Dta.OneAps.Api.Business {
         private readonly IOpportunityResponseService _opportunityResponseService;
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
-        private IKeyValueService _keyValueService;
+        private readonly IKeyValueService _keyValueService;
+        private readonly IFileService _fileService;
 
-        public OpportunityResponseBusiness(INotifyService notifyService, IKeyValueService keyValueService, IOpportunityResponseService opportunityResponseService, IUserService userService, IMapper mapper) {
+        public OpportunityResponseBusiness(IFileService fileService, INotifyService notifyService, IKeyValueService keyValueService, IOpportunityResponseService opportunityResponseService, IUserService userService, IMapper mapper) {
+            _fileService = fileService;
             _notifyService = notifyService;
             _keyValueService = keyValueService;
             _opportunityResponseService = opportunityResponseService;
@@ -44,6 +48,33 @@ namespace Dta.OneAps.Api.Business {
             return result;
         }
 
+        public async Task<OpportunityResponseSaveResponse> UploadFile(int id, string filename, Stream stream, UserResponse modiferUser) {
+            var existing = await _opportunityResponseService.GetById(id);
+            if (existing == null) {
+                throw new NotFoundException();
+            }
+            if (existing.UserId != modiferUser.Id) {
+                throw new UnauthorisedException();
+            }
+            var user = await _userService.GetByIdAsync(modiferUser.Id);
+            existing.ResumeUpload = filename;
+            var saved = await _opportunityResponseService.Update(existing, user);
+            var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
+            await _fileService.SaveFile($"/responses/{existing.Id}/{user.Id}/{filename}", stream);
+            return result;
+        }
+
+        public async Task<string> DownloadFile(int id, UserResponse modiferUser) {
+            var existing = await _opportunityResponseService.GetById(id);
+            if (existing == null) {
+                throw new NotFoundException();
+            }
+            if (existing.UserId != modiferUser.Id) {
+                throw new UnauthorisedException();
+            }
+            return await _fileService.GetFile($"/responses/{existing.Id}/{modiferUser.Id}/{existing.ResumeUpload}");
+        }
+
         public async Task<OpportunityResponseSaveResponse> Apply(OpportunityResponseApplyRequest model, UserResponse userResponse) {
             var existing = await _opportunityResponseService.GetById(model.Id);
             var user = await _userService.GetByIdAsync(userResponse.Id);
@@ -71,6 +102,6 @@ namespace Dta.OneAps.Api.Business {
         public async Task<IEnumerable<OpportunityResponsePublicResponse>> ListByOpportunityId(int opportunityId) => (
             _mapper.Map<IEnumerable<OpportunityResponsePublicResponse>>(await _opportunityResponseService.ListByOpportunityId(opportunityId))
         );
-        public async Task<OpportunityResponsePublicResponse> Get(int id) => _mapper.Map<OpportunityResponsePublicResponse>(await _opportunityResponseService.GetById(id));
+        public async Task<OpportunityResponsePrivateResponse> Get(int id) => _mapper.Map<OpportunityResponsePrivateResponse>(await _opportunityResponseService.GetById(id));
     }
 }

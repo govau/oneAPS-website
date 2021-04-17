@@ -75,11 +75,9 @@ const OpportunityResponseForm: React.FC = () => {
 
     const { resumeLink, whyPickMe } = opportunityResponse;
     var result = await updateFn({
-      id: updatedData.id,
-      opportunityId: updatedData.opportunityId,
-      resumeLink,
-      resumeUpload: updatedData.resumeUpload,
+      ...updatedData,
       userId: user.user.userId,
+      resumeLink,
       whyPickMe,
     });
     if (result) {

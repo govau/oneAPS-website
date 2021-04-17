@@ -45,7 +45,7 @@ namespace Dta.OneAps.Api.Business {
             };
         }
 
-        public async Task<UserResponse> RegisterAsync(UserCreateRequest model) {
+        public async Task<IUser> RegisterAsync(UserCreateRequest model) {
             var exists = await _userService.GetByEmailAsync(model.EmailAddress);
             if (exists != null) {
                 // TODO: send email to existing user
@@ -57,12 +57,12 @@ namespace Dta.OneAps.Api.Business {
             toSave.Active = true;
             toSave.Role = "user";
             var user = await _userService.RegisterAsync(toSave);
-            var result = _mapper.Map<UserResponse>(user);
+            var result = _mapper.Map<IUser>(user);
             return result;
         }
-        public async Task<IEnumerable<IUser>> GetAllAsync() => _mapper.Map<IEnumerable<UserResponse>>(await _userService.GetAllAsync());
-        public async Task<IUser> GetByIdAsync(int id) => _mapper.Map<UserResponse>(await _userService.GetByIdAsync(id));
-        public async Task<IUser> GetByEmailAsync(string email) => _mapper.Map<UserResponse>(await _userService.GetByEmailAsync(email));
+        public async Task<IEnumerable<IUser>> GetAllAsync() => _mapper.Map<IEnumerable<IUser>>(await _userService.GetAllAsync());
+        public async Task<IUser> GetByIdAsync(int id) => _mapper.Map<IUser>(await _userService.GetByIdAsync(id));
+        public async Task<IUser> GetByEmailAsync(string email) => _mapper.Map<IUser>(await _userService.GetByEmailAsync(email));
         private string GenerateJSONWebToken(User user) {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 

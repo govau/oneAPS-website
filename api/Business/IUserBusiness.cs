@@ -6,7 +6,7 @@ using Dta.OneAps.Api.Shared;
 namespace Dta.OneAps.Api.Business {
     public interface IUserBusiness {
         Task<UserSessionResponse> AuthenticateAsync(AuthenticateUserRequest model);
-        Task<UserResponse> RegisterAsync(UserCreateRequest model);
+        Task<IUser> RegisterAsync(UserCreateRequest model);
         Task<IEnumerable<IUser>> GetAllAsync();
         Task<IUser> GetByIdAsync(int id);
         Task<IUser> GetByEmailAsync(string email);

@@ -1,4 +1,5 @@
 using System;
+using Dta.OneAps.Api.Shared;
 
 namespace Dta.OneAps.Api.Business.Models {
     public class OpportunityResponseSaveResponse {
@@ -15,7 +16,7 @@ namespace Dta.OneAps.Api.Business.Models {
 
         public string ResumeUpload { get; set; }
 
-        public UserResponse User { get; set; }
+        public IUser User { get; set; }
         
         public OpportunityPublicResponse Opportunity { get; set; }
 

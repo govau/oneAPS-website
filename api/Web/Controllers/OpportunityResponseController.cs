@@ -6,11 +6,7 @@ using Dta.OneAps.Api.Shared;
 using Dta.OneAps.Api.Business.Models;
 using Dta.OneAps.Api.Web.Utils;
 using System.Threading.Tasks;
-using System;
 using System.IO;
-using System.Net.Http.Headers;
-using System.Collections.Generic;
-using System.Text.Json;
 
 namespace Dta.OneAps.Api.Web.Controllers {
     [Authorize]
@@ -46,13 +42,6 @@ namespace Dta.OneAps.Api.Web.Controllers {
             }
             return BadRequest();
         }
-
-        // [HttpPost]
-        // public async Task<IActionResult> Upsert([FromBody] OpportunityResponseSaveRequest model) {
-        //     var user = await _authorizationUtil.GetUser(User);
-        //     var created = await _opportunityResponseBusiness.Upsert(model, user);
-        //     return Ok(created);
-        // }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] OpportunityResponseSaveRequest request) {

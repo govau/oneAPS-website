@@ -22,6 +22,13 @@ import { IApiFormError, IOpportunityResponseType } from "../../../types";
 const OpportunityResponseForm: React.FC = () => {
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const [uploadBtn, setUploadBtn] = useState<{
+    disable: boolean,
+    text: string
+  }>({
+    disable: true,
+    text: 'Upload'
+  });
   const user = useContext(UserContext);
   const fileUploadRef = useRef();
   const location = useLocation();
@@ -166,25 +173,57 @@ const OpportunityResponseForm: React.FC = () => {
                     defaultValue={updatedData.resumeLink}
                   />
                   <input type="hidden" id="isApply" value="false" />
-
-                  <Aubtn type="button" as="tertiary" onClick={() => {
-                        fileDownload();
-                    }} disabled={saving}>
-                      Download {updatedData.resumeUpload}
-                    </Aubtn>
                   <AuFormGroup>
-                    <AuLabel htmlFor="resume" text="Resume (optional)" />
-                    <input type="file" id="resume" ref={fileUploadRef} />
-                    <input type="button" className="au-btn" onClick={async () => {
-                      const fileUpload = fileUploadRef.current;
-                      if (fileUpload) {
-                        const formData = new FormData();
-                        for (const file of fileUpload.files) {
-                          formData.append('file', file, file.name);
+                    <AuLabel text="Resume (optional)" />
+                    <div>
+                      {updatedData.resumeUpload &&
+                        <>
+                          Download <Aubtn type="button" as="tertiary" onClick={() => {
+                              fileDownload();
+                          }} disabled={saving}>
+                            {updatedData.resumeUpload}
+                          </Aubtn>
+                        </>}
+                    </div>
+                    <div>
+                    <input type="file" id="resume" ref={fileUploadRef} 
+                      onChange={(e) => {
+                        if (e.currentTarget.value) {
+                          setUploadBtn({
+                            ...uploadBtn,
+                            disable: false,
+                            
+                          });
+                        } else {
+                          setUploadBtn({
+                            ...uploadBtn,
+                            disable: true,
+                          });
                         }
-                        await uploadFn(updatedData.id, formData);
-                      }
-                    }} value="Upload" />
+                      }} />
+                    <input
+                      type="button"
+                      className="au-btn"
+                      disabled={uploadBtn.disable}
+                      onClick={async () => {
+                        setUploadBtn({
+                          disable: true,
+                          text: 'Uploading'
+                        });
+                        const fileUpload = fileUploadRef.current;
+                        if (fileUpload) {
+                          const formData = new FormData();
+                          for (const file of fileUpload.files) {
+                            formData.append('file', file, file.name);
+                          }
+                          await uploadFn(updatedData.id, formData);
+                          setUploadBtn({
+                            ...uploadBtn,
+                            text: 'Upload'
+                          });
+                        }
+                      }} value="Upload" />
+                    </div>
                   </AuFormGroup>
                   <AuFormGroup>
                     <Aubtn type="submit" onClick={() => {

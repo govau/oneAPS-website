@@ -77,6 +77,7 @@ export interface IOpportunityResponseType {
   whyPickMe?: string;
   opportunity?: IOpportunityType; 
   user?: IUserType;
+  submittedAt?: string;
 }
 
 export interface IUserType {

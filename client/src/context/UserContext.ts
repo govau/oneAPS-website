@@ -4,6 +4,8 @@ export type UserType = {
     userId: number,
     name: string,
     role: string,
+    emailAddress: string,
+    phone: string,
 };
 
 export type UserContextType = {

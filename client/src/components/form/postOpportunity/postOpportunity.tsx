@@ -89,7 +89,6 @@ const PostOpportunityForm: React.FC = () => {
         },
         { headers: { Authorization: `bearer ${user.token}` } }
       );
-      console.log("navigated");
       navigate("/find-opportunities");
       return;
     } catch (e) {
@@ -122,7 +121,11 @@ const PostOpportunityForm: React.FC = () => {
             </PageAlert>
           )}
           <Formik
-            initialValues={initialValues}
+            initialValues={{
+              ...initialValues,
+              // contactPersonEmail: user.user.email,
+              contactPersonName: user.user.name,
+            }}
             validationSchema={validationSchema}
             onSubmit={(values, actions) => {
               handlePostOpporunity(values);

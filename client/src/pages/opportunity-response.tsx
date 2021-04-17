@@ -27,7 +27,6 @@ const PostOpportunityPage: React.FC<PageContext> = ({
           </nav>
         </div>
         <div className="container-fluid au-body">
-          <h1>Apply for opportunity</h1>
           <OpportunityResponseForm />
         </div>
         <section className="au-body center-align">

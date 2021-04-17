@@ -5,7 +5,8 @@ using System.IO;
 
 namespace Dta.OneAps.Api.Business {
     public interface IFileBusiness {
+        Task DeleteFile(string path);
         Task SaveFile(string path, Stream stream);
-        Task<string> GetFile(string path);
+        Task<byte[]> GetFile(string path);
     }
 }

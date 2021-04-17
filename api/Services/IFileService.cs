@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using Dta.OneAps.Api.Services.Entities;
 
 namespace Dta.OneAps.Api.Services {
     public interface IFileService {
+        Task DeleteFile(string path);
         Task SaveFile(string path, Stream stream);
-        Task<string> GetFile(string path);
+        Task<byte[]> GetFile(string path);
     }
 }

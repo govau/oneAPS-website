@@ -87,9 +87,6 @@ namespace Dta.OneAps.Api.Web.Controllers {
             return Ok(updated);
         }
 
-        // [HttpGet]
-        // public async Task<IActionResult> ListByOpportunityId(int opportunityId) => Ok(await _opportunityResponseBusiness.ListByOpportunityId(opportunityId));
-
         [HttpGet("{id}/download")]
         public async Task<IActionResult> Get(int id, [FromQuery] string filename) {
             if (string.IsNullOrWhiteSpace(filename)) {
@@ -98,7 +95,23 @@ namespace Dta.OneAps.Api.Web.Controllers {
             var user = await _authorizationUtil.GetUser(User);
             try {
                 var stream = await _opportunityResponseBusiness.DownloadFile(id, user);
-                return Ok(stream);
+                return File(stream, "application/octet-stream");
+            } catch (UnauthorisedException) {
+                return Forbid();
+            } catch (NotFoundException) {
+                return NotFound();
+            }
+        }
+        
+        [HttpDelete("{id}/deletefile")]
+        public async Task<IActionResult> DeleteFile(int id, [FromQuery] string filename) {
+            if (string.IsNullOrWhiteSpace(filename)) {
+                return NotFound();
+            }
+            var user = await _authorizationUtil.GetUser(User);
+            try {
+                var response = await _opportunityResponseBusiness.DeleteFile(id, filename, user);
+                return Ok(response);
             } catch (UnauthorisedException) {
                 return Forbid();
             } catch (NotFoundException) {

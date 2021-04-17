@@ -14,11 +14,12 @@ namespace Dta.OneAps.Api.Business {
             _fileService = fileService;
             _mapper = mapper;
         }
+        public async Task DeleteFile(string path) => await _fileService.DeleteFile(path);
 
         public async Task SaveFile(string path, Stream stream) {
             await _fileService.SaveFile(path, stream);
         }
-        public async Task<string> GetFile(string path) {
+        public async Task<byte[]> GetFile(string path) {
             return await _fileService.GetFile(path);
         }
 

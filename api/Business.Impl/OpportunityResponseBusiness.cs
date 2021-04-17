@@ -64,7 +64,7 @@ namespace Dta.OneAps.Api.Business {
             return result;
         }
 
-        public async Task<string> DownloadFile(int id, UserResponse modiferUser) {
+        public async Task<byte[]> DownloadFile(int id, UserResponse modiferUser) {
             var existing = await _opportunityResponseService.GetById(id);
             if (existing == null) {
                 throw new NotFoundException();
@@ -73,6 +73,22 @@ namespace Dta.OneAps.Api.Business {
                 throw new UnauthorisedException();
             }
             return await _fileService.GetFile($"/responses/{existing.Id}/{modiferUser.Id}/{existing.ResumeUpload}");
+        }
+
+        public async Task<OpportunityResponseSaveResponse> DeleteFile(int id, string filename, UserResponse modiferUser) {
+            var existing = await _opportunityResponseService.GetById(id);
+            if (existing == null) {
+                throw new NotFoundException();
+            }
+            if (existing.UserId != modiferUser.Id) {
+                throw new UnauthorisedException();
+            }
+            var user = await _userService.GetByIdAsync(modiferUser.Id);
+            existing.ResumeUpload = null;
+            var saved = await _opportunityResponseService.Update(existing, user);
+            var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
+            await _fileService.DeleteFile($"/responses/{existing.Id}/{user.Id}/{filename}");
+            return result;
         }
 
         public async Task<OpportunityResponseSaveResponse> Apply(OpportunityResponseApplyRequest model, UserResponse userResponse) {

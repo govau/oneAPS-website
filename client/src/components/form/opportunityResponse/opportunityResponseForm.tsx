@@ -217,8 +217,9 @@ const OpportunityResponseForm: React.FC = () => {
                             formData.append('file', file, file.name);
                           }
                           await uploadFn(updatedData.id, formData);
+                          fileUpload.value = "";
                           setUploadBtn({
-                            ...uploadBtn,
+                            disable: true,
                             text: 'Upload'
                           });
                         }

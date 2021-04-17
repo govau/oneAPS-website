@@ -19,7 +19,7 @@ namespace Dta.OneAps.Api.Web.Utils {
             }
             return false;
         }
-        public async Task<UserResponse> GetUser(ClaimsPrincipal claimsPrincipal) {
+        public async Task<IUser> GetUser(ClaimsPrincipal claimsPrincipal) {
             var userId = int.Parse(claimsPrincipal.FindFirstValue("Id"));
             var user = await _userBusiness.GetByIdAsync(userId);
             return user;

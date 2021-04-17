@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Dta.OneAps.Api.Services.Entities;
+using Dta.OneAps.Api.Shared;
 
 namespace Dta.OneAps.Api.Services.Sql {
     public class DatabaseOperationService : IDatabaseOperationService {
@@ -17,11 +18,11 @@ namespace Dta.OneAps.Api.Services.Sql {
             return result.Entity;
         }
 
-        public async Task<T> CreateAsync<T>(T entity, User creatorUser) where T : class {
+        public async Task<T> CreateAsync<T>(T entity, IUser user) where T : class {
             if (entity is IAggregateRoot) {
                 var aggregateRoot = entity as IAggregateRoot;
                 aggregateRoot.Created = DateTime.UtcNow;
-                aggregateRoot.CreatedBy = creatorUser.Id;
+                aggregateRoot.CreatedBy = user.Id;
             }
             var result = await _context.AddAsync<T>(entity);
             return result.Entity;
@@ -35,11 +36,11 @@ namespace Dta.OneAps.Api.Services.Sql {
             return result.Entity;
         }
 
-        public T Update<T>(T entity, User modiferUser) where T : class {
+        public T Update<T>(T entity, IUser user) where T : class {
             if (entity is IAggregateRoot) {
                 var aggregateRoot = entity as IAggregateRoot;
                 aggregateRoot.Modifed = DateTime.UtcNow;
-                aggregateRoot.ModifiedBy = modiferUser.Id;
+                aggregateRoot.ModifiedBy = user.Id;
             }
             var result =  _context.Update<T>(entity);
             return result.Entity;

@@ -2,14 +2,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Dta.OneAps.Api.Business.Exceptions;
 using Dta.OneAps.Api.Business;
-using Dta.OneAps.Api.Shared;
 using Dta.OneAps.Api.Business.Models;
 using Dta.OneAps.Api.Web.Utils;
+using Dta.OneAps.Api.Web.Filters;
 using System.Threading.Tasks;
 using System.IO;
 
 namespace Dta.OneAps.Api.Web.Controllers {
     [Authorize]
+    [CustomException]
     [ApiController]
     [Route("api/[controller]")]
     public class OpportunityResponseController : ControllerBase {
@@ -30,13 +31,7 @@ namespace Dta.OneAps.Api.Web.Controllers {
                 if (file.Length > 0) {
                     using (var stream = new MemoryStream()) {
                         await file.CopyToAsync(stream);
-                        try {
-                            return Ok(await _opportunityResponseBusiness.UploadFile(id, file.FileName, stream, user));
-                        } catch (UnauthorisedException) {
-                            return Forbid();
-                        } catch (NotFoundException) {
-                            return NotFound();
-                        }
+                        return Ok(await _opportunityResponseBusiness.UploadFile(id, file.FileName, stream, user));
                     }
                 }
             }
@@ -46,7 +41,6 @@ namespace Dta.OneAps.Api.Web.Controllers {
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] OpportunityResponseSaveRequest request) {
             var user = await _authorizationUtil.GetUser(User);
-
             var newOpportunityResponse = new OpportunityResponseSaveRequest() {
                 OpportunityId = request.OpportunityId,
                 UserId = user.Id
@@ -59,9 +53,6 @@ namespace Dta.OneAps.Api.Web.Controllers {
         [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] OpportunityResponseSaveRequest model) {
             var user = await _authorizationUtil.GetUser(User);
-            if (user.Id != model.UserId) {
-                return Forbid();
-            }
             var updated = await _opportunityResponseBusiness.Update(model, user);
             return Ok(updated);
         }
@@ -69,9 +60,6 @@ namespace Dta.OneAps.Api.Web.Controllers {
         [HttpPut("{id}/apply")]
         public async Task<IActionResult> Apply(int id, [FromBody] OpportunityResponseApplyRequest model) {
             var user = await _authorizationUtil.GetUser(User);
-            if (user.Id != model.UserId) {
-                return Forbid();
-            }
             var updated = await _opportunityResponseBusiness.Apply(model, user);
             return Ok(updated);
         }
@@ -82,30 +70,18 @@ namespace Dta.OneAps.Api.Web.Controllers {
                 return NotFound();
             }
             var user = await _authorizationUtil.GetUser(User);
-            try {
-                var stream = await _opportunityResponseBusiness.DownloadFile(id, user);
-                return File(stream, "application/octet-stream");
-            } catch (UnauthorisedException) {
-                return Forbid();
-            } catch (NotFoundException) {
-                return NotFound();
-            }
+            var stream = await _opportunityResponseBusiness.DownloadFile(id, user);
+            return File(stream, "application/octet-stream");
         }
-        
+
         [HttpDelete("{id}/deletefile")]
         public async Task<IActionResult> DeleteFile(int id, [FromQuery] string filename) {
             if (string.IsNullOrWhiteSpace(filename)) {
                 return NotFound();
             }
             var user = await _authorizationUtil.GetUser(User);
-            try {
-                var response = await _opportunityResponseBusiness.DeleteFile(id, filename, user);
-                return Ok(response);
-            } catch (UnauthorisedException) {
-                return Forbid();
-            } catch (NotFoundException) {
-                return NotFound();
-            }
+            var response = await _opportunityResponseBusiness.DeleteFile(id, filename, user);
+            return Ok(response);
         }
     }
 }

@@ -11,6 +11,9 @@ namespace Dta.OneAps.Api.Services.Notify {
 
         public async void SendEmail(string emailAddress, string templateId, Dictionary<string, dynamic> personalisation) {
             var notifyConfig = await _keyValueService.GetByKey("notify");
+            if (notifyConfig == null) {
+                return;
+            }
             string apidKey = notifyConfig.apiKey;
             var client = new NotifyClient(apidKey);
 

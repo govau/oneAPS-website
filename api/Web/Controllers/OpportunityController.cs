@@ -2,13 +2,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Dta.OneAps.Api.Business.Exceptions;
 using Dta.OneAps.Api.Business;
-using Dta.OneAps.Api.Shared;
+using Dta.OneAps.Api.Web.Filters;
 using Dta.OneAps.Api.Business.Models;
 using Dta.OneAps.Api.Web.Utils;
 using System.Threading.Tasks;
 
 namespace Dta.OneAps.Api.Web.Controllers {
     [Authorize]
+    [CustomException]
     [ApiController]
     [Route("api/[controller]")]
     public class OpportunityController : ControllerBase {

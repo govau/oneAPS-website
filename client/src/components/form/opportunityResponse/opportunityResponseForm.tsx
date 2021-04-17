@@ -43,7 +43,6 @@ const OpportunityResponseForm: React.FC = () => {
         opportunityId: opportunityId,
         userId: user.user.userId,
       });
-      console.log(updatedData)      
     };
     load();
   }, []);
@@ -143,14 +142,16 @@ const OpportunityResponseForm: React.FC = () => {
 
                 <AuFieldset className="mt-2 mb-0">
                   <AuFormGroup>
-                    <h3>Opportunity details</h3>
-                    <div>Job title: {updatedData.opportunity.jobTitle}</div>
-                    <div>Description: {updatedData.opportunity.jobDescription}</div>
+                    <AuLabel text="Opportunity name"/>
+                    <div>{updatedData.opportunity.jobTitle}</div>
                   </AuFormGroup>
                   <AuFormGroup>
-                    <h3>My details</h3>
-                    <div>Name: {updatedData.user.name}</div>
-                    <div>Email: {updatedData.user.emailAddress}</div>                    
+                    <AuLabel text="Opportunity description"/>
+                    <div>{updatedData.opportunity.jobDescription}</div>
+                  </AuFormGroup>
+                  <AuFormGroup>
+                    <AuLabel text="Applying as" />
+                    <div>{updatedData.user.name} ({updatedData.user.emailAddress})</div>
                   </AuFormGroup>
                   <TextField
                     id="whyPickMe"

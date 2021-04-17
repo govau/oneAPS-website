@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Dta.OneAps.Api.Services.Entities;
+using Dta.OneAps.Api.Shared;
 
 namespace Dta.OneAps.Api.Services.Sql {
     public class OpportunityService : DatabaseOperationService, IOpportunityService {
@@ -12,14 +13,14 @@ namespace Dta.OneAps.Api.Services.Sql {
             _context = context;
         }
 
-        public async Task<Opportunity> Create(Opportunity opportunity, User creatorUser) {
-            var newOpportunity = await base.CreateAsync<Opportunity>(opportunity, creatorUser);
+        public async Task<Opportunity> Create(Opportunity opportunity, IUser user) {
+            var newOpportunity = await base.CreateAsync<Opportunity>(opportunity, user);
             await base.CommitAsync();
             return newOpportunity;
         }
 
-        public async Task<Opportunity> Update(Opportunity opportunity, User modiferUser) {
-            var newObj = base.Update<Opportunity>(opportunity, modiferUser);
+        public async Task<Opportunity> Update(Opportunity opportunity, IUser user) {
+            var newObj = base.Update<Opportunity>(opportunity, user);
             await base.CommitAsync();
             return newObj;
         }

@@ -1,5 +1,7 @@
+using Dta.OneAps.Api.Shared;
+
 namespace Dta.OneAps.Api.Business.Models {
-    public class UserResponse {
+    public class UserResponse : IUser {
         public int Id { get; set; }
         public string Name { get; set; }
         public string EmailAddress { get; set; }

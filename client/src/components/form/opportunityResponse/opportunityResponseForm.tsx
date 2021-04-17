@@ -78,6 +78,7 @@ const OpportunityResponseForm: React.FC = () => {
       id: updatedData.id,
       opportunityId: updatedData.opportunityId,
       resumeLink,
+      resumeUpload: updatedData.resumeUpload,
       userId: user.user.userId,
       whyPickMe,
     });

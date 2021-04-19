@@ -16,30 +16,36 @@ namespace Dta.OneAps.Api.Services.Notify {
             _keyValueService = keyValueService;
         }
 
-        private async Task<dynamic> GetClientInfo() {
-            if (_clientInfo == null) {
-                var clientInfo = await _keyValueService.GetByKeyAsync("clientInfo");
-                if (clientInfo == null) {
-                    throw new ArgumentNullException("clientInfo is missing");
+        private dynamic ClientInfo {
+            get {
+                if (_clientInfo == null) {
+                    var clientInfo = _keyValueService.GetByKey("clientInfo");
+                    if (clientInfo == null) {
+                        throw new ArgumentNullException("clientInfo is missing");
+                    }
+                    _clientInfo = clientInfo;
                 }
-                _clientInfo = clientInfo;
+                return _clientInfo;
             }
-            return _clientInfo;
         }
-        private async Task<dynamic> GetNotifyConfig() {
-            if (_notifyConfig == null) {
-                var notifyConfig = await _keyValueService.GetByKeyAsync("notify");
-                if (notifyConfig == null) {
-                    throw new ArgumentNullException("notifyConfig is missing");
+        private dynamic NotifyConfig {
+            get {
+                if (_notifyConfig == null) {
+                    var notifyConfig = _keyValueService.GetByKey("notify");
+                    if (notifyConfig == null) {
+                        throw new ArgumentNullException("notifyConfig is missing");
+                    }
+                    _notifyConfig = notifyConfig;
                 }
-                _notifyConfig = notifyConfig;
+
+                return _notifyConfig;
             }
-            return _notifyConfig;
         }
 
+
+
         private async Task SendEmail(string emailAddress, string templateId, Dictionary<string, dynamic> personalisation) {
-            var notifyConfig = await GetNotifyConfig();
-            string apiKey = notifyConfig.apiKey;
+            string apiKey = NotifyConfig.apiKey;
             var client = new NotifyClient(apiKey);
 
             var response = await client.SendEmailAsync(
@@ -55,8 +61,7 @@ namespace Dta.OneAps.Api.Services.Notify {
                 {"opportunityName", opportunity.JobTitle},
                 {"name", user.Name}
             };
-            var notifyConfig = await GetNotifyConfig();
-            string templateId = notifyConfig.templateIdAppliedForOpportunity;
+            string templateId = NotifyConfig.templateIdAppliedForOpportunity;
             await SendEmail(
                 user.EmailAddress,
                 templateId,
@@ -66,11 +71,10 @@ namespace Dta.OneAps.Api.Services.Notify {
 
         public async Task RegistrationConfirmation(IUser user, UserClaim userClaim) {
             var personalisation = new Dictionary<string, dynamic>(){
-                {"link", $"{_clientInfo.claimTokenUrl}?token={userClaim.ClaimToken}"},
+                {"link", $"{ClientInfo.claimTokenUrl}?token={userClaim.ClaimToken}"},
                 {"name", user.Name}
             };
-            var notifyConfig = await GetNotifyConfig();
-            string templateId = notifyConfig.templateIdRegistrationConfirmation;
+            string templateId = NotifyConfig.templateIdRegistrationConfirmation;
             await SendEmail(
                 user.EmailAddress,
                 templateId,

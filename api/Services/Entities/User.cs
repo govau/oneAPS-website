@@ -32,6 +32,9 @@ namespace Dta.OneAps.Api.Services.Entities
         [Required]
         [Column("password", TypeName = "character varying")]
         public string Password { get; set; }
+        [Required]
+        [Column("mobile", TypeName = "character varying")]
+        public string Mobile { get; set; }
         [Column("active")]
         public bool Active { get; set; }
         [Column("created_at")]

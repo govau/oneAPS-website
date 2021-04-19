@@ -22,13 +22,14 @@ const RegisterForm: React.FC = () => {
   const handleRegisterUser = async (formData: IRegisterType) => {
     setSaving(true);
     setErrorList([]);
-    const { emailAddress, password, name, agency } = formData;
+    const { emailAddress, password, name, agency, mobile } = formData;
     try {
       const result = await axios.post(`/api/user/register`, {
         name,
         emailAddress,
         password,
         agency,
+        mobile,
       });
       navigate("/verify-account/", { state: { submitted: true } });
     } catch (e) {

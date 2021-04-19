@@ -6,6 +6,8 @@ namespace Dta.OneAps.Api.Business.Models {
 
         public string Agency { get; set; }
 
+        public string Mobile { get; set; }
+
         public string Password { get; set; }
     }
 }

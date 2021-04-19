@@ -19,11 +19,10 @@ namespace Dta.OneAps.Api.Services.Notify {
         private dynamic ClientInfo {
             get {
                 if (_clientInfo == null) {
-                    var clientInfo = _keyValueService.GetByKey("clientInfo");
-                    if (clientInfo == null) {
+                    _clientInfo = _keyValueService.GetByKey("clientInfo");
+                    if (_clientInfo == null) {
                         throw new ArgumentNullException("clientInfo is missing");
                     }
-                    _clientInfo = clientInfo;
                 }
                 return _clientInfo;
             }
@@ -31,18 +30,15 @@ namespace Dta.OneAps.Api.Services.Notify {
         private dynamic NotifyConfig {
             get {
                 if (_notifyConfig == null) {
-                    var notifyConfig = _keyValueService.GetByKey("notify");
-                    if (notifyConfig == null) {
+                    _notifyConfig = _keyValueService.GetByKey("notify");
+                    if (_notifyConfig == null) {
                         throw new ArgumentNullException("notifyConfig is missing");
                     }
-                    _notifyConfig = notifyConfig;
                 }
 
                 return _notifyConfig;
             }
         }
-
-
 
         private async Task SendEmail(string emailAddress, string templateId, Dictionary<string, dynamic> personalisation) {
             string apiKey = NotifyConfig.apiKey;

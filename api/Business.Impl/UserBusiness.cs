@@ -39,7 +39,7 @@ namespace Dta.OneAps.Api.Business {
                 throw new CannotAuthenticateException();
             }
             UserSessionResponse session = null;
-            if (user.Password == encryptedPassword) {
+            if (user.FailedLoginCount < 5 && user.Password == encryptedPassword) {
                 user.LoggedInAt = DateTime.UtcNow;
                 user.FailedLoginCount = 0;
                 session = new UserSessionResponse() {

@@ -6,7 +6,7 @@ using System;
 using System.Threading.Tasks;
 using Dta.OneAps.Api.Services.Sql;
 
-namespace Dta.OneAps.Api.Tests.Controllers.UsersControllerTests {
+namespace Dta.OneAps.Api.Tests.Services.EF.UserServiceTests {
     public class AuthenticateAsync : IDisposable {
         private OneApsContext _context;
         public AuthenticateAsync() {
@@ -38,17 +38,15 @@ namespace Dta.OneAps.Api.Tests.Controllers.UsersControllerTests {
             await _context.SaveChangesAsync();
 
             var usersController = new UserService(_context);
-            var user = await usersController.AuthenticateAsync(emailAddress, password);
+            var user = await usersController.AuthenticateAsync(emailAddress);
 
             Assert.NotNull(user);
         }
 
         [Theory]
-        [InlineData("fail@email.com0", "foobar", false, 0, null, null)]
-        [InlineData("fail@email.com1", "foobar", true, 6, null, null)]
-        [InlineData("fail@email.com2", "foobar", true, 0, "fail@email.com22", null)]
-        [InlineData("fail@email.com3", "foobar", true, 0, null, "barfoo")]
-        public async Task Cannot_Authenticate(string emailAddress, string password, bool active, int failedLoginCount, string wrongEmailAddress, string wrongPassword) {
+        [InlineData("fail@email.com0", "foobar", false, 0, null)]
+        [InlineData("fail@email.com2", "foobar", true, 0, "fail@email.com22")]
+        public async Task Cannot_Authenticate(string emailAddress, string password, bool active, int failedLoginCount, string wrongEmailAddress) {
             await _context.User.AddAsync(new User {
                 EmailAddress = emailAddress,
                 Password = password,
@@ -62,11 +60,7 @@ namespace Dta.OneAps.Api.Tests.Controllers.UsersControllerTests {
             if (!string.IsNullOrWhiteSpace(wrongEmailAddress)) {
                 e = wrongEmailAddress;
             }
-            var p = password;
-            if (!string.IsNullOrWhiteSpace(wrongPassword)) {
-                p = wrongPassword;
-            }
-            var user = await usersController.AuthenticateAsync(e, p);
+            var user = await usersController.AuthenticateAsync(e);
 
             Assert.Null(user);
         }

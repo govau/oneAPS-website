@@ -51,16 +51,18 @@ namespace Dta.OneAps.Api.Business {
         public async Task<IUser> RegisterAsync(UserCreateRequest model) {
             var exists = await _userService.GetByEmailAsync(model.EmailAddress);
             User user;
+            var userClaim = new UserClaim {
+                ClaimToken = $"{Guid.NewGuid()}{Guid.NewGuid()}".Replace("-", ""),
+                CreatedAt = DateTime.UtcNow
+            };
             if (exists != null) {
                 if (exists.Active == false) {
                     foreach (var uc in exists.UserClaims) {
                         uc.IsClaimed = true;
                     }
-                    exists.UserClaims.Add(new UserClaim {
-                        ClaimToken = $"{Guid.NewGuid()}{Guid.NewGuid()}".Replace("-", ""),
-                        ClaimType = "NewUser".ToLower(),
-                        CreatedAt = DateTime.UtcNow
-                    });
+                    userClaim.ClaimType = "UpdateUser".ToLower();
+                    exists.UserClaims.Add(userClaim);
+                    exists.Password = _encryptionUtil.Encrypt(model.Password);
                     user = await _userService.Update(exists);
                 } else {
                     // TODO: send email to existing user
@@ -70,17 +72,14 @@ namespace Dta.OneAps.Api.Business {
                 var toSave = _mapper.Map<User>(model);
                 toSave.Password = _encryptionUtil.Encrypt(model.Password);
                 toSave.Role = "user";
-                toSave.UserClaims.Add(new UserClaim {
-                    ClaimToken = $"{Guid.NewGuid()}{Guid.NewGuid()}".Replace("-", ""),
-                    ClaimType = "NewUser".ToLower(),
-                    CreatedAt = DateTime.UtcNow
-                });
+                userClaim.ClaimType = "NewUser".ToLower();
+                toSave.UserClaims.Add(userClaim);
                 user = await _userService.Create(toSave);
             }
 
             var result = _mapper.Map<IUser>(user);
             await _notifyService.RegistrationConfirmation(result, user.UserClaims.Last());
-            
+
             return result;
         }
         public async Task<IEnumerable<IUser>> GetAllAsync() => _mapper.Map<IEnumerable<IUser>>(await _userService.GetAllAsync());

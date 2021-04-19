@@ -129,11 +129,13 @@ namespace Dta.OneAps.Api.Web {
             // app.UseCors(_devOrigins);
 
 
-            app.UseSwagger();
+            app.UseSwagger(c => {
+                c.RouteTemplate = "api/swagger/{documentname}/swagger.json";
+            });
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("./swagger/v1/swagger.json", "OneAPS Api V1");
+                c.SwaggerEndpoint("swagger/v1/swagger.json", "OneAPS Api V1");
                 c.DocumentTitle = "OneAPS Api";
-                c.RoutePrefix = string.Empty;
+                c.RoutePrefix = "api";
             });
 
             app.UseAuthentication();

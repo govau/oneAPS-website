@@ -9,26 +9,37 @@ using Newtonsoft.Json;
 namespace Dta.OneAps.Api.Services.Notify {
     public class NotifyService : INotifyService {
         private readonly IKeyValueService _keyValueService;
-        private readonly dynamic _notifyConfig;
-        private readonly dynamic _clientInfo;
+        private dynamic _notifyConfig;
+        private dynamic _clientInfo;
 
         public NotifyService(IKeyValueService keyValueService) {
             _keyValueService = keyValueService;
-            var notifyConfig = _keyValueService.GetByKey("notify");
-            if (notifyConfig == null) {
-                throw new ArgumentNullException("notifyConfig is missing");
-            }
-            _notifyConfig = notifyConfig;
+        }
 
-            var clientInfo = _keyValueService.GetByKey("clientInfo");
-            if (clientInfo == null) {
-                throw new ArgumentNullException("clientInfo is missing");
+        private async Task<dynamic> GetClientInfo() {
+            if (_clientInfo == null) {
+                var clientInfo = await _keyValueService.GetByKeyAsync("clientInfo");
+                if (clientInfo == null) {
+                    throw new ArgumentNullException("clientInfo is missing");
+                }
+                _clientInfo = clientInfo;
             }
-            _clientInfo = clientInfo;
+            return _clientInfo;
+        }
+        private async Task<dynamic> GetNotifyConfig() {
+            if (_notifyConfig == null) {
+                var notifyConfig = await _keyValueService.GetByKeyAsync("notify");
+                if (notifyConfig == null) {
+                    throw new ArgumentNullException("notifyConfig is missing");
+                }
+                _notifyConfig = notifyConfig;
+            }
+            return _notifyConfig;
         }
 
         private async Task SendEmail(string emailAddress, string templateId, Dictionary<string, dynamic> personalisation) {
-            string apiKey = _notifyConfig.apiKey;
+            var notifyConfig = await GetNotifyConfig();
+            string apiKey = notifyConfig.apiKey;
             var client = new NotifyClient(apiKey);
 
             var response = await client.SendEmailAsync(
@@ -44,7 +55,8 @@ namespace Dta.OneAps.Api.Services.Notify {
                 {"opportunityName", opportunity.JobTitle},
                 {"name", user.Name}
             };
-            string templateId = _notifyConfig.templateIdAppliedForOpportunity;
+            var notifyConfig = await GetNotifyConfig();
+            string templateId = notifyConfig.templateIdAppliedForOpportunity;
             await SendEmail(
                 user.EmailAddress,
                 templateId,
@@ -57,7 +69,8 @@ namespace Dta.OneAps.Api.Services.Notify {
                 {"link", $"{_clientInfo.claimTokenUrl}?token={userClaim.ClaimToken}"},
                 {"name", user.Name}
             };
-            string templateId = _notifyConfig.templateIdRegistrationConfirmation;
+            var notifyConfig = await GetNotifyConfig();
+            string templateId = notifyConfig.templateIdRegistrationConfirmation;
             await SendEmail(
                 user.EmailAddress,
                 templateId,

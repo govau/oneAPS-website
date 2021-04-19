@@ -83,7 +83,6 @@ namespace Dta.OneAps.Api.Business {
                 var toSave = _mapper.Map<User>(model);
                 toSave.Password = _encryptionUtil.Encrypt(model.Password);
                 toSave.Role = "user";
-                Console.WriteLine("#######################{0}", toSave.Mobile);
                 userClaim.ClaimType = "NewUser".ToLower();
                 toSave.UserClaims.Add(userClaim);
                 user = await _userService.Create(toSave);

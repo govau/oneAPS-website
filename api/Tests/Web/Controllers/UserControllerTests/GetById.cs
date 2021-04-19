@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace Dta.OneAps.Api.Tests.Controllers.UsersControllerTests {
     public class GetById {
         private Mock<IUserBusiness> _userBusinessMock;
+        private Mock<IUserClaimBusiness> _userClaimBusinessMock;
         public GetById() {
             _userBusinessMock = new Mock<IUserBusiness>();
             _userBusinessMock
@@ -19,6 +20,7 @@ namespace Dta.OneAps.Api.Tests.Controllers.UsersControllerTests {
                 .ReturnsAsync(new UserResponse {
                     Id = 1
                 });
+            _userClaimBusinessMock = new Mock<IUserClaimBusiness>();
         }
 
         [Theory]
@@ -35,7 +37,7 @@ namespace Dta.OneAps.Api.Tests.Controllers.UsersControllerTests {
                 .Setup(a => a.IsUserTheSame(It.IsAny<ClaimsPrincipal>(), It.IsAny<int>()))
                 .Returns(userTheSame);
 
-            var usersController = new UserController(_userBusinessMock.Object, authorizationUtilMock.Object);
+            var usersController = new UserController(_userBusinessMock.Object, _userClaimBusinessMock.Object, authorizationUtilMock.Object);
 
             var result = await usersController.GetByIdAsync(1) as ObjectResult;
             Assert.NotNull(result);
@@ -62,7 +64,7 @@ namespace Dta.OneAps.Api.Tests.Controllers.UsersControllerTests {
                 .Setup(a => a.IsUserTheSame(It.IsAny<ClaimsPrincipal>(), It.IsAny<int>()))
                 .Returns(userTheSame);
 
-            var usersController = new UserController(_userBusinessMock.Object, authorizationUtilMock.Object);
+            var usersController = new UserController(_userBusinessMock.Object, _userClaimBusinessMock.Object, authorizationUtilMock.Object);
 
             var result = await usersController.GetByIdAsync(1) as ForbidResult;
             Assert.NotNull(result);

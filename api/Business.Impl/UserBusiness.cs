@@ -6,6 +6,7 @@ using Dta.OneAps.Api.Services;
 using Dta.OneAps.Api.Services.Entities;
 using Dta.OneAps.Api.Shared;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -20,12 +21,14 @@ namespace Dta.OneAps.Api.Business {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
         private readonly IOptions<AppSettings> _appSettings;
+        private readonly INotifyService _notifyService;
 
-        public UserBusiness(IOptions<AppSettings> appSettings, IEncryptionUtil encryptionUtil, IUserService userService, IMapper mapper) {
+        public UserBusiness(IOptions<AppSettings> appSettings, IEncryptionUtil encryptionUtil, INotifyService notifyService, IUserService userService, IMapper mapper) {
             _appSettings = appSettings;
             _userService = userService;
             _mapper = mapper;
             _encryptionUtil = encryptionUtil;
+            _notifyService = notifyService;
         }
 
         public async Task<UserSessionResponse> AuthenticateAsync(AuthenticateUserRequest model) {
@@ -47,17 +50,37 @@ namespace Dta.OneAps.Api.Business {
 
         public async Task<IUser> RegisterAsync(UserCreateRequest model) {
             var exists = await _userService.GetByEmailAsync(model.EmailAddress);
+            User user;
             if (exists != null) {
-                // TODO: send email to existing user
-                return null;
+                if (exists.Active == false) {
+                    foreach (var uc in exists.UserClaims) {
+                        uc.IsClaimed = true;
+                    }
+                    exists.UserClaims.Add(new UserClaim {
+                        ClaimToken = $"{Guid.NewGuid()}{Guid.NewGuid()}".Replace("-", ""),
+                        ClaimType = "NewUser".ToLower(),
+                        CreatedAt = DateTime.UtcNow
+                    });
+                    user = await _userService.Update(exists);
+                } else {
+                    // TODO: send email to existing user
+                    return null;
+                }
+            } else {
+                var toSave = _mapper.Map<User>(model);
+                toSave.Password = _encryptionUtil.Encrypt(model.Password);
+                toSave.Role = "user";
+                toSave.UserClaims.Add(new UserClaim {
+                    ClaimToken = $"{Guid.NewGuid()}{Guid.NewGuid()}".Replace("-", ""),
+                    ClaimType = "NewUser".ToLower(),
+                    CreatedAt = DateTime.UtcNow
+                });
+                user = await _userService.Create(toSave);
             }
 
-            var toSave = _mapper.Map<User>(model);
-            toSave.Password = _encryptionUtil.Encrypt(model.Password);
-            toSave.Active = true;
-            toSave.Role = "user";
-            var user = await _userService.RegisterAsync(toSave);
             var result = _mapper.Map<IUser>(user);
+            await _notifyService.RegistrationConfirmation(result, user.UserClaims.Last());
+            
             return result;
         }
         public async Task<IEnumerable<IUser>> GetAllAsync() => _mapper.Map<IEnumerable<IUser>>(await _userService.GetAllAsync());

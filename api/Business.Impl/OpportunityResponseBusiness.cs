@@ -108,20 +108,7 @@ namespace Dta.OneAps.Api.Business {
             var saved = await _opportunityResponseService.Update(existing, user);
             var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
 
-            var notifyConfig = await _keyValueService.GetByKey("notify");
-            if (notifyConfig == null) {
-                return result;
-            }
-            var personalisation = new Dictionary<string, dynamic>(){
-                {"opportunityName", existing.Opportunity.JobTitle},
-                {"name", user.Name}
-            };
-            string templateId = notifyConfig.templateIdAppliedForOpportunity;
-            _notifyService.SendEmail(
-                user.EmailAddress,
-                templateId,
-                personalisation
-            );
+            await _notifyService.SuccessfullyApplied(existing.Opportunity, user);
             
             return result;
         }

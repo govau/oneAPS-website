@@ -67,5 +67,8 @@ namespace Dta.OneAps.Api.Services.Entities
 
         [InverseProperty("User")]
         public virtual ICollection<OpportunityResponse> OpportunityResponses { get; set; }
+
+        [InverseProperty("User")]
+        public virtual ICollection<UserClaim> UserClaims { get; set; } = new List<UserClaim>();
     }
 }

@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Text.Json;
 using Dta.OneAps.Api.Services.Entities;
 
 namespace Dta.OneAps.Api.Services.Sql {
@@ -21,19 +20,33 @@ namespace Dta.OneAps.Api.Services.Sql {
             if (existing == null) {
                 updated = await base.CreateAsync<KeyValue>(new KeyValue {
                     Key = key,
-                    Data = data
+                    Data = data,
+                    UpdatedAt = DateTime.UtcNow
                 });
             } else {
+                existing.Data = data;
+                existing.UpdatedAt = DateTime.UtcNow;
                 updated = base.Update<KeyValue>(existing);
             }
             await base.CommitAsync();
             return updated;
         }
-        public async Task<dynamic> GetByKey(string key) {
+        public async Task<dynamic> GetByKeyAsync(string key) {
             var keyValue = await _context
                 .KeyValue
                 .Where(kv => kv.Key == key)
                 .SingleOrDefaultAsync();
+            
+            if (keyValue == null) {
+                return null;
+            }
+            return JsonConvert.DeserializeObject<dynamic>(keyValue.Data);
+        }
+        public dynamic GetByKey(string key) {
+            var keyValue = _context
+                .KeyValue
+                .Where(kv => kv.Key == key)
+                .SingleOrDefault();
             
             if (keyValue == null) {
                 return null;

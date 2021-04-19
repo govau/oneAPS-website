@@ -24,6 +24,7 @@ namespace Dta.OneAps.Api.Services.Sql {
         public virtual DbSet<OpportunityUser> OpportunityUser { get; set; }
         public virtual DbSet<KeyValue> KeyValue { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<UserClaim> UserClaims { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             if (!optionsBuilder.IsConfigured) {
@@ -172,6 +173,17 @@ namespace Dta.OneAps.Api.Services.Sql {
                     .HasConstraintName("opportunity_user_user_id_fkey");
             });
 
+            modelBuilder.Entity<UserClaim>(entity => {
+                entity.HasKey(e => new { e.Id })
+                    .HasName("user_claim_pkey");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.UserClaims)
+                    .HasForeignKey(d => d.UserId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("user_claims_user_id_fkey");
+            });
+
             modelBuilder.Entity<OpportunitySkill>(entity => {
                 entity.HasKey(e => new { e.Id })
                     .HasName("opportunity_skill_pkey");
@@ -193,6 +205,8 @@ namespace Dta.OneAps.Api.Services.Sql {
             });
 
             modelBuilder.Entity<User>(entity => {
+                entity.HasKey(e => new { e.Id })
+                    .HasName("user_pkey");
 
                 entity.HasIndex(e => e.EmailAddress)
                     .HasName("ix_user_email_address")
@@ -212,6 +226,8 @@ namespace Dta.OneAps.Api.Services.Sql {
             modelBuilder.HasSequence("opportunity_response_download_id_seq");
 
             modelBuilder.HasSequence("key_value_id_seq");
+
+            modelBuilder.HasSequence("user_claim_id_seq");
 
             OnModelCreatingPartial(modelBuilder);
         }

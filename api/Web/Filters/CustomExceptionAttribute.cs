@@ -11,6 +11,8 @@ namespace Dta.OneAps.Api.Web.Filters {
                 context.Result = new ForbidResult();
             } else if (context.Exception is NotFoundException) {
                 context.Result = new NotFoundResult();
+            } else if (context.Exception is TokenClaimedException) {
+                context.Result = new ConflictResult();
             }
         }
     }

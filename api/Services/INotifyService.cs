@@ -1,9 +1,10 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dta.OneAps.Api.Services.Entities;
+using Dta.OneAps.Api.Shared;
 
 namespace Dta.OneAps.Api.Services {
     public interface INotifyService {
-        void SendEmail(string emailAddress, string templateId, Dictionary<string, dynamic> personalisation);
+        Task SuccessfullyApplied(Opportunity opportunity, IUser user);
+        Task RegistrationConfirmation(IUser user, UserClaim userClaim);
     }
 }

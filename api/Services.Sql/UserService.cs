@@ -12,14 +12,12 @@ namespace Dta.OneAps.Api.Services.Sql {
             _context = context;
         }
 
-        public async Task<User> AuthenticateAsync(string username, string password) => (
+        public async Task<User> AuthenticateAsync(string username) => (
             await _context
                 .User
                 .AsNoTracking()
                 .Where(u =>
                     u.EmailAddress == username &&
-                    u.Password == password &&
-                    u.FailedLoginCount <= 5 &&
                     u.Active == true
                 )
                 .SingleOrDefaultAsync()

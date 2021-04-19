@@ -13,10 +13,11 @@ const ClaimToken: React.FC<PageContext> = ({
   const params = new URLSearchParams(location.search);
   const token = params.get('token');
 
-  if (!token) {
-    navigate('/');
-    return <></>;
-  }
+  React.useEffect(() => {
+    if (!token) {
+      navigate('/');
+    }
+  }, []);
   
   const { claim, errors } = useClaimHook(token);
 

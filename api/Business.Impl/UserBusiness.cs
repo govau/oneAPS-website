@@ -112,8 +112,10 @@ namespace Dta.OneAps.Api.Business {
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 }),
                 IssuedAt = DateTime.UtcNow,
-                Expires = DateTime.UtcNow.AddHours(6),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                Expires = DateTime.UtcNow.AddHours(4),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+                Issuer = _appSettings.Value.JwtIssuer,
+                Audience = _appSettings.Value.JwtAudience
             };
 
             var token = jwtTokenHandler.CreateToken(tokenDescriptor);

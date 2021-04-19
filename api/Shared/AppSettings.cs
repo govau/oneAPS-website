@@ -7,6 +7,8 @@ namespace Dta.OneAps.Api.Shared {
             get {
                 if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("OneApsConnectionString"))) {
                     oneApsConnectionString = Environment.GetEnvironmentVariable("OneApsConnectionString");
+                } else if(!string.IsNullOrWhiteSpace(DatabaseEndPoint)) {
+                    oneApsConnectionString = $"Host=\"{DatabaseEndPoint}\";Port=\"{DatabasePort}\";Database=\"{DatabaseName}\";Username=\"{DatabaseUsername}\";Password=\"{DatabasePassword}\"";
                 }
                 return oneApsConnectionString;
             }
@@ -14,7 +16,66 @@ namespace Dta.OneAps.Api.Shared {
                 oneApsConnectionString = value;
             }
         }
-        
+        private string _databaseEndPoint;
+        public string DatabaseEndPoint {
+            get {
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("ENDPOINT_ADDRESS"))) {
+                    _databaseEndPoint = Environment.GetEnvironmentVariable("ENDPOINT_ADDRESS");
+                }
+                return _databaseEndPoint;
+            }
+            set {
+                _databaseEndPoint = value;
+            }
+        }
+        private string _databasePort;
+        public string DatabasePort {
+            get {
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("DB_PORT"))) {
+                    _databasePort = Environment.GetEnvironmentVariable("DB_PORT");
+                }
+                return _databasePort;
+            }
+            set {
+                _databasePort = value;
+            }
+        }
+        private string _databaseName;
+        public string DatabaseName {
+            get {
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("DB_NAME"))) {
+                    _databaseName = Environment.GetEnvironmentVariable("DB_NAME");
+                }
+                return _databaseName;
+            }
+            set {
+                _databaseName = value;
+            }
+        }
+        private string _databaseUsername;
+        public string DatabaseUsername {
+            get {
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("MASTER_USERNAME"))) {
+                    _databaseUsername = Environment.GetEnvironmentVariable("MASTER_USERNAME");
+                }
+                return _databaseUsername;
+            }
+            set {
+                _databaseUsername = value;
+            }
+        }
+        private string _databasePassword;
+        public string DatabasePassword {
+            get {
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("MASTER_PASSWORD"))) {
+                    _databasePassword = Environment.GetEnvironmentVariable("MASTER_PASSWORD");
+                }
+                return _databasePassword;
+            }
+            set {
+                _databasePassword = value;
+            }
+        }
         private string _salt;
         public string Salt {
             get {
@@ -38,6 +99,32 @@ namespace Dta.OneAps.Api.Shared {
             }
             set {
                 _jwtKey = value;
+            }
+        }
+        
+        private string _jwtIssuer;
+        public string JwtIssuer {
+            get {
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("JwtIssuer"))) {
+                    _jwtIssuer = Environment.GetEnvironmentVariable("JwtIssuer");
+                }
+                return _jwtIssuer;
+            }
+            set {
+                _jwtIssuer = value;
+            }
+        }
+        
+        private string _jwtAudience;
+        public string JwtAudience {
+            get {
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("JwtAudience"))) {
+                    _jwtAudience = Environment.GetEnvironmentVariable("JwtAudience");
+                }
+                return _jwtAudience;
+            }
+            set {
+                _jwtAudience = value;
             }
         }
 

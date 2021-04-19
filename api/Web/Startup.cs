@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -21,18 +20,10 @@ namespace Dta.OneAps.Api.Web {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
         }
-        // private readonly string _devOrigins = "_devOrigins";
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            // services.AddCors(options => {
-            //     options.AddPolicy(_devOrigins, builder => {
-            //         builder.WithOrigins("http://localhost:8000")
-            //             .AllowAnyHeader()
-            //             .AllowAnyMethod();
-            //     });
-            // });
             services
                 .AddControllers()
                 .AddFluentValidation(fv => {
@@ -40,28 +31,7 @@ namespace Dta.OneAps.Api.Web {
                 });
 
             // configure strongly typed settings objects
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-            var appSettings = appSettingsSection.Get<AppSettings>();
-
-            var connectionString = string.Empty;
-            if (appSettings == null || string.IsNullOrEmpty(appSettings.OneApsConnectionString)) {
-                var host = Environment.GetEnvironmentVariable("ENDPOINT_ADDRESS");
-                var port = Environment.GetEnvironmentVariable("DB_PORT");
-                var name = Environment.GetEnvironmentVariable("DB_NAME");
-                var username = Environment.GetEnvironmentVariable("MASTER_USERNAME");
-                var password = Environment.GetEnvironmentVariable("MASTER_PASSWORD");
-                connectionString = $"Host=\"{host}\";Port=\"{port}\";Database=\"{name}\";Username=\"{username}\";Password=\"{password}\"";
-            } else {
-                connectionString = appSettings.OneApsConnectionString;
-            }
-            var jwtKey = Environment.GetEnvironmentVariable("JwtKey");
-            if (string.IsNullOrEmpty(jwtKey)) {
-                jwtKey = appSettings.JwtKey;
-            }
-            
-            // appSettings.OneApsConnectionString = appSettings.OneApsConnectionString;
-            // appSettings.JwtKey = Environment.GetEnvironmentVariable("JwtKey");
+            var appSettings = Configuration.Get<AppSettings>();
 
             services
                 .AddAuthentication(options => {
@@ -69,15 +39,18 @@ namespace Dta.OneAps.Api.Web {
                     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
-                .AddJwtBearer(options => {
-                    options.TokenValidationParameters = new TokenValidationParameters {
+                .AddJwtBearer(_ => {
+                    _.RequireHttpsMetadata = true;
+                    _.SaveToken = true;
+                    _.TokenValidationParameters = new TokenValidationParameters {
                         ValidateIssuer = false,
+                        ValidIssuer = appSettings.JwtIssuer,
                         ValidateAudience = false,
+                        ValidAudience = appSettings.JwtAudience,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,
-                        // ValidIssuer = Configuration["Jwt:Issuer"],    
-                        // ValidAudience = Configuration["Jwt:Issuer"],    
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appSettings.JwtKey)),
+                        ClockSkew = TimeSpan.FromMinutes(1)
                     };
                 });
 
@@ -110,7 +83,7 @@ namespace Dta.OneAps.Api.Web {
             services
                 .AddEntityFrameworkNpgsql()
                 .AddDbContext<OneApsContext>(options => {
-                    options.UseNpgsql(connectionString);
+                    options.UseNpgsql(appSettings.OneApsConnectionString);
                 });
 
             services.AddAutoMapper(typeof(AutoMapping));
@@ -119,15 +92,6 @@ namespace Dta.OneAps.Api.Web {
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             app.UseRouting();
-
-            // global cors policy
-            // app.UseCors(x => x
-            //     .AllowAnyOrigin()
-            //     .AllowAnyMethod()
-            //     .AllowAnyHeader());
-
-            // app.UseCors(_devOrigins);
-
 
             app.UseSwagger(c => {
                 c.RouteTemplate = "api/swagger/{documentname}/swagger.json";

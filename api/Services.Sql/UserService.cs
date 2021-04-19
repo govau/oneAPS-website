@@ -37,7 +37,12 @@ namespace Dta.OneAps.Api.Services.Sql {
         }
 
         public async Task<IEnumerable<User>> GetAllAsync() => await _context.User.ToListAsync();
-        public async Task<User> GetByIdAsync(int id) => await _context.User.Where(x => x.Id == id).SingleOrDefaultAsync();
+        public async Task<User> GetByIdAsync(int id) =>
+            await _context
+                .User
+                .Include(u => u.UserClaims)
+                .Where(x => x.Id == id)
+                .SingleOrDefaultAsync();
         public async Task<User> GetByEmailAsync(string email) => 
             await _context
                 .User

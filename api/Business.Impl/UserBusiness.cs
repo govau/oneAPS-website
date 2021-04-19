@@ -76,7 +76,7 @@ namespace Dta.OneAps.Api.Business {
                 toSave.UserClaims.Add(userClaim);
                 user = await _userService.Create(toSave);
             }
-
+            user = await _userService.GetByIdAsync(user.Id);
             var result = _mapper.Map<IUser>(user);
             await _notifyService.RegistrationConfirmation(result, user.UserClaims.Last());
 

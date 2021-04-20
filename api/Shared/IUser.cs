@@ -4,6 +4,7 @@ namespace Dta.OneAps.Api.Shared {
         string Name { get; set; }
         string EmailAddress { get; set; }
         string Role { get; set; }
+        string Agency { get; set; }
         bool Active { get; set; }
     }
 }

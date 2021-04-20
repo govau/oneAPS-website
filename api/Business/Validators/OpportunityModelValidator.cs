@@ -14,7 +14,6 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(u => u.Skills).NotEmpty();
             RuleFor(u => u.StartDate).NotEmpty().GreaterThanOrEqualTo(DateTime.Now.Date);
             RuleFor(u => u.EndDate).NotEmpty().GreaterThan(_ => _.StartDate);
-            RuleFor(u => u.Agency).NotEmpty();
             RuleFor(u => u.ContactPersonName).NotEmpty();
             RuleFor(u => u.ContactPersonPhone).NotEmpty();
             RuleFor(u => u.SecurityClearance).NotEmpty();

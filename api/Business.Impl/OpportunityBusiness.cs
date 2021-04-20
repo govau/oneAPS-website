@@ -26,6 +26,7 @@ namespace Dta.OneAps.Api.Business {
             toSave.OpportunityUser.Add(new OpportunityUser {
                 UserId = user.Id
             });
+            toSave.Agency = user.Agency;
             var saved = await _opportunityService.Create(toSave, user);
             var result = _mapper.Map<OpportunityPublicResponse>(saved);
             return result;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { loadLookup, lookupType } from '../services';
 
-export const useLookupHook = (name: lookupType) => {
+export const useLookupHook = (name: lookupType, label: string) => {
   const [lookupData, setLookupData] = useState<{
     data: {
       text: string,
@@ -19,7 +19,7 @@ export const useLookupHook = (name: lookupType) => {
     }
     const load = async () => {
       const result = await loadLookup(name);
-      const data = [{ text: "Please select an agency", value: null }].concat(result.data);
+      const data = [{ text: `Please select ${label}`, value: null }].concat(result.data);
       setLookupData({
         loaded: true,
         data,

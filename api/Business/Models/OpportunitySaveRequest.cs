@@ -11,7 +11,6 @@ namespace Dta.OneAps.Api.Business.Models {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string CommitmentTime { get; set; }
-        public string Agency { get; set; }
         public string ContactPersonName { get; set; }
         public string ContactPersonPhone { get; set; }
         public string ContactPersonEmail { get; set; }

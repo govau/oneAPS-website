@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
 import { navigate } from "gatsby";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Aubtn, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, IRegisterType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
@@ -17,7 +17,7 @@ const RegisterForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const agency = useLookupHook('agency');
+  const agency = useLookupHook('agency', 'an agency');
 
   const handleRegisterUser = async (formData: IRegisterType) => {
     setSaving(true);

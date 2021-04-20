@@ -2,8 +2,7 @@ import { Form, Formik } from "formik";
 import { Link, navigate } from "gatsby";
 import React, { useState, useEffect } from "react";
 import { DateTime } from 'luxon';
-import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
-import { IOpportunityType } from "../../../types/types";
+import { Aubtn, AuFieldset, AuFormGroup, AuLabel } from "../../../types/auds";
 import { formatApiError } from "../../../util/formatApiError";
 import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
@@ -15,9 +14,10 @@ import { useUserHook, useLookupHook, useOpportunityHook } from '../../../hooks';
 const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunityId }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [isError, setIsError] = useState<boolean>(false);
+  const [agencyText, setAgencyText] = useState<string>('');
   const { user, loggedIn, getUserFn } = useUserHook();
-  const agency = useLookupHook('agency');
-  const securityclearance = useLookupHook('securityclearance');
+  const agency = useLookupHook('agency', 'an agency');
+  const securityclearance = useLookupHook('securityclearance', 'a security clearance');
   const { clearFn, loadFn, createOpporunityFn, updateOpporunityFn, saving, errors, data } = useOpportunityHook();
 
   useEffect(() => {
@@ -37,6 +37,17 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
     data.startDate = DateTime.fromISO(data.startDate).toISODate();
     data.endDate = DateTime.fromISO(data.endDate).toISODate();
   }
+  useEffect(() => {
+    if (agency.loaded && user) {
+      let found = agency.data.find(i => i.value == user.agency);
+      if (found) {
+        setAgencyText(found.text);
+      } else {
+        setAgencyText('asdf');
+      }
+    }
+    
+  }, [agency, user]);
   return (
     <>
       {user && loggedIn ? (
@@ -54,7 +65,6 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
               initialValues={{
                 ...initialValues,
                 ...data,
-                agency: user.agency,
                 contactPersonEmail: user.emailAddress,
                 contactPersonName: user.name,
                 contactPersonPhone: user.mobile,
@@ -182,7 +192,6 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                     type="date"
                     required
                   />
-
                   <TextField
                     id="commitmentTime"
                     label="Commitment time:"
@@ -191,13 +200,10 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                     width="xl"
                     required
                   />
-                  <SelectField
-                    id="agency"
-                    label="Department/Agency name"
-                    width="lg"
-                    options={agency.data}
-                    required
-                  />
+                  <AuFormGroup>
+                    <AuLabel htmlFor="agencyText" text="Department/Agency name" />
+                    <div style={{marginTop: '1em'}} id="agencyText">{agencyText}</div>
+                  </AuFormGroup>
                   <TextField
                     id="contactPersonName"
                     label="Contact person name:"

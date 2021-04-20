@@ -1,7 +1,7 @@
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery, Link } from "gatsby";
 import React, { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import { Nav, NavContent } from "../../types/auds";
+import { Nav } from "../../types/auds";
 import { MenuItem, MenuItems } from "../../types/types";
 
 interface Props {
@@ -68,7 +68,23 @@ const MainNav: React.FC<Props> = ({ path }) => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
-            <NavContent items={mainNavItems} />
+            <div id="main-nav-default" className="au-main-nav__content">
+              <div className="au-main-nav__menu">
+                <div className="au-main-nav__menu-inner">
+                  
+                  <ul className="au-link-list">
+                    {mainNavItems.map(i => {
+                      return (
+                        <li className={i.active ? 'active': ''}>
+                          <Link to={i.link}>{i.text}</Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  <div className="au-main-nav__focus-trap-bottom"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

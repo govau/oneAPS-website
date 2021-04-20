@@ -43,9 +43,9 @@ namespace Dta.OneAps.Api.Web {
                     _.RequireHttpsMetadata = true;
                     _.SaveToken = true;
                     _.TokenValidationParameters = new TokenValidationParameters {
-                        ValidateIssuer = false,
+                        ValidateIssuer = true,
                         ValidIssuer = appSettings.JwtIssuer,
-                        ValidateAudience = false,
+                        ValidateAudience = true,
                         ValidAudience = appSettings.JwtAudience,
                         ValidateLifetime = true,
                         ValidateIssuerSigningKey = true,

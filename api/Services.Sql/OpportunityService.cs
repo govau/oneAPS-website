@@ -31,6 +31,7 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .Opportunity
                 .Include(x => x.CreatedByUser)
                 .Include(x => x.ModifiedByUser)
+                .Include(x => x.OpportunityUser)
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync()
         );

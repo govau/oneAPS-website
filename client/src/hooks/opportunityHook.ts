@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { loadOpportunity, loadOpportunities, postOpporunity } from '../services';
+import { loadOpportunity, loadOpportunities, createOpporunity, updateOpporunity } from '../services';
 import { IOpportunityType, IApiFormError } from '../types';
 import { UserContext } from '../context';
 
@@ -25,15 +25,37 @@ export const useOpportunityHook = () => {
   const [errors, setErrors] = useState<IApiFormError[]>();
   const user = useContext(UserContext);
 
+  const clearFn = () => {
+    setData(undefined);
+  };
+
   const loadFn = async (id: number) => {
     const result = await loadOpportunity(id);
     setData(result);
   };
 
-  const postOpporunityFn = async (formData: IOpportunityType): Promise<{data?: IOpportunityType, success: boolean}> => {
+  const createOpporunityFn = async (formData: IOpportunityType): Promise<{data?: IOpportunityType, success: boolean}> => {
     setSaving(true);
     try {
-      var result = await postOpporunity(formData, user.token);
+      var result = await createOpporunity(formData, user.token);
+      setData(result.data);
+      return {
+        data: result.data,
+        success: true
+      };
+    } catch (e) {
+      setErrors(processErrors(e));
+    }
+    setSaving(false);
+    return {
+      success: false
+    };
+  };
+
+  const updateOpporunityFn = async (formData: IOpportunityType): Promise<{data?: IOpportunityType, success: boolean}> => {
+    setSaving(true);
+    try {
+      var result = await updateOpporunity(formData, user.token);
       setData(result.data);
       return {
         data: result.data,
@@ -49,8 +71,10 @@ export const useOpportunityHook = () => {
   };
 
   return {
+    clearFn,
     loadFn,
-    postOpporunityFn,
+    createOpporunityFn,
+    updateOpporunityFn,
     data,
     saving,
     errors

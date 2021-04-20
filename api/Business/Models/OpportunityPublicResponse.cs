@@ -19,5 +19,6 @@ namespace Dta.OneAps.Api.Business.Models {
         public string SecurityClearance { get; set; }
         public DateTime? Modifed { get; set; }
         public DateTime Created { get; set; }
+        public int CreatedByUserId { get; set; }
     }
 }

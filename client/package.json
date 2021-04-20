@@ -51,6 +51,7 @@
     "gatsby-source-filesystem": "^3.2.0",
     "gatsby-transformer-remark": "^3.2.0",
     "gatsby-transformer-sharp": "^3.2.0",
+    "luxon": "^1.26.0",
     "node-sass": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
@@ -59,6 +60,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "@types/luxon": "^1.26.4",
     "@types/yup": "^0.29.11",
     "gatsby-plugin-tsconfig-paths": "^1.0.3",
     "prettier": "2.2.1"

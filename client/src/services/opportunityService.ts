@@ -14,46 +14,22 @@ export const loadOpportunities = async () => {
   return data;
 }
 
-export const postOpporunity = async (formData: IOpportunityType, token: string) => {
-  const {
-    id,
-    jobTitle,
-    jobDescription,
-    whatYoullGain,
-    aboutTeam,
-    numberOfPeople,
-    startDate,
-    endDate,
-    commitmentTime,
-    agency,
-    contactPersonName,
-    contactPersonEmail,
-    contactPersonPhone,
-    location,
-    skills,
-    additionalInfo,
-    securityClearance,
-  } = formData;
+export const createOpporunity = async (formData: IOpportunityType, token: string) => {
   const result = await axios.post(
-    `/api/Opportunity`, {
-      id,
-      jobTitle,
-      jobDescription,
-      whatYoullGain,
-      aboutTeam,
-      numberOfPeople: `${numberOfPeople}`,
-      startDate,
-      endDate,
-      commitmentTime,
-      agency,
-      contactPersonName,
-      contactPersonPhone,
-      contactPersonEmail,
-      location,
-      skills,
-      additionalInfo,
-      securityClearance,
-    }, {
+    `/api/Opportunity`, formData, {
+      headers: {
+        Authorization: `bearer ${token}`
+      }
+    }
+  );
+  return result;
+}
+
+export const updateOpporunity = async (formData: IOpportunityType, token: string) => {
+  formData.numberOfPeople = `${formData.numberOfPeople}`;
+  const result = await axios.put(
+    `/api/Opportunity/${formData.id}`,
+    formData, {
       headers: {
         Authorization: `bearer ${token}`
       }

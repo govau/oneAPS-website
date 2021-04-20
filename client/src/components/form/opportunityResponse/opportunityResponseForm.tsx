@@ -271,7 +271,7 @@ const OpportunityResponseForm: React.FC = () => {
         <p>
           You must be{" "}
           <Link
-            to="../../login"
+            to="/login"
             state={{ fromPage: location.pathname + location.search }}
           >
             logged in

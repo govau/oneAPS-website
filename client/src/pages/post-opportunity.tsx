@@ -5,11 +5,16 @@ import SEO from "../components/seo";
 import { PageContext } from "../types/types";
 import { Link } from "gatsby";
 
-// markup
 const OpportunityResponsePage: React.FC<PageContext> = ({
   pageContext,
   location,
 }) => {
+  const params = new URLSearchParams(location.search);
+  let opportunityId: number;
+  if (params.get('opportunityId')) {
+    opportunityId = parseInt(params.get('opportunityId'), 10);
+  }
+
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
@@ -26,7 +31,7 @@ const OpportunityResponsePage: React.FC<PageContext> = ({
         </div>
         <div className="container-fluid au-body">
           <h1>Post an Opportunity</h1>
-          <PostOpportunityForm />
+          <PostOpportunityForm opportunityId={opportunityId} />
         </div>
         <section className="au-body center-align">
           This site is part of a 3-month pilot program from March to May 2021

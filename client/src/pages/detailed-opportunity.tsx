@@ -1,29 +1,28 @@
 import { Link } from "gatsby";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
 import { PageContext } from '../types';
 import { useOpportunityHook } from '../hooks';
-
+import { UserContext } from '../context';
 
 const contentOrNA = (c) => {
   return c ? c : "N/A";
 }
 
-const DetailedOpportunityPage: React.FC<PageContext> = ({
-  pageContext,
-  location,
-}) => {
-  const params = new URLSearchParams(location.search);
-  const opportunityId = parseInt(params.get('opportunityId'), 10);
+const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportunityId }) => {
   const { loadFn, data } = useOpportunityHook();
+  const user = useContext(UserContext);
 
   useEffect(() => {
-    loadFn(opportunityId);
-  }, []);
+    const load = async () => {
+      await loadFn(opportunityId);
+    }
+    load();
+  }, [opportunityId]);
 
   return (
-    <DefaultLayout pageContext={pageContext} location={location}>
+    <>
       {data && (
         <>
           <SEO title="About oneAPS" />
@@ -55,7 +54,7 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
                 <p>
                   <span className="bolden-text">
                     What you'll gain from this experience:
-                </span>
+                  </span>
                   <br />
                   {contentOrNA(data.whatYoullGain)}
                 </p>
@@ -72,7 +71,7 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
                 <p>
                   <span className="bolden-text">
                     Additional information (optional):
-                </span>
+                  </span>
                   <br />
                   {contentOrNA(data.additionalInfo)}
                 </p>
@@ -128,27 +127,51 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
                   <br />
                   {contentOrNA(data.agency)}
                 </p>
+                <div style={{ marginTop: "2rem" }}>
+                  <Link
+                    to={`/opportunity-response?opportunityId=${data.id}`}
+                    state={{ ...data }}
+                    className="au-btn"
+                  >
+                    Apply for opportunity
+                  </Link>
+                </div>
+                {user.user && user.user.userId === data.createdByUserId && (
+                  <div style={{ marginTop: "2rem" }}>
+                    <Link
+                      to={`/post-opportunity?opportunityId=${data.id}`}
+                      className="au-btn"
+                    >
+                      Edit opportunity
+                    </Link>
+                  </div>
+                )}
               </div>
-            </div>
-            <div style={{ marginTop: "2rem" }}>
-              <Link
-                to={`/opportunity-response?opportunityId=${data.id}`}
-                state={{ ...data }}
-                className="au-btn"
-              >
-                Apply for opportunity
-            </Link>
             </div>
           </div>
           <section className="au-body center-align">
             This site is part of a 3-month pilot program from March to May 2021
             run by the Digital Squads team at the Digital Transformation Agency.
-          <br />
-          If you have any questions or feedback, please contact us at{" "}
+            <br />
+            If you have any questions or feedback, please contact us at{" "}
             <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>
           </section>
         </>
       )}
+    </>
+  )
+}
+
+const DetailedOpportunityPage: React.FC<PageContext> = ({
+  pageContext,
+  location,
+}) => {
+  const params = new URLSearchParams(location.search);
+  const opportunityId = parseInt(params.get('opportunityId'), 10);
+
+  return (
+    <DefaultLayout pageContext={pageContext} location={location}>
+      <DetailedOpportunityView opportunityId={opportunityId} />
     </DefaultLayout>
   );
 };

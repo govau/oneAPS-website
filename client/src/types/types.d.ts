@@ -66,6 +66,7 @@ export interface IOpportunityType {
   contactPersonEmail: string;
   contactPersonPhone: string;
   securityClearance: string;
+  createdByUserId: number;
 }
 
 export interface IOpportunityResponseType {

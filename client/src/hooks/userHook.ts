@@ -27,8 +27,11 @@ export const useUserHook = () => {
   
   const getUserFn = async () => {
     try {
-      var result = await getUser(user.user.userId, user.token);
-      setData(result.data);
+      setData(undefined);
+      if (user.user.userId)  {
+        var result = await getUser(user.user.userId, user.token);
+        setData(result.data);
+      }
     } catch { }
   };
   return {

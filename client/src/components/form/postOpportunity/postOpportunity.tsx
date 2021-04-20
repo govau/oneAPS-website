@@ -24,7 +24,7 @@ const PostOpportunityForm: React.FC = () => {
 
   const handlePostOpporunity = async (formData: IOpportunityType) => {
     if (await postOpporunityFn(formData)) {
-      navigate("/find-opportunities");
+      navigate(`/successfully-posted`);
     }
   };
 

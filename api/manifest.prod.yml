@@ -5,7 +5,7 @@ disk_quota: 512M
 instances: 2
 routes:
 - route: oneaps.apps.b.cld.gov.au/api
-# - route: oneaps.gov.au/api
+- route: oneaps.gov.au/api
 services:
 - ups-oneaps-api
 - oneaps-db

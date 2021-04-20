@@ -2,6 +2,7 @@ import * as React from "react";
 import DefaultLayout from "../../../components/layouts/default-layout";
 import SEO from "../../../components/seo";
 import { PageContext } from "../../../types/types";
+import { Link } from "gatsby";
 
 // markup
 const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
@@ -13,10 +14,10 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
           <nav className="au-breadcrumbs" aria-label="breadcrumb">
             <ul className="au-link-list au-link-list--inline">
               <li>
-                <a href="../../../#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="../../help">Help</a>
+                <Link to="/help">Help</Link>
               </li>
               <li>
                 How long does it take to post an opportunity and review
@@ -32,9 +33,9 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
           <p>
             It only takes a few minutes to create and post an opportunity.
             Before you get started,{" "}
-            <a href="write-a-great-opportunity">
+            <Link to="/help-pages/opportunity-creators/write-a-great-opportunity">
               read these tips on how to write a great opportunity.
-            </a>
+            </Link>
           </p>
           <p>
             How you review applicants is up to you. We encourage you to review

@@ -31,10 +31,10 @@ const DetailedOpportunityPage: React.FC<PageContext> = ({
             <nav className="au-breadcrumbs" aria-label="breadcrumb">
               <ul className="au-link-list au-link-list--inline">
                 <li>
-                  <a href="../#">Home</a>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <a href="../find-opportunities">Find opportunities</a>
+                  <Link to="/find-opportunities">Find opportunities</Link>
                 </li>
                 <li>{contentOrNA(data.jobTitle)}</li>
               </ul>

@@ -2,6 +2,7 @@ import * as React from "react";
 import DefaultLayout from "../../../components/layouts/default-layout";
 import SEO from "../../../components/seo";
 import { PageContext } from "../../../types/types";
+import { Link } from "gatsby";
 
 // markup
 const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
@@ -13,10 +14,10 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
           <nav className="au-breadcrumbs" aria-label="breadcrumb">
             <ul className="au-link-list au-link-list--inline">
               <li>
-                <a href="../../../#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="../../help">Help</a>
+                <Link to="/help">Help</Link>
               </li>
               <li>Creating a new opportunity</li>
             </ul>
@@ -25,7 +26,7 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
         <div className="au-body container-fluid">
           <h1>Creating a new opportunity</h1>
           <p>
-            Our <a href="../../post-opportunity">Post an Opportunity form</a>{" "}
+            Our <Link to="/post-opportunity">Post an Opportunity form</Link>{" "}
             has hints in each of the text fields to assist you with creating an
             opportunity.
           </p>

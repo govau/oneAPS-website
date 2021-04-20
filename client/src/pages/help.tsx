@@ -2,6 +2,7 @@ import * as React from "react";
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
 import { PageContext } from "../types/types";
+import { Link } from "gatsby";
 
 // markup
 const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
@@ -13,7 +14,7 @@ const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
           <nav className="au-breadcrumbs" aria-label="breadcrumb">
             <ul className="au-link-list au-link-list--inline">
               <li>
-                <a href="../#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>Help</li>
             </ul>
@@ -36,30 +37,30 @@ const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
                 </div>
                 <ul>
                   <li>
-                    <a href="/help-pages/opportunity-creators/write-a-great-opportunity">
+                    <Link to="/help-pages/opportunity-creators/write-a-great-opportunity">
                       How to write a great opportunity
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="./help-pages/opportunity-creators/how-long-to-post-opportunity-and-review">
+                    <Link to="/help-pages/opportunity-creators/how-long-to-post-opportunity-and-review">
                       How long does it take to post an opportunity and review
                       applicants?
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="./help-pages/opportunity-creators/creating-new-opportunity">
+                    <Link to="/help-pages/opportunity-creators/creating-new-opportunity">
                       Creating a new opportunity
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="./help-pages/opportunity-creators/onboarding-for-host-managers">
+                    <Link to="/help-pages/opportunity-creators/onboarding-for-host-managers">
                       Guide to onboarding for host managers
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="./help-pages/opportunity-creators/examples-of-opportunities">
+                    <Link to="/help-pages/opportunity-creators/examples-of-opportunities">
                       What are some examples of opportunities?
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a
@@ -83,34 +84,34 @@ const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
                 </div>
                 <ul>
                   <li>
-                    <a href="./help-pages/digital-professionals/how-to-apply-to-opportunity">
+                    <Link to="/help-pages/digital-professionals/how-to-apply-to-opportunity">
                       How to apply to an opportunity
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="./help-pages/digital-professionals/who-can-participate">
+                    <Link to="/help-pages/digital-professionals/who-can-participate">
                       Who can participate?
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="./help-pages/digital-professionals/can-work-count-as-training">
+                    <Link to="/help-pages/digital-professionals/can-work-count-as-training">
                       Can my work count as training?
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="./help-pages/digital-professionals/recognition-for-participating-in-opportunity">
+                    <Link to="/help-pages/digital-professionals/recognition-for-participating-in-opportunity">
                       Do I get recognition for participating in an opportunity?
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="./help-pages/digital-professionals/writing-personal-pitch">
+                    <Link to="/help-pages/digital-professionals/writing-personal-pitch">
                       Writing a personal pitch
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="./help-pages/digital-professionals/how-to-withdraw-application">
+                    <Link to="/help-pages/digital-professionals/how-to-withdraw-application">
                       How to withdraw an application
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -125,14 +126,14 @@ const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
                 </div>
                 <ul>
                   <li>
-                    <a href="./help-pages/current-managers/what-is-oneAPS">
+                    <Link to="/help-pages/current-managers/what-is-oneAPS">
                       What is oneAPS?
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a href="./help-pages/current-managers/using-mobility-as-manager">
+                    <Link to="/help-pages/current-managers/using-mobility-as-manager">
                       Using mobility as a manager
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <a

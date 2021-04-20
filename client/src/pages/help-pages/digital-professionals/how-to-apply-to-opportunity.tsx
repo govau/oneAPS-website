@@ -2,6 +2,7 @@ import * as React from "react";
 import DefaultLayout from "../../../components/layouts/default-layout";
 import SEO from "../../../components/seo";
 import { PageContext } from "../../../types/types";
+import { Link } from "gatsby";
 
 // markup
 const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
@@ -13,10 +14,10 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
           <nav className="au-breadcrumbs" aria-label="breadcrumb">
             <ul className="au-link-list au-link-list--inline">
               <li>
-                <a href="../../../#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="../../help">Help</a>
+                <Link to="/help">Help</Link>
               </li>
               <li>How to apply to an opportunity</li>
             </ul>
@@ -27,7 +28,7 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
           <p>Applying for an opportunity is easy.</p>
           <p>
             ​​​​​​​First, find the opportunity that is of interest to you in the{" "}
-            <a href="../../find-opportunities">Find opportunities page</a>.
+            <Link to="/find-opportunities">Find opportunities page</Link>.
           </p>
           <p>
             Click on the "more" link at the bottom of the card that takes your

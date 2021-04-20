@@ -3,6 +3,7 @@ import PostOpportunityForm from "../components/form/postOpportunity/postOpportun
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
 import { PageContext } from "../types/types";
+import { Link } from "gatsby";
 
 // markup
 const OpportunityResponsePage: React.FC<PageContext> = ({
@@ -17,7 +18,7 @@ const OpportunityResponsePage: React.FC<PageContext> = ({
           <nav className="au-breadcrumbs" aria-label="breadcrumb">
             <ul className="au-link-list au-link-list--inline">
               <li>
-                <a href="../#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>Post an opportunity</li>
             </ul>

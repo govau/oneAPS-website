@@ -2,6 +2,7 @@ import * as React from "react";
 import DefaultLayout from "../../../components/layouts/default-layout";
 import SEO from "../../../components/seo";
 import { PageContext } from "../../../types/types";
+import { Link } from "gatsby";
 
 // markup
 const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
@@ -13,10 +14,10 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
           <nav className="au-breadcrumbs" aria-label="breadcrumb">
             <ul className="au-link-list au-link-list--inline">
               <li>
-                <a href="../../../#">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="../../help">Help</a>
+                <Link to="/help">Help</Link>
               </li>
               <li>What is oneAPS?</li>
             </ul>
@@ -98,9 +99,9 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
             You can create and post opportunities. Get help on projects, propose
             working groups, get testers for new ideas or products or create a
             team to work on an idea you have.{" "}
-            <a href="../opportunity-creators/write-a-great-opportunity">
+            <Link to="/help-pages/opportunity-creators/write-a-great-opportunity">
               See how you can create an opportunity.
-            </a>
+            </Link>
           </p>
           <h2>Work on an opportunity</h2>
           <p>
@@ -108,9 +109,9 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
             Choose from a wide range of projects and discover something new.
           </p>
           <p>
-            <a href="../../find-opportunities">
+            <Link to="/find-opportunities">
               Check out available opportunities.
-            </a>
+            </Link>
           </p>
           <h2>Can federal contractors participate?</h2>
           <p>

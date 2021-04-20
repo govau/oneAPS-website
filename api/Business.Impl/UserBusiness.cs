@@ -94,7 +94,7 @@ namespace Dta.OneAps.Api.Business {
             return result;
         }
         public async Task<IEnumerable<IUser>> GetAllAsync() => _mapper.Map<IEnumerable<IUser>>(await _userService.GetAllAsync());
-        public async Task<IUser> GetByIdAsync(int id) => _mapper.Map<IUser>(await _userService.GetByIdAsync(id));
+        public async Task<UserResponse> GetByIdAsync(int id) => _mapper.Map<UserResponse>(await _userService.GetByIdAsync(id));
         public async Task<IUser> GetByEmailAsync(string email) => _mapper.Map<IUser>(await _userService.GetByEmailAsync(email));
         private string GenerateJSONWebToken(User user) {
             var jwtTokenHandler = new JwtSecurityTokenHandler();

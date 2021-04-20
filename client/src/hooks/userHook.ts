@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import { claimToken } from '../services';
+import { useState, useEffect, useContext } from 'react';
+import { claimToken, getUser } from '../services';
+import { UserContext } from '../context';
 
 export const useClaimHook = (token: string) => {
   const [claim, setClaim] = useState(false);
@@ -18,4 +19,20 @@ export const useClaimHook = (token: string) => {
     claim();
   }, []);
   return { claim, errors };
+};
+
+export const useUserHook = () => {
+  const [data, setData] = useState();
+  const user = useContext(UserContext);
+  
+  const getUserFn = async () => {
+    var result = await getUser(user.user.userId, user.token);
+    setData(result.data);
+  };
+  return {
+      getUserFn,
+      user: data,
+      loggedIn: user.token ? true : false,
+      token: user.token
+    };
 };

@@ -8,7 +8,7 @@ namespace Dta.OneAps.Api.Business {
         Task<UserSessionResponse> AuthenticateAsync(AuthenticateUserRequest model);
         Task<IUser> RegisterAsync(UserCreateRequest model);
         Task<IEnumerable<IUser>> GetAllAsync();
-        Task<IUser> GetByIdAsync(int id);
+        Task<UserResponse> GetByIdAsync(int id);
         Task<IUser> GetByEmailAsync(string email);
     }
 }

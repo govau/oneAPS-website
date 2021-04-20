@@ -1,8 +1,7 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
 import { Link, navigate } from "gatsby";
-import React, { useContext, useState } from "react";
-import { UserContext } from "../../../context/UserContext";
+import React, { useContext, useState, useEffect } from "react";
 import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
 import { IApiFormError, IOpportunityType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
@@ -11,36 +10,18 @@ import PageAlert from "../../blocks/pageAlert";
 import SelectField from "../fields/SelectField";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./postOpportunitySchema";
+import { useUserHook, useLookupHook } from '../../../hooks';
 
 const PostOpportunityForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-  const [agency, setAgency] = useState<{
-    loaded: boolean;
-    data: { value: string; text: string }[];
-  }>({ loaded: false, data: [] });
-  const user = useContext(UserContext);
+  const user = useUserHook();
+  const agency = useLookupHook('agency');
+  const securityclearance = useLookupHook('securityclearance');
 
-  React.useEffect(() => {
-    if (agency.loaded) {
-      return;
-    }
-    const loadAgency = async () => {
-      const result = await axios.get(`/api/lookup`, {
-        params: {
-          name: "agency",
-        },
-      });
-      const data = [{ text: "Please select an agency", value: null }].concat(
-        result.data
-      );
-      setAgency({
-        loaded: true,
-        data,
-      });
-    };
-    loadAgency();
+  useEffect(() => {
+    user.getUserFn();
   }, []);
 
   const handlePostOpporunity = async (formData: IOpportunityType) => {
@@ -110,7 +91,7 @@ const PostOpportunityForm: React.FC = () => {
 
   return (
     <>
-      {user.token ? (
+      {user.user && user.loggedIn ? (
         <>
           {errorList && errorList.length > 0 && (
             <PageAlert type="error" className="max-30">
@@ -123,8 +104,10 @@ const PostOpportunityForm: React.FC = () => {
           <Formik
             initialValues={{
               ...initialValues,
-              // contactPersonEmail: user.user.email,
+              agency: user.user.agency,
+              contactPersonEmail: user.user.emailAddress,
               contactPersonName: user.user.name,
+              contactPersonPhone: user.user.mobile,
             }}
             validationSchema={validationSchema}
             onSubmit={(values, actions) => {
@@ -270,20 +253,13 @@ const PostOpportunityForm: React.FC = () => {
                   hint="Contact phone number for this opportunity"
                   type="text"
                 />
-
                 <SelectField
                   id="securityClearance"
-                  label="Security Clearance:"
+                  label="Security Clearance"
                   hint="What level of security clearance is needed to complete the opportunity?"
-                  options={[
-                    { text: "Select", value: "" },
-                    { text: "Baseline", value: "baseline" },
-                    { text: "Negative Vetting Level 1", value: "nv1" },
-                    { text: "Negative Vetting Level 2", value: "nv2" },
-                    { text: "Positive Vetting", value: "pv" },
-                    { text: "None", value: "none" },
-                  ]}
-                ></SelectField>
+                  options={securityclearance.data}
+                  required
+                />
 
                 <AuFormGroup>
                   <Aubtn type="submit" onClick={submitForm} disabled={saving}>

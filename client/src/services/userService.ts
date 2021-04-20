@@ -8,3 +8,11 @@ export const claimToken = async (token: string) => {
     }
   });
 }
+export const getUser = async (id: number, token: string) => {
+  const result = await axios.get(`/api/User/${id}`, {
+    headers: {
+      Authorization: `bearer ${token}`,
+    }
+  });
+  return result;
+}

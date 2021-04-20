@@ -13,3 +13,51 @@ export const loadOpportunities = async () => {
   const data = result.data as IOpportunityType[];
   return data;
 }
+
+export const postOpporunity = async (formData: IOpportunityType, token: string) => {
+  const {
+    id,
+    jobTitle,
+    jobDescription,
+    whatYoullGain,
+    aboutTeam,
+    numberOfPeople,
+    startDate,
+    endDate,
+    commitmentTime,
+    agency,
+    contactPersonName,
+    contactPersonEmail,
+    contactPersonPhone,
+    location,
+    skills,
+    additionalInfo,
+    securityClearance,
+  } = formData;
+  const result = await axios.post(
+    `/api/Opportunity`, {
+      id,
+      jobTitle,
+      jobDescription,
+      whatYoullGain,
+      aboutTeam,
+      numberOfPeople: `${numberOfPeople}`,
+      startDate,
+      endDate,
+      commitmentTime,
+      agency,
+      contactPersonName,
+      contactPersonPhone,
+      contactPersonEmail,
+      location,
+      skills,
+      additionalInfo,
+      securityClearance,
+    }, {
+      headers: {
+        Authorization: `bearer ${token}`
+      }
+    }
+  );
+  return result;
+}

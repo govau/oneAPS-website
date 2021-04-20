@@ -1,103 +1,42 @@
-import axios from "axios";
 import { Form, Formik } from "formik";
 import { Link, navigate } from "gatsby";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Aubtn, AuFieldset, AuFormGroup } from "../../../types/auds";
-import { IApiFormError, IOpportunityType } from "../../../types/types";
+import { IOpportunityType } from "../../../types/types";
 import { formatApiError } from "../../../util/formatApiError";
 import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import SelectField from "../fields/SelectField";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./postOpportunitySchema";
-import { useUserHook, useLookupHook } from '../../../hooks';
+import { useUserHook, useLookupHook, useOpportunityHook } from '../../../hooks';
 
 const PostOpportunityForm: React.FC = () => {
-  const [errorList, setErrorList] = useState<IApiFormError[]>([]);
-  const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const user = useUserHook();
   const agency = useLookupHook('agency');
   const securityclearance = useLookupHook('securityclearance');
+  const {postOpporunityFn, saving, errors} = useOpportunityHook();
 
   useEffect(() => {
     user.getUserFn();
   }, []);
 
   const handlePostOpporunity = async (formData: IOpportunityType) => {
-    setSaving(true);
-
-    const {
-      id,
-      jobTitle,
-      jobDescription,
-      whatYoullGain,
-      aboutTeam,
-      numberOfPeople,
-      startDate,
-      endDate,
-      commitmentTime,
-      agency,
-      contactPersonName,
-      contactPersonEmail,
-      contactPersonPhone,
-      location,
-      skills,
-      additionalInfo,
-      securityClearance,
-    } = formData;
-    try {
-      const result = await axios.post(
-        `/api/Opportunity`,
-        {
-          id,
-          jobTitle,
-          jobDescription,
-          whatYoullGain,
-          aboutTeam,
-          numberOfPeople: `${numberOfPeople}`,
-          startDate,
-          endDate,
-          commitmentTime,
-          agency,
-          contactPersonName,
-          contactPersonPhone,
-          contactPersonEmail,
-          location,
-          skills,
-          additionalInfo,
-          securityClearance,
-        },
-        { headers: { Authorization: `bearer ${user.token}` } }
-      );
+    if (await postOpporunityFn(formData)) {
       navigate("/find-opportunities");
-      return;
-    } catch (e) {
-      if (e.response.status === 400) {
-        let errors: IApiFormError[] = [];
-        for (const property in e.response.data.errors) {
-          for (const message of e.response.data.errors[property]) {
-            errors.push({
-              message,
-              path: property,
-            });
-          }
-        }
-        setErrorList(errors);
-      }
     }
-    setSaving(false);
   };
 
   return (
     <>
       {user.user && user.loggedIn ? (
         <>
-          {errorList && errorList.length > 0 && (
+          {errors && errors.length > 0 && (
             <PageAlert type="error" className="max-30">
               <>
                 <h2>There was an error</h2>
-                {formatApiError(errorList)}
+                {formatApiError(errors)}
               </>
             </PageAlert>
           )}

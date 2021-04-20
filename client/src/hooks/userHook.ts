@@ -26,8 +26,10 @@ export const useUserHook = () => {
   const user = useContext(UserContext);
   
   const getUserFn = async () => {
-    var result = await getUser(user.user.userId, user.token);
-    setData(result.data);
+    try {
+      var result = await getUser(user.user.userId, user.token);
+      setData(result.data);
+    } catch { }
   };
   return {
       getUserFn,

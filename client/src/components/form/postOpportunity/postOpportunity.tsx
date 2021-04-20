@@ -16,15 +16,16 @@ const PostOpportunityForm: React.FC = () => {
   const user = useUserHook();
   const agency = useLookupHook('agency');
   const securityclearance = useLookupHook('securityclearance');
-  const {postOpporunityFn, saving, errors} = useOpportunityHook();
+  const {postOpporunityFn, saving, errors, data} = useOpportunityHook();
 
   useEffect(() => {
     user.getUserFn();
   }, []);
 
   const handlePostOpporunity = async (formData: IOpportunityType) => {
-    if (await postOpporunityFn(formData)) {
-      navigate(`/successfully-posted`);
+    var result = await postOpporunityFn(formData);
+    if (result.success) {
+      navigate(`/successfully-posted?opportunityId=${result.data.id}`);
     }
   };
 

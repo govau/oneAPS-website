@@ -97,10 +97,10 @@ const OpportunityResponseForm: React.FC = () => {
         <>
           {updatedData.submittedAt ? (
             <>
-              <PageAlert type="info" className="max-30">
+              <PageAlert type="warning" className="max-30">
                 <>
                   <h2>You have already applied for this opportunity</h2>
-                  <p>The application was recieved on {updatedData.submittedAt}</p>
+                  <p>Your application was recieved on {updatedData.submittedAt}</p>
                   <p>You can <Link to="/find-opportunities">find more opportunities</Link> or <Link to="/post-opportunity">post your own opportunity</Link>.</p>
                 </>
               </PageAlert>

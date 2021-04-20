@@ -30,16 +30,22 @@ export const useOpportunityHook = () => {
     setData(result);
   };
 
-  const postOpporunityFn = async (formData: IOpportunityType) => {
+  const postOpporunityFn = async (formData: IOpportunityType): Promise<{data?: IOpportunityType, success: boolean}> => {
     setSaving(true);
     try {
-      await postOpporunity(formData, user.token);
-      return true;
+      var result = await postOpporunity(formData, user.token);
+      setData(result.data);
+      return {
+        data: result.data,
+        success: true
+      };
     } catch (e) {
       setErrors(processErrors(e));
     }
     setSaving(false);
-    return false;
+    return {
+      success: false
+    };
   };
 
   return {

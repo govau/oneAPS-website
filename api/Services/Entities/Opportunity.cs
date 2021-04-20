@@ -56,6 +56,9 @@ namespace Dta.OneAps.Api.Services.Entities {
         [Column("contact_person_phone")]
         public string ContactPersonPhone { get; set; }
 
+        [Column("contact_person_email")]
+        public string ContactPersonEmail { get; set; }
+
         [Column("location")]
         public string Location { get; set; }
 

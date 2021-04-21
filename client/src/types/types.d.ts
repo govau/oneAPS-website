@@ -67,6 +67,7 @@ export interface IOpportunityType {
   contactPersonPhone: string;
   securityClearance: string;
   canModify: boolean;
+  numberOfResponses: number;
 }
 
 export interface IOpportunityResponseType {

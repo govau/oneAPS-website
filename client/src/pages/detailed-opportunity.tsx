@@ -47,7 +47,7 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
                 style={{ borderRight: "1px solid black", marginTop: "2rem" }}
               >
                 <p>
-                  <span className="bolden-text">What you'll do:</span>
+                  <span className="bolden-text">What you'll do</span>
                   <br />
                   {contentOrNA(data.jobDescription)}
                 </p>
@@ -59,71 +59,84 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
                   {contentOrNA(data.whatYoullGain)}
                 </p>
                 <p>
-                  <span className="bolden-text">About our team:</span>
+                  <span className="bolden-text">About our team</span>
                   <br />
                   {contentOrNA(data.aboutTeam)}
                 </p>
                 <p>
-                  <span className="bolden-text">Relevant skills:</span>
+                  <span className="bolden-text">Relevant skills</span>
                   <br />
                   {contentOrNA(data.skills)}
                 </p>
                 <p>
                   <span className="bolden-text">
-                    Additional information (optional):
+                    Additional information:
                   </span>
                   <br />
                   {contentOrNA(data.additionalInfo)}
                 </p>
                 <p>
-                  <span className="bolden-text">Number of people needed:</span>
+                  <span className="bolden-text">Number of people needed</span>
                   <br />
                   {contentOrNA(data.numberOfPeople)}
                 </p>
                 <p>
-                  <span className="bolden-text">Commitment time:</span>
+                  <span className="bolden-text">Commitment time</span>
                   <br />
                   {contentOrNA(data.commitmentTime)}
                 </p>
                 <p>
-                  <span className="bolden-text">Location:</span>
+                  <span className="bolden-text">Location</span>
                   <br />
                   {contentOrNA(data.location)}
                 </p>
                 <p>
-                  <span className="bolden-text">Security clearance needed:</span>
+                  <span className="bolden-text">Security clearance needed</span>
                   <br />
                   {contentOrNA(data.securityClearance)}
                 </p>
                 <p>
-                  <span className="bolden-text">Estimated start date:</span>
+                  <span className="bolden-text">Estimated start date</span>
                   <br />
                   {contentOrNA(data.startDate).slice(0, 10)}
                 </p>
                 <p>
-                  <span className="bolden-text">Estimated end date:</span>
+                  <span className="bolden-text">Estimated end date</span>
                   <br />
                   {contentOrNA(data.endDate).slice(0, 10)}
                 </p>
               </div>
               <div className="col-md-4" style={{ marginTop: "2rem" }}>
+                {data.numberOfResponses !== undefined && (
+                  <p>
+                    <span className="bolden-text">Number of responses</span>
+                    <br />
+                    {contentOrNA(data.numberOfResponses)}
+                  </p>
+                )}
+                {data.contactPersonName !== undefined && (
+                  <p>
+                    <span className="bolden-text">Contact person</span>
+                    <br />
+                    {contentOrNA(data.contactPersonName)}
+                  </p>
+                )}
+                {data.contactPersonEmail !== undefined && (
+                  <p>
+                    <span className="bolden-text">Contact email</span>
+                    <br />
+                    {contentOrNA(data.contactPersonEmail)}
+                  </p>
+                )}
+                {data.contactPersonPhone !== undefined && (
+                  <p>
+                    <span className="bolden-text">Contact phone</span>
+                    <br />
+                    {contentOrNA(data.contactPersonPhone)}
+                  </p>
+                )}
                 <p>
-                  <span className="bolden-text">Contact person:</span>
-                  <br />
-                  {contentOrNA(data.contactPersonName)}
-                </p>
-                <p>
-                  <span className="bolden-text">Contact email:</span>
-                  <br />
-                  {contentOrNA(data.contactPersonEmail)}
-                </p>
-                <p>
-                  <span className="bolden-text">Contact phone (optional):</span>
-                  <br />
-                  {contentOrNA(data.contactPersonPhone)}
-                </p>
-                <p>
-                  <span className="bolden-text">Department / Agency:</span>
+                  <span className="bolden-text">Department / Agency</span>
                   <br />
                   {contentOrNA(data.agency)}
                 </p>

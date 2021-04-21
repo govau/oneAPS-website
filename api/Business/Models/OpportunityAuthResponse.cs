@@ -8,5 +8,6 @@ namespace Dta.OneAps.Api.Business.Models {
         public string CreatedBy { get; set; }
         public string ModifiedBy { get; set; }
         public bool CanModify { get; set; }
+        public int NumberOfResponses { get; set; }
     }
 }

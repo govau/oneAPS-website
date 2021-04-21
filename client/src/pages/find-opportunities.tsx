@@ -6,18 +6,16 @@ import { PageContext } from "../types";
 import { useOpportunitiesHook } from '../hooks';
 
 
+
 const contentOrNA = (c) => {
   return c ? c : "N/A";
 }
 
-const FindOpportunitiesPage: React.FC<PageContext> = ({
-  pageContext,
-  location,
-}) => {
-  const oppData = useOpportunitiesHook();
+const OpportunitySummaryView: React.FC = () => {
 
+  const oppData = useOpportunitiesHook();
   return (
-    <DefaultLayout pageContext={pageContext} location={location}>
+    <>
       {oppData && (
         <>
           <SEO title="Find Opportunities" />
@@ -55,30 +53,37 @@ const FindOpportunitiesPage: React.FC<PageContext> = ({
                             </h3>
                           </div>
                           <p>
-                            <span className="desc-text">Agency/Department:</span>
+                            <span className="desc-text">Agency/Department</span>
                             <br />
                             {contentOrNA(opp.agency)}
                           </p>
                           <p>
-                            <span className="desc-text">Commitment Time:</span>
+                            <span className="desc-text">Commitment Time</span>
                             <br />
                             {contentOrNA(opp.commitmentTime)}
                           </p>
                           <p>
-                            <span className="desc-text">Start date:</span>
+                            <span className="desc-text">Start date</span>
                             <br />
                             {contentOrNA(opp.startDate).slice(0, 10)}
                           </p>
                           <p>
-                            <span className="desc-text">End date:</span>
+                            <span className="desc-text">End date</span>
                             <br />
                             {contentOrNA(opp.endDate).slice(0, 10)}
                           </p>
                           <p>
-                            <span className="desc-text">Required skills:</span>
+                            <span className="desc-text">Required skills</span>
                             <br />
                             {contentOrNA(opp.skills)}
                           </p>
+                          {opp.numberOfResponses !== undefined && (
+                            <p>
+                              <span className="desc-text">Number of responses</span>
+                              <br />
+                              {opp.numberOfResponses }
+                            </p>
+                          )}
                           <p>
                             <Link to={`/detailed-opportunity/?opportunityId=${opp.id}`}>
                               more
@@ -102,6 +107,17 @@ const FindOpportunitiesPage: React.FC<PageContext> = ({
           </section>
         </>
       )}
+    </>
+  );
+};
+
+const FindOpportunitiesPage: React.FC<PageContext> = ({
+  pageContext,
+  location,
+}) => {
+  return (
+    <DefaultLayout pageContext={pageContext} location={location}>
+      <OpportunitySummaryView />
     </DefaultLayout>
   );
 };

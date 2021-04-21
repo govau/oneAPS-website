@@ -9,14 +9,9 @@ const contentOrNA = (c) => {
   return c ? c : "N/A";
 }
 
-const OpportunitySummaryView: React.FC = () => {
+const OpportunitySummaryView: React.FC<{search?: string}> = ({search}) => {
   const {loadFn, data} = useOpportunitiesHook();
   const searchFieldRef = useRef();
-  const params = new URLSearchParams(location.search);
-  let search: string;
-  if (params.get('search')) {
-    search = params.get('search');
-  }
 
   useEffect(() => {
     loadFn(search);
@@ -137,9 +132,14 @@ const FindOpportunitiesPage: React.FC<PageContext> = ({
   pageContext,
   location,
 }) => {
+  const params = new URLSearchParams(location.search);
+  let search: string;
+  if (params.get('search')) {
+    search = params.get('search');
+  }
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
-      <OpportunitySummaryView />
+      <OpportunitySummaryView search={search}/>
     </DefaultLayout>
   );
 };

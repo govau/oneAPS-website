@@ -50,7 +50,7 @@ const OpportunitySummaryView: React.FC = () => {
                   }
                 }}>
                   <label htmlFor="search">Search</label>
-                  <input className="au-text-input au-text-input--block" ref={searchFieldRef} id="search" type="text" />
+                  <input className="au-text-input au-text-input--block" ref={searchFieldRef} id="search" type="text" defaultValue={search} />
                   <button type="submit" style={{ marginTop: '1em'}} className="au-btn">
                     Search
                   </button>

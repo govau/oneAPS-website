@@ -49,9 +49,6 @@ const OpportunitySummaryView: React.FC<{search?: string}> = ({search}) => {
                   <button type="submit" style={{ marginTop: '1em'}} className="au-btn">
                     Search
                   </button>
-                  <button type="reset" style={{ marginTop: '1em'}} className="au-btn">
-                    Reset
-                  </button>
                 </form>
               </div>
             </div>

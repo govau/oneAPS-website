@@ -247,14 +247,12 @@ const OpportunityResponseForm: React.FC = () => {
                       <AuFormGroup>
                         <Aubtn type="submit" onClick={() => {
                           setFieldValue('isApply', false);
-                        }
-                        } disabled={saving}>
+                        }} disabled={saving}>
                           {saving ? "Saving" : "Save"}
                         </Aubtn>
-                        <Aubtn type="submit" onClick={() => {
+                        <Aubtn type="submit" style={{marginLeft: '2em'}} onClick={() => {
                           setFieldValue('isApply', true);
-                        }
-                        } disabled={saving}>
+                        }} disabled={saving}>
                           {saving ? "Applying" : "Apply"}
                         </Aubtn>
                       </AuFormGroup>

@@ -236,7 +236,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
 
                   <AuFormGroup>
                     <Aubtn type="submit" onClick={submitForm} disabled={saving}>
-                      {saving ? "Submitting" : "Post"}
+                      {data ? (saving ? "Saving" : "Save") : (saving ? "Submitting" : "Post")}
                     </Aubtn>
                   </AuFormGroup>
                 </Form>

@@ -14,6 +14,10 @@ const OpportunityResponsePage: React.FC<PageContext> = ({
   if (params.get('opportunityId')) {
     opportunityId = parseInt(params.get('opportunityId'), 10);
   }
+  let title: string;
+  if (params.get('title')) {
+    title = params.get('title');
+  }
 
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
@@ -25,12 +29,24 @@ const OpportunityResponsePage: React.FC<PageContext> = ({
               <li>
                 <Link to="/">Home</Link>
               </li>
-              <li>Post an opportunity</li>
+              {opportunityId ? (
+                <>
+                  <li>
+                    <Link to="/find-opportunities">Find opportunities</Link>
+                  </li>
+                  <li>
+                    <Link to={`/detailed-opportunity/?opportunityId=${opportunityId}`}>{decodeURI(title)}</Link>
+                  </li>
+                  <li>Edit opportunity</li>
+                </>
+              ) : (
+                <li>Post an opportunity</li>
+              )}
             </ul>
           </nav>
         </div>
         <div className="container-fluid au-body">
-          <h1>Post an Opportunity</h1>
+          <h1>{opportunityId ? 'Edit ' : 'Post an '}opportunity</h1>
           <PostOpportunityForm opportunityId={opportunityId} />
         </div>
         <section className="au-body center-align">

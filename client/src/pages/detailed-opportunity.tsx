@@ -152,7 +152,7 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
                 {data.canModify && (
                   <div style={{ marginTop: "2rem" }}>
                     <Link
-                      to={`/post-opportunity?opportunityId=${data.id}`}
+                      to={`/post-opportunity?opportunityId=${data.id}&title=${encodeURI(data.jobTitle)}`}
                       className="au-btn"
                     >
                       Edit opportunity

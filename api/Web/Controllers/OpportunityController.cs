@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Dta.OneAps.Api.Business.Exceptions;
 using Dta.OneAps.Api.Business;
 using Dta.OneAps.Api.Web.Filters;
-using Dta.OneAps.Api.Business.Models;
 using Dta.OneAps.Api.Web.Utils;
 using System.Threading.Tasks;
 

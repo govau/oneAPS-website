@@ -111,7 +111,7 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
                   <p>
                     <span className="bolden-text">Number of responses</span>
                     <br />
-                    {contentOrNA(data.numberOfResponses)}
+                    {data.numberOfResponses}
                   </p>
                 )}
                 {data.contactPersonName !== undefined && (

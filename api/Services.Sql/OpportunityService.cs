@@ -28,19 +28,19 @@ namespace Dta.OneAps.Api.Services.Sql {
         public async Task<IEnumerable<Opportunity>> GetAllAsync() => (
             await _context
                 .Opportunity
+                .Include(x => x.OpportunityResponse)
                 .Include(x => x.CreatedByUser)
                 .Include(x => x.ModifiedByUser)
                 .Include(x => x.OpportunityUser)
-                .Include(x => x.OpportunityResponse)
                 .ToListAsync()
         );
         public async Task<Opportunity> GetByIdAsync(int id) => (
             await _context
                 .Opportunity
+                .Include(x => x.OpportunityResponse)
                 .Include(x => x.CreatedByUser)
                 .Include(x => x.ModifiedByUser)
                 .Include(x => x.OpportunityUser)
-                .Include(x => x.OpportunityResponse)
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync()
         );

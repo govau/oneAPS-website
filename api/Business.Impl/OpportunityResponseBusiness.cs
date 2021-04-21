@@ -12,16 +12,18 @@ using System.IO;
 namespace Dta.OneAps.Api.Business {
     public class OpportunityResponseBusiness : IOpportunityResponseBusiness {
         private readonly INotifyService _notifyService;
+        private readonly IOpportunityService _opportunityService;
         private readonly IOpportunityResponseService _opportunityResponseService;
         private readonly IMapper _mapper;
         private readonly IKeyValueService _keyValueService;
         private readonly IFileService _fileService;
 
-        public OpportunityResponseBusiness(IFileService fileService, INotifyService notifyService, IKeyValueService keyValueService, IOpportunityResponseService opportunityResponseService, IMapper mapper) {
+        public OpportunityResponseBusiness(IFileService fileService, INotifyService notifyService, IKeyValueService keyValueService, IOpportunityResponseService opportunityResponseService, IOpportunityService opportunityService, IMapper mapper) {
             _fileService = fileService;
             _notifyService = notifyService;
             _keyValueService = keyValueService;
             _opportunityResponseService = opportunityResponseService;
+            _opportunityService = opportunityService;
             _mapper = mapper;
         }
 
@@ -49,6 +51,11 @@ namespace Dta.OneAps.Api.Business {
             if (existing.UserId != user.Id) {
                 throw new UnauthorisedException();
             }
+            var opportunity = await _opportunityService.GetByIdAsync(model.OpportunityId);
+            if (opportunity.EndDate > DateTime.UtcNow) {
+                throw new ResponseTooLateException();
+            }
+            
             var toSave = _mapper.Map(model, existing);
             var saved = await _opportunityResponseService.Update(toSave, user);
             var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);

@@ -72,7 +72,7 @@ namespace Dta.OneAps.Api.Business {
             var agencies = _lookupService.Get("agency");
             var result = _mapper.Map<OpportunityAuthResponse>(opportunity);
             result.CanModify = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id);
-            result.NumberOfResponses = opportunity.OpportunityResponse.Count();
+            result.NumberOfResponses = opportunity.OpportunityResponse.Count(or => or.SubmittedAt != null);
             result.Agency = GetAgencyText(agencies, result.Agency);
             return result;
         } 
@@ -82,9 +82,10 @@ namespace Dta.OneAps.Api.Business {
 
             var result = _mapper.Map<IEnumerable<OpportunityAuthResponse>>(list);
             foreach(var item in result) {
+                var opporunity = list.Single(l => l.Id == item.Id);
                 item.Agency = GetAgencyText(agencies, item.Agency);
-                item.CanModify = list.Any(l => l.Id == item.Id && l.OpportunityUser.Any(ou => ou.UserId == user.Id));
-                item.NumberOfResponses = list.Single(l => l.Id == item.Id).OpportunityResponse.Count();
+                item.CanModify = opporunity.OpportunityUser.Any(ou => ou.UserId == user.Id);
+                item.NumberOfResponses = opporunity.OpportunityResponse.Count(or => or.SubmittedAt != null);
             }
             return result;
         }

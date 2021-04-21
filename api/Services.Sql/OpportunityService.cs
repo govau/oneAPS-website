@@ -32,7 +32,7 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .Include(x => x.CreatedByUser)
                 .Include(x => x.ModifiedByUser)
                 .Include(x => x.OpportunityUser)
-                .Where(x => string.IsNullOrWhiteSpace(search) ? true : x.JobTitle.Contains(search, System.StringComparison.InvariantCultureIgnoreCase))
+                .Where(x => string.IsNullOrWhiteSpace(search) ? true : x.JobTitle.ToLower().Contains(search.ToLower()))
                 .ToListAsync()
         );
         public async Task<Opportunity> GetByIdAsync(int id) => (

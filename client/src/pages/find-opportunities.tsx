@@ -41,7 +41,7 @@ const OpportunitySummaryView: React.FC<{search?: string}> = ({search}) => {
                 <form onSubmit={(e) => {
                   e.preventDefault();
                   if (searchFieldRef) {
-                    navigate(`/find-opportunities/?search=${searchFieldRef.current.value}`);
+                    navigate(`/find-opportunities/?search=${encodeURIComponent(searchFieldRef.current.value)}`);
                   }
                 }}>
                   <label htmlFor="search">Search</label>

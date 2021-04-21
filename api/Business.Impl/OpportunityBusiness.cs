@@ -21,28 +21,12 @@ namespace Dta.OneAps.Api.Business {
             _mapper = mapper;
         }
 
-        public async Task<OpportunityPublicResponse> Create(OpportunitySaveRequest model, IUser user) {
-            var toSave = _mapper.Map<Opportunity>(model);
-            toSave.OpportunityUser.Add(new OpportunityUser {
-                UserId = user.Id
-            });
-            toSave.Agency = user.Agency;
-            var saved = await _opportunityService.Create(toSave, user);
-            var result = _mapper.Map<OpportunityPublicResponse>(saved);
+        public async Task<OpportunityPublicResponse> Get(int id) {
+            var opportunity = await _opportunityService.GetByIdAsync(id);
+            var agencies = _lookupService.Get("agency");
+            var result = _mapper.Map<OpportunityPublicResponse>(opportunity);
+            result.Agency = GetAgencyText(agencies, result.Agency);
             return result;
-        }
-
-        public async Task<OpportunityPublicResponse> Update(OpportunitySaveRequest model, IUser user) {
-            var existing = await _opportunityService.GetByIdAsync(model.Id);
-            var toSave = _mapper.Map(model, existing);
-            if (existing.OpportunityUser.Any(ou => ou.UserId == user.Id)) {
-                var saved = await _opportunityService.Update(toSave, user);
-                var result = _mapper.Map<OpportunityPublicResponse>(saved);
-                return result;
-            } else {
-                throw new UnauthorisedException();
-            }
-            
         }
         public async Task<IEnumerable<OpportunityPublicResponse>> List() {
             var list = await _opportunityService.GetAllAsync();
@@ -60,14 +44,47 @@ namespace Dta.OneAps.Api.Business {
             }
             return _mapper.Map<IEnumerable<OpportunityAdminResponse>>(await _opportunityService.GetAllAsync());
         }
-        public async Task<OpportunityPublicResponse> Get(int id) {
+        public async Task<OpportunityAuthResponse> Create(OpportunitySaveRequest model, IUser user) {
+            var toSave = _mapper.Map<Opportunity>(model);
+            toSave.OpportunityUser.Add(new OpportunityUser {
+                UserId = user.Id
+            });
+            toSave.Agency = user.Agency;
+            var saved = await _opportunityService.Create(toSave, user);
+            var result = _mapper.Map<OpportunityAuthResponse>(saved);
+            return result;
+        }
+
+        public async Task<OpportunityAuthResponse> Update(OpportunitySaveRequest model, IUser user) {
+            var existing = await _opportunityService.GetByIdAsync(model.Id);
+            var toSave = _mapper.Map(model, existing);
+            if (existing.OpportunityUser.Any(ou => ou.UserId == user.Id)) {
+                var saved = await _opportunityService.Update(toSave, user);
+                var result = _mapper.Map<OpportunityAuthResponse>(saved);
+                return result;
+            } else {
+                throw new UnauthorisedException();
+            }
+            
+        }
+        public async Task<OpportunityAuthResponse> Get(int id, IUser user) {
             var opportunity = await _opportunityService.GetByIdAsync(id);
             var agencies = _lookupService.Get("agency");
-            var result = _mapper.Map<OpportunityPublicResponse>(opportunity);
+            var result = _mapper.Map<OpportunityAuthResponse>(opportunity);
+            result.CanModify = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id);
             result.Agency = GetAgencyText(agencies, result.Agency);
-            result.CreatedByUserId = opportunity.CreatedByUser.Id;
             return result;
         } 
+        public async Task<IEnumerable<OpportunityAuthResponse>> List(IUser user) {
+            var list = await _opportunityService.GetAllAsync();
+            var agencies = _lookupService.Get("agency");
+
+            var result = _mapper.Map<IEnumerable<OpportunityAuthResponse>>(list);
+            foreach(var item in result) {
+                item.Agency = GetAgencyText(agencies, item.Agency);
+            }
+            return result;
+        }
 
         private string GetAgencyText(IEnumerable<Lookup> agencies, string value) {
             return agencies.SingleOrDefault(a => a.Value == value)?.Text;

@@ -136,7 +136,7 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
                     Apply for opportunity
                   </Link>
                 </div>
-                {user.user && user.user.userId === data.createdByUserId && (
+                {data.canModify && (
                   <div style={{ marginTop: "2rem" }}>
                     <Link
                       to={`/post-opportunity?opportunityId=${data.id}`}

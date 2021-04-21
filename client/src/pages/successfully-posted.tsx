@@ -17,10 +17,11 @@ const SuccessfullyPosted: React.FC<PageContext> = ({
       <>
         <SEO title="Register" />
         <div className="container-fluid au-body">
-          <h1>You have posted an opportunity</h1>
+          <h1>Your opportunity is now live</h1>
           <p>Your next steps</p>
           <ul>
             <li><Link to={`/detailed-opportunity/?opportunityId=${opportunityId}`}>View</Link> your opportunity</li>
+            <li><Link to={`/post-opportunity/?opportunityId=${opportunityId}`}>Edit</Link> your opportunity</li>
             <li><Link to="/post-opportunity">Post</Link> another opportunity</li>
           </ul>
         </div>

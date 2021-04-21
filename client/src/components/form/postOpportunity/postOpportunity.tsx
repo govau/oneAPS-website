@@ -73,7 +73,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
               onSubmit={async (values, actions) => {
                 let success: boolean = false;
                 let opportunityId: number;
-                if (data.id) {
+                if (data && data.id) {
                   let result = await updateOpporunityFn(values);
                   success = result.success;
                   if (success) {
@@ -120,14 +120,14 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                   <AuFieldset className="mt-2 mb-0">
                     <TextField
                       id="jobTitle"
-                      label="Opportunity name:"
+                      label="Opportunity name"
                       hint="The title is the first thing an opportunity seeker will see. Write a catchy title that's descriptive of what the opportunity is - think about skills you need or the outcome you are trying to achieve, not just a job title. Avoid jargon."
                       width="xl"
                       required
                     />
                     <TextField
                       id="jobDescription"
-                      label="What you'll do:"
+                      label="What you'll do"
                       hint="In one or two paragraphs, provide a description of the opportunity. Include the intended outcome of the work, problem you are trying to solve and alignment to government strategic priorities (these can be for your department,agency or cross government)"
                       required
                       as="textarea"
@@ -135,7 +135,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                     />
                     <TextField
                       id="whatYoullGain"
-                      label="What you'll gain from this experience:"
+                      label="What you'll gain from this experience"
                       hint="In a few sentences, add what the participant will gain or learn from this experience (e.g. build skills and experience, increase departmental knowledge,connect with subject matter experts)"
                       required
                       as="textarea"
@@ -143,7 +143,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                     />
                     <TextField
                       id="aboutTeam"
-                      label="About our team:"
+                      label="About our team"
                       hint="In one or two paragraphs, describe your team, your culture and how you work. Avoid using acronyms."
                       required
                       as="textarea"
@@ -151,21 +151,21 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                     />
                     <TextField
                       id="numberOfPeople"
-                      label="Number of people needed:"
+                      label="Number of people needed"
                       type="number"
                       width="xs"
                       required
                     />
                     <TextField
                       id="location"
-                      label="Location:"
+                      label="Location"
                       hint="Any preference to be in a certain location, or is it flexible to be virtual?"
                       type="text"
                       required
                     />
                     <TextField
                       id="skills"
-                      label="Relevant skills:"
+                      label="Relevant skills"
                       hint="Separate by commas, e.g. photoshop, web design, logo design."
                       as="textarea"
                       width="xl"
@@ -173,7 +173,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                     />
                     <TextField
                       id="additionalInfo"
-                      label="Additional information (optional):"
+                      label="Additional information (optional)"
                       hint="Is there anything else you would like to add?"
                       as="textarea"
                       width="xl"
@@ -181,7 +181,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                   </AuFieldset>
                   <TextField
                     id="startDate"
-                    label="Estimated start date:"
+                    label="Estimated start date"
                     hint="When would you be ready to onboard the participant?"
                     type="date"
                     required
@@ -194,10 +194,17 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                   />
                   <TextField
                     id="commitmentTime"
-                    label="Commitment time:"
+                    label="Commitment time"
                     hint="Enter a particular amount of hours or days per week or whether it's negotiable. For example, 2 - 4 hours per week on a Monday or Tuesday."
                     type="text"
                     width="xl"
+                    required
+                  />
+                  <SelectField
+                    id="securityClearance"
+                    label="Security Clearance"
+                    hint="What level of security clearance is needed to complete the opportunity?"
+                    options={securityclearance.data}
                     required
                   />
                   <AuFormGroup>
@@ -206,7 +213,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                   </AuFormGroup>
                   <TextField
                     id="contactPersonName"
-                    label="Contact person name:"
+                    label="Contact person name"
                     hint="Contact name for this opportunity"
                     type="text"
                     width="lg"
@@ -214,7 +221,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                   />
                   <TextField
                     id="contactPersonEmail"
-                    label="Contact person email:"
+                    label="Contact person email"
                     hint="Contact e-mail address for this opportunity"
                     type="email"
                     width="lg"
@@ -222,16 +229,9 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                   />
                   <TextField
                     id="contactPersonPhone"
-                    label="Contact person phone (optional):"
+                    label="Contact person phone (optional)"
                     hint="Contact phone number for this opportunity"
                     type="text"
-                  />
-                  <SelectField
-                    id="securityClearance"
-                    label="Security Clearance"
-                    hint="What level of security clearance is needed to complete the opportunity?"
-                    options={securityclearance.data}
-                    required
                   />
 
                   <AuFormGroup>

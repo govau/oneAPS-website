@@ -21,14 +21,14 @@ namespace Dta.OneAps.Api.Web.Controllers {
             _authorizationUtil = authorizationUtil;
         }
 
-        [HttpPost]
+        [HttpPost("/api/auth/[controller]")]
         public async Task<IActionResult> Create([FromBody] OpportunitySaveRequest model) {
             var user = await _authorizationUtil.GetUser(User);
             var created = await _opportunityBusiness.Create(model, user);
             return Ok(created);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("/api/auth/[controller]/{id}")]
         public async Task<IActionResult> Update(int id, [FromBody] OpportunitySaveRequest model) {
             var user = await _authorizationUtil.GetUser(User);
             var updated = await _opportunityBusiness.Update(model, user);
@@ -41,8 +41,25 @@ namespace Dta.OneAps.Api.Web.Controllers {
 
         [AllowAnonymous]
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id) {
+        public async Task<IActionResult> Get(int id) {            
             var opportunity = await _opportunityBusiness.Get(id);
+            if (opportunity == null) {
+                return NotFound();
+            }
+
+            return Ok(opportunity);
+        }
+
+        [HttpGet("/api/auth/[controller]/")]
+        public async Task<IActionResult> AuthList() {
+            var user = await _authorizationUtil.GetUser(User);
+            return Ok(await _opportunityBusiness.List(user));
+        }
+
+        [HttpGet("/api/auth/[controller]/{id}")]
+        public async Task<IActionResult> AuthGet(int id) {      
+            var user = await _authorizationUtil.GetUser(User);      
+            var opportunity = await _opportunityBusiness.Get(id, user);
             if (opportunity == null) {
                 return NotFound();
             }

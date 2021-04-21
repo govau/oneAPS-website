@@ -30,7 +30,7 @@ export const useOpportunityHook = () => {
   };
 
   const loadFn = async (id: number) => {
-    const result = await loadOpportunity(id);
+    const result = await loadOpportunity(id, user.token);
     setData(result);
   };
 
@@ -83,10 +83,11 @@ export const useOpportunityHook = () => {
 
 export const useOpportunitiesHook = () => {
   const [data, setData] = useState<IOpportunityType[]>();
+  const user = useContext(UserContext);
 
   useEffect(() => {
     const load = async () => {
-      const result = await loadOpportunities();
+      const result = await loadOpportunities(user.token);
       setData(result);
     };
     load();

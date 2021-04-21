@@ -13,7 +13,6 @@ export const initialValues = {
   startDate: "",
   endDate: "",
   commitmentTime: "",
-  agency: "",
   contactPersonName: "",
   contactPersonEmail: "",
   contactPersonPhone: "",
@@ -32,11 +31,6 @@ export const validationSchema = yup.object().shape({
   startDate: yup.date().required("Start Date is required"),
   endDate: yup.date().required("End Date is required"),
   commitmentTime: yup.string().required("Commitment Time is required"),
-  agency: yup
-    .string()
-    .trim()
-    .required("Agency/Department name is required")
-    .min(2, "Enter a valid agency"),
   contactPersonName: yup.string().required("Contact Person Name is required"),
   contactPersonEmail: emailValidation,
   contactPersonPhone: yup.string().trim().length(10),

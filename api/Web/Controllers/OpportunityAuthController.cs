@@ -35,9 +35,9 @@ namespace Dta.OneAps.Api.Web.Controllers {
         }
 
         [HttpGet]
-        public async Task<IActionResult> List() {
+        public async Task<IActionResult> List([FromQuery] string search) {
             var user = await _authorizationUtil.GetUser(User);
-            return Ok(await _opportunityBusiness.List(user));
+            return Ok(await _opportunityBusiness.List(search, user));
         }
 
         [HttpGet("{id}")]

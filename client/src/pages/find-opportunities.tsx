@@ -1,22 +1,30 @@
-import { Link } from "gatsby";
-import * as React from "react";
+import { Link, navigate } from "gatsby";
+import React, { useRef, useEffect } from "react";
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
 import { PageContext } from "../types";
 import { useOpportunitiesHook } from '../hooks';
-
-
 
 const contentOrNA = (c) => {
   return c ? c : "N/A";
 }
 
 const OpportunitySummaryView: React.FC = () => {
+  const {loadFn, data} = useOpportunitiesHook();
+  const searchFieldRef = useRef();
+  const params = new URLSearchParams(location.search);
+  let search: string;
+  if (params.get('search')) {
+    search = params.get('search');
+  }
 
-  const oppData = useOpportunitiesHook();
+  useEffect(() => {
+    loadFn(search);
+  }, [search]);
+
   return (
     <>
-      {oppData && (
+      {data && (
         <>
           <SEO title="Find Opportunities" />
           <div className="container-fluid">
@@ -33,15 +41,29 @@ const OpportunitySummaryView: React.FC = () => {
           <div className="container-fluid au-body">
             <h1>Find opportunities</h1>
             <div className="row">
-              {/* <div className="col-md-2">           //Filter placeholder
+              <div className="col-md-2">
               <div style={{ marginTop: "2rem" }}>
-                <p>Filter</p>
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  if (searchFieldRef) {
+                    navigate(`/find-opportunities/?search=${searchFieldRef.current.value}`);
+                  }
+                }}>
+                  <label htmlFor="search">Search</label>
+                  <input className="au-text-input au-text-input--block" ref={searchFieldRef} id="search" type="text" />
+                  <button type="submit" style={{ marginTop: '1em'}} className="au-btn">
+                    Search
+                  </button>
+                  <button type="reset" style={{ marginTop: '1em'}} className="au-btn">
+                    Reset
+                  </button>
+                </form>
               </div>
             </div>
-            <div className="row">*/}
+            <div className="row">
               <ul className="au-card-list au-card-list--matchheight">
                 {/*style={{ borderLeft: "1px solid black" }}*/}
-                {oppData.map((opp, key) => {
+                {data.map((opp, key) => {
                   return (
                     <li className="col-md-4 col-sm-6" key={key}>
                       <div className="au-card">
@@ -97,7 +119,7 @@ const OpportunitySummaryView: React.FC = () => {
               </ul>
             </div>
           </div>
-          {/*</div>*/}
+          </div>
           <section className="au-body center-align">
             This site is part of a 3-month pilot program from March to May 2021
             run by the Digital Squads team at the Digital Transformation Agency.

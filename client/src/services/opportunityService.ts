@@ -18,7 +18,7 @@ export const loadOpportunity = async (opportunityId: number, token?: string) => 
   return data;
 }
 
-export const loadOpportunities = async (token?: string) => {
+export const loadOpportunities = async (search?: string, token?: string) => {
   let url = `/api/Opportunity`;
   let headers = {};
   if (token) {
@@ -27,8 +27,15 @@ export const loadOpportunities = async (token?: string) => {
       Authorization: `bearer ${token}`
     };
   }
+  let params = {}
+  if (search) {
+    params = {
+      search
+    }
+  }
   const result = await axios.get(url, {
-    headers
+    headers,
+    params
   });
   const data = result.data as IOpportunityType[];
   return data;

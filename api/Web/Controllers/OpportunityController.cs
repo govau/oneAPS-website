@@ -22,7 +22,7 @@ namespace Dta.OneAps.Api.Web.Controllers {
         }
 
         [HttpGet]
-        public async Task<IActionResult> List() => Ok(await _opportunityBusiness.List());
+        public async Task<IActionResult> List([FromQuery] string search) => Ok(await _opportunityBusiness.List(search));
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id) {            

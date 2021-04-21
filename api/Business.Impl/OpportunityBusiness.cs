@@ -28,8 +28,8 @@ namespace Dta.OneAps.Api.Business {
             result.Agency = GetAgencyText(agencies, result.Agency);
             return result;
         }
-        public async Task<IEnumerable<OpportunityPublicResponse>> List() {
-            var list = await _opportunityService.GetAllAsync();
+        public async Task<IEnumerable<OpportunityPublicResponse>> List(string search) {
+            var list = await _opportunityService.GetAllAsync(search);
             var agencies = _lookupService.Get("agency");
 
             var result = _mapper.Map<IEnumerable<OpportunityPublicResponse>>(list);
@@ -42,7 +42,7 @@ namespace Dta.OneAps.Api.Business {
             if (user.Role != "admin") {
                 throw new UnauthorisedException();
             }
-            return _mapper.Map<IEnumerable<OpportunityAdminResponse>>(await _opportunityService.GetAllAsync());
+            return _mapper.Map<IEnumerable<OpportunityAdminResponse>>(await _opportunityService.GetAllAsync(string.Empty));
         }
         public async Task<OpportunityAuthResponse> Create(OpportunitySaveRequest model, IUser user) {
             var toSave = _mapper.Map<Opportunity>(model);
@@ -76,8 +76,8 @@ namespace Dta.OneAps.Api.Business {
             result.Agency = GetAgencyText(agencies, result.Agency);
             return result;
         } 
-        public async Task<IEnumerable<OpportunityAuthResponse>> List(IUser user) {
-            var list = await _opportunityService.GetAllAsync();
+        public async Task<IEnumerable<OpportunityAuthResponse>> List(string search, IUser user) {
+            var list = await _opportunityService.GetAllAsync(search);
             var agencies = _lookupService.Get("agency");
 
             var result = _mapper.Map<IEnumerable<OpportunityAuthResponse>>(list);

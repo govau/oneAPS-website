@@ -85,12 +85,12 @@ export const useOpportunitiesHook = () => {
   const [data, setData] = useState<IOpportunityType[]>();
   const user = useContext(UserContext);
 
-  useEffect(() => {
-    const load = async () => {
-      const result = await loadOpportunities(user.token);
-      setData(result);
-    };
-    load();
-  }, []);
-  return data;
+  const loadFn = async (search?: string) => {
+    const result = await loadOpportunities(search, user.token);
+    setData(result);
+  };
+  return {
+    loadFn, 
+    data
+  };
 };

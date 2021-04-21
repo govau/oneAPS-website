@@ -1,5 +1,4 @@
 import { useLocation } from "@reach/router";
-import axios from "axios";
 import { Form, Formik } from "formik";
 import { Link, navigate } from "gatsby";
 import React, { useContext, useEffect, useRef, useState } from "react";
@@ -17,7 +16,7 @@ import PageAlert from "../../blocks/pageAlert";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./opportunityResponseSchema";
 import { useOpportunityResponseOperationsHook } from '../../../hooks';
-import { IApiFormError, IOpportunityResponseType } from "../../../types";
+import { IOpportunityResponseType } from "../../../types";
 
 const OpportunityResponseForm: React.FC = () => {
   const [saving, setSaving] = useState<boolean>(false);

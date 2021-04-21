@@ -25,13 +25,14 @@ namespace Dta.OneAps.Api.Services.Sql {
             return newObj;
         }
 
-        public async Task<IEnumerable<Opportunity>> GetAllAsync() => (
+        public async Task<IEnumerable<Opportunity>> GetAllAsync(string search) => (
             await _context
                 .Opportunity
                 .Include(x => x.OpportunityResponse)
                 .Include(x => x.CreatedByUser)
                 .Include(x => x.ModifiedByUser)
                 .Include(x => x.OpportunityUser)
+                .Where(x => string.IsNullOrWhiteSpace(search) ? true : x.JobTitle.Contains(search))
                 .ToListAsync()
         );
         public async Task<Opportunity> GetByIdAsync(int id) => (

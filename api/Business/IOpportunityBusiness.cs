@@ -7,10 +7,10 @@ namespace Dta.OneAps.Api.Business {
     public interface IOpportunityBusiness {
         Task<IEnumerable<OpportunityAdminResponse>> ListAll(IUser user);
         Task<OpportunityPublicResponse> Get(int id);
-        Task<IEnumerable<OpportunityPublicResponse>> List();
+        Task<IEnumerable<OpportunityPublicResponse>> List(string search);
         Task<OpportunityAuthResponse> Create(OpportunitySaveRequest opportunityModel, IUser user);
         Task<OpportunityAuthResponse> Update(OpportunitySaveRequest opportunityModel, IUser user);
         Task<OpportunityAuthResponse> Get(int id, IUser user);
-        Task<IEnumerable<OpportunityAuthResponse>> List(IUser user);
+        Task<IEnumerable<OpportunityAuthResponse>> List(string search, IUser user);
     }
 }

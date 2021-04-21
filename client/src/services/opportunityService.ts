@@ -18,11 +18,14 @@ export const loadOpportunity = async (opportunityId: number, token?: string) => 
   return data;
 }
 
-export const loadOpportunities = async (search?: string, token?: string) => {
+export const loadOpportunities = async (search?: string, token?: string, mine?: boolean) => {
   let url = `/api/Opportunity`;
   let headers = {};
   if (token) {
     url = `/api/auth/Opportunity`;
+    if (mine) {
+      url += '/my'
+    }
     headers = {
       Authorization: `bearer ${token}`
     };

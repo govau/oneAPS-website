@@ -40,6 +40,12 @@ namespace Dta.OneAps.Api.Web.Controllers {
             return Ok(await _opportunityBusiness.List(search, user));
         }
 
+        [HttpGet("my")]
+        public async Task<IActionResult> MyList() {
+            var user = await _authorizationUtil.GetUser(User);
+            return Ok(await _opportunityBusiness.MyList(user));
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id) {      
             var user = await _authorizationUtil.GetUser(User);      

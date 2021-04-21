@@ -89,6 +89,19 @@ namespace Dta.OneAps.Api.Business {
             }
             return result;
         }
+        public async Task<IEnumerable<OpportunityAuthResponse>> MyList(IUser user) {
+            var list = await _opportunityService.MyList(user);
+            var agencies = _lookupService.Get("agency");
+
+            var result = _mapper.Map<IEnumerable<OpportunityAuthResponse>>(list);
+            foreach(var item in result) {
+                var opporunity = list.Single(l => l.Id == item.Id);
+                item.Agency = GetAgencyText(agencies, item.Agency);
+                item.CanModify = true;
+                item.NumberOfResponses = opporunity.OpportunityResponse.Count(or => or.SubmittedAt != null);
+            }
+            return result;
+        }
 
         private string GetAgencyText(IEnumerable<Lookup> agencies, string value) {
             return agencies.SingleOrDefault(a => a.Value == value)?.Text;

@@ -4,6 +4,7 @@ import {
   createOpportunityResponse,
   updateOpportunityResponse,
   loadOpportunityResponse,
+  loadMyApplications,
   uploadFile,
   downloadFile,
  } from '../services';
@@ -64,16 +65,21 @@ export const useOpportunityResponseOperationsHook = () => {
   return {applyFn, createFn, updateFn, uploadFn, downloadFileFn, updatedData: data, errors};
 };
 
-export const useLoadOpportunityResponseHook = (id: number) => {
+export const useLoadOpportunityResponseHook = () => {
   const [data, setData] = useState<IOpportunityResponseType>();
   const user = useContext(UserContext);
 
-  useEffect(() => {
-    const load = async () => {
-      const result = await loadOpportunityResponse(id, user.token);
-      setData(result);
-    };
-    load();
-  }, []);
-  return data;
+  const loadFn = async (id: number) => {
+    const result = await loadOpportunityResponse(id, user.token);
+    setData(result);
+  };
+  const loadMyListFn = async () => {
+    const result = await loadMyApplications(user.token);
+    setData(result);
+  };
+  return {
+    loadFn,
+    loadMyListFn,
+    data,
+  };
 };

@@ -16,5 +16,6 @@ namespace Dta.OneAps.Api.Business {
 
         Task<OpportunityResponsePrivateResponse> Get(int opportunityId, int userId);
         Task<OpportunityResponsePrivateResponse> Get(int id);
+        Task<IEnumerable<OpportunityResponsePublicResponse>> MyList(IUser user);
     }
 }

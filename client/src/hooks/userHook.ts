@@ -34,8 +34,12 @@ export const useUserHook = () => {
       }
     } catch { }
   };
+  const logout = () => {
+    user.updateToken();
+  }
   return {
       getUserFn,
+      logout,
       user: data,
       loggedIn: user.token ? true : false,
       token: user.token

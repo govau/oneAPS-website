@@ -35,12 +35,12 @@ const MainNav: React.FC<Props> = ({ path }) => {
   }));
   if (user.token) {
     mainNavItems.push({
-      text: "Logout",
-      link: "/logout",
+      text: "My Profile",
+      link: "/dashboard",
       active:
         path.length > 1
-          ? path.replace(/\/$/, "") === "/logout"
-          : path === "/logout",
+          ? path.replace(/\/$/, "") === "/dashboard"
+          : path === "/dashboard",
     });
   } else {
     mainNavItems.push(

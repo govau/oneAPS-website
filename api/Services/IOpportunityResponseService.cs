@@ -10,5 +10,6 @@ namespace Dta.OneAps.Api.Services {
         Task<IEnumerable<OpportunityResponse>> ListByOpportunityId(int opportunityId);
         Task<OpportunityResponse> Get(int opportunityId, int userId);
         Task<OpportunityResponse> GetById(int id);
+        Task<IEnumerable<OpportunityResponse>> MyList(IUser user);
     }
 }

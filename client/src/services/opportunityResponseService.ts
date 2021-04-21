@@ -42,6 +42,16 @@ export const loadOpportunityResponse = async (id: number, token: string) => {
   return data;
 }
 
+export const loadMyApplications = async (token: string) => {
+  const result = await axios.get(`/api/OpportunityResponse/my`, {
+    headers: {
+      Authorization: `bearer ${token}`,
+    }
+  });
+  const data = result.data as IOpportunityResponseType;
+  return data;
+}
+
 export const uploadFile = async (id: number, toSave: FormData, token: string) => {
   const result = await axios.post(`/api/OpportunityResponse/${id}/fileupload`,
   toSave, {

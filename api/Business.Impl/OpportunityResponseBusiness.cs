@@ -126,5 +126,10 @@ namespace Dta.OneAps.Api.Business {
             _mapper.Map<IEnumerable<OpportunityResponsePublicResponse>>(await _opportunityResponseService.ListByOpportunityId(opportunityId))
         );
         public async Task<OpportunityResponsePrivateResponse> Get(int id) => _mapper.Map<OpportunityResponsePrivateResponse>(await _opportunityResponseService.GetById(id));
+
+
+        public async Task<IEnumerable<OpportunityResponsePublicResponse>> MyList(IUser user) => (
+            _mapper.Map<IEnumerable<OpportunityResponsePublicResponse>>(await _opportunityResponseService.MyList(user))
+        );
     }
 }

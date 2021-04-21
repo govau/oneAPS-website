@@ -89,8 +89,14 @@ export const useOpportunitiesHook = () => {
     const result = await loadOpportunities(search, user.token);
     setData(result);
   };
+
+  const loadMyListFn = async () => {
+    const result = await loadOpportunities(undefined, user.token, true);
+    setData(result);
+  };
   return {
-    loadFn, 
+    loadFn,
+    loadMyListFn,
     data
   };
 };

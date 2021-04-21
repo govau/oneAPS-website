@@ -49,5 +49,12 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync()
         );
+        public async Task<IEnumerable<OpportunityResponse>> MyList(IUser user) => (
+            await _context
+                .OpportunityResponse
+                .Include(or => or.Opportunity)
+                .Where(or => or.UserId == user.Id)
+                .ToListAsync()
+        );
     }
 }

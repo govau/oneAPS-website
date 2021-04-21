@@ -8,6 +8,7 @@ namespace Dta.OneAps.Api.Services {
         Task<Opportunity> Create(Opportunity opportunity, IUser user);
         Task<Opportunity> Update(Opportunity opportunity, IUser user);
         Task<IEnumerable<Opportunity>> GetAllAsync(string search);
+        Task<IEnumerable<Opportunity>> MyList(IUser user);
         Task<Opportunity> GetByIdAsync(int id);
     }
 }

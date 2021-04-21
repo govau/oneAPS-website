@@ -68,7 +68,7 @@ const DefaultLayout: React.FC<Props> = ({
     currentUser.refreshToken = refreshToken;
     currentUser.user = user;
     setCurrentUserState(currentUser);
-  
+
   };
   const updateRefreshToken = (refreshToken: string) => {
     const session = getSession();
@@ -104,10 +104,10 @@ const DefaultLayout: React.FC<Props> = ({
       try {
         const result = await axios.get(
           `/api/user/ping`, {
-            headers: {
-              'Authorization': `bearer ${session.token}`
-            }
+          headers: {
+            'Authorization': `bearer ${session.token}`
           }
+        }
         );
         if (result.status === 200) {
           session.refreshToken = result.data.refreshToken;
@@ -139,27 +139,22 @@ const DefaultLayout: React.FC<Props> = ({
   `);
 
   return (
-    <>
-    <UserContext.Provider value={currentUser}>
-        {/* <AlphaHeader /> */}
-        {/* <SEO title={data.site.siteMetadata.title} /> */}
+    <div className="au-body">
+      <UserContext.Provider value={currentUser}>
         <div className="header-wrapper">
           <Header siteTitle={data.site.siteMetadata.title} />
           <Location>
             {({ navigate, location }) => <MainNav path={location.pathname} />}
           </Location>
         </div>
-        <main>
-          {/* {!_.isEmpty(crumbs) && crumbs.length > 2 && (
-            <div className="container-fluid">
-              <Breadcrumbs crumbs={crumbs} />
-            </div>
-          )} */}
+        <div className="container" style={{ marginTop: '1em', marginBottom: '3em' }}>
             {children}
-        </main>
-        <Footer path={location.pathname} />
+        </div>
+        <div style={{ marginTop: '1em', marginBottom: '3em' }}>
+          <Footer path={location.pathname} />
+        </div>
       </UserContext.Provider>
-    </>
+    </div>
   );
 };
 

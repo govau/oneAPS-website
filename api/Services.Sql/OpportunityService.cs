@@ -35,6 +35,16 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .Where(x => string.IsNullOrWhiteSpace(search) ? true : x.JobTitle.ToLower().Contains(search.ToLower()))
                 .ToListAsync()
         );
+        public async Task<IEnumerable<Opportunity>> MyList(IUser user) => (
+            await _context
+                .Opportunity
+                .Include(x => x.OpportunityResponse)
+                .Include(x => x.CreatedByUser)
+                .Include(x => x.ModifiedByUser)
+                .Include(x => x.OpportunityUser)
+                .Where(x => x.OpportunityUser.Any(ou => ou.UserId == user.Id))
+                .ToListAsync()
+        );
         public async Task<Opportunity> GetByIdAsync(int id) => (
             await _context
                 .Opportunity

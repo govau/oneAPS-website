@@ -83,5 +83,12 @@ namespace Dta.OneAps.Api.Web.Controllers {
             var response = await _opportunityResponseBusiness.DeleteFile(id, filename, user);
             return Ok(response);
         }
+
+        [HttpGet("my")]
+        public async Task<IActionResult> MyList() {
+            var user = await _authorizationUtil.GetUser(User);
+            var response = await _opportunityResponseBusiness.MyList(user);
+            return Ok(response);
+        }
     }
 }

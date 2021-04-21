@@ -48,7 +48,7 @@ export const loadMyApplications = async (token: string) => {
       Authorization: `bearer ${token}`,
     }
   });
-  const data = result.data as IOpportunityResponseType;
+  const data = result.data as IOpportunityResponseType[];
   return data;
 }
 

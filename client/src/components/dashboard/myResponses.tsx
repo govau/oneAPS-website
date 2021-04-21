@@ -4,7 +4,7 @@ import {DateTime } from 'luxon';
 import { useLoadOpportunityResponseHook } from '../../hooks';
 
 export const MyResponses: React.FC = () => {
-  const { loadMyListFn, data } = useLoadOpportunityResponseHook();
+  const { loadMyListFn, list } = useLoadOpportunityResponseHook();
 
   useEffect(() => {
     loadMyListFn();
@@ -27,13 +27,13 @@ export const MyResponses: React.FC = () => {
           </tr>
         </thead>
         <tbody className="au-table__body">
-          {data && data.map(d => (
+          {list && list.map(d => (
             <tr className="au-table__row">
               <td className="au-table__cell"><Link to={`/detailed-opportunity/?opportunityId=${d.opportunityId}`}>{d.opportunity.jobTitle}</Link></td>
               <td className="au-table__cell">{d.submittedAt && DateTime.fromISO(d.submittedAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell">{d.withdrawnAt && DateTime.fromISO(d.withdrawnAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell">
-                {!d.submittedAt || !d.withdrawnAt && <Link to={`/opportunity-response/?opportunityId=${d.id}`}>Edit</Link>}
+                {!d.submittedAt && !d.withdrawnAt && <Link to={`/opportunity-response/?opportunityId=${d.opportunityId}`}>Edit</Link>}
               </td>
             </tr>
           ))}

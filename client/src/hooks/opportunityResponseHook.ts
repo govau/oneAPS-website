@@ -67,6 +67,7 @@ export const useOpportunityResponseOperationsHook = () => {
 
 export const useLoadOpportunityResponseHook = () => {
   const [data, setData] = useState<IOpportunityResponseType>();
+  const [list, setList] = useState<IOpportunityResponseType[]>();
   const user = useContext(UserContext);
 
   const loadFn = async (id: number) => {
@@ -75,11 +76,12 @@ export const useLoadOpportunityResponseHook = () => {
   };
   const loadMyListFn = async () => {
     const result = await loadMyApplications(user.token);
-    setData(result);
+    setList(result);
   };
   return {
     loadFn,
     loadMyListFn,
     data,
+    list
   };
 };

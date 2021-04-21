@@ -80,6 +80,7 @@ export interface IOpportunityResponseType {
   opportunity?: IOpportunityType; 
   user?: IUserType;
   submittedAt?: string;
+  withdrawnAt?: string;
 }
 
 export interface IUserType {

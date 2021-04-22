@@ -150,6 +150,14 @@ const DefaultLayout: React.FC<Props> = ({
         <div className="container" style={{ marginTop: '1em', marginBottom: '3em' }}>
             {children}
         </div>
+
+        <div className="center-align">
+          This site is part of a 3-month pilot program from March to May 2021
+          run by the Digital Squads team at the Digital Transformation Agency.
+          <br />
+          If you have any questions or feedback, please contact us at{" "}
+          <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>
+        </div>
         <div style={{ marginTop: '1em', marginBottom: '3em' }}>
           <Footer path={location.pathname} />
         </div>

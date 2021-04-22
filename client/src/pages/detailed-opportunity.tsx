@@ -8,7 +8,7 @@ import { useOpportunityHook, useLookupHook } from '../hooks';
 import { UserContext } from '../context';
 
 const contentOrNA = (c) => {
-  return c ? c : "N/A";
+  return c ? <span style={{whiteSpace: 'pre'}}>{c}</span> : "N/A";
 }
 
 const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportunityId }) => {

@@ -12,6 +12,7 @@ using Dta.OneAps.Api.Shared;
 using Dta.OneAps.Api.Services.Sql;
 using Dta.OneAps.Api.Business.Mapping;
 using Dta.OneAps.Api.Business.Validators;
+using Dta.OneAps.Api.Web.Filters;
 using System;
 using System.Text;
 
@@ -25,7 +26,9 @@ namespace Dta.OneAps.Api.Web {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
             services
-                .AddControllers()
+                .AddControllers(o => {
+                    o.Filters.Add(typeof(CustomExceptionAttribute));
+                })
                 .AddFluentValidation(fv => {
                     fv.RegisterValidatorsFromAssemblyContaining<CreateUserModelValidator>();
                 });
@@ -74,8 +77,7 @@ namespace Dta.OneAps.Api.Web {
                     }
                 };
                 c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement {
                     {securityScheme, new string[] { }}
                 });
             });
@@ -89,7 +91,6 @@ namespace Dta.OneAps.Api.Web {
             services.AddAutoMapper(typeof(AutoMapping));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             app.UseRouting();
 

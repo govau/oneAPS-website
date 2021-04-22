@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Dta.OneAps.Api.Web.Controllers {
     [AllowAnonymous]
-    [CustomException]
     [ApiController]
     [Route("api/[controller]")]
     public class OpportunityController : ControllerBase {

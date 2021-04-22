@@ -10,7 +10,6 @@ using System.IO;
 
 namespace Dta.OneAps.Api.Web.Controllers {
     [Authorize]
-    [CustomException]
     [ApiController]
     [Route("api/[controller]")]
     public class OpportunityResponseController : ControllerBase {

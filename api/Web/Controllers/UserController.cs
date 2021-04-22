@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace Dta.OneAps.Api.Web.Controllers {
     [Authorize]
-    [CustomExceptionAttribute]
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase {

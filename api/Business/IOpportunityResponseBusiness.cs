@@ -12,7 +12,6 @@ namespace Dta.OneAps.Api.Business {
         Task<byte[]> DownloadFile(int id, IUser user);
         Task<OpportunityResponseSaveResponse> DeleteFile(int id, string filename, IUser user);
         Task<OpportunityResponseSaveResponse> Apply(OpportunityResponseApplyRequest model, IUser user);
-        Task<IEnumerable<OpportunityResponsePublicResponse>> ListByOpportunityId(int opportunityId);
 
         Task<OpportunityResponsePrivateResponse> Get(int opportunityId, int userId);
         Task<OpportunityResponsePrivateResponse> Get(int id);

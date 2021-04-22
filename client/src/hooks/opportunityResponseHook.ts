@@ -4,7 +4,8 @@ import {
   createOpportunityResponse,
   updateOpportunityResponse,
   loadOpportunityResponse,
-  loadMyApplications,
+  loadOpportunityResponses,
+  loadMyResponses,
   uploadFile,
   downloadFile,
  } from '../services';
@@ -74,13 +75,21 @@ export const useLoadOpportunityResponseHook = () => {
     const result = await loadOpportunityResponse(id, user.token);
     setData(result);
   };
-  const loadMyListFn = async () => {
-    const result = await loadMyApplications(user.token);
+  const loadMyResponsesFn = async () => {
+    const result = await loadMyResponses(user.token);
     setList(result);
   };
+
+
+  const loadResponsesFn = async (id: number) => {
+    const result = await loadOpportunityResponses(id, user.token);
+    setList(result);
+  };
+
   return {
     loadFn,
-    loadMyListFn,
+    loadMyResponsesFn,
+    loadResponsesFn,
     data,
     list
   };

@@ -40,7 +40,7 @@ namespace Dta.OneAps.Api.Business {
         }
         public async Task<IEnumerable<OpportunityAdminResponse>> ListAll(IUser user) {
             if (user.Role != "admin") {
-                throw new UnauthorisedException();
+                throw new UnauthorizedAccessException();
             }
             return _mapper.Map<IEnumerable<OpportunityAdminResponse>>(await _opportunityService.GetAllAsync(string.Empty));
         }
@@ -63,12 +63,15 @@ namespace Dta.OneAps.Api.Business {
                 var result = _mapper.Map<OpportunityAuthResponse>(saved);
                 return result;
             } else {
-                throw new UnauthorisedException();
+                throw new UnauthorizedAccessException();
             }
             
         }
         public async Task<OpportunityAuthResponse> Get(int id, IUser user) {
             var opportunity = await _opportunityService.GetByIdAsync(id);
+            if (opportunity == null) {
+                throw new NotFoundException();
+            }
             var agencies = _lookupService.Get("agency");
             var result = _mapper.Map<OpportunityAuthResponse>(opportunity);
             result.CanModify = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id);
@@ -101,6 +104,20 @@ namespace Dta.OneAps.Api.Business {
                 item.NumberOfResponses = opporunity.OpportunityResponse.Count(or => or.SubmittedAt != null);
             }
             return result;
+        }
+        public async Task<IEnumerable<OpportunityResponsePrivateResponse>> ListResponses(int opportunityId, IUser user) {
+            var opportunity = await _opportunityService.GetByIdAsync(opportunityId);
+            if (opportunity == null) {
+                throw new NotFoundException();
+            }
+            if (!opportunity.OpportunityResponse.All(or => or.UserId == user.Id)) {
+                throw new UnauthorizedAccessException();
+            }
+            return _mapper.Map<IEnumerable<OpportunityResponsePrivateResponse>>(
+                opportunity
+                    .OpportunityResponse
+                    .Where(or => or.SubmittedAt != null)
+            );
         }
 
         private string GetAgencyText(IEnumerable<Lookup> agencies, string value) {

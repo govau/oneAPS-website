@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { loadOpportunity, loadOpportunities, createOpporunity, updateOpporunity } from '../services';
+import { loadOpportunity, loadOpportunities, loadOpportunityResponses, createOpporunity, updateOpporunity } from '../services';
 import { IOpportunityType, IApiFormError } from '../types';
 import { UserContext } from '../context';
 
@@ -90,13 +90,14 @@ export const useOpportunitiesHook = () => {
     setData(result);
   };
 
-  const loadMyListFn = async () => {
+  const loadMyOpportunitiesFn = async () => {
     const result = await loadOpportunities(undefined, user.token, true);
     setData(result);
   };
+
   return {
     loadFn,
-    loadMyListFn,
+    loadMyOpportunitiesFn,
     data
   };
 };

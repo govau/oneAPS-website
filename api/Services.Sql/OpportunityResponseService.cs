@@ -37,9 +37,6 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .Where(or => or.UserId == userId)
                 .SingleOrDefaultAsync()
         );
-        public async Task<IEnumerable<OpportunityResponse>> ListByOpportunityId(int opportunityId) => (
-            await _context.OpportunityResponse.Where(or => or.OpportunityId == opportunityId).ToListAsync()
-        );
 
         public async Task<OpportunityResponse> GetById(int id) => (
             await _context

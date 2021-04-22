@@ -42,7 +42,7 @@ export const loadOpportunityResponse = async (id: number, token: string) => {
   return data;
 }
 
-export const loadMyApplications = async (token: string) => {
+export const loadMyResponses = async (token: string) => {
   const result = await axios.get(`/api/OpportunityResponse/my`, {
     headers: {
       Authorization: `bearer ${token}`,

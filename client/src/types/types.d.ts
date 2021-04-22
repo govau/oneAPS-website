@@ -87,5 +87,6 @@ export interface IUserType {
   id?: number;
   name: number;
   emailAddress: string;
+  mobile: string;
   userId: number;
 }

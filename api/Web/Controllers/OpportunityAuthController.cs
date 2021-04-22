@@ -49,12 +49,13 @@ namespace Dta.OneAps.Api.Web.Controllers {
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id) {      
             var user = await _authorizationUtil.GetUser(User);      
-            var opportunity = await _opportunityBusiness.Get(id, user);
-            if (opportunity == null) {
-                return NotFound();
-            }
+            return Ok(await _opportunityBusiness.Get(id, user));
+        }
 
-            return Ok(opportunity);
+        [HttpGet("{id}/responses")]
+        public async Task<IActionResult> GetResponses(int id) {      
+            var user = await _authorizationUtil.GetUser(User);      
+            return Ok(await _opportunityBusiness.ListResponses(id, user));
         }
     }
 }

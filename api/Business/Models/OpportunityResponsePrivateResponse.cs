@@ -2,9 +2,7 @@ using System;
 using Dta.OneAps.Api.Shared;
 
 namespace Dta.OneAps.Api.Business.Models {
-    public class OpportunityResponsePrivateResponse {
-        public int Id { get; set; }
-        public int OpportunityId { get; set; }
+    public class OpportunityResponsePrivateResponse : OpportunityResponseResponse {
 
         public string Agency { get; set; }
 
@@ -16,11 +14,6 @@ namespace Dta.OneAps.Api.Business.Models {
 
         public string ResumeUpload { get; set; }
 
-        public IUser User { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-        public DateTime? WithdrawnAt { get; set; }
-        public DateTime? SubmittedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public UserResponse User { get; set; }
     }
 }

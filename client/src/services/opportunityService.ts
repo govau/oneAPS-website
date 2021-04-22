@@ -1,5 +1,17 @@
 import axios from "axios";
-import { IOpportunityType } from '../types';
+import { IOpportunityResponseType, IOpportunityType } from '../types';
+
+
+export const loadOpportunityResponses = async (opportunityId: number, token?: string) => {
+  const url = `/api/auth/Opportunity/${opportunityId}/responses`;
+
+  const result = await axios.get(url, {
+    headers: {
+      Authorization: `bearer ${token}`
+    }
+  });
+  return result.data as IOpportunityResponseType[];
+}
 
 
 export const loadOpportunity = async (opportunityId: number, token?: string) => {
@@ -48,10 +60,10 @@ export const createOpporunity = async (formData: IOpportunityType, token: string
   formData.numberOfPeople = `${formData.numberOfPeople}`;
   const result = await axios.post(
     `/api/auth/Opportunity`, formData, {
-      headers: {
-        Authorization: `bearer ${token}`
-      }
+    headers: {
+      Authorization: `bearer ${token}`
     }
+  }
   );
   return result;
 }
@@ -61,10 +73,10 @@ export const updateOpporunity = async (formData: IOpportunityType, token: string
   const result = await axios.put(
     `/api/auth/Opportunity/${formData.id}`,
     formData, {
-      headers: {
-        Authorization: `bearer ${token}`
-      }
+    headers: {
+      Authorization: `bearer ${token}`
     }
+  }
   );
   return result;
 }

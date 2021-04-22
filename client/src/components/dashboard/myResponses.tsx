@@ -4,10 +4,10 @@ import {DateTime } from 'luxon';
 import { useLoadOpportunityResponseHook } from '../../hooks';
 
 export const MyResponses: React.FC = () => {
-  const { loadMyListFn, list } = useLoadOpportunityResponseHook();
+  const { loadMyResponsesFn, list } = useLoadOpportunityResponseHook();
 
   useEffect(() => {
-    loadMyListFn();
+    loadMyResponsesFn();
   }, []);
 
   return (

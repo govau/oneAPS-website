@@ -1,9 +1,10 @@
 import { Link } from "gatsby";
 import React, { useEffect, useContext } from "react";
+import { DateTime } from 'luxon';
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
 import { PageContext } from '../types';
-import { useOpportunityHook } from '../hooks';
+import { useOpportunityHook, useLookupHook } from '../hooks';
 import { UserContext } from '../context';
 
 const contentOrNA = (c) => {
@@ -12,6 +13,7 @@ const contentOrNA = (c) => {
 
 const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportunityId }) => {
   const { loadFn, data } = useOpportunityHook();
+  const { getText } = useLookupHook('agency');
   const user = useContext(UserContext);
 
   useEffect(() => {
@@ -98,12 +100,12 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
                 <p>
                   <span className="bolden-text">Estimated start date</span>
                   <br />
-                  {contentOrNA(data.startDate).slice(0, 10)}
+                  {DateTime.fromISO(data.startDate).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}
                 </p>
                 <p>
                   <span className="bolden-text">Estimated end date</span>
                   <br />
-                  {contentOrNA(data.endDate).slice(0, 10)}
+                  {DateTime.fromISO(data.endDate).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}
                 </p>
               </div>
               <div className="col-md-4" style={{ marginTop: "2rem" }}>
@@ -138,7 +140,7 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
                 <p>
                   <span className="bolden-text">Department / Agency</span>
                   <br />
-                  {contentOrNA(data.agency)}
+                  {contentOrNA(getText(data.agency))}
                 </p>
                 <div style={{ marginTop: "2rem" }}>
                   <Link

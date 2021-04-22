@@ -75,7 +75,7 @@ const MainNav: React.FC<Props> = ({ path }) => {
                   <ul className="au-link-list">
                     {mainNavItems.map(i => {
                       return (
-                        <li className={i.active ? 'active': ''}>
+                        <li key={i.text} className={i.active ? 'active': ''}>
                           <Link to={i.link}>{i.text}</Link>
                         </li>
                       );

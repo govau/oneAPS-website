@@ -1,10 +1,9 @@
-import { navigate } from "gatsby";
-import React, { useContext, useEffect } from "react";
-import { UserContext } from "../../context/UserContext";
-import { useUserHook } from '../../hooks';
+import React, { useEffect } from "react";
+import { useUserHook, useLookupHook } from '../../hooks';
 
 export const MyDetails: React.FC = () => {
   const { getUserFn, user } = useUserHook();
+  const { getText } = useLookupHook('agency');
 
   useEffect(() => {
     getUserFn();
@@ -12,7 +11,7 @@ export const MyDetails: React.FC = () => {
 
   return (
     <>
-      <div className="row" style={{marginBottom: '1em'}}>
+      <div className="row" style={{ marginBottom: '1em' }}>
         <div className="col-md-12">
           <h2>My details</h2>
         </div>
@@ -33,7 +32,7 @@ export const MyDetails: React.FC = () => {
           </div>
           <div className="row">
             <div className="col-md-1">Agency</div>
-            <div className="col-md-10">{user.agency}</div>
+            <div className="col-md-10">{getText(user.agency)}</div>
           </div>
         </>
       )}

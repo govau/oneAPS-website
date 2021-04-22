@@ -1,7 +1,6 @@
 import { Link } from "gatsby";
 import React, { useContext, useEffect } from "react";
 import {DateTime } from 'luxon';
-import { UserContext } from "../../context/UserContext";
 import { useOpportunitiesHook } from '../../hooks';
 
 export const MyOpportunities: React.FC = () => {

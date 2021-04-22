@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { loadLookup, lookupType } from '../services';
 
-export const useLookupHook = (name: lookupType, label: string) => {
+export const useLookupHook = (name: lookupType, label?: string) => {
   const [lookupData, setLookupData] = useState<{
     data: {
       text: string,
@@ -19,7 +19,10 @@ export const useLookupHook = (name: lookupType, label: string) => {
     }
     const load = async () => {
       const result = await loadLookup(name);
-      const data = [{ text: `Please select ${label}`, value: null }].concat(result.data);
+      let data = result.data;
+      if (label) {
+        data = [{ text: `Please select ${label}`, value: null }].concat(result.data);
+      }
       setLookupData({
         loaded: true,
         data,
@@ -27,5 +30,20 @@ export const useLookupHook = (name: lookupType, label: string) => {
     };
     load();
   }, []);
-  return lookupData;
+
+  const getText = (value: string) => {
+    if (!lookupData.loaded) {
+      return 'loading';
+    }
+    const lookup = lookupData.data.find(i => i.value === value);
+    if (lookup) {
+      return lookup.text;
+    } else {
+      return `cannout find "${value}"`;
+    }
+  }
+  return {
+    getText,
+    lookupData
+  };
 };

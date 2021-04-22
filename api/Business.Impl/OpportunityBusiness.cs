@@ -25,7 +25,6 @@ namespace Dta.OneAps.Api.Business {
             var opportunity = await _opportunityService.GetByIdAsync(id);
             var agencies = _lookupService.Get("agency");
             var result = _mapper.Map<OpportunityPublicResponse>(opportunity);
-            result.Agency = GetAgencyText(agencies, result.Agency);
             return result;
         }
         public async Task<IEnumerable<OpportunityPublicResponse>> List(string search) {
@@ -33,9 +32,6 @@ namespace Dta.OneAps.Api.Business {
             var agencies = _lookupService.Get("agency");
 
             var result = _mapper.Map<IEnumerable<OpportunityPublicResponse>>(list);
-            foreach(var item in result) {
-                item.Agency = GetAgencyText(agencies, item.Agency);
-            }
             return result;
         }
         public async Task<IEnumerable<OpportunityAdminResponse>> ListAll(IUser user) {
@@ -76,7 +72,6 @@ namespace Dta.OneAps.Api.Business {
             var result = _mapper.Map<OpportunityAuthResponse>(opportunity);
             result.CanModify = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id);
             result.NumberOfResponses = opportunity.OpportunityResponse.Count(or => or.SubmittedAt != null);
-            result.Agency = GetAgencyText(agencies, result.Agency);
             return result;
         } 
         public async Task<IEnumerable<OpportunityAuthResponse>> List(string search, IUser user) {
@@ -86,7 +81,6 @@ namespace Dta.OneAps.Api.Business {
             var result = _mapper.Map<IEnumerable<OpportunityAuthResponse>>(list);
             foreach(var item in result) {
                 var opporunity = list.Single(l => l.Id == item.Id);
-                item.Agency = GetAgencyText(agencies, item.Agency);
                 item.CanModify = opporunity.OpportunityUser.Any(ou => ou.UserId == user.Id);
                 item.NumberOfResponses = opporunity.OpportunityResponse.Count(or => or.SubmittedAt != null);
             }
@@ -99,7 +93,6 @@ namespace Dta.OneAps.Api.Business {
             var result = _mapper.Map<IEnumerable<OpportunityAuthResponse>>(list);
             foreach(var item in result) {
                 var opporunity = list.Single(l => l.Id == item.Id);
-                item.Agency = GetAgencyText(agencies, item.Agency);
                 item.CanModify = true;
                 item.NumberOfResponses = opporunity.OpportunityResponse.Count(or => or.SubmittedAt != null);
             }
@@ -118,10 +111,6 @@ namespace Dta.OneAps.Api.Business {
                     .OpportunityResponse
                     .Where(or => or.SubmittedAt != null)
             );
-        }
-
-        private string GetAgencyText(IEnumerable<Lookup> agencies, string value) {
-            return agencies.SingleOrDefault(a => a.Value == value)?.Text;
         }
     }
 }

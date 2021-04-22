@@ -38,8 +38,8 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
     data.endDate = DateTime.fromISO(data.endDate).toISODate();
   }
   useEffect(() => {
-    if (agency.loaded && user) {
-      let found = agency.data.find(i => i.value == user.agency);
+    if (agency.lookupData.loaded && user) {
+      let found = agency.lookupData.data.find(i => i.value == user.agency);
       if (found) {
         setAgencyText(found.text);
       } else {
@@ -60,7 +60,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
               </>
             </PageAlert>
           )}
-          {!loading && agency.loaded && securityclearance.loaded && (
+          {!loading && agency.lookupData.loaded && securityclearance.lookupData.loaded && (
             <Formik
               initialValues={{
                 ...initialValues,
@@ -204,7 +204,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                     id="securityClearance"
                     label="Security Clearance"
                     hint="What level of security clearance is needed to complete the opportunity?"
-                    options={securityclearance.data}
+                    options={securityclearance.lookupData.data}
                     required
                   />
                   <AuFormGroup>

@@ -1,9 +1,10 @@
 import { Link, navigate } from "gatsby";
 import React, { useRef, useEffect } from "react";
+import { DateTime } from 'luxon';
 import DefaultLayout from "../components/layouts/default-layout";
 import SEO from "../components/seo";
 import { PageContext } from "../types";
-import { useOpportunitiesHook } from '../hooks';
+import { useOpportunitiesHook, useLookupHook } from '../hooks';
 
 const contentOrNA = (c) => {
   return c ? c : "N/A";
@@ -11,6 +12,7 @@ const contentOrNA = (c) => {
 
 const OpportunitySummaryView: React.FC<{ search?: string }> = ({ search }) => {
   const { loadFn, data } = useOpportunitiesHook();
+  const { getText } = useLookupHook('agency');
   const searchFieldRef = useRef();
 
   useEffect(() => {
@@ -69,7 +71,7 @@ const OpportunitySummaryView: React.FC<{ search?: string }> = ({ search }) => {
                             <p>
                               <span className="desc-text">Agency/Department</span>
                               <br />
-                              {contentOrNA(opp.agency)}
+                              {contentOrNA(getText(opp.agency))}
                             </p>
                             <p>
                               <span className="desc-text">Commitment Time</span>
@@ -79,12 +81,12 @@ const OpportunitySummaryView: React.FC<{ search?: string }> = ({ search }) => {
                             <p>
                               <span className="desc-text">Start date</span>
                               <br />
-                              {contentOrNA(opp.startDate).slice(0, 10)}
+                              {DateTime.fromISO(opp.startDate).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}
                             </p>
                             <p>
                               <span className="desc-text">End date</span>
                               <br />
-                              {contentOrNA(opp.endDate).slice(0, 10)}
+                              {DateTime.fromISO(opp.endDate).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}
                             </p>
                             <p>
                               <span className="desc-text">Required skills</span>

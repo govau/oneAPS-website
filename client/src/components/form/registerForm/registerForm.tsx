@@ -120,7 +120,7 @@ const RegisterForm: React.FC = () => {
               id="agency"
               label="Department/Agency name"
               width="lg"
-              options={agency.data}
+              options={agency.lookupData.data}
               required
             />
             <PasswordField

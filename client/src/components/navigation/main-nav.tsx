@@ -35,7 +35,7 @@ const MainNav: React.FC<Props> = ({ path }) => {
   }));
   if (user.token) {
     mainNavItems.push({
-      text: "My Profile",
+      text: "My profile",
       link: "/dashboard",
       active:
         path.length > 1

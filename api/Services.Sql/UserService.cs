@@ -12,7 +12,7 @@ namespace Dta.OneAps.Api.Services.Sql {
             _context = context;
         }
 
-        public async Task<User> AuthenticateAsync(string username) => (
+        public async Task<User> Authenticate(string username) => (
             await _context
                 .User
                 .AsNoTracking()
@@ -34,14 +34,14 @@ namespace Dta.OneAps.Api.Services.Sql {
             return saved;
         }
 
-        public async Task<IEnumerable<User>> GetAllAsync() => await _context.User.ToListAsync();
-        public async Task<User> GetByIdAsync(int id) =>
+        public async Task<IEnumerable<User>> GetAll() => await _context.User.ToListAsync();
+        public async Task<User> GetById(int id) =>
             await _context
                 .User
                 .Include(u => u.UserClaims)
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync();
-        public async Task<User> GetByEmailAsync(string email) => 
+        public async Task<User> GetByEmail(string email) => 
             await _context
                 .User
                 .Include(u => u.UserClaims)

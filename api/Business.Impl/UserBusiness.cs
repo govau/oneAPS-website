@@ -34,7 +34,7 @@ namespace Dta.OneAps.Api.Business {
         public async Task<UserSessionResponse> AuthenticateAsync(AuthenticateUserRequest model) {
             string encryptedPassword = _encryptionUtil.Encrypt(model.Password);
 
-            var user = await _userService.AuthenticateAsync(model.EmailAddress);
+            var user = await _userService.Authenticate(model.EmailAddress);
             if (user == null) {
                 throw new CannotAuthenticateException();
             }
@@ -60,7 +60,7 @@ namespace Dta.OneAps.Api.Business {
         }
 
         public async Task<IUser> RegisterAsync(UserCreateRequest model) {
-            var exists = await _userService.GetByEmailAsync(model.EmailAddress);
+            var exists = await _userService.GetByEmail(model.EmailAddress);
             User user;
             var userClaim = new UserClaim {
                 ClaimToken = $"{Guid.NewGuid()}{Guid.NewGuid()}".Replace("-", ""),
@@ -88,15 +88,15 @@ namespace Dta.OneAps.Api.Business {
                 toSave.UserClaims.Add(userClaim);
                 user = await _userService.Create(toSave);
             }
-            user = await _userService.GetByIdAsync(user.Id);
+            user = await _userService.GetById(user.Id);
             var result = _mapper.Map<IUser>(user);
             await _notifyService.RegistrationConfirmation(result, user.UserClaims.Last());
 
             return result;
         }
-        public async Task<IEnumerable<IUser>> GetAllAsync() => _mapper.Map<IEnumerable<IUser>>(await _userService.GetAllAsync());
-        public async Task<UserResponse> GetByIdAsync(int id) => _mapper.Map<UserResponse>(await _userService.GetByIdAsync(id));
-        public async Task<IUser> GetByEmailAsync(string email) => _mapper.Map<IUser>(await _userService.GetByEmailAsync(email));
+        public async Task<IEnumerable<IUser>> GetAllAsync() => _mapper.Map<IEnumerable<IUser>>(await _userService.GetAll());
+        public async Task<UserResponse> GetByIdAsync(int id) => _mapper.Map<UserResponse>(await _userService.GetById(id));
+        public async Task<IUser> GetByEmailAsync(string email) => _mapper.Map<IUser>(await _userService.GetByEmail(email));
         private string GenerateJSONWebToken(User user) {
             var jwtTokenHandler = new JwtSecurityTokenHandler();
 

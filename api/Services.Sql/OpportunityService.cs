@@ -25,7 +25,7 @@ namespace Dta.OneAps.Api.Services.Sql {
             return newObj;
         }
 
-        public async Task<IEnumerable<Opportunity>> GetAllAsync(string search) => (
+        public async Task<IEnumerable<Opportunity>> GetAll(string search) => (
             await _context
                 .Opportunity
                 .Include(x => x.OpportunityResponse)
@@ -45,7 +45,7 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .Where(x => x.OpportunityUser.Any(ou => ou.UserId == user.Id))
                 .ToListAsync()
         );
-        public async Task<Opportunity> GetByIdAsync(int id) => (
+        public async Task<Opportunity> GetById(int id) => (
             await _context
                 .Opportunity
                 .Include(x => x.OpportunityResponse)

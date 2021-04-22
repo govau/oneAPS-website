@@ -52,7 +52,7 @@ namespace Dta.OneAps.Api.Business {
             if (existing.UserId != user.Id) {
                 throw new UnauthorizedAccessException();
             }
-            var opportunity = await _opportunityService.GetByIdAsync(model.OpportunityId);
+            var opportunity = await _opportunityService.GetById(model.OpportunityId);
             if (opportunity.EndDate > DateTime.UtcNow) {
                 throw new ResponseTooLateException();
             }

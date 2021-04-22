@@ -15,10 +15,10 @@ const Header: React.FC<Props> = ({ siteTitle }) => {
               <Brand
                 title={
                   <>
-                    {siteTitle} <span className="header__badge"> alpha</span>
+                    {siteTitle}
                   </>
                 }
-                subline="A Digital Profession Program"
+                subline={<>A Digital Profession <span style={{ color: '#DA0C91', fontWeight: 'bold' }}>alpha</span> Program</>}
                 link="/"
                 brandImage={"../../coat-of-arms.svg"}
                 brandImageAlt="The Australian Government Coat of Arms"

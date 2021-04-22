@@ -38,7 +38,7 @@ namespace Dta.OneAps.Api.Tests.Services.EF.UserServiceTests {
             await _context.SaveChangesAsync();
 
             var usersController = new UserService(_context);
-            var user = await usersController.AuthenticateAsync(emailAddress);
+            var user = await usersController.Authenticate(emailAddress);
 
             Assert.NotNull(user);
         }
@@ -60,7 +60,7 @@ namespace Dta.OneAps.Api.Tests.Services.EF.UserServiceTests {
             if (!string.IsNullOrWhiteSpace(wrongEmailAddress)) {
                 e = wrongEmailAddress;
             }
-            var user = await usersController.AuthenticateAsync(e);
+            var user = await usersController.Authenticate(e);
 
             Assert.Null(user);
         }

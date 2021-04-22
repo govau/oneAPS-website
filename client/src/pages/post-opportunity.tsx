@@ -35,7 +35,7 @@ const OpportunityResponsePage: React.FC<PageContext> = ({
                     <Link to="/find-opportunities">Find opportunities</Link>
                   </li>
                   <li>
-                    <Link to={`/detailed-opportunity/?opportunityId=${opportunityId}`}>{decodeURI(title)}</Link>
+                    <Link to={`/detailed-opportunity/?opportunityId=${opportunityId}`}>{decodeURIComponent(title)}</Link>
                   </li>
                   <li>Edit opportunity</li>
                 </>

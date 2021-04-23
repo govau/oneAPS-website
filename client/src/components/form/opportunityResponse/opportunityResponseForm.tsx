@@ -164,7 +164,7 @@ const OpportunityResponseForm: React.FC = () => {
                       </AuFormGroup>
                       <AuFormGroup>
                         <AuLabel text="Opportunity description" />
-                        <div style={{whiteSpace: 'pre'}}>{updatedData.opportunity.jobDescription}</div>
+                        <div style={{whiteSpace: 'pre-wrap'}}>{updatedData.opportunity.jobDescription}</div>
                       </AuFormGroup>
                       <AuFormGroup>
                         <AuLabel text="Applying as" />

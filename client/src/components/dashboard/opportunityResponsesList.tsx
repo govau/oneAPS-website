@@ -44,7 +44,7 @@ export const OpportunityResponsesList: React.FC<{ opportunityId: number }> = ({ 
               <tr className="au-table__row">
                 <td className="au-table__cell">{d.user.name}</td>
                 <td className="au-table__cell">{d.user.emailAddress}<br/>{d.user.mobile}</td>
-                <td className="au-table__cell"><span style={{ whiteSpace: 'pre' }}>{d.whyPickMe}</span></td>
+                <td className="au-table__cell"><span style={{ whiteSpace: 'pre-wrap' }}>{d.whyPickMe}</span></td>
 
                 <td className="au-table__cell">{d.submittedAt && DateTime.fromISO(d.submittedAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
 

@@ -143,7 +143,7 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
                   {contentOrNA(getText(data.agency))}
                 </p>
                 <div style={{ marginTop: "2rem" }}>
-                  {data.canApply ? (
+                  {data.canApply || data.canApply === undefined ? (
                     <Link
                       to={`/opportunity-response?opportunityId=${data.id}`}
                       state={{ ...data }}

@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const emailValidation = yup
-  .string()
+  .string().nullable()
   .email("Enter a valid email")
   .required("Email is required")
   .max(255)

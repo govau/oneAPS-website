@@ -31,9 +31,9 @@ export const validationSchema = yup.object().shape({
   startDate: yup.date().required("Start Date is required"),
   endDate: yup.date().required("End Date is required"),
   commitmentTime: yup.string().required("Commitment Time is required"),
-  contactPersonName: yup.string().required("Contact Person Name is required"),
+  contactPersonName: yup.string().nullable().required("Contact Person Name is required"),
   contactPersonEmail: emailValidation,
-  contactPersonPhone: yup.string().trim().length(10),
+  contactPersonPhone: yup.string().nullable().trim().length(10),
   securityClearance: yup
     .string()
     .required("Security Clearance Level is required"),

@@ -51,12 +51,16 @@ export const useOpportunityResponseOperationsHook = () => {
     return await callService(applyOpportunityResponse, toSave);
   };
   const uploadFn = async (id: number, toSave: FormData) => {
+    setErrors([]);
     try {
       const result = await uploadFile(id, toSave, user.token);
       setData(result);
       return true;
     } catch (e) {
-      setErrors(processErrors(e));
+      setErrors([{
+        message: 'Error uploading file',
+        path: 'resumeUpload',
+      }]);
       return false;
     }
   };

@@ -13,6 +13,8 @@ namespace Dta.OneAps.Api.Web.Filters {
                 context.Result = new NotFoundResult();
             } else if (context.Exception is TokenClaimedException) {
                 context.Result = new ConflictResult();
+            } else if (context.Exception is ValidationErrorException) {
+                context.Result = new BadRequestResult();
             }
         }
     }

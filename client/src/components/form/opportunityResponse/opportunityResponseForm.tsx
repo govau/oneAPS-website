@@ -213,7 +213,7 @@ const OpportunityResponseForm: React.FC = () => {
                                   </>}
                               </div>
                               <div>
-                                <input type="file" id="resume" ref={fileUploadRef}
+                                <input type="file" accept=".pdf" id="resume" ref={fileUploadRef}
                                   onChange={(e) => {
                                     if (e.currentTarget.value) {
                                       setUploadBtn({
@@ -243,12 +243,14 @@ const OpportunityResponseForm: React.FC = () => {
                                       for (const file of fileUpload.files) {
                                         formData.append('file', file, file.name);
                                       }
-                                      await uploadFn(updatedData.id, formData);
+                                      if (!await uploadFn(updatedData.id, formData)) {
+                                      }
                                       fileUpload.value = "";
                                       setUploadBtn({
                                         disable: true,
                                         text: 'Upload'
                                       });
+                                    
                                     }
                                   }} value="Upload" />
                               </div>

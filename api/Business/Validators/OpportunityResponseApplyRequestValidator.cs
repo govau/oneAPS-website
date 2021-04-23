@@ -18,6 +18,7 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(_ => _.UserId).NotEmpty();
             RuleFor(_ => _.WhyPickMe).NotEmpty();
             RuleFor(_ => _.SubmittedAt).Empty();
+            RuleFor(_ => _.ResumeUpload).Matches(@"^.+\.(?:(?:[pP][dD][fF]))$");
             RuleFor(_ => _)
                 .MustAsync(async (or, c) => {
                     var existing = await opportunityResponseBusiness.Get(or.OpportunityId, or.UserId);

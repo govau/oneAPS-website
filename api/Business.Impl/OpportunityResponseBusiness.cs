@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Dta.OneAps.Api.Business {
     public class OpportunityResponseBusiness : IOpportunityResponseBusiness {
@@ -68,11 +69,16 @@ namespace Dta.OneAps.Api.Business {
             if (existing.UserId != user.Id) {
                 throw new UnauthorizedAccessException();
             }
-            existing.ResumeUpload = filename;
-            var saved = await _opportunityResponseService.Update(existing, user);
-            var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
-            await _fileService.SaveFile($"/responses/{existing.Id}/{user.Id}/{filename}", stream);
-            return result;
+            var regex = new Regex(@"^.+\.(?:(?:[pP][dD][fF]))$");
+            if (regex.Match(filename).Success) {
+                existing.ResumeUpload = filename;
+                var saved = await _opportunityResponseService.Update(existing, user);
+                var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
+                await _fileService.SaveFile($"/responses/{existing.Id}/{user.Id}/{filename}", stream);
+                return result;
+            } else {
+                throw new ValidationErrorException();
+            }
         }
 
         public async Task<byte[]> DownloadFile(int id, IUser user) {

@@ -53,9 +53,6 @@ namespace Dta.OneAps.Api.Business {
                 throw new UnauthorizedAccessException();
             }
             var opportunity = await _opportunityService.GetById(model.OpportunityId);
-            if (opportunity.EndDate > DateTime.UtcNow) {
-                throw new ResponseTooLateException();
-            }
             
             var toSave = _mapper.Map(model, existing);
             var saved = await _opportunityResponseService.Update(toSave, user);

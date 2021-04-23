@@ -1,7 +1,6 @@
 using FluentValidation;
 using Dta.OneAps.Api.Business.Models;
-using System.Collections.Generic;
-using System.Linq;
+using System;
 
 namespace Dta.OneAps.Api.Business.Validators {
     public class OpportunityResponseApplyRequestValidator : AbstractValidator<OpportunityResponseApplyRequest> {
@@ -10,7 +9,11 @@ namespace Dta.OneAps.Api.Business.Validators {
                 .NotEmpty()
                 .MustAsync(async (or, c) => {
                     return await opportunityBusiness.Get(or) != null;
-                }).WithMessage("{PropertyName} does not exist.");
+                }).WithMessage("{PropertyName} does not exist.")
+                .MustAsync(async (or, c) => {
+                    var existing = await opportunityBusiness.Get(or);
+                    return existing.EndDate.Date > DateTime.UtcNow;
+                }).WithMessage("Applications for this opportunity has ended.");
             RuleFor(_ => _.Id).NotEmpty();
             RuleFor(_ => _.UserId).NotEmpty();
             RuleFor(_ => _.WhyPickMe).NotEmpty();
@@ -19,14 +22,8 @@ namespace Dta.OneAps.Api.Business.Validators {
                 .MustAsync(async (or, c) => {
                     var existing = await opportunityResponseBusiness.Get(or.OpportunityId, or.UserId);
                     return existing != null;
-                }).WithMessage("You have already applied for this opportunity.");            
-            // When(or => or.Id == 0, () => {
-            //     RuleFor(u => u)
-            //         .MustAsync(async (or, c) => {
-            //             var list = new List<OpportunityResponsePublicResponse>(await opportunityResponseBusiness.List(or.OpportunityId, or.UserId));
-            //             return list.Count == 0;
-            //         }).WithMessage("You have already applied for this opportunity.");
-            // });
+                }).WithMessage("You have already applied for this opportunity.");
+                
         }
     }
 }

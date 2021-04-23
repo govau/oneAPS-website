@@ -18,7 +18,7 @@ const Header: React.FC<Props> = ({ siteTitle }) => {
                     {siteTitle}
                   </>
                 }
-                subline={<>A Digital Profession <span style={{ color: '#DA0C91', fontWeight: 'bold' }}>alpha</span> Program</>}
+                subline={<>A Digital Profession <span style={{ fontWeight: 'bolder' }}>pilot</span> Program</>}
                 link="/"
                 brandImage={"../../coat-of-arms.svg"}
                 brandImageAlt="The Australian Government Coat of Arms"

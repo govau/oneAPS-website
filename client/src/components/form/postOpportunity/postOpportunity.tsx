@@ -48,6 +48,11 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
     }
     
   }, [agency, user]);
+  if (user) {
+    initialValues.contactPersonEmail = user.emailAddress;
+    initialValues.contactPersonName = user.name;
+    initialValues.contactPersonPhone = user.mobile;
+  }
   return (
     <>
       {user && loggedIn ? (
@@ -65,9 +70,6 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
               initialValues={{
                 ...initialValues,
                 ...data,
-                contactPersonEmail: user.emailAddress,
-                contactPersonName: user.name,
-                contactPersonPhone: user.mobile,
               }}
               validationSchema={validationSchema}
               onSubmit={async (values, actions) => {

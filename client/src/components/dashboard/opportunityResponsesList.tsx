@@ -3,10 +3,7 @@ import React, { useEffect } from "react";
 import { DateTime } from 'luxon';
 import { useLoadOpportunityResponseHook, useOpportunityResponseOperationsHook } from '../../hooks';
 import {
-  Aubtn,
-  AuFieldset,
-  AuFormGroup,
-  AuLabel
+  Aubtn
 } from "../../types/auds";
 
 export const OpportunityResponsesList: React.FC<{ opportunityId: number }> = ({ opportunityId }) => {

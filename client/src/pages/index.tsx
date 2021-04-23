@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import * as React from "react";
 import DefaultLayout from "../components/layouts/default-layout";
+import PageAlert from "../components/blocks/pageAlert";
 import SEO from "../components/seo";
 import "../sass/main.scss";
 import { PageContext } from "../types/types";
@@ -12,7 +13,18 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
       <>
         <SEO title="Home" />
         <div className="au-body hero">
-          <section className="container-fluid">
+          <section className="container" style={{ marginBottom: '3em' }}>
+            <PageAlert type="info">
+              <>
+                <h2>A digital profession pilot program</h2>
+                <p>
+                  This site is part of a 3-month pilot program from March to July 2021 run by the Digital Squads team at the Digital Transformation Agency.
+                </p>
+                <p>If you have any questions or feedback, please contact us at <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a></p>
+              </>
+            </PageAlert>
+          </section>
+          <section className="container">
             <div className="col-sm-12 col-md-6 col-md-push-6 intro__img">
               <img
                 className="au-responsive-media-img"
@@ -40,17 +52,17 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
                   Post an opportunity
                 </Link>
               </div>
-              <p>
+              <div>
                 Want to find out more or have feedback? Contact{" "}
                 <a href="mailto:digitalsquads@dta.gov.au">
                   digitalsquads@dta.gov.au
                 </a>
-              </p>
+              </div>
             </div>
           </section>
         </div>
-        <section className="au-body" style={{ background: "#EBEBEB" }}>
-          <div className="container-fluid">
+        <section className="au-body" style={{ background: "#EBEBEB", marginTop: '2em', paddingTop: '2em', paddingBottom: '2em' }}>
+          <div className="container">
             <div className="row">
               <div
                 className="col-md-12 center-align"
@@ -63,18 +75,17 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
               <div className="col-md-4 center-align">
                 <img src="../../make-connections.png"></img>
                 <p className="bolden-text">Make connections</p>
-                Your new colleagues may be down the hall or across the country
+                <p>Your new colleagues may be down the hall or across the country</p>
               </div>
               <div className="col-md-4 center-align">
                 <img src="../../build-skills.png"></img>
                 <p className="bolden-text">Build skills</p>
-                Advance your career by developing new skills and experience
+                <p>Advance your career by developing new skills and experience</p>
               </div>
               <div className="col-md-4 center-align">
                 <img src="../../make-difference.png"></img>
                 <p className="bolden-text">Make a difference</p>
-                Use your talent on short term opportunities that are meaningful
-                to you.
+                <p>Use your talent on short term<br/>opportunities that are meaningful to you.</p>
               </div>
             </div>
           </div>

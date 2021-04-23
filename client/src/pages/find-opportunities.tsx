@@ -103,7 +103,7 @@ const OpportunitySummaryView: React.FC<{ search?: string }> = ({ search }) => {
                             <p>
                               <Link to={`/detailed-opportunity/?opportunityId=${opp.id}`}>
                                 more
-                          </Link>
+                              </Link>
                             </p>
                           </div>
                         </div>

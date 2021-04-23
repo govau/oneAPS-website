@@ -80,9 +80,9 @@ namespace Dta.OneAps.Api.Business {
 
             var result = _mapper.Map<IEnumerable<OpportunityAuthResponse>>(list);
             foreach(var item in result) {
-                var opporunity = list.Single(l => l.Id == item.Id);
-                item.CanModify = opporunity.OpportunityUser.Any(ou => ou.UserId == user.Id);
-                item.NumberOfResponses = opporunity.OpportunityResponse.Count(or => or.SubmittedAt != null);
+                var opportunity = list.Single(l => l.Id == item.Id);
+                item.CanModify = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id);
+                item.NumberOfResponses = opportunity.OpportunityResponse.Count(or => or.SubmittedAt != null);
             }
             return result;
         }
@@ -92,9 +92,9 @@ namespace Dta.OneAps.Api.Business {
 
             var result = _mapper.Map<IEnumerable<OpportunityAuthResponse>>(list);
             foreach(var item in result) {
-                var opporunity = list.Single(l => l.Id == item.Id);
+                var opportunity = list.Single(l => l.Id == item.Id);
                 item.CanModify = true;
-                item.NumberOfResponses = opporunity.OpportunityResponse.Count(or => or.SubmittedAt != null);
+                item.NumberOfResponses = opportunity.OpportunityResponse.Count(or => or.SubmittedAt != null);
             }
             return result;
         }

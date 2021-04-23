@@ -12,7 +12,7 @@ namespace Dta.OneAps.Api.Business.Validators {
                 }).WithMessage("{PropertyName} does not exist.")
                 .MustAsync(async (or, c) => {
                     var existing = await opportunityBusiness.Get(or);
-                    return existing.EndDate.Date > DateTime.UtcNow;
+                    return existing.EndDate.Date >= DateTime.UtcNow.Date;
                 }).WithMessage("Applications for this opportunity has ended.");
             RuleFor(_ => _.Id).NotEmpty();
             RuleFor(_ => _.UserId).NotEmpty();

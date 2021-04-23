@@ -18,7 +18,7 @@ namespace Dta.OneAps.Api.Business.Models {
 
         public IUser User { get; set; }
         
-        public OpportunityPublicResponse Opportunity { get; set; }
+        public OpportunityAuthResponse Opportunity { get; set; }
 
         public DateTime CreatedAt { get; set; }
         public DateTime? WithdrawnAt { get; set; }

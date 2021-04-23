@@ -7,7 +7,7 @@ namespace Dta.OneAps.Api.Services {
     public interface IOpportunityService {
         Task<Opportunity> Create(Opportunity opportunity, IUser user);
         Task<Opportunity> Update(Opportunity opportunity, IUser user);
-        Task<IEnumerable<Opportunity>> GetAll(string search);
+        Task<IEnumerable<Opportunity>> GetAll(string search, bool includeClosed);
         Task<IEnumerable<Opportunity>> MyList(IUser user);
         Task<Opportunity> GetById(int id);
     }

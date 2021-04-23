@@ -110,7 +110,7 @@ const OpportunityResponseForm: React.FC = () => {
                 <PageAlert type="error" className="max-30">
                   <>
                     <h2>Applications for this opportunity has ended.</h2>
-                    <p>This opportunity ended on {updatedData.opportunity.endDate}</p>
+                    <p>This opportunity closed at {updatedData.opportunity.closedAt}</p>
                     <p>You can <Link to="/find-opportunities">find more opportunities</Link> or <Link to="/post-opportunity">post your own opportunity</Link>.</p>
                   </>
                 </PageAlert>

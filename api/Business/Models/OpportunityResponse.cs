@@ -10,6 +10,7 @@ namespace Dta.OneAps.Api.Business.Models {
         public string NumberOfPeople { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public DateTime? ClosedAt { get; set; }
         public string CommitmentTime { get; set; }
         public string Agency { get; set; }
         public string Location { get; set; }

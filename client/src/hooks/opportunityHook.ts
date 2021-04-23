@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { loadOpportunity, loadOpportunities, loadOpportunityResponses, createOpporunity, updateOpporunity } from '../services';
+import { loadOpportunity, loadOpportunities, closeOpporunity, createOpporunity, updateOpporunity } from '../services';
 import { IOpportunityType, IApiFormError } from '../types';
 import { UserContext } from '../context';
 
@@ -95,9 +95,23 @@ export const useOpportunitiesHook = () => {
     setData(result);
   };
 
+  const closeOpporunityFn = async (id: number): Promise<{success: boolean}> => {
+    try {
+      await closeOpporunity(id, user.token);
+      await loadMyOpportunitiesFn();
+      return {
+        success: true
+      }
+    } catch { }
+    return {
+      success: false
+    }
+  };
+
   return {
     loadFn,
     loadMyOpportunitiesFn,
+    closeOpporunityFn,
     data
   };
 };

@@ -80,3 +80,15 @@ export const updateOpporunity = async (formData: IOpportunityType, token: string
   );
   return result;
 }
+
+export const closeOpporunity = async (id: number, token: string) => {
+  const result = await axios.put(
+    `/api/auth/Opportunity/${id}/close`,
+    undefined, {
+      headers: {
+        Authorization: `bearer ${token}`
+      }
+    }
+  );
+  return result;
+}

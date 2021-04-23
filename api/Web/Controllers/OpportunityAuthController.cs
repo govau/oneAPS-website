@@ -33,6 +33,13 @@ namespace Dta.OneAps.Api.Web.Controllers {
             return Ok(updated);
         }
 
+        [HttpPut("{id}/close")]
+        public async Task<IActionResult> Close(int id) {
+            var user = await _authorizationUtil.GetUser(User);
+            var updated = await _opportunityBusiness.Close(id, user);
+            return Ok(updated);
+        }
+
         [HttpGet]
         public async Task<IActionResult> List([FromQuery] string search) {
             var user = await _authorizationUtil.GetUser(User);

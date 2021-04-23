@@ -10,6 +10,7 @@ namespace Dta.OneAps.Api.Business {
         Task<IEnumerable<OpportunityPublicResponse>> List(string search);
         Task<OpportunityAuthResponse> Create(OpportunitySaveRequest opportunityModel, IUser user);
         Task<OpportunityAuthResponse> Update(OpportunitySaveRequest opportunityModel, IUser user);
+        Task<OpportunityAuthResponse> Close(int id, IUser user);
         Task<OpportunityAuthResponse> Get(int id, IUser user);
         Task<IEnumerable<OpportunityAuthResponse>> List(string search, IUser user);
         Task<IEnumerable<OpportunityResponsePrivateResponse>> ListResponses(int opportunityId, IUser user);

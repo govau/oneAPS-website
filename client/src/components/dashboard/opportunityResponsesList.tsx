@@ -2,9 +2,7 @@ import { Link, navigate } from "gatsby";
 import React, { useEffect } from "react";
 import { DateTime } from 'luxon';
 import { useLoadOpportunityResponseHook, useOpportunityResponseOperationsHook } from '../../hooks';
-import {
-  Aubtn
-} from "../../types/auds";
+import { Aubtn } from "../../types/auds";
 
 export const OpportunityResponsesList: React.FC<{ opportunityId: number }> = ({ opportunityId }) => {
   const { loadResponsesFn, list } = useLoadOpportunityResponseHook();

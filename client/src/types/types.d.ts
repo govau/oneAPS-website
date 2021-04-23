@@ -60,6 +60,7 @@ export interface IOpportunityType {
   additionalInfo: string;
   startDate: string;
   endDate: string;
+  closedAt: string;
   commitmentTime: string;
   agency: string;
   contactPersonName: string;

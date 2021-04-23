@@ -10,7 +10,7 @@ namespace Dta.OneAps.Api.Business.Models {
         public bool CanModify { get; set; }
         public bool CanApply { 
             get {
-                return EndDate.Date >= DateTime.UtcNow.Date;
+                return ClosedAt.HasValue == false;
             }
         }
         public int NumberOfResponses { get; set; }

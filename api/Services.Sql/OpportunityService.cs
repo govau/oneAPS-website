@@ -25,7 +25,7 @@ namespace Dta.OneAps.Api.Services.Sql {
             return newObj;
         }
 
-        public async Task<IEnumerable<Opportunity>> GetAll(string search) => (
+        public async Task<IEnumerable<Opportunity>> GetAll(string search, bool includeClosed) => (
             await _context
                 .Opportunity
                 .Include(x => x.OpportunityResponse)
@@ -33,6 +33,7 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .Include(x => x.ModifiedByUser)
                 .Include(x => x.OpportunityUser)
                 .Where(x => string.IsNullOrWhiteSpace(search) ? true : x.JobTitle.ToLower().Contains(search.ToLower()))
+                .Where(x => includeClosed ? true : !x.ClosedAt.HasValue)
                 .ToListAsync()
         );
         public async Task<IEnumerable<Opportunity>> MyList(IUser user) => (

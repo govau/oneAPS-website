@@ -22,11 +22,11 @@ export const MyOpportunities: React.FC = () => {
         <thead className="au-table__head">
           <tr className="au-table__row">
             <th scope="col" className="au-table__header au-table__header--width-50">Title</th>
-            <th scope="col" className="au-table__header au-table__header--width-8">Start date</th>
-            <th scope="col" className="au-table__header au-table__header--width-8">End date</th>
-            <th scope="col" className="au-table__header au-table__header--width-8">Closed at</th>
-            <th scope="col" className="au-table__header au-table__header--width-8 au-table__header--numeric">Responses</th>
-            <th scope="col" className="au-table__header au-table__header--width-16">Actions</th>
+            <th scope="col" className="au-table__header">Start date</th>
+            <th scope="col" className="au-table__header">End date</th>
+            <th scope="col" className="au-table__header">Closed at</th>
+            <th scope="col" className="au-table__header au-table__header--numeric">Responses</th>
+            <th scope="col" className="au-table__header au-table__header--width-20">Actions</th>
           </tr>
         </thead>
         <tbody className="au-table__body">
@@ -36,9 +36,9 @@ export const MyOpportunities: React.FC = () => {
               <td className="au-table__cell">{DateTime.fromISO(d.startDate).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell">{DateTime.fromISO(d.endDate).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell">{d.closedAt && DateTime.fromISO(d.closedAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
-              <td className="au-table__cell au-table__cell--numeric">{d.numberOfResponses}</td>
+              <td className="au-table__cell au-table__cell--numeric">{d.numberOfResponses > 0 && d.numberOfResponses}</td>
               <td className="au-table__cell">
-                <Link to={`/opportunity-responses/?opportunityId=${d.id}`}>View Applications</Link><br/>
+                {d.numberOfResponses > 0 && <><Link to={`/opportunity-responses/?opportunityId=${d.id}`}>View Applications</Link><br/></>}
                 <Link to={`/post-opportunity/?opportunityId=${d.id}&title=${encodeURIComponent(d.jobTitle)}`}>Edit Opportunity</Link><br/>
                 {!d.closedAt && <a href="" onClick={async (e) => {
                   e.preventDefault();

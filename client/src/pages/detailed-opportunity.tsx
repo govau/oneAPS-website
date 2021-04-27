@@ -8,7 +8,7 @@ import { useOpportunityHook, useLookupHook } from '../hooks';
 import { UserContext } from '../context';
 
 const contentOrNA = (c) => {
-  return c ? <span style={{whiteSpace: 'pre-wrap'}}>{c}</span> : "N/A";
+  return c ? <span style={{ whiteSpace: 'pre-wrap' }}>{c}</span> : "N/A";
 }
 
 const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportunityId }) => {
@@ -28,22 +28,20 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
       {data && (
         <>
           <SEO title="About oneAPS" />
-          <div className="container-fluid">
-            <nav className="au-breadcrumbs" aria-label="breadcrumb">
-              <ul className="au-link-list au-link-list--inline">
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/find-opportunities">Find opportunities</Link>
-                </li>
-                <li>{contentOrNA(data.jobTitle)}</li>
-              </ul>
-            </nav>
-          </div>
-          <div className="au-body container-fluid">
+          <nav className="au-breadcrumbs" aria-label="breadcrumb">
+            <ul className="au-link-list au-link-list--inline">
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/find-opportunities">Find opportunities</Link>
+              </li>
+              <li>{contentOrNA(data.jobTitle)}</li>
+            </ul>
+          </nav>
+          <h1>{contentOrNA(data.jobTitle)}</h1>
+          <div>
             <div className="row">
-              <h2>{contentOrNA(data.jobTitle)}</h2>
               <div
                 className="col-md-8"
                 style={{ borderRight: "1px solid black", marginTop: "2rem" }}
@@ -160,7 +158,7 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
                 {data.canModify && (
                   <div style={{ marginTop: "2rem" }}>
                     <Link
-                      to={`/post-opportunity?opportunityId=${data.id}&title=${encodeURIComponent(data.jobTitle)}`}
+                      to={`/post-opportunity?opportunityId=${data.id}`}
                       className="au-btn"
                     >
                       Edit opportunity

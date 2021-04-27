@@ -92,18 +92,30 @@ const OpportunityResponseForm: React.FC = () => {
 
   return (
     <>
+      <nav className="au-breadcrumbs" aria-label="breadcrumb">
+        <ul className="au-link-list au-link-list--inline">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/find-opportunities">Find opportunities</Link>
+          </li>
+          <li>
+            <Link to={`/detailed-opportunity/?opportunityId=${opportunityId}`}>{updatedData && updatedData.opportunity.jobTitle}</Link>
+          </li>
+          <li>Apply for opportunity</li>
+        </ul>
+      </nav>
       {updatedData && user.token ? (
         <>
           {updatedData.submittedAt ? (
-            <>
-              <PageAlert type="warning" className="max-30">
-                <>
-                  <h2>You have already applied for this opportunity</h2>
-                  <p>Your application was recieved on {updatedData.submittedAt}</p>
-                  <p>You can <Link to="/find-opportunities">find more opportunities</Link> or <Link to="/post-opportunity">post your own opportunity</Link>.</p>
-                </>
-              </PageAlert>
-            </>
+            <PageAlert type="warning" className="max-30">
+              <>
+                <h2>You have already applied for this opportunity</h2>
+                <p>Your application was recieved on {updatedData.submittedAt}</p>
+                <p>You can <Link to="/find-opportunities">find more opportunities</Link> or <Link to="/post-opportunity">post your own opportunity</Link>.</p>
+              </>
+            </PageAlert>
           ) : (
             <>
               {!updatedData.opportunity.canApply ?
@@ -250,7 +262,7 @@ const OpportunityResponseForm: React.FC = () => {
                                         disable: true,
                                         text: 'Upload'
                                       });
-                                    
+
                                     }
                                   }} value="Upload" />
                               </div>

@@ -39,7 +39,7 @@ export const MyOpportunities: React.FC = () => {
               <td className="au-table__cell au-table__cell--numeric">{d.numberOfResponses > 0 && d.numberOfResponses}</td>
               <td className="au-table__cell">
                 {d.numberOfResponses > 0 && <><Link to={`/opportunity-responses/?opportunityId=${d.id}`}>View Applications</Link><br/></>}
-                <Link to={`/post-opportunity/?opportunityId=${d.id}&title=${encodeURIComponent(d.jobTitle)}`}>Edit Opportunity</Link><br/>
+                <Link to={`/post-opportunity/?opportunityId=${d.id}`}>Edit Opportunity</Link><br/>
                 {!d.closedAt && <a href="" onClick={async (e) => {
                   e.preventDefault();
                   closeOpporunityFn(d.id);

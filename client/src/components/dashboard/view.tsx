@@ -1,6 +1,5 @@
-import { navigate } from "gatsby";
-import React, { useContext, useEffect } from "react";
-import { UserContext } from "../../context/UserContext";
+import { navigate, Link } from "gatsby";
+import React, { useEffect } from "react";
 import { useUserHook } from '../../hooks';
 import { MyDetails } from './myDetails';
 import { MyOpportunities } from './myOpportunities';
@@ -16,7 +15,18 @@ export const View: React.FC = () => {
   }, []);
 
   return (
-    <div className="container">
+    <>
+      <nav className="au-breadcrumbs" aria-label="breadcrumb">
+        <ul className="au-link-list au-link-list--inline">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            My profile
+          </li>
+        </ul>
+      </nav>
+      <h1>My profile</h1>
       <div style={{ marginTop: '3em' }}>
         <MyDetails />
 
@@ -38,6 +48,6 @@ export const View: React.FC = () => {
       <div style={{ marginTop: '3em' }}>
         <MyResponses />
       </div>
-    </div>
+    </>
   );
 }

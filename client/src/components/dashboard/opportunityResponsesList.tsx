@@ -18,11 +18,18 @@ export const OpportunityResponsesList: React.FC<{ opportunityId: number }> = ({ 
 
   return (
     <>
-      <div className="row">
-        <div className="col-md-12">
-          <h2>Opportunity applications</h2>
-        </div>
-      </div>
+      <nav className="au-breadcrumbs" aria-label="breadcrumb">
+        <ul className="au-link-list au-link-list--inline">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/dashboard">My profile</Link>
+          </li>
+          <li>Opportunity applications</li>
+        </ul>
+      </nav>
+      <h1>Opportunity applications</h1>
       <div style={{ marginTop: '2em' }}>
         <table className="au-table">
           <thead className="au-table__head">

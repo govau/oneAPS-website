@@ -9,7 +9,7 @@ const ErrorPage: React.FC<PageContext> = ({ pageContext, location }) => {
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
         <SEO title="404" />
-        <div className="container-fluid au-body">
+        <div>
           <h1>404 - page not found</h1>
         </div>
       </>

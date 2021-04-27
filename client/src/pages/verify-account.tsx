@@ -12,10 +12,8 @@ const EmailConfirmation: React.FC<PageContext> = ({
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
         <SEO title="Register" />
-        <div className="container-fluid au-body">
-          <h1>Check your email</h1>
-          <p>Please click the link in your email to confirm your account</p>
-        </div>
+        <h1>Check your email</h1>
+        <p>Please click the link in your email to confirm your account</p>
       </>
     </DefaultLayout>
   );

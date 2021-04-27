@@ -25,7 +25,7 @@ const ClaimToken: React.FC<PageContext> = ({
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
         <SEO title="Account activation" />
-        <div className="container-fluid au-body">
+        <div>
           <h1>Account activation</h1>
           {claim ? (
             <>

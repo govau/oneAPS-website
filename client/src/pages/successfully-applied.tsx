@@ -12,10 +12,8 @@ const SuccessfullyApplied: React.FC<PageContext> = ({
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
         <SEO title="Register" />
-        <div className="container-fluid au-body">
-          <h1>You have applied for an opportunity</h1>
-          <p>You can find more opportunities here</p>
-        </div>
+        <h1>You have applied for an opportunity</h1>
+        <p>You can find more opportunities here</p>
       </>
     </DefaultLayout>
   );

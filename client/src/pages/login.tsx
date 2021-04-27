@@ -11,13 +11,10 @@ const LoginPage: React.FC<PageContext> = ({ pageContext, location }) => {
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
         <SEO title="Login" />
+        <h1>Login </h1>
 
-        <div className="container-fluid au-body">
-          <h1>Login </h1>
-
-          <p>Don't have an account? {<Link to="/register">Register</Link>}</p>
-          <LoginForm fromPage={location.state && location.state.fromPage} />
-        </div>
+        <p>Don't have an account? {<Link to="/register">Register</Link>}</p>
+        <LoginForm fromPage={location.state && location.state.fromPage} />
       </>
     </DefaultLayout>
   );

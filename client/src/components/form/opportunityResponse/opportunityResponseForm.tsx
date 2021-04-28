@@ -108,187 +108,202 @@ const OpportunityResponseForm: React.FC = () => {
       </nav>
       {updatedData && user.token ? (
         <>
-          {updatedData.submittedAt ? (
-            <PageAlert type="warning" className="max-30">
-              <>
-                <h2>You have already applied for this opportunity</h2>
-                <p>Your application was recieved on {updatedData.submittedAt}</p>
-                <p>You can <Link to="/find-opportunities">find more opportunities</Link> or <Link to="/post-opportunity">post your own opportunity</Link>.</p>
-              </>
-            </PageAlert>
+          {updatedData.withdrawnAt ? (
+            <>
+              <PageAlert type="warning" className="max-30">
+                <>
+                  <h2>You have withdrawn your application for this opportunity</h2>
+                  <p>Your application was withdrawn on {updatedData.withdrawnAt}</p>
+                  <p>You can <Link to="/find-opportunities">find more opportunities</Link> and start another application.</p>
+                </>
+              </PageAlert>
+            </>
           ) : (
             <>
-              {!updatedData.opportunity.canApply ?
-                <PageAlert type="error" className="max-30">
+              {updatedData.submittedAt ? (
+                <PageAlert type="warning" className="max-30">
                   <>
-                    <h2>Applications for this opportunity has ended.</h2>
-                    <p>This opportunity closed at {updatedData.opportunity.closedAt}</p>
+                    <h2>You have already applied for this opportunity</h2>
+                    <p>Your application was recieved on {updatedData.submittedAt}</p>
                     <p>You can <Link to="/find-opportunities">find more opportunities</Link> or <Link to="/post-opportunity">post your own opportunity</Link>.</p>
                   </>
                 </PageAlert>
-                : (
-                  <>
-                    <h1>Apply for opportunity</h1>
-                    {errors && errors.length > 0 && (
-                      <PageAlert type="error" className="max-30">
-                        <>
-                          <h2>There was an error</h2>
-                          {formatApiError(errors)}
-                        </>
-                      </PageAlert>
-                    )}
-                    <Formik
-                      initialValues={{
-                        initialValues,
-                        ...updatedData
-                      }}
-                      validationSchema={validationSchema}
-                      onSubmit={(values, actions) => {
-                        if (values.isApply) {
-                          applyForOpportunity(values);
-                        } else {
-                          saveChanges(values);
-                        }
-                      }}
-                    >
-                      {({ errors, handleSubmit, submitForm, setFieldValue }) => (
-                        <Form
-                          method="post"
-                          onSubmit={(e) => {
-                            handleSubmit(e);
-                            if (Object.keys(errors).length < 1) {
-                              return;
+              ) : (
+                <>
+                  {!updatedData.opportunity.canApply ?
+                    <PageAlert type="error" className="max-30">
+                      <>
+                        <h2>Applications for this opportunity has ended.</h2>
+                        <p>This opportunity closed at {updatedData.opportunity.closedAt}</p>
+                        <p>You can <Link to="/find-opportunities">find more opportunities</Link> or <Link to="/post-opportunity">post your own opportunity</Link>.</p>
+                      </>
+                    </PageAlert>
+                    : (
+                      <>
+                        <h1>Apply for opportunity</h1>
+                        {errors && errors.length > 0 && (
+                          <PageAlert type="error" className="max-30">
+                            <>
+                              <h2>There was an error</h2>
+                              {formatApiError(errors)}
+                            </>
+                          </PageAlert>
+                        )}
+                        <Formik
+                          initialValues={{
+                            initialValues,
+                            ...updatedData
+                          }}
+                          validationSchema={validationSchema}
+                          onSubmit={(values, actions) => {
+                            if (values.isApply) {
+                              applyForOpportunity(values);
+                            } else {
+                              saveChanges(values);
                             }
-                            setIsError(true);
-                            document.title = "Errors | Apply for Opportunity";
-                            const timeout = setTimeout(() => {
-                              const errorSum = document.getElementById(
-                                "error-heading"
-                              ) as any;
-                              if (errorSum && errorSum.focus()) {
-                                errorSum.scrollIntoView({
-                                  behavior: "smooth",
-                                  block: "start",
-                                });
-                              }
-                              clearTimeout(timeout);
-                            }, 500);
                           }}
                         >
-                          {isError && Object.keys(errors).length > 0 && (
-                            <ClientErrorDisplay errors={errors} />
-                          )}
-
-                          <AuFieldset className="mt-2 mb-0">
-                            <AuFormGroup>
-                              <AuLabel text="Opportunity name" />
-                              <div>{updatedData.opportunity.jobTitle}</div>
-                            </AuFormGroup>
-                            <AuFormGroup>
-                              <AuLabel text="Opportunity description" />
-                              <div style={{ whiteSpace: 'pre-wrap' }}>{updatedData.opportunity.jobDescription}</div>
-                            </AuFormGroup>
-                            <AuFormGroup>
-                              <AuLabel text="Applying as" />
-                              <div>{updatedData.user.name} ({updatedData.user.emailAddress})</div>
-                            </AuFormGroup>
-                            <TextField
-                              id="whyPickMe"
-                              label="Why me? (Your pitch)"
-                              hint=""
-                              required
-                              as="textarea"
-                              width="xl"
-                              defaultValue={updatedData.whyPickMe}
-                            />
-
-                            <TextField
-                              id="resumeLink"
-                              label="LinkedIn Profile URL"
-                              hint="Ensure your LinkedIn profile is publicly accessible"
-                              type="text"
-                              width="xl"
-                              required
-                              defaultValue={updatedData.resumeLink}
-                            />
-                            <input type="hidden" id="isApply" value="false" />
-                            <AuFormGroup>
-                              <AuLabel text="Resume (optional)" />
-                              <div>
-                                {updatedData.resumeUpload &&
-                                  <>
-                                    Download <Aubtn type="button" as="tertiary" onClick={() => {
-                                      fileDownload();
-                                    }} disabled={saving}>
-                                      {updatedData.resumeUpload}
-                                    </Aubtn>
-                                  </>}
-                              </div>
-                              <div>
-                                <input type="file" accept=".pdf" id="resume" ref={fileUploadRef}
-                                  onChange={(e) => {
-                                    if (e.currentTarget.value) {
-                                      setUploadBtn({
-                                        ...uploadBtn,
-                                        disable: false,
-
-                                      });
-                                    } else {
-                                      setUploadBtn({
-                                        ...uploadBtn,
-                                        disable: true,
-                                      });
-                                    }
-                                  }} />
-                                <input
-                                  type="button"
-                                  className="au-btn"
-                                  disabled={uploadBtn.disable}
-                                  onClick={async () => {
-                                    setUploadBtn({
-                                      disable: true,
-                                      text: 'Uploading'
+                          {({ errors, handleSubmit, submitForm, setFieldValue }) => (
+                            <Form
+                              method="post"
+                              onSubmit={(e) => {
+                                handleSubmit(e);
+                                if (Object.keys(errors).length < 1) {
+                                  return;
+                                }
+                                setIsError(true);
+                                document.title = "Errors | Apply for Opportunity";
+                                const timeout = setTimeout(() => {
+                                  const errorSum = document.getElementById(
+                                    "error-heading"
+                                  ) as any;
+                                  if (errorSum && errorSum.focus()) {
+                                    errorSum.scrollIntoView({
+                                      behavior: "smooth",
+                                      block: "start",
                                     });
-                                    const fileUpload = fileUploadRef.current;
-                                    if (fileUpload) {
-                                      const formData = new FormData();
-                                      for (const file of fileUpload.files) {
-                                        formData.append('file', file, file.name);
-                                      }
-                                      if (!await uploadFn(updatedData.id, formData)) {
-                                      }
-                                      fileUpload.value = "";
-                                      setUploadBtn({
-                                        disable: true,
-                                        text: 'Upload'
-                                      });
+                                  }
+                                  clearTimeout(timeout);
+                                }, 500);
+                              }}
+                            >
+                              {isError && Object.keys(errors).length > 0 && (
+                                <ClientErrorDisplay errors={errors} />
+                              )}
 
-                                    }
-                                  }} value="Upload" />
-                              </div>
-                            </AuFormGroup>
-                            {updatedData.opportunity.canApply && (
-                              <AuFormGroup>
-                                <Aubtn type="submit" onClick={() => {
-                                  setFieldValue('isApply', false);
-                                }} disabled={saving}>
-                                  {saving ? "Saving" : "Save"}
-                                </Aubtn>
-                                <Aubtn type="submit" style={{ marginLeft: '2em' }} onClick={() => {
-                                  setFieldValue('isApply', true);
-                                }} disabled={saving}>
-                                  {saving ? "Applying" : "Apply"}
-                                </Aubtn>
-                              </AuFormGroup>
-                            )}
-                          </AuFieldset>
-                        </Form>
-                      )}
-                    </Formik>
-                  </>
-                )}
+                              <AuFieldset className="mt-2 mb-0">
+                                <AuFormGroup>
+                                  <AuLabel text="Opportunity name" />
+                                  <div>{updatedData.opportunity.jobTitle}</div>
+                                </AuFormGroup>
+                                <AuFormGroup>
+                                  <AuLabel text="Opportunity description" />
+                                  <div style={{ whiteSpace: 'pre-wrap' }}>{updatedData.opportunity.jobDescription}</div>
+                                </AuFormGroup>
+                                <AuFormGroup>
+                                  <AuLabel text="Applying as" />
+                                  <div>{updatedData.user.name} ({updatedData.user.emailAddress})</div>
+                                </AuFormGroup>
+                                <TextField
+                                  id="whyPickMe"
+                                  label="Why me? (Your pitch)"
+                                  hint=""
+                                  required
+                                  as="textarea"
+                                  width="xl"
+                                  defaultValue={updatedData.whyPickMe}
+                                />
+
+                                <TextField
+                                  id="resumeLink"
+                                  label="LinkedIn Profile URL"
+                                  hint="Ensure your LinkedIn profile is publicly accessible"
+                                  type="text"
+                                  width="xl"
+                                  required
+                                  defaultValue={updatedData.resumeLink}
+                                />
+                                <input type="hidden" id="isApply" value="false" />
+                                <AuFormGroup>
+                                  <AuLabel text="Resume (optional)" />
+                                  <div>
+                                    {updatedData.resumeUpload &&
+                                      <>
+                                        Download <Aubtn type="button" as="tertiary" onClick={() => {
+                                          fileDownload();
+                                        }} disabled={saving}>
+                                          {updatedData.resumeUpload}
+                                        </Aubtn>
+                                      </>}
+                                  </div>
+                                  <div>
+                                    <input type="file" accept=".pdf" id="resume" ref={fileUploadRef}
+                                      onChange={(e) => {
+                                        if (e.currentTarget.value) {
+                                          setUploadBtn({
+                                            ...uploadBtn,
+                                            disable: false,
+
+                                          });
+                                        } else {
+                                          setUploadBtn({
+                                            ...uploadBtn,
+                                            disable: true,
+                                          });
+                                        }
+                                      }} />
+                                    <input
+                                      type="button"
+                                      className="au-btn"
+                                      disabled={uploadBtn.disable}
+                                      onClick={async () => {
+                                        setUploadBtn({
+                                          disable: true,
+                                          text: 'Uploading'
+                                        });
+                                        const fileUpload = fileUploadRef.current;
+                                        if (fileUpload) {
+                                          const formData = new FormData();
+                                          for (const file of fileUpload.files) {
+                                            formData.append('file', file, file.name);
+                                          }
+                                          if (!await uploadFn(updatedData.id, formData)) {
+                                          }
+                                          fileUpload.value = "";
+                                          setUploadBtn({
+                                            disable: true,
+                                            text: 'Upload'
+                                          });
+
+                                        }
+                                      }} value="Upload" />
+                                  </div>
+                                </AuFormGroup>
+                                {updatedData.opportunity.canApply && (
+                                  <AuFormGroup>
+                                    <Aubtn type="submit" onClick={() => {
+                                      setFieldValue('isApply', false);
+                                    }} disabled={saving}>
+                                      {saving ? "Saving" : "Save"}
+                                    </Aubtn>
+                                    <Aubtn type="submit" style={{ marginLeft: '2em' }} onClick={() => {
+                                      setFieldValue('isApply', true);
+                                    }} disabled={saving}>
+                                      {saving ? "Applying" : "Apply"}
+                                    </Aubtn>
+                                  </AuFormGroup>
+                                )}
+                              </AuFieldset>
+                            </Form>
+                          )}
+                        </Formik>
+                      </>
+                    )}
+                </>
+              )}
             </>
           )}
+
         </>
       ) : (
         <p>

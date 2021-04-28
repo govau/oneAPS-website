@@ -1,17 +1,18 @@
 using FluentValidation;
 using Dta.OneAps.Api.Business.Models;
-using System;
+using Dta.OneAps.Api.Services;
+using System.Linq;
 
 namespace Dta.OneAps.Api.Business.Validators {
     public class OpportunityResponseApplyRequestValidator : AbstractValidator<OpportunityResponseApplyRequest> {
-        public OpportunityResponseApplyRequestValidator(ILookupBusiness lookupBusiness, IOpportunityBusiness opportunityBusiness, IOpportunityResponseBusiness opportunityResponseBusiness) {
+        public OpportunityResponseApplyRequestValidator(ILookupService lookupService, IOpportunityService opportunityService, IOpportunityResponseService opportunityResponseService) {
             RuleFor(_ => _.OpportunityId)
                 .NotEmpty()
                 .MustAsync(async (or, c) => {
-                    return await opportunityBusiness.Get(or) != null;
+                    return await opportunityService.GetById(or) != null;
                 }).WithMessage("{PropertyName} does not exist.")
                 .MustAsync(async (or, c) => {
-                    var existing = await opportunityBusiness.Get(or);
+                    var existing = await opportunityService.GetById(or);
                     return !existing.ClosedAt.HasValue;
                 }).WithMessage("Opportunity was closed");
             RuleFor(_ => _.Id).NotEmpty();
@@ -21,7 +22,7 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(_ => _.ResumeUpload).Matches(@"^.+\.(?:(?:[pP][dD][fF]))$");
             RuleFor(_ => _)
                 .MustAsync(async (or, c) => {
-                    var existing = await opportunityResponseBusiness.Get(or.OpportunityId, or.UserId);
+                    var existing = await opportunityResponseService.Get(or.OpportunityId, or.UserId);
                     return existing != null;
                 }).WithMessage("You have already applied for this opportunity.");
                 

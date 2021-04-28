@@ -1,7 +1,7 @@
 using System;
 
 namespace Dta.OneAps.Api.Business.Models {
-    public class OpportunityResponseModel {
+    public class OpportunityResponseBase {
         public int Id { get; set; }
         public string JobTitle { get; set; }
         public string JobDescription { get; set; }

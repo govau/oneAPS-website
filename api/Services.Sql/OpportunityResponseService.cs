@@ -51,6 +51,8 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .OpportunityResponse
                 .Include(or => or.Opportunity)
                 .Where(or => or.UserId == user.Id)
+                .OrderBy(x => x.Opportunity.JobTitle)
+                .OrderByDescending(x => x.SubmittedAt).ThenBy(x => x.Opportunity.JobTitle)
                 .ToListAsync()
         );
     }

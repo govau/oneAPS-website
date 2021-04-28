@@ -40,7 +40,7 @@ namespace Dta.OneAps.Api.Business {
             }
             return _mapper.Map<IEnumerable<OpportunityAdminResponse>>(await _opportunityService.GetAll(string.Empty, true));
         }
-        public async Task<OpportunityAuthResponse> Create(OpportunitySaveRequest model, IUser user) {
+        public async Task<OpportunityAuthResponse> Create(OpportunityCreateRequest model, IUser user) {
             var toSave = _mapper.Map<Opportunity>(model);
             toSave.OpportunityUser.Add(new OpportunityUser {
                 UserId = user.Id
@@ -50,7 +50,7 @@ namespace Dta.OneAps.Api.Business {
             var result = _mapper.Map<OpportunityAuthResponse>(saved);
             return result;
         }
-        public async Task<OpportunityAuthResponse> Update(OpportunitySaveRequest model, IUser user) {
+        public async Task<OpportunityAuthResponse> Update(OpportunityUpdateRequest model, IUser user) {
             var existing = await _opportunityService.GetById(model.Id);
             var toSave = _mapper.Map(model, existing);
             if (existing.OpportunityUser.Any(ou => ou.UserId == user.Id)) {
@@ -79,7 +79,7 @@ namespace Dta.OneAps.Api.Business {
             }
             var agencies = _lookupService.Get("agency");
             var result = _mapper.Map<OpportunityAuthResponse>(opportunity);
-            result.CanModify = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id);
+            result.CanModify = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id) && !opportunity.ClosedAt.HasValue;
             result.NumberOfResponses = opportunity.OpportunityResponse.Count(or => or.SubmittedAt != null && or.WithdrawnAt == null);
             return result;
         } 
@@ -90,7 +90,7 @@ namespace Dta.OneAps.Api.Business {
             var result = _mapper.Map<IEnumerable<OpportunityAuthResponse>>(list);
             foreach(var item in result) {
                 var opportunity = list.Single(l => l.Id == item.Id);
-                item.CanModify = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id);
+                item.CanModify = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id) && !opportunity.ClosedAt.HasValue;
                 item.NumberOfResponses = opportunity.OpportunityResponse.Count(or => or.SubmittedAt != null && or.WithdrawnAt == null);
             }
             return result;
@@ -102,7 +102,7 @@ namespace Dta.OneAps.Api.Business {
             var result = _mapper.Map<IEnumerable<OpportunityAuthResponse>>(list);
             foreach(var item in result) {
                 var opportunity = list.Single(l => l.Id == item.Id);
-                item.CanModify = true;
+                item.CanModify = !opportunity.ClosedAt.HasValue;
                 item.NumberOfResponses = opportunity.OpportunityResponse.Count(or => or.SubmittedAt != null && or.WithdrawnAt == null);
             }
             return result;

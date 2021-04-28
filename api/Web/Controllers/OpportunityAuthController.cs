@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Dta.OneAps.Api.Business;
-using Dta.OneAps.Api.Web.Filters;
 using Dta.OneAps.Api.Business.Models;
 using Dta.OneAps.Api.Web.Utils;
 using System.Threading.Tasks;
@@ -20,14 +19,14 @@ namespace Dta.OneAps.Api.Web.Controllers {
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] OpportunitySaveRequest model) {
+        public async Task<IActionResult> Create([FromBody] OpportunityCreateRequest model) {
             var user = await _authorizationUtil.GetUser(User);
             var created = await _opportunityBusiness.Create(model, user);
             return Ok(created);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] OpportunitySaveRequest model) {
+        public async Task<IActionResult> Update(int id, [FromBody] OpportunityUpdateRequest model) {
             var user = await _authorizationUtil.GetUser(User);
             var updated = await _opportunityBusiness.Update(model, user);
             return Ok(updated);

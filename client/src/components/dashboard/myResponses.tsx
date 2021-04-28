@@ -20,10 +20,10 @@ export const MyResponses: React.FC = () => {
       <table className="au-table">
         <thead className="au-table__head">
           <tr className="au-table__row">
-            <th scope="col" className="au-table__header au-table__header--width-30">Title</th>
-            <th scope="col" className="au-table__header au-table__header--width-20">Submitted at</th>
-            <th scope="col" className="au-table__header au-table__header--width-20">Withdrawn at</th>
-            <th scope="col" className="au-table__header au-table__header--width-10">Actions</th>
+            <th scope="col" className="au-table__header au-table__header--width-50">Title</th>
+            <th scope="col" className="au-table__header">Submitted at</th>
+            <th scope="col" className="au-table__header">Withdrawn at</th>
+            <th scope="col" className="au-table__header au-table__header--width-20">Actions</th>
           </tr>
         </thead>
         <tbody className="au-table__body">

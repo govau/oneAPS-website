@@ -32,7 +32,12 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
     }
     load();
   }, [opportunityId]);
-
+  if (!initialValues.startDate) {
+    initialValues.startDate = DateTime.now().startOf('day').toISODate();
+  }
+  if (!initialValues.endDate) {
+    initialValues.endDate = DateTime.now().endOf('day').plus({days: 14}).toISODate();
+  }
   if (data) {
     data.startDate = DateTime.fromISO(data.startDate).toISODate();
     data.endDate = DateTime.fromISO(data.endDate).toISODate();

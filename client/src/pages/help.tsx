@@ -60,7 +60,7 @@ const HelpPage: React.FC<PageContext> = ({ pageContext, location }) => {
                 </li>
                 <li>
                   <a
-                    href="https://govteams.sharepoint.com/:b:/s/openopportunities/Ebzro6TYP1JBtvTakRKGZYkBG2OKsskaCVW0qPQeKQeubA?e=xn5das"
+                    href="/example-opportunity.pdf"
                     target="_blank"
                   >
                     Example opportunity

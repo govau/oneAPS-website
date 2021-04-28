@@ -52,9 +52,10 @@ namespace Dta.OneAps.Api.Services.Notify {
             System.Console.WriteLine(JsonConvert.SerializeObject(response.content));
         }
 
-        public async Task SuccessfullyApplied(Opportunity opportunity, IUser user) {
+        public async Task SuccessfullyApplied(Opportunity opportunity, Lookup agency, IUser user) {
             var personalisation = new Dictionary<string, dynamic>(){
                 {"opportunityName", opportunity.JobTitle},
+                {"agencyName", agency.Text},
                 {"name", user.Name}
             };
             string templateId = NotifyConfig.templateIdAppliedForOpportunity;

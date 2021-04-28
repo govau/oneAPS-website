@@ -19,8 +19,10 @@ namespace Dta.OneAps.Api.Business {
         private readonly IMapper _mapper;
         private readonly IKeyValueService _keyValueService;
         private readonly IFileService _fileService;
+        private readonly ILookupService _lookupService;
 
-        public OpportunityResponseBusiness(IFileService fileService, INotifyService notifyService, IKeyValueService keyValueService, IOpportunityResponseService opportunityResponseService, IOpportunityService opportunityService, IMapper mapper) {
+        public OpportunityResponseBusiness(ILookupService lookupService, IFileService fileService, INotifyService notifyService, IKeyValueService keyValueService, IOpportunityResponseService opportunityResponseService, IOpportunityService opportunityService, IMapper mapper) {
+            _lookupService = lookupService;
             _fileService = fileService;
             _notifyService = notifyService;
             _keyValueService = keyValueService;
@@ -119,8 +121,8 @@ namespace Dta.OneAps.Api.Business {
             toSave.SubmittedAt = DateTime.UtcNow;
             var saved = await _opportunityResponseService.Update(toSave, user);
             var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
-
-            await _notifyService.SuccessfullyApplied(existing.Opportunity, user);
+            var agency = _lookupService.Get("agency", existing.Opportunity.Agency);
+            await _notifyService.SuccessfullyApplied(existing.Opportunity, agency, user);
             
             return result;
         }

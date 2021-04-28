@@ -8,6 +8,7 @@ namespace Dta.OneAps.Api.Business {
     public interface IOpportunityResponseBusiness {
         Task<OpportunityResponseSaveResponse> Create(OpportunityResponseSaveRequest opportunityModel, IUser user);
         Task<OpportunityResponseSaveResponse> Update(OpportunityResponseSaveRequest opportunityModel, IUser user);
+        Task<OpportunityResponseSaveResponse> Withdraw(int id, IUser user);
         Task<OpportunityResponseSaveResponse> UploadFile(int id, string filename, Stream stream, IUser user);
         Task<byte[]> DownloadFile(int id, IUser user);
         Task<OpportunityResponseSaveResponse> DeleteFile(int id, string filename, IUser user);

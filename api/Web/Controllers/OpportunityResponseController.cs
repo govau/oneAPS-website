@@ -63,6 +63,13 @@ namespace Dta.OneAps.Api.Web.Controllers {
             return Ok(updated);
         }
 
+        [HttpPut("{id}/withdraw")]
+        public async Task<IActionResult> Withdraw(int id) {
+            var user = await _authorizationUtil.GetUser(User);
+            var updated = await _opportunityResponseBusiness.Withdraw(id, user);
+            return Ok(updated);
+        }
+
         [HttpGet("{id}/download")]
         public async Task<IActionResult> Get(int id, [FromQuery] string filename) {
             if (string.IsNullOrWhiteSpace(filename)) {

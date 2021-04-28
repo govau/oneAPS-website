@@ -1,6 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { 
   applyOpportunityResponse,
+  withdrawOpportunityResponse,
   createOpportunityResponse,
   updateOpportunityResponse,
   loadOpportunityResponse,
@@ -26,8 +27,9 @@ const processErrors = (e) => {
     return errors;
   }
 }
-export const useOpportunityResponseOperationsHook = () => {
+export const useOpportunityResponseHook = () => {
   const [data, setData] = useState<IOpportunityResponseType>();
+  const [list, setList] = useState<IOpportunityResponseType[]>();
   const [errors, setErrors] = useState<IApiFormError[]>();
   const user = useContext(UserContext);
   const callService = async(fn, toSave: IOpportunityResponseType) => {
@@ -50,6 +52,9 @@ export const useOpportunityResponseOperationsHook = () => {
   const applyFn = async (toSave: IOpportunityResponseType) => {
     return await callService(applyOpportunityResponse, toSave);
   };
+  const withdrawFn = async (id: number) => {
+    return await withdrawOpportunityResponse(id, user.token);
+  };
   const uploadFn = async (id: number, toSave: FormData) => {
     setErrors([]);
     try {
@@ -67,13 +72,6 @@ export const useOpportunityResponseOperationsHook = () => {
   const downloadFileFn = async (id: number, filename: string) => {
     return await downloadFile(id, filename, user.token);
   };
-  return {applyFn, createFn, updateFn, uploadFn, downloadFileFn, updatedData: data, errors};
-};
-
-export const useLoadOpportunityResponseHook = () => {
-  const [data, setData] = useState<IOpportunityResponseType>();
-  const [list, setList] = useState<IOpportunityResponseType[]>();
-  const user = useContext(UserContext);
 
   const loadFn = async (id: number) => {
     const result = await loadOpportunityResponse(id, user.token);
@@ -84,7 +82,6 @@ export const useLoadOpportunityResponseHook = () => {
     setList(result);
   };
 
-
   const loadResponsesFn = async (id: number) => {
     const result = await loadOpportunityResponses(id, user.token);
     setList(result);
@@ -94,7 +91,14 @@ export const useLoadOpportunityResponseHook = () => {
     loadFn,
     loadMyResponsesFn,
     loadResponsesFn,
-    data,
-    list
+    applyFn,
+    withdrawFn,
+    createFn,
+    updateFn,
+    uploadFn,
+    downloadFileFn,
+    updatedData: data,
+    list,
+    errors
   };
 };

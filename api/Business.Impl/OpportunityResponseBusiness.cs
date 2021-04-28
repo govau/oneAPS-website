@@ -109,6 +109,18 @@ namespace Dta.OneAps.Api.Business {
             return result;
         }
 
+        public async Task<OpportunityResponseSaveResponse> Withdraw(int id, IUser user) {
+            var existing = await _opportunityResponseService.GetById(id);
+            if (existing.UserId == user.Id) {
+                existing.WithdrawnAt = DateTime.UtcNow;
+                var saved = await _opportunityResponseService.Update(existing, user);
+                var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
+                return result;
+            } else {
+                throw new UnauthorizedAccessException();
+            }
+        }
+
         public async Task<OpportunityResponseSaveResponse> Apply(OpportunityResponseApplyRequest model, IUser user) {
             var existing = await _opportunityResponseService.GetById(model.Id);
             if (existing == null) {

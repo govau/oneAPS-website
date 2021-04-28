@@ -15,7 +15,7 @@ import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./opportunityResponseSchema";
-import { useOpportunityResponseOperationsHook } from '../../../hooks';
+import { useOpportunityResponseHook } from '../../../hooks';
 import { IOpportunityResponseType } from "../../../types";
 
 const OpportunityResponseForm: React.FC = () => {
@@ -32,7 +32,7 @@ const OpportunityResponseForm: React.FC = () => {
   const fileUploadRef = useRef();
   const location = useLocation();
 
-  const { createFn, updateFn, applyFn, uploadFn, downloadFileFn, updatedData, errors } = useOpportunityResponseOperationsHook();
+  const { createFn, updateFn, applyFn, uploadFn, downloadFileFn, updatedData, errors } = useOpportunityResponseHook();
   const params = new URLSearchParams(location.search);
   const opportunityId = parseInt(params.get('opportunityId'), 10);
 

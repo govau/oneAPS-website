@@ -1,10 +1,10 @@
 import { Link } from "gatsby";
 import React, { useContext, useEffect } from "react";
 import {DateTime } from 'luxon';
-import { useLoadOpportunityResponseHook } from '../../hooks';
+import { useOpportunityResponseHook } from '../../hooks';
 
 export const MyResponses: React.FC = () => {
-  const { loadMyResponsesFn, list } = useLoadOpportunityResponseHook();
+  const { loadMyResponsesFn, list, withdrawFn } = useOpportunityResponseHook();
 
   useEffect(() => {
     loadMyResponsesFn();
@@ -33,7 +33,12 @@ export const MyResponses: React.FC = () => {
               <td className="au-table__cell">{d.submittedAt && DateTime.fromISO(d.submittedAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell">{d.withdrawnAt && DateTime.fromISO(d.withdrawnAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell">
-                {!d.submittedAt && !d.withdrawnAt && <Link to={`/opportunity-response/?opportunityId=${d.opportunityId}`}>Edit</Link>}
+                {!d.submittedAt && !d.withdrawnAt && <><Link to={`/opportunity-response/?opportunityId=${d.opportunityId}`}>Edit</Link><br/></>}
+                {d.submittedAt && !d.withdrawnAt && <a href="" onClick={async (e) => {
+                  e.preventDefault();
+                  await withdrawFn(d.id);
+                  await loadMyResponsesFn();
+                }}>Withdraw</a>}
               </td>
             </tr>
           ))}

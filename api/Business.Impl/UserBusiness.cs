@@ -33,7 +33,7 @@ namespace Dta.OneAps.Api.Business {
 
         public async Task<UserSessionResponse> AuthenticateAsync(AuthenticateUserRequest model) {
             string encryptedPassword = _encryptionUtil.Encrypt(model.Password);
-
+            
             var user = await _userService.Authenticate(model.EmailAddress);
             if (user == null) {
                 throw new CannotAuthenticateException();

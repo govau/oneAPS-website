@@ -129,6 +129,9 @@ namespace Dta.OneAps.Api.Business {
             if (existing.UserId != user.Id) {
                 throw new UnauthorizedAccessException();
             }
+            if (existing.Opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id)) {
+                throw new ValidationErrorException("You cannot apply for your own opportunity");
+            }
             var toSave = _mapper.Map(model, existing);
             toSave.SubmittedAt = DateTime.UtcNow;
             var saved = await _opportunityResponseService.Update(toSave, user);

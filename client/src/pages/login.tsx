@@ -7,14 +7,15 @@ import { PageContext } from "../types/types";
 
 // markup
 const LoginPage: React.FC<PageContext> = ({ pageContext, location }) => {
+  const params = new URLSearchParams(location.search);
+  const from = params.get('from');
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
         <SEO title="Login" />
         <h1>Login </h1>
-
         <p>Don't have an account? {<Link to="/register">Register</Link>}</p>
-        <LoginForm fromPage={location.state && location.state.fromPage} />
+        <LoginForm fromPage={from} />
       </>
     </DefaultLayout>
   );

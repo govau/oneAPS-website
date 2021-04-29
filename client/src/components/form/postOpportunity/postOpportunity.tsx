@@ -276,10 +276,9 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
         ) : (
           <p>
             You must be{" "}
-            <Link to="/login" state={{ fromPage: "/post-opportunity" }}>
+            <Link to={`/login?from=${encodeURIComponent('/post-opportunity')}`}>
               logged in
-          </Link>{" "}
-          to post an opportunity.
+            </Link>{" "}to post an opportunity.
           </p>
         )}
       </>

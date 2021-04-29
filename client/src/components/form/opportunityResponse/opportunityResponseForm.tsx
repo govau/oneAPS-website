@@ -308,10 +308,7 @@ const OpportunityResponseForm: React.FC = () => {
       ) : (
         <p>
           You must be{" "}
-          <Link
-            to="/login"
-            state={{ fromPage: location.pathname + location.search }}
-          >
+          <Link to={`/login?from=${encodeURIComponent(`/opportunity-response?opportunityId=${opportunityId}`)}`}>
             logged in
           </Link>{" "}
           to apply for an opportunity.

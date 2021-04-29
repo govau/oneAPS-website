@@ -36,12 +36,14 @@ const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
 
       if (result.status === 200) {
         user.updateToken(result.data.token, result.data.refreshToken, {
-          userId: result.data.userId,
-          name: result.data.name,
-          role: result.data.role,
+          userId: parseInt(result.data.userId, 10),
+          name: `${result.data.name}`,
+          role: `${result.data.role}`,
+          emailAddress: `${result.data.emailAddress}`,
+          phone: `${result.data.phone}`,
         });
         setSaving(false);
-        navigate(fromPage ? fromPage: '/');
+        navigate(fromPage ? decodeURIComponent(fromPage): '/');
         return;
       }
     } catch (e) {

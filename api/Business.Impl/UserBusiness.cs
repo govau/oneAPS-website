@@ -47,7 +47,9 @@ namespace Dta.OneAps.Api.Business {
                     RefreshToken = Guid.NewGuid().ToString().Replace("-", ""),
                     UserId = user.Id,
                     Name = user.Name,
-                    Role = user.Role
+                    Role = user.Role,
+                    EmailAddress = user.EmailAddress,
+                    Phone = user.Mobile
                 };
             } else {
                 user.FailedLoginCount++;

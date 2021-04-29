@@ -26,7 +26,7 @@ export const MyOpportunities: React.FC = () => {
             <th scope="col" className="au-table__header">End date</th>
             <th scope="col" className="au-table__header">Closed at</th>
             <th scope="col" className="au-table__header au-table__header--numeric">Responses</th>
-            <th scope="col" className="au-table__header au-table__header--width-20">Actions</th>
+            <th scope="col" className="au-table__header au-table__header--width-15">Actions</th>
           </tr>
         </thead>
         <tbody className="au-table__body">

@@ -19,7 +19,6 @@ namespace Dta.OneAps.Api.Web.Filters {
                         error = new string[] { context.Exception.Message }
                     },
                     status = 400
-
                 });
                 context.Result = result;
             }

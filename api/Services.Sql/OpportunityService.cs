@@ -52,6 +52,7 @@ namespace Dta.OneAps.Api.Services.Sql {
             await _context
                 .Opportunity
                 .Include(x => x.OpportunityResponse)
+                .ThenInclude(or => or.User)
                 .Include(x => x.CreatedByUser)
                 .Include(x => x.ModifiedByUser)
                 .Include(x => x.OpportunityUser)

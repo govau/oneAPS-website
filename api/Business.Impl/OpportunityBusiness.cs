@@ -112,13 +112,13 @@ namespace Dta.OneAps.Api.Business {
             if (opportunity == null) {
                 throw new NotFoundException();
             }
-            if (!opportunity.OpportunityResponse.All(or => or.UserId == user.Id)) {
+            if (!opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id)) {
                 throw new UnauthorizedAccessException();
             }
             return _mapper.Map<IEnumerable<OpportunityResponsePrivateResponse>>(
                 opportunity
                     .OpportunityResponse
-                    .Where(or => or.SubmittedAt != null)
+                    .Where(or => or.SubmittedAt != null && !or.WithdrawnAt.HasValue)
             );
         }
     }

@@ -54,11 +54,23 @@ namespace Dta.OneAps.Api.Services.Notify {
 
         public async Task SuccessfullyApplied(Opportunity opportunity, Lookup agency, IUser user) {
             var personalisation = new Dictionary<string, dynamic>(){
-                {"opportunityName", opportunity.JobTitle},
-                {"agencyName", agency.Text},
-                {"name", user.Name}
+                {"subject", $"You have successfully applied for {opportunity.JobTitle}"},
+                {"message", $@"
+Hi {user.Name},
+
+Your application for “{opportunity.JobTitle}” has been received.
+
+The opportunity creator will be in contact regarding the results of the opportunity.
+Good luck on your application!
+
+If you have any questions or would like to withdraw your application, please contact digitalsquads@dta.gov.au.
+
+Regards
+
+Digital Squads
+"},
             };
-            string templateId = NotifyConfig.templateIdAppliedForOpportunity;
+            string templateId = NotifyConfig.templateIdGeneric;
             await SendEmail(
                 user.EmailAddress,
                 templateId,
@@ -70,11 +82,11 @@ namespace Dta.OneAps.Api.Services.Notify {
             var personalisation = new Dictionary<string, dynamic>(){
                 {"subject", "Email address confirmation"},
                 {"message", $@"
-Hi ${user.Name},
+Hi {user.Name},
 
 Please click on the following link to confirm your email address.
 
-${ClientInfo.claimTokenUrl}?token={userClaim.ClaimToken}
+{ClientInfo.claimTokenUrl}?token={userClaim.ClaimToken}
 
 Regards
 

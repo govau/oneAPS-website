@@ -68,6 +68,7 @@ If you have any questions or would like to withdraw your application, please con
 Regards
 
 Digital Squads
+digitalsquads@dta.gov.au
 "},
             };
             string templateId = NotifyConfig.templateIdGeneric;
@@ -84,13 +85,16 @@ Digital Squads
                 {"message", $@"
 Hi {user.Name},
 
-Please click on the following link to confirm your email address.
+You’re almost ready to start using oneAPS Opportunities
+
+Just click on the following link to confirm your email address and then you’re in!
 
 {ClientInfo.claimTokenUrl}?token={userClaim.ClaimToken}
 
 Regards
 
 Digital Squads
+digitalsquads@dta.gov.au
 "},
             };
             string templateId = NotifyConfig.templateIdGeneric;

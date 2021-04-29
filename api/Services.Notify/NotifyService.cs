@@ -68,10 +68,20 @@ namespace Dta.OneAps.Api.Services.Notify {
 
         public async Task RegistrationConfirmation(IUser user, UserClaim userClaim) {
             var personalisation = new Dictionary<string, dynamic>(){
-                {"link", $"{ClientInfo.claimTokenUrl}?token={userClaim.ClaimToken}"},
-                {"name", user.Name}
+                {"subject", "Email address confirmation"},
+                {"message", $@"
+Hi ${user.Name},
+
+Please click on the following link to confirm your email address.
+
+${ClientInfo.claimTokenUrl}?token={userClaim.ClaimToken}
+
+Regards
+
+Digital Squads
+"},
             };
-            string templateId = NotifyConfig.templateIdRegistrationConfirmation;
+            string templateId = NotifyConfig.templateIdGeneric;
             await SendEmail(
                 user.EmailAddress,
                 templateId,

@@ -142,6 +142,12 @@ const DefaultLayout: React.FC<Props> = ({
     <div className="au-body">
       <UserContext.Provider value={currentUser}>
         <div className="header-wrapper">
+          <div style={{background: '#c91a78', color: '#fff'}}>
+            <div className="container" style={{padding: '5px 0px' }}>
+              <span style={{background: '#000', padding: '3px', textTransform: 'uppercase', fontWeight: 'bolder', marginRight: '5px'}}>Pilot</span>
+              OneAPS is under active development and your feedback will help us improve it.
+            </div>
+          </div>
           <Header siteTitle={data.site.siteMetadata.title} />
           <Location>
             {({ navigate, location }) => <MainNav path={location.pathname} />}

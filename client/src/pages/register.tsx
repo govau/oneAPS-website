@@ -10,7 +10,7 @@ const RegisterPage: React.FC<PageContext> = ({ pageContext, location }) => {
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
-        <SEO title="Register" />>
+        <SEO title="Register" />
         <nav className="au-breadcrumbs" aria-label="breadcrumb">
           <ul className="au-link-list au-link-list--inline">
             <li>

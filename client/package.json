@@ -71,7 +71,7 @@
   "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
-    "watch": "gatsby develop",
+    "watch": "gatsby develop --host=0.0.0.0",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",

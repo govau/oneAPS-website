@@ -23,6 +23,8 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: a@b.cm
       PGADMIN_DEFAULT_PASSWORD: 1234
+    depends_on: 
+      - db
       
   localstack:
     image: localstack/localstack:latest
@@ -37,3 +39,46 @@ services:
     volumes:
       - "~/oneaps/docker/localstack/data:/tmp/localstack/data"
       - "/var/run/docker.sock:/var/run/docker.sock"
+
+  api:
+    build: ./api
+    environment: 
+      - PORT=5001
+      - BUCKET_ARN=
+      - BUCKET_NAME=
+      - LOGGING_BUCKET_NAME=
+      - S3_AWS_ACCESS_KEY_ID=
+      - S3_AWS_SECRET_ACCESS_KEY=
+      - S3_REGION=ap-southeast-2
+      - S3_SERVICE_URL=s3://localstack:4566
+      - JwtKey=JwtKeyJwtKeyJwtKeyJwtKeyJwtKey
+      - JwtIssuer=http://localhost:8000
+      - JwtAudience=http://localhost:8000
+      - Salt=SecretSecret
+      - ENDPOINT_ADDRESS=db
+      - DB_PORT=5432
+      - DB_NAME=oneaps
+      - MASTER_USERNAME=postgres
+      - MASTER_PASSWORD=password
+    volumes:
+      - "./api:/api"
+    depends_on: 
+      - db
+
+  dbupdate:
+    build: ./api
+    working_dir: /api/Services.Sql
+    environment: 
+      - ConnectionString=Host=db;Port=5432;Database=oneaps;Username=postgres;Password=password
+    volumes:
+      - "./api:/api"
+    command: "echo look at readme file for usage"
+    depends_on: 
+      - db
+
+  client:
+    build: ./client
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./client:/client"

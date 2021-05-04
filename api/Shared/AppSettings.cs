@@ -141,6 +141,19 @@ namespace Dta.OneAps.Api.Shared {
             }
         }
 
+        private string _s3ServiceUrl;
+        public string S3ServiceUrl {
+            get {
+                if (!string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("S3_SERVICE_URL"))) {
+                    _s3ServiceUrl = Environment.GetEnvironmentVariable("S3_SERVICE_URL");
+                }
+                return _s3ServiceUrl;
+            }
+            set {
+                _s3ServiceUrl = value;
+            }
+        }
+        
         private string _s3AwsAccessKeyId;
         public string S3AwsAccessKeyId {
             get {

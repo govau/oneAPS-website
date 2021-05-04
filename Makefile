@@ -1,5 +1,8 @@
 run:
-	docker-compose up -d
+	docker-compose up
+
+stop:
+	docker-compose down
 
 setup:
 	sudo rm -rf ./client/.cache

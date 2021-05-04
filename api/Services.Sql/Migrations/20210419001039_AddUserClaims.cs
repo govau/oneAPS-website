@@ -8,18 +8,11 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropPrimaryKey(
-                name: "PK_user",
-                table: "user");
 
             migrationBuilder.CreateSequence(
                 name: "user_claim_id_seq");
 
-            migrationBuilder.AddPrimaryKey(
-                name: "user_pkey",
-                table: "user",
-                column: "id");
-
+            
             migrationBuilder.CreateTable(
                 name: "user_claim",
                 columns: table => new
@@ -54,17 +47,8 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
             migrationBuilder.DropTable(
                 name: "user_claim");
 
-            migrationBuilder.DropPrimaryKey(
-                name: "user_pkey",
-                table: "user");
-
             migrationBuilder.DropSequence(
                 name: "user_claim_id_seq");
-
-            migrationBuilder.AddPrimaryKey(
-                name: "PK_user",
-                table: "user",
-                column: "id");
         }
     }
 }

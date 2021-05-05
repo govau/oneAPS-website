@@ -1,6 +1,8 @@
 # oneAPS
 
-## setup
+## Setup and installation
+
+Docker needs to be installed.  Once installed, you can run the following:
 
 `make setup`
 

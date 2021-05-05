@@ -15,7 +15,7 @@ setup:
 	docker-compose run client npm install
 
 # run this after localstack has started
-post_setup:
+create_bucket:
 	aws --endpoint-url=http://localhost:4566 s3 mb s3://oneaps-bucket-local
 
 update_db:

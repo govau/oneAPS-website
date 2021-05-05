@@ -15,7 +15,7 @@ import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./opportunityResponseSchema";
-import { useOpportunityResponseHook } from '../../../hooks';
+import { useOpportunityHook, useOpportunityResponseHook } from '../../../hooks';
 import { IOpportunityResponseType } from "../../../types";
 
 const OpportunityResponseForm: React.FC = () => {
@@ -32,13 +32,16 @@ const OpportunityResponseForm: React.FC = () => {
   const fileUploadRef = useRef();
   const location = useLocation();
 
+  const { loadFn, data } = useOpportunityHook();
+
   const { createFn, updateFn, applyFn, uploadFn, downloadFileFn, updatedData, errors } = useOpportunityResponseHook();
   const params = new URLSearchParams(location.search);
   const opportunityId = parseInt(params.get('opportunityId'), 10);
 
   useEffect(() => {
     const load = async () => {
-      var result = await createFn({
+      await loadFn(opportunityId);
+      await createFn({
         opportunityId: opportunityId,
         userId: user.user.userId,
       });
@@ -101,7 +104,7 @@ const OpportunityResponseForm: React.FC = () => {
             <Link to="/find-opportunities">Find opportunities</Link>
           </li>
           <li>
-            <Link to={`/detailed-opportunity/?opportunityId=${opportunityId}`}>{updatedData && updatedData.opportunity.jobTitle}</Link>
+            <Link to={`/detailed-opportunity/?opportunityId=${opportunityId}`}>{data && data.jobTitle}</Link>
           </li>
           <li>Apply for opportunity</li>
         </ul>

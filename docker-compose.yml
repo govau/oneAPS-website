@@ -78,6 +78,9 @@ services:
     build: ./client
     ports:
       - "9000:8000"
+      - "9002:9002"
+    environment: 
+      - INTERNAL_STATUS_PORT=9002
     volumes:
       - "./client:/client"
 

@@ -33,13 +33,17 @@ export const useOpportunityResponseHook = () => {
   const [errors, setErrors] = useState<IApiFormError[]>();
   const user = useContext(UserContext);
   const callService = async(fn, toSave: IOpportunityResponseType) => {
-    toSave.userId = user.user.userId;
-    try {
-      const result = await fn(toSave, user.token);
-      setData(result);
-      return true;
-    } catch (e) {
-      setErrors(processErrors(e));
+    if (user.token) {
+      toSave.userId = user.user.userId;
+      try {
+        const result = await fn(toSave, user.token);
+        setData(result);
+        return true;
+      } catch (e) {
+        setErrors(processErrors(e));
+        return false;
+      }
+    } else {
       return false;
     }
   }
@@ -56,6 +60,9 @@ export const useOpportunityResponseHook = () => {
     return await withdrawOpportunityResponse(id, user.token);
   };
   const uploadFn = async (id: number, toSave: FormData) => {
+    if (!user.token) {
+      return false;
+    }
     setErrors([]);
     try {
       const result = await uploadFile(id, toSave, user.token);

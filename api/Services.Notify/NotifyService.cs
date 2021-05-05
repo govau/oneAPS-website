@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 namespace Dta.OneAps.Api.Services.Notify {
     public class NotifyService : INotifyService {
         private readonly IKeyValueService _keyValueService;
-        private dynamic _notifyConfig;
         private dynamic _clientInfo;
 
         public NotifyService(IKeyValueService keyValueService) {
@@ -27,29 +26,27 @@ namespace Dta.OneAps.Api.Services.Notify {
                 return _clientInfo;
             }
         }
-        private dynamic NotifyConfig {
-            get {
-                if (_notifyConfig == null) {
-                    _notifyConfig = _keyValueService.GetByKey("notify");
-                    if (_notifyConfig == null) {
-                        throw new ArgumentNullException("notifyConfig is missing");
-                    }
-                }
 
-                return _notifyConfig;
+        private async Task SendEmail(string emailAddress, Dictionary<string, dynamic> personalisation) {
+            var notifyConfig = _keyValueService.GetByKey("notify");
+            if (notifyConfig != null) {
+                string apiKey = notifyConfig.apiKey;
+                var client = new NotifyClient(apiKey);
+                
+                string templateId = notifyConfig.templateIdGeneric;
+                var response = await client.SendEmailAsync(
+                    emailAddress,
+                    templateId,
+                    personalisation
+                );
+                System.Console.WriteLine(JsonConvert.SerializeObject(response.content));
+            } else {
+                System.Console.WriteLine($@"
+email: {emailAddress}
+subject: {personalisation.GetValueOrDefault("subject")}
+message: {personalisation.GetValueOrDefault("message")}
+                ");
             }
-        }
-
-        private async Task SendEmail(string emailAddress, string templateId, Dictionary<string, dynamic> personalisation) {
-            string apiKey = NotifyConfig.apiKey;
-            var client = new NotifyClient(apiKey);
-
-            var response = await client.SendEmailAsync(
-                emailAddress,
-                templateId,
-                personalisation
-            );
-            System.Console.WriteLine(JsonConvert.SerializeObject(response.content));
         }
 
         public async Task SuccessfullyApplied(Opportunity opportunity, Lookup agency, IUser user) {
@@ -71,10 +68,9 @@ Digital Squads
 digitalsquads@dta.gov.au
 "},
             };
-            string templateId = NotifyConfig.templateIdGeneric;
+            
             await SendEmail(
                 user.EmailAddress,
-                templateId,
                 personalisation
             );
         }
@@ -97,10 +93,9 @@ Digital Squads
 digitalsquads@dta.gov.au
 "},
             };
-            string templateId = NotifyConfig.templateIdGeneric;
+
             await SendEmail(
                 user.EmailAddress,
-                templateId,
                 personalisation
             );
         }

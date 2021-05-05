@@ -10,6 +10,11 @@ Docker needs to be installed.  Once installed, you can run the following:
 
 `make run`
 
+Then navigate to
+* http://localhost:9000 for the oneaps site
+* http://localhost:9000/api/index.html for swagger docs
+* http://localhost:9080 for pgadmin
+
 ## Setup database
 
 First create a database called `oneaps` in your local postgres.  This can be done using pgadmin.

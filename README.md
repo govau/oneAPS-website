@@ -12,7 +12,7 @@ Docker needs to be installed.  Once installed, you can run the following:
 
 ## Setup database
 
-Firt create a database called `oneaps` in your local postgres.  This can be done using pgadmin.
+First create a database called `oneaps` in your local postgres.  This can be done using pgadmin.
 
 `make update_db`
 

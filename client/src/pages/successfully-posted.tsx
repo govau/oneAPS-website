@@ -20,18 +20,20 @@ const SuccessfullyPosted: React.FC<PageContext> = ({
 
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
-      {data && (
-        <>
-          <SEO title="Register" />
-          <h1>Your opportunity is now live</h1>
-          <p>Your next steps</p>
-          <ul>
-            <li><Link to={`/detailed-opportunity/?opportunityId=${opportunityId}`}>View</Link> your opportunity</li>
-            <li><Link to={`/post-opportunity/?opportunityId=${opportunityId}`}>Edit</Link> your opportunity</li>
-            <li><Link to="/post-opportunity">Post</Link> another opportunity</li>
-          </ul>
-        </>
-      )}
+      <>
+        <SEO title="Successfully created opportunity" />
+        {data && (
+          <>
+            <h1>Your opportunity is now live</h1>
+            <p>Your next steps</p>
+            <ul>
+              <li><Link to={`/detailed-opportunity/?opportunityId=${opportunityId}`}>View</Link> your opportunity</li>
+              <li><Link to={`/post-opportunity/?opportunityId=${opportunityId}`}>Edit</Link> your opportunity</li>
+              <li><Link to="/post-opportunity">Post</Link> another opportunity</li>
+            </ul>
+          </>
+        )}
+      </>
     </DefaultLayout>
   );
 };

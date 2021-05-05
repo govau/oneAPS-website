@@ -21,19 +21,18 @@ const OpportunitySummaryView: React.FC<{ search?: string }> = ({ search }) => {
 
   return (
     <>
+      <SEO title="Find Opportunities" />
+      <nav className="au-breadcrumbs" aria-label="breadcrumb">
+        <ul className="au-link-list au-link-list--inline">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>Find opportunities</li>
+        </ul>
+      </nav>
+      <h1>Find opportunities</h1>
       {data && (
         <>
-          <SEO title="Find Opportunities" />
-          <nav className="au-breadcrumbs" aria-label="breadcrumb">
-            <ul className="au-link-list au-link-list--inline">
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>Find opportunities</li>
-            </ul>
-          </nav>
-
-          <h1>Find opportunities</h1>
           <div className="row">
             <div className="col-md-2">
               <div style={{ marginTop: "2rem" }}>

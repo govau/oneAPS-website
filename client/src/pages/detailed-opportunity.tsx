@@ -25,9 +25,9 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
 
   return (
     <>
+      <SEO title="About oneAPS" />
       {data && (
         <>
-          <SEO title="About oneAPS" />
           <nav className="au-breadcrumbs" aria-label="breadcrumb">
             <ul className="au-link-list au-link-list--inline">
               <li>

@@ -13,8 +13,10 @@ const OpportunityResponses: React.FC<PageContext> = ({
   const opportunityId = parseInt(params.get('opportunityId'), 10);
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
-      <SEO title="Opportunity Responses" />
-      <OpportunityResponsesList opportunityId={opportunityId} />
+      <>
+        <SEO title="Opportunity Responses" />
+        <OpportunityResponsesList opportunityId={opportunityId} />
+      </>
     </DefaultLayout>
   );
 };

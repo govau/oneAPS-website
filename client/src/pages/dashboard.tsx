@@ -11,8 +11,10 @@ const Dashboard: React.FC<PageContext> = ({
 }) => {
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
-      <SEO title="Dashboard" />
-      <View />
+      <>
+        <SEO title="Dashboard" />
+        <View />
+      </>
     </DefaultLayout>
   );
 };

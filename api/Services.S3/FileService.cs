@@ -15,9 +15,14 @@ namespace Dta.OneAps.Api.Services.S3 {
         private readonly TransferUtility _transferUtility;
         public FileService(IOptions<AppSettings> appSettings) {
             _appSettings = appSettings;
-            _s3Client = new AmazonS3Client(_appSettings.Value.S3AwsAccessKeyId, _appSettings.Value.S3AwsSecretAccessKey, new AmazonS3Config {
+            var config = new AmazonS3Config {
                 RegionEndpoint = RegionEndpoint.GetBySystemName(_appSettings.Value.S3Region)
-            });
+            };
+            if (!string.IsNullOrWhiteSpace(_appSettings.Value.S3ServiceUrl)) {
+                config.ForcePathStyle = true;
+                config.ServiceURL = _appSettings.Value.S3ServiceUrl;
+            }
+            _s3Client = new AmazonS3Client(_appSettings.Value.S3AwsAccessKeyId, _appSettings.Value.S3AwsSecretAccessKey, config);
             _transferUtility = new TransferUtility(_s3Client);
         }
 
@@ -35,6 +40,7 @@ namespace Dta.OneAps.Api.Services.S3 {
             };
             putRequest.Metadata.Add("x-amz-meta-title", path);
             var response = await _s3Client.PutObjectAsync(putRequest);
+            System.Console.WriteLine(response.ToString());
         }
 
         public async Task<byte[]> GetFile(string path) {

@@ -19,7 +19,7 @@ services:
     ports:
       - 8080:80
     volumes:
-      - "~/oneaps/docker/pgadmin:/var/lib/pgadmin"
+      - "pgadmin:/var/lib/pgadmin"
     environment:
       PGADMIN_DEFAULT_EMAIL: a@b.cm
       PGADMIN_DEFAULT_PASSWORD: 1234
@@ -37,7 +37,7 @@ services:
       - DATA_DIR=/tmp/localstack/data
       - LAMBDA_EXECUTOR=local
     volumes:
-      - "~/oneaps/docker/localstack/data:/tmp/localstack/data"
+      - "localstack:/tmp/localstack"
       - "/var/run/docker.sock:/var/run/docker.sock"
 
   api:
@@ -45,12 +45,12 @@ services:
     environment: 
       - PORT=5001
       - BUCKET_ARN=
-      - BUCKET_NAME=
+      - BUCKET_NAME=oneaps-bucket-local
       - LOGGING_BUCKET_NAME=
-      - S3_AWS_ACCESS_KEY_ID=
-      - S3_AWS_SECRET_ACCESS_KEY=
+      - S3_AWS_ACCESS_KEY_ID=super
+      - S3_AWS_SECRET_ACCESS_KEY=secret
       - S3_REGION=ap-southeast-2
-      - S3_SERVICE_URL=s3://localstack:4566
+      - S3_SERVICE_URL=http://localstack:4566
       - JwtKey=JwtKeyJwtKeyJwtKeyJwtKeyJwtKey
       - JwtIssuer=http://localhost:8000
       - JwtAudience=http://localhost:8000
@@ -82,3 +82,7 @@ services:
       - "8000:8000"
     volumes:
       - "./client:/client"
+
+volumes:
+  pgadmin:
+  localstack:

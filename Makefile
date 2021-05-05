@@ -1,8 +1,11 @@
 run:
-	docker-compose up
+	docker-compose up -d
 
 stop:
 	docker-compose down
+
+show_log:
+	docker-compose logs -f api client
 
 setup:
 	sudo rm -rf ./client/.cache

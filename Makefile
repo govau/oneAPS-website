@@ -16,7 +16,7 @@ setup:
 
 # run this after localstack has started
 create_bucket:
-	aws --endpoint-url=http://localhost:4566 s3 mb s3://oneaps-bucket-local
+	aws --endpoint-url=http://localhost:9566 s3 mb s3://oneaps-bucket-local
 
 update_db:
 	docker-compose run dbupdate dotnet dotnet-ef database update

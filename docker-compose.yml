@@ -10,14 +10,12 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - "~/oneaps/docker/postgresql/data:/var/lib/postgresql/data"
-    ports:
-      - 15432:5432
 
   pgadmin:
     image: dpage/pgadmin4:latest
     restart: always
     ports:
-      - 8080:80
+      - 9080:80
     volumes:
       - "pgadmin:/var/lib/pgadmin"
     environment:
@@ -30,8 +28,8 @@ services:
     image: localstack/localstack:latest
     restart: always
     ports:
-      - "4566:4566"
-      - "4571:4571"
+      - "9566:4566"
+      - "9571:4571"
     environment:
       - DOCKER_HOST=unix:///var/run/docker.sock
       - DATA_DIR=/tmp/localstack/data
@@ -52,8 +50,8 @@ services:
       - S3_REGION=ap-southeast-2
       - S3_SERVICE_URL=http://localstack:4566
       - JwtKey=JwtKeyJwtKeyJwtKeyJwtKeyJwtKey
-      - JwtIssuer=http://localhost:8000
-      - JwtAudience=http://localhost:8000
+      - JwtIssuer=http://localhost:9000
+      - JwtAudience=http://localhost:9000
       - Salt=SecretSecret
       - ENDPOINT_ADDRESS=db
       - DB_PORT=5432
@@ -79,7 +77,7 @@ services:
   client:
     build: ./client
     ports:
-      - "8000:8000"
+      - "9000:8000"
     volumes:
       - "./client:/client"
 

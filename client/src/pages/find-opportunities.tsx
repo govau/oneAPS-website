@@ -60,8 +60,7 @@ const OpportunitySummaryView: React.FC<{ search?: string }> = ({ search }) => {
                         <div className="au-card__inner">
                           <div className="au-card__title">
                             <h3>
-                              <br />
-                              {contentOrNA(opp.jobTitle)}
+                              <Link to={`/detailed-opportunity/?opportunityId=${opp.id}`}>{contentOrNA(opp.jobTitle)}</Link>
                             </h3>
                           </div>
                           <p>
@@ -96,11 +95,6 @@ const OpportunitySummaryView: React.FC<{ search?: string }> = ({ search }) => {
                               {opp.numberOfResponses}
                             </p>
                           )}
-                          <p>
-                            <Link to={`/detailed-opportunity/?opportunityId=${opp.id}`}>
-                              more
-                              </Link>
-                          </p>
                         </div>
                       </div>
                     </li>

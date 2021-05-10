@@ -34,11 +34,16 @@ export const MyResponses: React.FC = () => {
               <td className="au-table__cell">{d.withdrawnAt && DateTime.fromISO(d.withdrawnAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell">
                 {!d.submittedAt && !d.withdrawnAt && <><Link to={`/opportunity-response/?opportunityId=${d.opportunityId}`}>Edit</Link><br/></>}
-                {d.submittedAt && !d.withdrawnAt && <a href="" onClick={async (e) => {
-                  e.preventDefault();
-                  await withdrawFn(d.id);
-                  await loadMyResponsesFn();
-                }}>Withdraw</a>}
+                {d.submittedAt && !d.withdrawnAt && 
+                  <>
+                    <Link to={`/opportunity-response-view/?opportunityResponseId=${d.id}`}>View</Link><br/>
+                    <a href="" onClick={async (e) => {
+                        e.preventDefault();
+                        await withdrawFn(d.id);
+                        await loadMyResponsesFn();
+                      }}>Withdraw</a>
+                  </>
+                }
               </td>
             </tr>
           ))}

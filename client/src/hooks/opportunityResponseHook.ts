@@ -80,7 +80,7 @@ export const useOpportunityResponseHook = () => {
     return await downloadFile(id, filename, user.token);
   };
 
-  const loadFn = async (id: number) => {
+  const loadResponseFn = async (id: number) => {
     const result = await loadOpportunityResponse(id, user.token);
     setData(result);
   };
@@ -95,7 +95,7 @@ export const useOpportunityResponseHook = () => {
   };
 
   return {
-    loadFn,
+    loadResponseFn,
     loadMyResponsesFn,
     loadResponsesFn,
     applyFn,

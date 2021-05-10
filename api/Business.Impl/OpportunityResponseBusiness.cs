@@ -144,7 +144,16 @@ namespace Dta.OneAps.Api.Business {
         public async Task<OpportunityResponsePrivateResponse> Get(int opportunityId, int userId) => (
             _mapper.Map<OpportunityResponsePrivateResponse>(await _opportunityResponseService.Get(opportunityId, userId))
         );
-        public async Task<OpportunityResponsePrivateResponse> Get(int id) => _mapper.Map<OpportunityResponsePrivateResponse>(await _opportunityResponseService.GetById(id));
+        public async Task<OpportunityResponsePrivateResponse> Get(int id, IUser user) {
+            var existing = await _opportunityResponseService.GetById(id);
+            if (existing == null) {
+                throw new NotFoundException();
+            }
+            if (existing.UserId != user.Id) {
+                throw new UnauthorizedAccessException();
+            }
+            return _mapper.Map<OpportunityResponsePrivateResponse>(existing);
+        } 
 
 
         public async Task<IEnumerable<OpportunityResponsePublicResponse>> MyList(IUser user) => (

@@ -15,7 +15,7 @@ namespace Dta.OneAps.Api.Business {
         Task<OpportunityResponseSaveResponse> Apply(OpportunityResponseApplyRequest model, IUser user);
 
         Task<OpportunityResponsePrivateResponse> Get(int opportunityId, int userId);
-        Task<OpportunityResponsePrivateResponse> Get(int id);
+        Task<OpportunityResponsePrivateResponse> Get(int id, IUser user);
         Task<IEnumerable<OpportunityResponsePublicResponse>> MyList(IUser user);
     }
 }

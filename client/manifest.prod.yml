@@ -5,3 +5,4 @@ instances: 2
 routes:
 - route: oneaps.apps.b.cld.gov.au
 - route: oneaps.gov.au
+- route: www.oneaps.gov.au

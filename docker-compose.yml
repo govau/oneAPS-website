@@ -62,14 +62,6 @@ services:
       - "./api:/api"
     depends_on: 
       - db
-      - apibuild
-
-  apibuild:
-    build: ./api
-    working_dir: /api
-    volumes:
-      - "./api:/api"
-    command: "dotnet restore"
 
   dbupdate:
     build: ./api

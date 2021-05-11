@@ -26,8 +26,13 @@ clean:
 build_images:
 	docker-compose build --build-arg USER=${USER} --build-arg USER_ID=${CURRENT_UID} --build-arg GROUP_ID=${CURRENT_GID}
 
-restore:
+restore: restore_api restore_client
+
+restore_api:
 	docker-compose run api dotnet tool restore
+	docker-compose run -w "/api" api dotnet restore -f -v m
+
+restore_client:
 	docker-compose run client npm install
 
 # run this after localstack has started

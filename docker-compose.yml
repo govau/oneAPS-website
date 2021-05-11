@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     volumes:
-      - "~/oneaps/docker/postgresql/data:/var/lib/postgresql/data"
+      - "postgres:/var/lib/postgresql/data"
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -62,6 +62,14 @@ services:
       - "./api:/api"
     depends_on: 
       - db
+      - apibuild
+
+  apibuild:
+    build: ./api
+    working_dir: /api
+    volumes:
+      - "./api:/api"
+    command: "dotnet restore"
 
   dbupdate:
     build: ./api
@@ -87,3 +95,4 @@ services:
 volumes:
   pgadmin:
   localstack:
+  postgres:

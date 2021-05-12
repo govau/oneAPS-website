@@ -41,6 +41,7 @@ export const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
           role: `${result.data.role}`,
           emailAddress: `${result.data.emailAddress}`,
           phone: `${result.data.phone}`,
+          emailVerified: result.data.emailVerified
         });
         setSaving(false);
         let navigateTo = fromPage ? decodeURIComponent(fromPage): '/';

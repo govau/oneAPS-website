@@ -49,6 +49,7 @@ namespace Dta.OneAps.Api.Business {
                     Name = user.Name,
                     Role = user.Role,
                     EmailAddress = user.EmailAddress,
+                    EmailVerified = user.EmailVerified,
                     Phone = user.Mobile
                 };
             } else {

@@ -1,6 +1,6 @@
 import { Form, Formik } from "formik";
 import { Link, navigate } from "gatsby";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { DateTime } from 'luxon';
 import { Aubtn, AuFieldset, AuFormGroup, AuLabel } from "../../../types/auds";
 import { formatApiError } from "../../../util/formatApiError";
@@ -270,13 +270,22 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                       }} disabled={saving}>
                         {saving ? "Saving" : "Save"}
                       </Aubtn>
-                      {(!data || (data && !data.publishedAt)) && (
+                      {(!data || (data && !data.publishedAt)) && <>
                         <Aubtn type="submit" style={{ marginLeft: '2em' }} onClick={() => {
                           setFieldValue('isPosting', true);
-                        }} disabled={saving}>
+                        }} disabled={saving || !user.emailVerified}>
                           {saving ? "Posting" : "Post"}
                         </Aubtn>
-                      )}
+                        {!user.emailVerified &&
+                          <span style={{marginLeft: '1em'}}>Before posting, please save and {' '}
+                            <Link
+                              to={`/register/verify-email`}>
+                                verify your email
+                            </Link>.
+                          </span>
+                        }
+                        
+                      </>}
                     </AuFormGroup>
                   </Form>
                 )}

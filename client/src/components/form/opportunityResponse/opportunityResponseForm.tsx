@@ -291,9 +291,17 @@ const OpportunityResponseForm: React.FC = () => {
                                     </Aubtn>
                                     <Aubtn type="submit" style={{ marginLeft: '2em' }} onClick={() => {
                                       setFieldValue('isApply', true);
-                                    }} disabled={saving}>
+                                    }} disabled={saving || !user.user.emailVerified}>
                                       {saving ? "Applying" : "Apply"}
                                     </Aubtn>
+                                    {!user.user.emailVerified &&
+                                      <span style={{marginLeft: '1em'}}>To apply, please save and{' '}
+                                        <Link
+                                          to={`/register/verify-email?from=${encodeURIComponent(`/opportunity-response?opportunityId=${updatedData.opportunityId}`)}`}>
+                                            verify your email
+                                        </Link>.
+                                      </span>
+                                    }
                                   </AuFormGroup>
                                 )}
                               </AuFieldset>

@@ -6,6 +6,7 @@ export type UserType = {
     role: string,
     emailAddress: string,
     phone: string,
+    emailVerified: boolean,
 };
 
 export type UserContextType = {

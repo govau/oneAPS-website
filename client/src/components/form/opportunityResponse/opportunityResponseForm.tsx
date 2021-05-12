@@ -101,10 +101,10 @@ const OpportunityResponseForm: React.FC = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/find-opportunities">Find opportunities</Link>
+            <Link to="/opportunity">Find opportunities</Link>
           </li>
           <li>
-            <Link to={`/detailed-opportunity/?opportunityId=${opportunityId}`}>{data && data.jobTitle}</Link>
+            <Link to={`/opportunity/detail/?opportunityId=${opportunityId}`}>{data && data.jobTitle}</Link>
           </li>
           <li>Apply for opportunity</li>
         </ul>
@@ -117,7 +117,7 @@ const OpportunityResponseForm: React.FC = () => {
                 <>
                   <h2>You have withdrawn your application for this opportunity</h2>
                   <p>Your application was withdrawn on {updatedData.withdrawnAt}</p>
-                  <p>You can <Link to="/find-opportunities">find more opportunities</Link> and start another application.</p>
+                  <p>You can <Link to="/opportunity">find more opportunities</Link> and start another application.</p>
                 </>
               </PageAlert>
             </>
@@ -128,7 +128,7 @@ const OpportunityResponseForm: React.FC = () => {
                   <>
                     <h2>You have already applied for this opportunity</h2>
                     <p>Your application was recieved on {updatedData.submittedAt}</p>
-                    <p>You can <Link to="/find-opportunities">find more opportunities</Link> or <Link to="/post-opportunity">post your own opportunity</Link>.</p>
+                    <p>You can <Link to="/opportunity">find more opportunities</Link> or <Link to="/post-opportunity">post your own opportunity</Link>.</p>
                   </>
                 </PageAlert>
               ) : (
@@ -138,7 +138,7 @@ const OpportunityResponseForm: React.FC = () => {
                       <>
                         <h2>Applications for this opportunity has ended.</h2>
                         <p>This opportunity closed at {updatedData.opportunity.closedAt}</p>
-                        <p>You can <Link to="/find-opportunities">find more opportunities</Link> or <Link to="/post-opportunity">post your own opportunity</Link>.</p>
+                        <p>You can <Link to="/opportunity">find more opportunities</Link> or <Link to="/post-opportunity">post your own opportunity</Link>.</p>
                       </>
                     </PageAlert>
                     : (

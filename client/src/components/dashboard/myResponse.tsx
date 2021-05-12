@@ -38,7 +38,7 @@ export const MyResponse: React.FC<{ opportunityResponseId: number }> = ({ opport
               <p>
                 <span className="bolden-text">Opportunity</span>
                 <br />
-                <Link to={`/detailed-opportunity/?opportunityId=${updatedData.opportunityId}`}>{contentOrNA(updatedData.opportunity.jobTitle)}</Link>
+                <Link to={`/opportunity/detail/?opportunityId=${updatedData.opportunityId}`}>{contentOrNA(updatedData.opportunity.jobTitle)}</Link>
               </p>
               <p>
                 <span className="bolden-text">Why me? (Your pitch)</span>

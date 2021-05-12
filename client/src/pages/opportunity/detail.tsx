@@ -1,11 +1,11 @@
 import { Link } from "gatsby";
 import React, { useEffect, useContext } from "react";
 import { DateTime } from 'luxon';
-import DefaultLayout from "../components/layouts/default-layout";
-import SEO from "../components/seo";
-import { PageContext } from '../types';
-import { useOpportunityHook, useLookupHook } from '../hooks';
-import { UserContext } from '../context';
+import DefaultLayout from "../../components/layouts/default-layout";
+import SEO from "../../components/seo";
+import { PageContext } from '../../types';
+import { useOpportunityHook, useLookupHook } from '../../hooks';
+import { UserContext } from '../../context';
 
 const contentOrNA = (c) => {
   return c ? <span style={{ whiteSpace: 'pre-wrap' }}>{c}</span> : "N/A";
@@ -34,7 +34,7 @@ const DetailedOpportunityView: React.FC<{ opportunityId?: number }> = ({ opportu
                 <Link to="/">Home</Link>
               </li>
               <li>
-                <Link to="/find-opportunities">Find opportunities</Link>
+                <Link to="/opportunity">Find opportunities</Link>
               </li>
               <li>{contentOrNA(data.jobTitle)}</li>
             </ul>

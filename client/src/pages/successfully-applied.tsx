@@ -21,7 +21,7 @@ const Content: React.FC<{opportunityId: number}> = ({opportunityId}) => {
         <p>If you have any questions or would like to withdraw your application, please contact <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>.</p>
         <p>Your next steps</p>
           <ul>
-            <li><Link to={`/find-opportunities`}>Find</Link> more opportunities</li>
+            <li><Link to={`/opportunity`}>Find</Link> more opportunities</li>
             <li><Link to={`/dashboard`}>Withdraw</Link> your application</li>
           </ul>
       </>

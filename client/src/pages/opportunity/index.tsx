@@ -1,10 +1,10 @@
 import { Link, navigate } from "gatsby";
 import React, { useRef, useEffect } from "react";
 import { DateTime } from 'luxon';
-import DefaultLayout from "../components/layouts/default-layout";
-import SEO from "../components/seo";
-import { PageContext } from "../types";
-import { useOpportunitiesHook, useLookupHook } from '../hooks';
+import DefaultLayout from "../../components/layouts/default-layout";
+import SEO from "../../components/seo";
+import { PageContext } from "../../types";
+import { useOpportunitiesHook, useLookupHook } from '../../hooks';
 
 const contentOrNA = (c) => {
   return c ? c : "N/A";
@@ -39,7 +39,7 @@ const OpportunitySummaryView: React.FC<{ search?: string }> = ({ search }) => {
                 <form onSubmit={(e) => {
                   e.preventDefault();
                   if (searchFieldRef) {
-                    navigate(`/find-opportunities/?search=${encodeURIComponent(searchFieldRef.current.value)}`);
+                    navigate(`/opportunity/?search=${encodeURIComponent(searchFieldRef.current.value)}`);
                   }
                 }}>
                   <label htmlFor="search">Search</label>
@@ -59,7 +59,7 @@ const OpportunitySummaryView: React.FC<{ search?: string }> = ({ search }) => {
                         <div className="au-card__inner">
                           <div className="au-card__title">
                             <h3>
-                              <Link to={`/detailed-opportunity/?opportunityId=${opp.id}`}>{contentOrNA(opp.jobTitle)}</Link>
+                              <Link to={`/opportunity/detail/?opportunityId=${opp.id}`}>{contentOrNA(opp.jobTitle)}</Link>
                             </h3>
                           </div>
                           <p>

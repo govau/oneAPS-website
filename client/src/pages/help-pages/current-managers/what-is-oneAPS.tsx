@@ -106,7 +106,7 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
           Choose from a wide range of projects and discover something new.
           </p>
         <p>
-          <Link to="/find-opportunities">
+          <Link to="/opportunity">
             Check out available opportunities.
             </Link>
         </p>

@@ -68,10 +68,10 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
           {opportunityId ? (
             <>
               <li>
-                <Link to="/find-opportunities">Find opportunities</Link>
+                <Link to="/opportunity">Find opportunities</Link>
               </li>
               <li>
-                <Link to={`/detailed-opportunity/?opportunityId=${opportunityId}`}>{data && data.jobTitle}</Link>
+                <Link to={`/opportunity/detail/?opportunityId=${opportunityId}`}>{data && data.jobTitle}</Link>
               </li>
               <li>Edit opportunity</li>
             </>

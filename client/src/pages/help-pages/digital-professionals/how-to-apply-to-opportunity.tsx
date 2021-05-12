@@ -25,7 +25,7 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
         <p>Applying for an opportunity is easy.</p>
         <p>
           First, find the opportunity that is of interest to you in the{" "}
-          <Link to="/find-opportunities">Find opportunities page</Link>.
+          <Link to="/opportunity">Find opportunities page</Link>.
           </p>
         <p>
           Click on the "more" link at the bottom of the card that takes your

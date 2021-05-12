@@ -29,14 +29,14 @@ export const MyResponses: React.FC = () => {
         <tbody className="au-table__body">
           {list && list.map(d => (
             <tr className="au-table__row">
-              <td className="au-table__cell"><Link to={`/detailed-opportunity/?opportunityId=${d.opportunityId}`}>{d.opportunity.jobTitle}</Link></td>
+              <td className="au-table__cell"><Link to={`/opportunity/detail/?opportunityId=${d.opportunityId}`}>{d.opportunity.jobTitle}</Link></td>
               <td className="au-table__cell">{d.submittedAt && DateTime.fromISO(d.submittedAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell">{d.withdrawnAt && DateTime.fromISO(d.withdrawnAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell">
                 {!d.submittedAt && !d.withdrawnAt && <><Link to={`/opportunity-response/?opportunityId=${d.opportunityId}`}>Edit</Link><br/></>}
                 {d.submittedAt && !d.withdrawnAt && 
                   <>
-                    <Link to={`/opportunity-response-view/?opportunityResponseId=${d.id}`}>View</Link><br/>
+                    <Link to={`/dashboard/opportunity-response-view/?opportunityResponseId=${d.id}`}>View</Link><br/>
                     <a href="" onClick={async (e) => {
                         e.preventDefault();
                         await withdrawFn(d.id);

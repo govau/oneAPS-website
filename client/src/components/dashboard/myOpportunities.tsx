@@ -32,7 +32,7 @@ export const MyOpportunities: React.FC = () => {
         <tbody className="au-table__body">
           {data && data.map(d => (
             <tr className="au-table__row">
-              <td className="au-table__cell"><Link to={`/detailed-opportunity/?opportunityId=${d.id}`}>{d.jobTitle}</Link></td>
+              <td className="au-table__cell"><Link to={`/opportunity/detail/?opportunityId=${d.id}`}>{d.jobTitle}</Link></td>
               <td className="au-table__cell">{DateTime.fromISO(d.startDate).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell">{DateTime.fromISO(d.endDate).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell">{d.closedAt && DateTime.fromISO(d.closedAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>

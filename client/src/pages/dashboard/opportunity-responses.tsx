@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import DefaultLayout from "../../components/layouts/default-layout";
 import SEO from "../../components/seo";
 import { PageContext } from "../../types/types";
-import { OpportunityResponsesList } from './opportunityResponsesList';
+import { OpportunityResponsesList } from '../../components/dashboard';
 
 const OpportunityResponses: React.FC<PageContext> = ({
   pageContext,

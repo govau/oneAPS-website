@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import DefaultLayout from "../../components/layouts/default-layout";
 import SEO from "../../components/seo";
 import { PageContext } from "../../types/types";
-import { View } from './view';
+import { View } from '../../components/dashboard';
 
 const Dashboard: React.FC<PageContext> = ({
   pageContext,

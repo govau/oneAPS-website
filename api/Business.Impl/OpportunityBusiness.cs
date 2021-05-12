@@ -103,6 +103,9 @@ namespace Dta.OneAps.Api.Business {
             var result = _mapper.Map<OpportunityAuthResponse>(opportunity);
             result.CanModify = isOwner && !opportunity.ClosedAt.HasValue;
             result.NumberOfResponses = opportunity.OpportunityResponse.Count(or => or.SubmittedAt != null && or.WithdrawnAt == null);
+            result.ContactPersonEmail = user.EmailVerified ? result.ContactPersonEmail : null;
+            result.ContactPersonName = user.EmailVerified ? result.ContactPersonName : null;
+            result.ContactPersonPhone = user.EmailVerified ? result.ContactPersonPhone : null;
             return result;
         } 
         public async Task<IEnumerable<OpportunityAuthResponse>> List(string search, IUser user) {
@@ -114,6 +117,9 @@ namespace Dta.OneAps.Api.Business {
                 var opportunity = list.Single(l => l.Id == item.Id);
                 item.CanModify = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id) && !opportunity.ClosedAt.HasValue;
                 item.NumberOfResponses = opportunity.OpportunityResponse.Count(or => or.SubmittedAt != null && or.WithdrawnAt == null);
+                item.ContactPersonEmail = user.EmailVerified ? item.ContactPersonEmail : null;
+                item.ContactPersonName = user.EmailVerified ? item.ContactPersonName : null;
+                item.ContactPersonPhone = user.EmailVerified ? item.ContactPersonPhone : null;
             }
             return result;
         }

@@ -16,11 +16,9 @@ namespace Dta.OneAps.Api.Web.Controllers {
     public class UserController : ControllerBase {
         private readonly IAuthorizationUtil _authorizationUtil;
         private readonly IUserBusiness _userBusiness;
-        private readonly IUserClaimBusiness _userClaimBusiness;
 
-        public UserController(IUserBusiness userBusiness, IUserClaimBusiness userClaimBusiness, IAuthorizationUtil authorizationUtil) {
+        public UserController(IUserBusiness userBusiness, IAuthorizationUtil authorizationUtil) {
             _userBusiness = userBusiness;
-            _userClaimBusiness = userClaimBusiness;
             _authorizationUtil = authorizationUtil;
         }
         [HttpGet("ping")]
@@ -49,9 +47,18 @@ namespace Dta.OneAps.Api.Web.Controllers {
         }
 
         [AllowAnonymous]
-        [HttpPost("claim")]
-        public async Task<IActionResult> ClaimToken([FromQuery] string token) {
-            await _userClaimBusiness.ClaimToken(token);
+        [HttpPost("verify")]
+        public async Task<IActionResult> VerifyEmail([FromBody] EmailVerificationRequest request) {
+            var user = await _authorizationUtil.GetUser(User);
+            await _userBusiness.VerifyEmail(request, user);
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [HttpPost("resend")]
+        public async Task<IActionResult> ResendEmailVerification() {
+            var user = await _authorizationUtil.GetUser(User);
+            await _userBusiness.ResendEmailVerification(user);
             return Ok();
         }
 

@@ -37,6 +37,8 @@ namespace Dta.OneAps.Api.Services.Entities
         public string Mobile { get; set; }
         [Column("active")]
         public bool Active { get; set; }
+        [Column("email_verified")]
+        public bool EmailVerified { get; set; }
         [Column("created_at")]
         public DateTime CreatedAt { get; set; }
         [Column("updated_at")]

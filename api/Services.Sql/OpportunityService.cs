@@ -25,7 +25,7 @@ namespace Dta.OneAps.Api.Services.Sql {
             return newObj;
         }
 
-        public async Task<IEnumerable<Opportunity>> GetAll(string search, bool includeClosed) => (
+        public async Task<IEnumerable<Opportunity>> GetAll(string search, bool includeClosed, bool includeUnpublished) => (
             await _context
                 .Opportunity
                 .Include(x => x.OpportunityResponse)
@@ -34,7 +34,8 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .Include(x => x.OpportunityUser)
                 .Where(x => string.IsNullOrWhiteSpace(search) ? true : x.JobTitle.ToLower().Contains(search.ToLower()))
                 .Where(x => includeClosed ? true : !x.ClosedAt.HasValue)
-                .OrderByDescending(x => x.Created)
+                .Where(x => includeUnpublished ? true : x.PublishedAt.HasValue)
+                .OrderByDescending(x => x.PublishedAt)
                 .ToListAsync()
         );
         public async Task<IEnumerable<Opportunity>> MyList(IUser user) => (
@@ -48,7 +49,7 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .OrderByDescending(x => x.Created)
                 .ToListAsync()
         );
-        public async Task<Opportunity> GetById(int id) => (
+        public async Task<Opportunity> GetById(int id, bool includeUnpublished) => (
             await _context
                 .Opportunity
                 .Include(x => x.OpportunityResponse)
@@ -57,6 +58,7 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .Include(x => x.ModifiedByUser)
                 .Include(x => x.OpportunityUser)
                 .Where(x => x.Id == id)
+                .Where(x => includeUnpublished ? true : x.PublishedAt.HasValue)
                 .SingleOrDefaultAsync()
         );
     }

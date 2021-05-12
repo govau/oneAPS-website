@@ -1,6 +1,22 @@
 import { useState, useEffect, useContext } from 'react';
-import { claimToken, getUser } from '../services';
+import { claimToken, getUser, emailVerification, resendEmailVerification } from '../services';
 import { UserContext } from '../context';
+import { IEmailVerificationType, IApiFormError } from '../types';
+
+const processErrors = (e) => {
+  let errors = [];
+  if (e.response.status === 400) {
+    for (const property in e.response.data.errors) {
+      for (const message of e.response.data.errors[property]) {
+        errors.push({
+          message,
+          path: property,
+        });
+      }
+    }
+    return errors;
+  }
+}
 
 export const useClaimHook = (token: string) => {
   const [claim, setClaim] = useState(false);
@@ -22,6 +38,8 @@ export const useClaimHook = (token: string) => {
 };
 
 export const useUserHook = () => {
+  const [errors, setErrors] = useState<IApiFormError[]>([]);
+  const [saving, setSaving] = useState<boolean>(false);
   const [data, setData] = useState();
   const user = useContext(UserContext);
   
@@ -37,11 +55,41 @@ export const useUserHook = () => {
   const logout = () => {
     user.updateToken();
   }
+  const verifyEmail = async (formData: IEmailVerificationType) => {
+    setSaving(true);
+    try {
+      formData.userId = user.user.userId;
+      var result = await emailVerification(formData, user.token);
+      setSaving(false);
+      return true;
+    } catch(e) {
+      setErrors(processErrors(e));
+    }
+    setSaving(false);
+    return false;
+  }
+  const resendVerifyEmail = async () => {
+    setSaving(true);
+    try {
+      var result = await resendEmailVerification(user.token);
+      setSaving(false);
+      return true;
+    } catch(e) {
+      setErrors(processErrors(e));
+    }
+    setSaving(false);
+    return false;
+  }
   return {
       getUserFn,
       logout,
+      verifyEmail,
+      resendVerifyEmail,
       user: data,
       loggedIn: user.token ? true : false,
-      token: user.token
+      token: user.token,
+      errors,
+      saving,
+      
     };
 };

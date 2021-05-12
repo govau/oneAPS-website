@@ -55,7 +55,7 @@ namespace Dta.OneAps.Api.Business {
             if (existing.UserId != user.Id) {
                 throw new UnauthorizedAccessException();
             }
-            var opportunity = await _opportunityService.GetById(model.OpportunityId);
+            var opportunity = await _opportunityService.GetById(model.OpportunityId, false);
             
             var toSave = _mapper.Map(model, existing);
             var saved = await _opportunityResponseService.Update(toSave, user);
@@ -133,8 +133,12 @@ namespace Dta.OneAps.Api.Business {
                 throw new ValidationErrorException("You cannot apply for your own opportunity");
             }
             var toSave = _mapper.Map(model, existing);
-            toSave.SubmittedAt = DateTime.UtcNow;
             var saved = await _opportunityResponseService.Update(toSave, user);
+            if (!user.EmailVerified) {
+                throw new ValidationErrorException("Email verification required. You can verify your email in your profile.");
+            }
+            toSave.SubmittedAt = DateTime.UtcNow;
+            saved = await _opportunityResponseService.Update(toSave, user);
             var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
             var agency = _lookupService.Get("agency", existing.Opportunity.Agency);
             await _notifyService.SuccessfullyApplied(existing.Opportunity, agency, user);

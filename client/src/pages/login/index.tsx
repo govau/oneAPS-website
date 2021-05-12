@@ -1,12 +1,12 @@
 import { Link } from "gatsby";
 import * as React from "react";
-import LoginForm from "../components/form/login/loginForm";
-import DefaultLayout from "../components/layouts/default-layout";
-import SEO from "../components/seo";
-import { PageContext } from "../types/types";
+import LoginForm from "./loginForm";
+import DefaultLayout from "../../components/layouts/default-layout";
+import SEO from "../../components/seo";
+import { PageContext } from "../../types/types";
 
 // markup
-const LoginPage: React.FC<PageContext> = ({ pageContext, location }) => {
+const Index: React.FC<PageContext> = ({ pageContext, location }) => {
   const params = new URLSearchParams(location.search);
   const from = params.get('from');
   return (
@@ -21,4 +21,4 @@ const LoginPage: React.FC<PageContext> = ({ pageContext, location }) => {
   );
 };
 
-export default LoginPage;
+export default Index;

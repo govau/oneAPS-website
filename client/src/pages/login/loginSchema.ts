@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { emailValidation } from "../../../util/yup";
+import { emailValidation } from "../../util/yup";
 
 export const initialValues = {
   email: "",

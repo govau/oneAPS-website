@@ -56,7 +56,7 @@ export const loadOpportunities = async (search?: string, token?: string, mine?: 
   return data;
 }
 
-export const createOpporunity = async (formData: IOpportunityType, token: string) => {
+export const createOpportunity = async (formData: IOpportunityType, token: string) => {
   formData.numberOfPeople = `${formData.numberOfPeople}`;
   const result = await axios.post(
     `/api/auth/Opportunity`, formData, {
@@ -68,7 +68,7 @@ export const createOpporunity = async (formData: IOpportunityType, token: string
   return result;
 }
 
-export const updateOpporunity = async (formData: IOpportunityType, token: string) => {
+export const updateOpportunity = async (formData: IOpportunityType, token: string) => {
   formData.numberOfPeople = `${formData.numberOfPeople}`;
   const result = await axios.put(
     `/api/auth/Opportunity/${formData.id}`,
@@ -81,7 +81,20 @@ export const updateOpporunity = async (formData: IOpportunityType, token: string
   return result;
 }
 
-export const closeOpporunity = async (id: number, token: string) => {
+export const publishOpportunity = async (formData: IOpportunityType, token: string) => {
+  formData.numberOfPeople = `${formData.numberOfPeople}`;
+  const result = await axios.put(
+    `/api/auth/Opportunity/${formData.id}/publish`,
+    formData, {
+    headers: {
+      Authorization: `bearer ${token}`
+    }
+  }
+  );
+  return result;
+}
+
+export const closeOpportunity = async (id: number, token: string) => {
   const result = await axios.put(
     `/api/auth/Opportunity/${id}/close`,
     undefined, {

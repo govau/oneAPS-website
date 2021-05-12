@@ -7,6 +7,8 @@ namespace Dta.OneAps.Api.Business {
     public interface IUserBusiness {
         Task<UserSessionResponse> AuthenticateAsync(AuthenticateUserRequest model);
         Task<IUser> RegisterAsync(UserCreateRequest model);
+        Task VerifyEmail(EmailVerificationRequest model, IUser user);
+        Task ResendEmailVerification(IUser user);
         Task<IEnumerable<IUser>> GetAllAsync();
         Task<UserResponse> GetByIdAsync(int id);
         Task<IUser> GetByEmailAsync(string email);

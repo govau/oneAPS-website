@@ -1,12 +1,12 @@
 import { Link } from "gatsby";
 import * as React from "react";
-import RegisterForm from "../components/form/registerForm/registerForm";
-import DefaultLayout from "../components/layouts/default-layout";
-import SEO from "../components/seo";
-import { PageContext } from "../types/types";
+import RegisterForm from "./registerForm";
+import DefaultLayout from "../../components/layouts/default-layout";
+import SEO from "../../components/seo";
+import { PageContext } from "../../types/types";
 
 // markup
-const RegisterPage: React.FC<PageContext> = ({ pageContext, location }) => {
+const Index: React.FC<PageContext> = ({ pageContext, location }) => {
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
@@ -27,4 +27,4 @@ const RegisterPage: React.FC<PageContext> = ({ pageContext, location }) => {
   );
 };
 
-export default RegisterPage;
+export default Index;

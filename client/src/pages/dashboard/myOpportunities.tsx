@@ -1,8 +1,7 @@
 import { Link } from "gatsby";
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import {DateTime } from 'luxon';
 import { useOpportunitiesHook } from '../../hooks';
-import { Aubtn as a } from "../../types/auds";
 
 export const MyOpportunities: React.FC = () => {
   const { loadMyOpportunitiesFn, closeOpporunityFn, data } = useOpportunitiesHook();
@@ -39,6 +38,7 @@ export const MyOpportunities: React.FC = () => {
               <td className="au-table__cell au-table__cell--numeric">{d.numberOfResponses > 0 && d.numberOfResponses}</td>
               <td className="au-table__cell">
                 {d.numberOfResponses > 0 && <><Link to={`/opportunity-responses/?opportunityId=${d.id}`}>View Applications</Link><br/></>}
+                {!d.publishedAt && <><Link to={`/post-opportunity/?opportunityId=${d.id}`}>Post Opportunity</Link><br/></>}
                 {d.canModify && <><Link to={`/post-opportunity/?opportunityId=${d.id}`}>Edit Opportunity</Link><br/></>}
                 {!d.closedAt && <a href="" onClick={async (e) => {
                   e.preventDefault();

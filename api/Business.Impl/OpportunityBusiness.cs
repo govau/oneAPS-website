@@ -22,13 +22,13 @@ namespace Dta.OneAps.Api.Business {
         }
 
         public async Task<OpportunityPublicResponse> Get(int id) {
-            var opportunity = await _opportunityService.GetById(id);
+            var opportunity = await _opportunityService.GetById(id, false);
             var agencies = _lookupService.Get("agency");
             var result = _mapper.Map<OpportunityPublicResponse>(opportunity);
             return result;
         }
         public async Task<IEnumerable<OpportunityPublicResponse>> List(string search) {
-            var list = await _opportunityService.GetAll(search, false);
+            var list = await _opportunityService.GetAll(search, false, false);
             var agencies = _lookupService.Get("agency");
 
             var result = _mapper.Map<IEnumerable<OpportunityPublicResponse>>(list);
@@ -38,31 +38,49 @@ namespace Dta.OneAps.Api.Business {
             if (user.Role != "admin") {
                 throw new UnauthorizedAccessException();
             }
-            return _mapper.Map<IEnumerable<OpportunityAdminResponse>>(await _opportunityService.GetAll(string.Empty, true));
+            return _mapper.Map<IEnumerable<OpportunityAdminResponse>>(await _opportunityService.GetAll(string.Empty, true, true));
         }
-        public async Task<OpportunityAuthResponse> Create(OpportunityCreateRequest model, IUser user) {
-            var toSave = _mapper.Map<Opportunity>(model);
+        public async Task<OpportunityAuthResponse> Create(OpportunityCreateRequest request, IUser user) {
+            var toSave = _mapper.Map<Opportunity>(request);
             toSave.OpportunityUser.Add(new OpportunityUser {
                 UserId = user.Id
             });
             toSave.Agency = user.Agency;
+            if (request.IsPosting) {
+                toSave.PublishedAt = DateTime.UtcNow;
+            }
             var saved = await _opportunityService.Create(toSave, user);
+            if (request.IsPosting) {
+                if (user.EmailVerified == false) {
+                    throw new UnauthorizedAccessException();
+                }
+                toSave.PublishedAt = DateTime.UtcNow;
+                saved = await _opportunityService.Update(toSave, user);
+            }
             var result = _mapper.Map<OpportunityAuthResponse>(saved);
             return result;
         }
-        public async Task<OpportunityAuthResponse> Update(OpportunityUpdateRequest model, IUser user) {
-            var existing = await _opportunityService.GetById(model.Id);
-            var toSave = _mapper.Map(model, existing);
+        public async Task<OpportunityAuthResponse> Update(OpportunityUpdateRequest request, IUser user) {
+            var existing = await _opportunityService.GetById(request.Id, true);
+            var toSave = _mapper.Map(request, existing);
             if (existing.OpportunityUser.Any(ou => ou.UserId == user.Id)) {
                 var saved = await _opportunityService.Update(toSave, user);
+                if (request.IsPosting) {
+                    if (user.EmailVerified == false) {
+                        throw new UnauthorizedAccessException();
+                    }
+                    toSave.PublishedAt = DateTime.UtcNow;
+                    saved = await _opportunityService.Update(toSave, user);
+                }
                 var result = _mapper.Map<OpportunityAuthResponse>(saved);
+                
                 return result;
             } else {
                 throw new UnauthorizedAccessException();
             }
         }
         public async Task<OpportunityAuthResponse> Close(int id, IUser user) {
-            var existing = await _opportunityService.GetById(id);
+            var existing = await _opportunityService.GetById(id, true);
             if (existing.OpportunityUser.Any(ou => ou.UserId == user.Id)) {
                 existing.ClosedAt = DateTime.UtcNow;
                 var saved = await _opportunityService.Update(existing, user);
@@ -73,18 +91,22 @@ namespace Dta.OneAps.Api.Business {
             }
         }
         public async Task<OpportunityAuthResponse> Get(int id, IUser user) {
-            var opportunity = await _opportunityService.GetById(id);
+            var opportunity = await _opportunityService.GetById(id, true);
             if (opportunity == null) {
+                throw new NotFoundException();
+            }
+            var isOwner = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id);
+            if (!isOwner && !opportunity.PublishedAt.HasValue) {
                 throw new NotFoundException();
             }
             var agencies = _lookupService.Get("agency");
             var result = _mapper.Map<OpportunityAuthResponse>(opportunity);
-            result.CanModify = opportunity.OpportunityUser.Any(ou => ou.UserId == user.Id) && !opportunity.ClosedAt.HasValue;
+            result.CanModify = isOwner && !opportunity.ClosedAt.HasValue;
             result.NumberOfResponses = opportunity.OpportunityResponse.Count(or => or.SubmittedAt != null && or.WithdrawnAt == null);
             return result;
         } 
         public async Task<IEnumerable<OpportunityAuthResponse>> List(string search, IUser user) {
-            var list = await _opportunityService.GetAll(search, false);
+            var list = await _opportunityService.GetAll(search, false, false);
             var agencies = _lookupService.Get("agency");
 
             var result = _mapper.Map<IEnumerable<OpportunityAuthResponse>>(list);
@@ -108,7 +130,7 @@ namespace Dta.OneAps.Api.Business {
             return result;
         }
         public async Task<IEnumerable<OpportunityResponsePrivateResponse>> ListResponses(int opportunityId, IUser user) {
-            var opportunity = await _opportunityService.GetById(opportunityId);
+            var opportunity = await _opportunityService.GetById(opportunityId, false);
             if (opportunity == null) {
                 throw new NotFoundException();
             }

@@ -120,7 +120,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                   }
                 }}
               >
-                {({ errors, handleSubmit, submitForm }) => (
+                {({ errors, handleSubmit, submitForm, setFieldValue }) => (
                   <Form
                     method="post"
                     onSubmit={(e) => {
@@ -262,11 +262,21 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                       hint="Contact phone number for this opportunity"
                       type="text"
                     />
+                    <input type="hidden" id="isPosting" value="false" />
 
                     <AuFormGroup>
-                      <Aubtn type="submit" onClick={submitForm} disabled={saving}>
-                        {data ? (saving ? "Saving" : "Save") : (saving ? "Submitting" : "Post")}
+                      <Aubtn type="submit" onClick={() => {
+                        setFieldValue('isPosting', false);
+                      }} disabled={saving}>
+                        {saving ? "Saving" : "Save"}
                       </Aubtn>
+                      {(!data || (data && !data.publishedAt)) && (
+                        <Aubtn type="submit" style={{ marginLeft: '2em' }} onClick={() => {
+                          setFieldValue('isPosting', true);
+                        }} disabled={saving}>
+                          {saving ? "Posting" : "Post"}
+                        </Aubtn>
+                      )}
                     </AuFormGroup>
                   </Form>
                 )}

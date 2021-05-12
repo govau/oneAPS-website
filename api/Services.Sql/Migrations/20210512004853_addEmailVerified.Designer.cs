@@ -3,15 +3,17 @@ using System;
 using Dta.OneAps.Api.Services.Sql;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Dta.OneAps.Api.Services.Sql.Migrations
 {
     [DbContext(typeof(OneApsContext))]
-    partial class OneApsContextModelSnapshot : ModelSnapshot
+    [Migration("20210512004853_addEmailVerified")]
+    partial class addEmailVerified
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,10 +137,6 @@ namespace Dta.OneAps.Api.Services.Sql.Migrations
                     b.Property<string>("NumberOfPeople")
                         .HasColumnName("number_of_people")
                         .HasColumnType("text");
-
-                    b.Property<DateTime?>("PublishedAt")
-                        .HasColumnName("published_at")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("SecurityClearance")
                         .HasColumnName("security_clearance ")

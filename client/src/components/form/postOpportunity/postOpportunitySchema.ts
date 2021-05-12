@@ -17,6 +17,7 @@ export const initialValues = {
   contactPersonEmail: "",
   contactPersonPhone: "",
   securityClearance: "",
+  isPosting: false
 };
 
 export const validationSchema = yup.object().shape({

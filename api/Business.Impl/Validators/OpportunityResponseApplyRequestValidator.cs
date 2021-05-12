@@ -9,10 +9,10 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(_ => _.OpportunityId)
                 .NotEmpty()
                 .MustAsync(async (or, c) => {
-                    return await opportunityService.GetById(or) != null;
+                    return await opportunityService.GetById(or, false) != null;
                 }).WithMessage("{PropertyName} does not exist.")
                 .MustAsync(async (or, c) => {
-                    var existing = await opportunityService.GetById(or);
+                    var existing = await opportunityService.GetById(or, false);
                     return !existing.ClosedAt.HasValue;
                 }).WithMessage("Opportunity was closed");
             RuleFor(_ => _.Id).NotEmpty();

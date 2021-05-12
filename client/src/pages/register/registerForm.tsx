@@ -2,16 +2,16 @@ import axios from "axios";
 import { Form, Formik } from "formik";
 import { navigate } from "gatsby";
 import React, { useState } from "react";
-import { Aubtn, AuFormGroup } from "../../../types/auds";
-import { IApiFormError, IRegisterType } from "../../../types/types";
-import { formatApiError } from "../../../util/formatApiError";
-import ClientErrorDisplay from "../../blocks/clientErrors";
-import PageAlert from "../../blocks/pageAlert";
-import PasswordField from "../fields/PasswordField";
-import SelectField from "../fields/SelectField";
-import TextField from "../fields/TextField";
+import { Aubtn, AuFormGroup } from "../../types/auds";
+import { IApiFormError, IRegisterType } from "../../types/types";
+import { formatApiError } from "../../util/formatApiError";
+import ClientErrorDisplay from "../../components/blocks/clientErrors";
+import PageAlert from "../../components/blocks/pageAlert";
+import PasswordField from "../../components/form/fields/PasswordField";
+import SelectField from "../../components/form/fields/SelectField";
+import TextField from "../../components/form/fields/TextField";
 import { InitialValues, validationSchema } from "./schema";
-import { useLookupHook } from "../../../hooks";
+import { useLookupHook } from "../../hooks";
 
 const RegisterForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);
@@ -31,7 +31,7 @@ const RegisterForm: React.FC = () => {
         agency,
         mobile,
       });
-      navigate("/verify-account/", { state: { submitted: true } });
+      navigate(`/login`);
     } catch (e) {
       if (e.response.status === 400) {
         let errors: IApiFormError[] = [];

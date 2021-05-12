@@ -22,7 +22,16 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(_ => _)
                 .NotEmpty()
                 .MustAsync(async (or, c) => {
-                    var existing = await opportunityService.GetById(or.Id);
+                    var existing = await opportunityService.GetById(or.Id, true);
+                    if (existing == null) {
+                        return true;
+                    }
+                    return !existing.ClosedAt.HasValue;
+                }).WithMessage("Cannot modify a closed opportunity");
+            RuleFor(_ => _)
+                .NotEmpty()
+                .MustAsync(async (or, c) => {
+                    var existing = await opportunityService.GetById(or.Id, true);
                     if (existing == null) {
                         return true;
                     }

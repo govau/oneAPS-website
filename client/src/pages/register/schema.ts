@@ -1,5 +1,5 @@
 import * as yup from "yup";
-import { emailValidation, passwordValidation } from "../../../util/yup";
+import { emailValidation, passwordValidation } from "../../util/yup";
 
 export const InitialValues = {
   name: "",

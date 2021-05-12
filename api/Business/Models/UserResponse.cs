@@ -9,5 +9,6 @@ namespace Dta.OneAps.Api.Business.Models {
         public string Agency { get; set; }
         public string Mobile { get; set; }
         public bool Active { get; set; }
+        public bool EmailVerified { get; set; }
     }
 }

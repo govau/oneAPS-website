@@ -77,6 +77,9 @@ namespace Dta.OneAps.Api.Services.Entities {
         [Column("created")]
         public DateTime Created { get; set; }
 
+        [Column("published_at")]
+        public DateTime? PublishedAt { get; set; }
+
         [Column("closed_at")]
         public DateTime? ClosedAt { get; set; }
 

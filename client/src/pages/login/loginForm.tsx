@@ -2,14 +2,14 @@ import axios from "axios";
 import { Form, Formik } from "formik";
 import { navigate } from "gatsby";
 import React, { useContext, useState } from "react";
-import { UserContext } from "../../../context/UserContext";
-import { Aubtn, AuFormGroup } from "../../../types/auds";
-import { IApiFormError, ILoginType } from "../../../types/types";
-import { formatApiError } from "../../../util/formatApiError";
-import ClientErrorDisplay from "../../blocks/clientErrors";
-import PageAlert from "../../blocks/pageAlert";
-import PasswordField from "../fields/PasswordField";
-import TextField from "../fields/TextField";
+import { UserContext } from "../../context/UserContext";
+import { Aubtn, AuFormGroup } from "../../types/auds";
+import { IApiFormError, ILoginType } from "../../types/types";
+import { formatApiError } from "../../util/formatApiError";
+import ClientErrorDisplay from "../../components/blocks/clientErrors";
+import PageAlert from "../../components/blocks/pageAlert";
+import PasswordField from "../../components/form/fields/PasswordField";
+import TextField from "../../components/form/fields/TextField";
 import { initialValues, validationSchema } from "./loginSchema";
 
 interface LoginProps {
@@ -43,7 +43,13 @@ const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
           phone: `${result.data.phone}`,
         });
         setSaving(false);
-        navigate(fromPage ? decodeURIComponent(fromPage): '/');
+        let navigateTo = fromPage ? decodeURIComponent(fromPage): '/';
+        if (result.data.emailVerified) {
+          navigate(navigateTo);
+        } else {
+          navigate(`/register/verify-email?from=${encodeURIComponent(navigateTo)}`);
+        }
+
         return;
       }
     } catch (e) {

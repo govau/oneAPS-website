@@ -75,17 +75,42 @@ digitalsquads@dta.gov.au
             );
         }
 
-        public async Task RegistrationConfirmation(IUser user, UserClaim userClaim) {
+        public async Task EmailVerification(IUser user, UserClaim userClaim) {
             var personalisation = new Dictionary<string, dynamic>(){
                 {"subject", "Email address confirmation"},
                 {"message", $@"
 Hi {user.Name},
 
-You’re almost ready to start using oneAPS Opportunities
+You are now registered on OneAPS.
 
-Just click on the following link to confirm your email address and then you’re in!
+Before you can post or apply for opportunities, you will need to verify your email.
 
-{ClientInfo.claimTokenUrl}?token={userClaim.ClaimToken}
+Login to OneAPS and type in the following code in the Verify Email screen
+
+^{userClaim.ClaimToken}
+
+Regards
+
+Digital Squads
+digitalsquads@dta.gov.au
+"},
+            };
+
+            await SendEmail(
+                user.EmailAddress,
+                personalisation
+            );
+        }
+
+        public async Task ResendEmailVerification(IUser user, UserClaim userClaim) {
+            var personalisation = new Dictionary<string, dynamic>(){
+                {"subject", "Email address confirmation"},
+                {"message", $@"
+Hi {user.Name},
+
+Login to OneAPS and type in the following code in the Verify Email screen
+
+^{userClaim.ClaimToken}
 
 Regards
 

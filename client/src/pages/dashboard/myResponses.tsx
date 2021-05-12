@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import {DateTime } from 'luxon';
 import { useOpportunityResponseHook } from '../../hooks';
 

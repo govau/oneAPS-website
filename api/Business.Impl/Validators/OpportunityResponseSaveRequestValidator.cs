@@ -8,7 +8,7 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(u => u.OpportunityId)
                 .NotEmpty()
                 .MustAsync(async (or, c) => {
-                    return await opportunityService.GetById(or) != null;
+                    return await opportunityService.GetById(or, false) != null;
                 }).WithMessage("{PropertyName} does not exist.");
         }
     }

@@ -1,9 +1,9 @@
 import { navigate } from "gatsby";
 import React, { useContext } from "react";
-import DefaultLayout from "../components/layouts/default-layout";
-import SEO from "../components/seo";
-import { PageContext } from "../types/types";
-import { OpportunityResponsesList } from '../components/dashboard';
+import DefaultLayout from "../../components/layouts/default-layout";
+import SEO from "../../components/seo";
+import { PageContext } from "../../types/types";
+import { OpportunityResponsesList } from './opportunityResponsesList';
 
 const OpportunityResponses: React.FC<PageContext> = ({
   pageContext,

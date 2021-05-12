@@ -1,8 +1,6 @@
 import { Link } from "gatsby";
-import React, { useContext, useEffect } from "react";
-import { DateTime } from 'luxon';
+import React, { useEffect } from "react";
 import { useOpportunityResponseHook } from '../../hooks';
-import { Aubtn } from "../../types/auds";
 
 const contentOrNA = (c) => {
   return c ? <span style={{ whiteSpace: 'pre-wrap' }}>{c}</span> : "N/A";

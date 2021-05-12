@@ -43,6 +43,11 @@ export interface ILoginType {
   password: string;
 }
 
+export interface IEmailVerificationType {
+  verificationCode: string;
+  userId: number;
+}
+
 export interface IApiFormError {
   path: string;
   message: string;
@@ -60,6 +65,7 @@ export interface IOpportunityType {
   additionalInfo: string;
   startDate: string;
   endDate: string;
+  publishedAt: string;
   closedAt: string;
   commitmentTime: string;
   agency: string;
@@ -91,4 +97,5 @@ export interface IUserType {
   emailAddress: string;
   mobile: string;
   userId: number;
+  emailVerified: boolean;
 }

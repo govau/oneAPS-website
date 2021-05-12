@@ -65,7 +65,7 @@ namespace Dta.OneAps.Api.Business {
             var exists = await _userService.GetByEmail(model.EmailAddress);
             User user;
             var userClaim = new UserClaim {
-                ClaimToken = $"{Guid.NewGuid()}{Guid.NewGuid()}".Replace("-", ""),
+                ClaimToken = _encryptionUtil.GetUniqueKey(5),
                 CreatedAt = DateTime.UtcNow
             };
             if (exists != null) {
@@ -86,15 +86,54 @@ namespace Dta.OneAps.Api.Business {
                 toSave.Password = _encryptionUtil.Encrypt(model.Password);
                 toSave.Role = "user";
                 toSave.CreatedAt = DateTime.UtcNow;
+                toSave.PasswordChangedAt = DateTime.UtcNow;
+                toSave.UpdatedAt = DateTime.UtcNow;
+                toSave.EmailVerified = false;
+                toSave.Active = true;
                 userClaim.ClaimType = "NewUser".ToLower();
                 toSave.UserClaims.Add(userClaim);
                 user = await _userService.Create(toSave);
             }
             user = await _userService.GetById(user.Id);
             var result = _mapper.Map<IUser>(user);
-            await _notifyService.RegistrationConfirmation(result, user.UserClaims.Last());
+            await _notifyService.EmailVerification(result, user.UserClaims.Last());
 
             return result;
+        }
+
+        public async Task VerifyEmail(EmailVerificationRequest model, IUser user) {
+            if (user.Id != model.UserId) {
+                throw new UnauthorizedAccessException();
+            }
+            var existing = await _userService.GetById(model.UserId);
+            if (existing == null) {
+                throw new NotFoundException();
+            }
+            foreach (var uc in existing.UserClaims) {
+                uc.IsClaimed = true;
+            }
+            var userClaim = existing.UserClaims.SingleOrDefault(uc =>
+                uc.ClaimToken == model.VerificationCode &&
+                uc.UserId == model.UserId
+            );
+            existing.EmailVerified = true;
+            await _userService.Update(existing);
+        }
+        public async Task ResendEmailVerification(IUser user) {
+            var existing = await _userService.GetById(user.Id);
+            if (existing == null) {
+                throw new NotFoundException();
+            }
+            foreach (var uc in existing.UserClaims) {
+                uc.IsClaimed = true;
+            }
+            existing.UserClaims.Add(new UserClaim {
+                ClaimToken = _encryptionUtil.GetUniqueKey(5),
+                CreatedAt = DateTime.UtcNow,
+                ClaimType = "ReissueEmailVerification".ToLower(),
+            });
+            await _userService.Update(existing);
+            await _notifyService.ResendEmailVerification(user, existing.UserClaims.Last());
         }
         public async Task<IEnumerable<IUser>> GetAllAsync() => _mapper.Map<IEnumerable<IUser>>(await _userService.GetAll());
         public async Task<UserResponse> GetByIdAsync(int id) => _mapper.Map<UserResponse>(await _userService.GetById(id));

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { loadOpportunity, loadOpportunities, closeOpporunity, createOpporunity, updateOpporunity } from '../services';
+import { loadOpportunity, loadOpportunities, closeOpportunity, createOpportunity, updateOpportunity, publishOpportunity } from '../services';
 import { IOpportunityType, IApiFormError } from '../types';
 import { UserContext } from '../context';
 
@@ -37,7 +37,7 @@ export const useOpportunityHook = () => {
   const createOpporunityFn = async (formData: IOpportunityType): Promise<{data?: IOpportunityType, success: boolean}> => {
     setSaving(true);
     try {
-      var result = await createOpporunity(formData, user.token);
+      var result = await createOpportunity(formData, user.token);
       setData(result.data);
       return {
         data: result.data,
@@ -55,7 +55,25 @@ export const useOpportunityHook = () => {
   const updateOpporunityFn = async (formData: IOpportunityType): Promise<{data?: IOpportunityType, success: boolean}> => {
     setSaving(true);
     try {
-      var result = await updateOpporunity(formData, user.token);
+      var result = await updateOpportunity(formData, user.token);
+      setData(result.data);
+      return {
+        data: result.data,
+        success: true
+      };
+    } catch (e) {
+      setErrors(processErrors(e));
+    }
+    setSaving(false);
+    return {
+      success: false
+    };
+  };
+
+  const publishOpporunityFn = async (formData: IOpportunityType): Promise<{data?: IOpportunityType, success: boolean}> => {
+    setSaving(true);
+    try {
+      var result = await publishOpportunity(formData, user.token);
       setData(result.data);
       return {
         data: result.data,
@@ -75,6 +93,7 @@ export const useOpportunityHook = () => {
     loadFn,
     createOpporunityFn,
     updateOpporunityFn,
+    publishOpporunityFn,
     data,
     saving,
     errors
@@ -97,7 +116,7 @@ export const useOpportunitiesHook = () => {
 
   const closeOpporunityFn = async (id: number): Promise<{success: boolean}> => {
     try {
-      await closeOpporunity(id, user.token);
+      await closeOpportunity(id, user.token);
       await loadMyOpportunitiesFn();
       return {
         success: true

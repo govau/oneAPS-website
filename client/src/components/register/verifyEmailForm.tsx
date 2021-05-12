@@ -3,9 +3,9 @@ import { Link, navigate } from "gatsby";
 import React, { useEffect, useState } from "react";
 import { Aubtn, AuFormGroup } from "../../types/auds";
 import { formatApiError } from "../../util/formatApiError";
-import ClientErrorDisplay from "../../components/blocks/clientErrors";
-import PageAlert from "../../components/blocks/pageAlert";
-import TextField from "../../components/form/fields/TextField";
+import ClientErrorDisplay from "../blocks/clientErrors";
+import PageAlert from "../blocks/pageAlert";
+import TextField from "../form/fields/TextField";
 import { initialValues, validationSchema } from "./verifyEmailSchema";
 import { useUserHook } from '../../hooks';
 
@@ -18,7 +18,7 @@ const navigateTo = (fromPage) => {
   navigate(navigateTo);
 }
 
-const VerifyEmailForm: React.FC<VerifyEmailProps> = ({ fromPage }: VerifyEmailProps) => {
+export const VerifyEmailForm: React.FC<VerifyEmailProps> = ({ fromPage }: VerifyEmailProps) => {
   const [isError, setIsError] = useState<boolean>(false);
   const { verifyEmail, getUserFn, resendVerifyEmail, errors, saving, user } = useUserHook();
 
@@ -104,5 +104,3 @@ const VerifyEmailForm: React.FC<VerifyEmailProps> = ({ fromPage }: VerifyEmailPr
     </>
   );
 };
-
-export default VerifyEmailForm;

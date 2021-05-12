@@ -5,15 +5,15 @@ import React, { useState } from "react";
 import { Aubtn, AuFormGroup } from "../../types/auds";
 import { IApiFormError, IRegisterType } from "../../types/types";
 import { formatApiError } from "../../util/formatApiError";
-import ClientErrorDisplay from "../../components/blocks/clientErrors";
-import PageAlert from "../../components/blocks/pageAlert";
-import PasswordField from "../../components/form/fields/PasswordField";
-import SelectField from "../../components/form/fields/SelectField";
-import TextField from "../../components/form/fields/TextField";
+import ClientErrorDisplay from "../blocks/clientErrors";
+import PageAlert from "../blocks/pageAlert";
+import PasswordField from "../form/fields/PasswordField";
+import SelectField from "../form/fields/SelectField";
+import TextField from "../form/fields/TextField";
 import { InitialValues, validationSchema } from "./schema";
 import { useLookupHook } from "../../hooks";
 
-const RegisterForm: React.FC = () => {
+export const RegisterForm: React.FC = () => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
@@ -148,5 +148,3 @@ const RegisterForm: React.FC = () => {
     </>
   );
 };
-
-export default RegisterForm;

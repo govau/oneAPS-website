@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import * as React from "react";
-import LoginForm from "./loginForm";
+import { LoginForm } from "../../components/login";
 import DefaultLayout from "../../components/layouts/default-layout";
 import SEO from "../../components/seo";
 import { PageContext } from "../../types/types";

@@ -6,17 +6,17 @@ import { UserContext } from "../../context/UserContext";
 import { Aubtn, AuFormGroup } from "../../types/auds";
 import { IApiFormError, ILoginType } from "../../types/types";
 import { formatApiError } from "../../util/formatApiError";
-import ClientErrorDisplay from "../../components/blocks/clientErrors";
-import PageAlert from "../../components/blocks/pageAlert";
-import PasswordField from "../../components/form/fields/PasswordField";
-import TextField from "../../components/form/fields/TextField";
+import ClientErrorDisplay from "../blocks/clientErrors";
+import PageAlert from "../blocks/pageAlert";
+import PasswordField from "../form/fields/PasswordField";
+import TextField from "../form/fields/TextField";
 import { initialValues, validationSchema } from "./loginSchema";
 
 interface LoginProps {
   fromPage: string;
 }
 
-const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
+export const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
   const [errorList, setErrorList] = useState<IApiFormError[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
@@ -124,5 +124,3 @@ const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
     </>
   );
 };
-
-export default LoginForm;

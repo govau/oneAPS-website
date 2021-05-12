@@ -2,7 +2,7 @@ import * as React from "react";
 import DefaultLayout from "../../components/layouts/default-layout";
 import SEO from "../../components/seo";
 import { PageContext } from "../../types/types";
-import VerifyEmailForm from "./verifyEmailForm";
+import { VerifyEmailForm } from "../../components/register";
 
 // markup
 const VerifyEmail: React.FC<PageContext> = ({

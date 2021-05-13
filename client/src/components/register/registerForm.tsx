@@ -105,6 +105,7 @@ export const RegisterForm: React.FC = () => {
               id="emailAddress"
               label="Email"
               width="lg"
+              hint="You must have a gov.au email address to register"
               type="email"
               required
             />
@@ -112,7 +113,6 @@ export const RegisterForm: React.FC = () => {
               id="mobile"
               label="Mobile number"
               width="m"
-              hint="We’ll send you a security code by text message"
               type="text"
               required
             />

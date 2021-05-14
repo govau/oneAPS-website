@@ -88,10 +88,17 @@ namespace Dta.OneAps.Api.Business {
             if (existing == null) {
                 throw new NotFoundException();
             }
-            if (existing.UserId != user.Id && !existing.Opportunity.OpportunityUser.Any(or => or.UserId == user.Id)) {
-                throw new UnauthorizedAccessException();
+            var hasPermission = false;
+            if (existing.UserId == user.Id) {
+                hasPermission = true;
             }
-            return await _fileService.GetFile($"/responses/{existing.Id}/{user.Id}/{existing.ResumeUpload}");
+            if(existing.Opportunity.OpportunityUser.Any(or => or.UserId == user.Id)) {
+                hasPermission = true;
+            }
+            if (hasPermission) {
+                return await _fileService.GetFile($"/responses/{existing.Id}/{existing.UserId}/{existing.ResumeUpload}");
+            }
+            throw new UnauthorizedAccessException();
         }
 
         public async Task<OpportunityResponseSaveResponse> DeleteFile(int id, string filename, IUser user) {

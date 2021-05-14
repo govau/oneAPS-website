@@ -42,7 +42,7 @@ namespace Dta.OneAps.Api.Services.Sql {
             await _context
                 .OpportunityResponse
                 .Include(x => x.User)
-                .Include(x => x.Opportunity)
+                .Include(x => x.Opportunity).ThenInclude(x => x.OpportunityUser)
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync()
         );

@@ -37,7 +37,7 @@ export const MyOpportunities: React.FC = () => {
               <td className="au-table__cell">{d.closedAt && DateTime.fromISO(d.closedAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
               <td className="au-table__cell au-table__cell--numeric">{d.numberOfResponses > 0 && d.numberOfResponses}</td>
               <td className="au-table__cell">
-                {d.numberOfResponses > 0 && <><Link to={`/opportunity-responses/?opportunityId=${d.id}`}>View Applications</Link><br/></>}
+                {d.numberOfResponses > 0 && <><Link to={`/dashboard/opportunity-responses/?opportunityId=${d.id}`}>View Applications</Link><br/></>}
                 {!d.publishedAt && <><Link to={`/post-opportunity/?opportunityId=${d.id}`}>Post Opportunity</Link><br/></>}
                 {d.canModify && <><Link to={`/post-opportunity/?opportunityId=${d.id}`}>Edit Opportunity</Link><br/></>}
                 {!d.closedAt && <a href="" onClick={async (e) => {

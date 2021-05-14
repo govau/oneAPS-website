@@ -50,9 +50,10 @@ export const OpportunityResponsesList: React.FC<{ opportunityId: number }> = ({ 
                 <td className="au-table__cell">{d.submittedAt && DateTime.fromISO(d.submittedAt).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}</td>
 
                 <td className="au-table__cell">
-                  {d.resumeLink && <><a href={d.resumeLink}>Public profile</a><br/></>}
+                  {d.resumeLink && <><a target="_blank" href={d.resumeLink}>Public profile</a><br/></>}
                   {d.resumeUpload &&
-                    <Aubtn type="button" as="tertiary" onClick={async () => {
+                    <a href="" onClick={async (e) => {
+                      e.preventDefault();
                       var response = await downloadFileFn(d.id, d.resumeUpload);
                       const url = window.URL.createObjectURL(response);
                       const link = document.createElement('a');
@@ -60,7 +61,7 @@ export const OpportunityResponsesList: React.FC<{ opportunityId: number }> = ({ 
                       link.setAttribute('download', d.resumeUpload);
                       document.body.appendChild(link);
                       link.click();
-                    }}>Resume</Aubtn>
+                    }}>Resume</a>
                   }
                 </td>
               </tr>

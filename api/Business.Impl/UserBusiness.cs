@@ -34,7 +34,7 @@ namespace Dta.OneAps.Api.Business {
         public async Task<UserSessionResponse> AuthenticateAsync(AuthenticateUserRequest model) {
             string encryptedPassword = _encryptionUtil.Encrypt(model.Password);
             
-            var user = await _userService.Authenticate(model.EmailAddress);
+            var user = await _userService.Authenticate(model.EmailAddress.ToLower());
             if (user == null) {
                 throw new CannotAuthenticateException();
             }
@@ -89,6 +89,7 @@ namespace Dta.OneAps.Api.Business {
                 toSave.CreatedAt = DateTime.UtcNow;
                 toSave.PasswordChangedAt = DateTime.UtcNow;
                 toSave.UpdatedAt = DateTime.UtcNow;
+                toSave.EmailAddress = toSave.EmailAddress.ToLower();
                 toSave.EmailVerified = false;
                 toSave.Active = true;
                 userClaim.ClaimType = "NewUser".ToLower();

@@ -85,11 +85,7 @@ const DefaultLayout: React.FC<Props> = ({
     token: session && session.token,
     refreshToken: session && session.refreshToken,
     user: {
-      userId: session && session.user.userId,
-      name: session && session.user.name,
-      role: session && session.user.role,
-      emailAddress: '',
-      phone: '',
+      ...session && session.user
     },
     updateToken,
     updateRefreshToken,

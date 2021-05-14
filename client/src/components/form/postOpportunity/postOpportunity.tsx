@@ -181,8 +181,6 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                       <TextField
                         id="numberOfPeople"
                         label="Number of people needed"
-                        type="number"
-                        width="xs"
                         required
                       />
                       <TextField

@@ -13,7 +13,7 @@ interface TextFieldProps {
   id: string;
   required?: boolean;
   defaultValue?: string;
-  hint?: string;
+  hint?;
   onChange?: (e: any) => void;
   pattern?: string;
   width?: string;

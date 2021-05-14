@@ -77,7 +77,7 @@ export const AuLabel: React.FC<LabelProps> = ({
 );
 
 interface HintTextProps {
-  text?: string;
+  text?;
   dark?: string;
   inline?: boolean;
   className?: string;

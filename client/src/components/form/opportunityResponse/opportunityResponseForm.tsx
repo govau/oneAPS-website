@@ -210,7 +210,7 @@ const OpportunityResponseForm: React.FC = () => {
                                 <TextField
                                   id="whyPickMe"
                                   label="Why me? (Your pitch)"
-                                  hint=""
+                                  hint={<a target="_blank" href="/help-pages/digital-professionals/writing-personal-pitch">How to write a good pitch</a>}
                                   required
                                   as="textarea"
                                   width="xl"

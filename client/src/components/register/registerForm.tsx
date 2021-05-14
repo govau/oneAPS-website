@@ -96,7 +96,7 @@ export const RegisterForm: React.FC = () => {
 
             <TextField
               id="name"
-              label="Your name"
+              label="Full name"
               width="lg"
               type="text"
               required
@@ -111,7 +111,7 @@ export const RegisterForm: React.FC = () => {
             />
             <TextField
               id="mobile"
-              label="Mobile number"
+              label="Contact number"
               width="m"
               type="text"
               required

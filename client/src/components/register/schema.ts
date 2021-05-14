@@ -11,7 +11,7 @@ export const InitialValues = {
 };
 
 export const validationSchema = yup.object().shape({
-  name: yup.string().trim().required("Name is required").min(2).max(30),
+  name: yup.string().trim().required("Full name is required").min(2).max(30),
   emailAddress: emailValidation,
   password: passwordValidation,
   passwordConfirm: yup
@@ -22,5 +22,5 @@ export const validationSchema = yup.object().shape({
     .trim()
     .required("Agency/Department name is required")
     .min(2, "Enter a valid agency"),
-  mobile: yup.string().trim().required("Mobile number is required").length(10),
+  mobile: yup.string().trim().required("Contact number is required").length(10),
 });

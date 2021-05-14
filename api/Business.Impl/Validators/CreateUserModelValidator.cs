@@ -13,7 +13,9 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(u => u.Agency)
                 .NotEmpty()
                 .Must(e => lookupService.Get("Agency", e) != null).WithMessage("{PropertyValue} is not a valid {PropertyName}.");
-            RuleFor(u => u.Password).NotEmpty().MinimumLength(8);
+            RuleFor(u => u.Password)
+                .NotEmpty()
+                .MinimumLength(8);
         }
     }
 }

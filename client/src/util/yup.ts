@@ -12,6 +12,6 @@ export const passwordValidation = yup
   .required("Password is required")
   .max(20)
   .matches(
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_!@#\$%\^&\*])(?=.{8,})/,
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[_|\W])(?=.{8,})/,
     "Your password needs to be stronger"
   );

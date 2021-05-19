@@ -37,7 +37,7 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
           </p>
           <h3>How it works</h3>
           <p>
-            An opportunity is like a ‘micro-assignment’ where APS staff can work on a task, in a role, or on a project for a short period of time.
+            An opportunity is like a ‘<b>micro-assignment</b>’ where APS staff can work on a task, in a role, or on a project for a short period of time.
           </p>
           <p>
             There are many ways to approach this.

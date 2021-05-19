@@ -29,11 +29,11 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
         <div className="col-sm-12 col-md-6 col-md-pull-6">
           <h2>What oneAPS is</h2>
           <p>
-            As part of the Digital Profession, our Digital Squads team are trialing a whole-of-government program called oneAPS Opportunities (working title). This program aims to assist agencies to come together to work on government priorities and uplift digital capabilities through digital talent mobility.
+            As part of the <a href="https://www.dta.gov.au/help-and-advice/digital-profession/join-digital-profession" target="_blank">Digital Profession</a>, our Digital Squads team are trialing a whole-of-government program called oneAPS Opportunities (working title). This program aims to assist agencies to come together to work on government priorities and uplift digital capabilities through digital talent mobility.
           </p>
           <h2>What the program does</h2>
           <p>
-            oneAPS Opportunities gives managers access to digital professions from across the APS. This will assist with short-term flexible work placements, called opportunities, while staying linked to their home teams/agencies. These forms of placements are supported in the APS Mobility Framework called "Informal arrangements".
+            oneAPS Opportunities gives managers access to digital professions from across the APS. This will assist with short-term flexible work placements, called opportunities, while staying linked to their home teams/agencies. These forms of placements are supported in the APS Mobility Framework called "<a href="https://www.apsc.gov.au/initiatives-and-programs/aps-mobility-framework/mobility-fundamentals#types-of-arrangements-for-temporary-moves-between-organisations-">Informal arrangements</a>".
           </p>
           <h3>How it works</h3>
           <p>

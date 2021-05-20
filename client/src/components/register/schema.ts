@@ -22,5 +22,5 @@ export const validationSchema = yup.object().shape({
     .trim()
     .required("Agency/Department name is required")
     .min(2, "Enter a valid agency"),
-  mobile: yup.string().trim().required("Contact number is required").length(10),
+  mobile: yup.string().trim().required("Contact number is required").length(10, 'Contact number must be 10 digits'),
 });

@@ -20,7 +20,7 @@ const navigateTo = (fromPage) => {
 
 export const VerifyEmailForm: React.FC<VerifyEmailProps> = ({ fromPage }: VerifyEmailProps) => {
   const [isError, setIsError] = useState<boolean>(false);
-  const { verifyEmail, getUserFn, resendVerifyEmail, errors, saving, user } = useUserHook();
+  const { verifyEmail, getUserFn, resendVerifyEmail, errors, saving, user, sending } = useUserHook();
 
   useEffect(() => {
     getUserFn();
@@ -85,11 +85,11 @@ export const VerifyEmailForm: React.FC<VerifyEmailProps> = ({ fromPage }: Verify
               <p>
                 You can try <a href="" onClick={async (e) => {
                     e.preventDefault();
-                    await resendVerifyEmail();
+                    if (!sending) {
+                      await resendVerifyEmail();
+                    }
                   }}>sending a new verification code</a> to "{user.emailAddress}" if you didn't recieve an email.
               </p>
-
-
               <AuFormGroup>
                 <Aubtn type="submit" onClick={submitForm} disabled={saving}>
                   {saving ? "Verifying" : "Verify"}

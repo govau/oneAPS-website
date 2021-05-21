@@ -87,7 +87,8 @@ Before you can post or apply for opportunities, you will need to verify your ema
 
 Login to OneAPS and type in the following code in the Verify Email screen
 
-^{userClaim.ClaimToken}
+Your verification code is: 
+#{userClaim.ClaimToken}
 
 Regards
 
@@ -110,6 +111,7 @@ Hi {user.Name},
 
 Login to OneAPS and type in the following code in the Verify Email screen
 
+Your verification code is: 
 ^{userClaim.ClaimToken}
 
 Regards

@@ -40,6 +40,7 @@ export const useClaimHook = (token: string) => {
 export const useUserHook = () => {
   const [errors, setErrors] = useState<IApiFormError[]>([]);
   const [saving, setSaving] = useState<boolean>(false);
+  const [sending, setSending] = useState<boolean>(false);
   const [data, setData] = useState();
   const user = useContext(UserContext);
   
@@ -69,15 +70,15 @@ export const useUserHook = () => {
     return false;
   }
   const resendVerifyEmail = async () => {
-    setSaving(true);
+    setSending(true);
     try {
       var result = await resendEmailVerification(user.token);
-      setSaving(false);
+      setSending(false);
       return true;
     } catch(e) {
       setErrors(processErrors(e));
     }
-    setSaving(false);
+    setSending(false);
     return false;
   }
   return {
@@ -90,6 +91,7 @@ export const useUserHook = () => {
       token: user.token,
       errors,
       saving,
+      sending,
       
     };
 };

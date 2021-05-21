@@ -44,7 +44,7 @@ export const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
           emailVerified: result.data.emailVerified
         });
         setSaving(false);
-        let navigateTo = fromPage ? decodeURIComponent(fromPage): '/';
+        let navigateTo = fromPage ? decodeURIComponent(fromPage): '/dashboard';
         if (result.data.emailVerified) {
           navigate(navigateTo);
         } else {

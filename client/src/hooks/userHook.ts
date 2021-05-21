@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { claimToken, getUser, emailVerification, resendEmailVerification } from '../services';
+import { getUser, emailVerification, resendEmailVerification } from '../services';
 import { UserContext } from '../context';
 import { IEmailVerificationType, IApiFormError } from '../types';
 
@@ -17,25 +17,6 @@ const processErrors = (e) => {
     return errors;
   }
 }
-
-export const useClaimHook = (token: string) => {
-  const [claim, setClaim] = useState(false);
-  const [errors, setErrors] = useState<string>();
-  useEffect(() => {
-    const claim = async () => {
-      try {
-        await claimToken(token);
-      } catch (e) {
-        if (e.response.status === 409) {
-          setErrors('Token has already been claimed');
-        }
-      }
-      setClaim(true);
-    };
-    claim();
-  }, []);
-  return { claim, errors };
-};
 
 export const useUserHook = () => {
   const [errors, setErrors] = useState<IApiFormError[]>([]);

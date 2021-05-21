@@ -112,7 +112,7 @@ Hi {user.Name},
 Login to OneAPS and type in the following code in the Verify Email screen
 
 Your verification code is: 
-^{userClaim.ClaimToken}
+#{userClaim.ClaimToken}
 
 Regards
 

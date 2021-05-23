@@ -31,7 +31,7 @@ export const RegisterForm: React.FC = () => {
         agency,
         mobile,
       });
-      navigate(`/login`);
+      navigate(`/register/success`);
     } catch (e) {
       if (e.response.status === 400) {
         let errors: IApiFormError[] = [];

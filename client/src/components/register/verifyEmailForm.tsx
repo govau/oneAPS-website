@@ -35,7 +35,7 @@ export const VerifyEmailForm: React.FC<VerifyEmailProps> = ({ fromPage }: Verify
       <h1>Verify your email</h1>
       {user && 
       <>
-        <p>A verification code was sent to {user.emailAddress}. Please use the verification code below.</p>
+        <p>A verification code was sent to "{user.emailAddress}". Please use the verification code below.</p>
         <p>You can come back later from <Link to="/dashboard">your profile</Link> to verify your email</p>
         <p>Once you have verified your email, you will be able to post and apply for opportunities.</p>
         {errors && errors.length > 0 && (

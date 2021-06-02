@@ -7,7 +7,7 @@ import { PageContext } from "../../types";
 import { useOpportunitiesHook, useLookupHook } from '../../hooks';
 
 const contentOrNA = (c) => {
-  return c ? c : "N/A";
+  return c ? <span style={{ whiteSpace: 'pre-wrap' }}>{c}</span> : "N/A";
 }
 
 const OpportunitySummaryView: React.FC<{ search?: string }> = ({ search }) => {
@@ -83,7 +83,7 @@ const OpportunitySummaryView: React.FC<{ search?: string }> = ({ search }) => {
                             {DateTime.fromISO(opp.endDate).setLocale('en-au').toLocaleString(DateTime.DATE_SHORT)}
                           </p>
                           <p>
-                            <span className="desc-text">Required skills</span>
+                            <span className="desc-text">Relevant skills</span>
                             <br />
                             {contentOrNA(opp.skills)}
                           </p>

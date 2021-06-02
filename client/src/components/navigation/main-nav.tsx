@@ -1,8 +1,8 @@
 import { graphql, useStaticQuery, Link } from "gatsby";
 import React, { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import { Nav } from "../../types/auds";
 import { MenuItem, MenuItems } from "../../types/types";
+import AUmainNav, { AUmainNavContent } from '@gov.au/main-nav';
 
 interface Props {
   path: string;
@@ -64,30 +64,15 @@ const MainNav: React.FC<Props> = ({ path }) => {
   }
 
   return (
-    <Nav dark>
+    <AUmainNav dark className="nav" >
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
-            <div id="main-nav-default" className="au-main-nav__content">
-              <div className="au-main-nav__menu">
-                <div className="au-main-nav__menu-inner">
-                  <ul className="au-link-list">
-                    {mainNavItems.map(i => {
-                      return (
-                        <li key={i.text} className={i.active ? 'active': ''}>
-                          <Link to={i.link}>{i.text}</Link>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                  <div className="au-main-nav__focus-trap-bottom"></div>
-                </div>
-              </div>
-            </div>
+            <AUmainNavContent items={mainNavItems} />
           </div>
         </div>
       </div>
-    </Nav>
+    </AUmainNav>
   );
 };
 

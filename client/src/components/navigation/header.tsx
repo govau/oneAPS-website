@@ -1,32 +1,32 @@
 import React from "react";
-import { AUHeader, Brand } from "../../types/auds";
+import MainNav from "../navigation/main-nav";
 
 interface Props {
   siteTitle: string;
+  path: string;
 }
 
-const Header: React.FC<Props> = ({ siteTitle }) => {
+const Header: React.FC<Props> = ({ siteTitle, path }) => {
   return (
     <>
-      <AUHeader dark>
+      <header className="au-grid au-header au-header--dark flare" role="banner">
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-12">
-              <Brand
-                title={
-                  <>
-                    {siteTitle}
-                  </>
-                }
-                subline={<>A Digital Profession <span style={{ fontWeight: 'bolder' }}>pilot</span> Program</>}
-                link="/"
-                brandImage={"../../coat-of-arms.svg"}
-                brandImageAlt="The Australian Government Coat of Arms"
-              />
+            <div className="col-md-9">
+              <a className="au-header__brand" href="/">
+                <img className="au-header__brand-image" alt="The Australian Government Coat of Arms" src="/coat-of-arms.svg" />
+                <div className="au-header__text">
+                  <h1 className="au-header__heading">{siteTitle}</h1>
+                  <div className="au-header__subline">
+                    {<>A Digital Profession <span style={{ fontWeight: 'bolder' }}>pilot</span> Program</>}
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
-      </AUHeader>
+      </header>
+      <MainNav path={path} />
     </>
   );
 };

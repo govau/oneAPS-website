@@ -5,7 +5,6 @@ import { graphql, useStaticQuery, navigate } from "gatsby";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import "../../sass/main.scss";
-import Breadcrumbs from "../navigation/breadcrumb";
 import Footer from "../navigation/footer";
 import Header from "../navigation/header";
 import MainNav from "../navigation/main-nav";
@@ -144,10 +143,13 @@ const DefaultLayout: React.FC<Props> = ({
               OneAPS is under active development and your feedback will help us improve it.
             </div>
           </div>
-          <Header siteTitle={data.site.siteMetadata.title} />
-          <Location>
-            {({ navigate, location }) => <MainNav path={location.pathname} />}
-          </Location>
+          <div>
+            <Location>
+              {({ navigate, location }) => (
+                <Header siteTitle={data.site.siteMetadata.title} path={location.pathname} />
+              )}
+            </Location>
+          </div>
         </div>
         <div className="container" style={{ marginTop: '1em', marginBottom: '3em' }}>
             {children}

@@ -9,9 +9,9 @@ Australian Public Service (APS) employees. The program facilitates
 collaboration and knowledge sharing across the Australian
 Government.
 
-# Benefits for APS employees
+# Benefits for Federal Government employees
 
-oneAPS is for APS employees looking to gain additional experience. The program offers a wide variety of real world projects to work on.
+oneAPS Opportunities is for Federal Government employees looking to gain additional experience. The program offers a wide variety of real world projects to work on.
 
 By participating you can:
 

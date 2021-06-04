@@ -18,7 +18,7 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
               <>
                 <h2>A digital profession pilot program</h2>
                 <p>
-                  This site is part of a pilot program run by the Digital Squads team at the Digital Transformation Agency.
+                  This site is part of a pilot program run by the Digital Professions at the Digital Transformation Agency.
                 </p>
                 <p>If you have any questions or feedback, please contact us at <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a></p>
               </>

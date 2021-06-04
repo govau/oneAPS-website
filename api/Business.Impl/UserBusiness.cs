@@ -19,13 +19,15 @@ namespace Dta.OneAps.Api.Business {
     public class UserBusiness : IUserBusiness {
         private readonly IEncryptionUtil _encryptionUtil;
         private readonly IUserService _userService;
+        private readonly IUserClaimService _userClaimService;
         private readonly IMapper _mapper;
         private readonly IOptions<AppSettings> _appSettings;
         private readonly INotifyService _notifyService;
 
-        public UserBusiness(IOptions<AppSettings> appSettings, IEncryptionUtil encryptionUtil, INotifyService notifyService, IUserService userService, IMapper mapper) {
+        public UserBusiness(IOptions<AppSettings> appSettings, IEncryptionUtil encryptionUtil, INotifyService notifyService, IUserService userService, IUserClaimService userClaimService, IMapper mapper) {
             _appSettings = appSettings;
             _userService = userService;
+            _userClaimService = userClaimService;
             _mapper = mapper;
             _encryptionUtil = encryptionUtil;
             _notifyService = notifyService;
@@ -126,16 +128,52 @@ namespace Dta.OneAps.Api.Business {
             if (existing == null) {
                 throw new NotFoundException();
             }
-            foreach (var uc in existing.UserClaims) {
+            var claimType = "ReissueEmailVerification".ToLower();
+            foreach (var uc in existing.UserClaims.Where(uc => uc.ClaimType == claimType)) {
                 uc.IsClaimed = true;
             }
             existing.UserClaims.Add(new UserClaim {
                 ClaimToken = _encryptionUtil.GetUniqueKey(5),
                 CreatedAt = DateTime.UtcNow,
-                ClaimType = "ReissueEmailVerification".ToLower(),
+                ClaimType = claimType,
             });
             await _userService.Update(existing);
             await _notifyService.ResendEmailVerification(user, existing.UserClaims.Last());
+        }
+        public async Task VerifyResetPassword(VerifyResetPasswordRequest model) {
+            var existing = await _userService.GetByEmail(model.EmailAddress);
+            if (existing == null) {
+                throw new NotFoundException();
+            }
+            var claimType = "VerifyResetPassword".ToLower();
+            foreach (var uc in existing.UserClaims.Where(uc => uc.ClaimType == claimType)) {
+                uc.IsClaimed = true;
+            }
+            existing.UserClaims.Add(new UserClaim {
+                ClaimToken = _encryptionUtil.GetUniqueKey(10),
+                CreatedAt = DateTime.UtcNow,
+                ClaimType = claimType,
+            });
+            await _userService.Update(existing);
+            var user = _mapper.Map<IUser>(existing);
+            await _notifyService.VerifyResetPassword(user, existing.UserClaims.Last());
+        }
+        public async Task ResetPassword(ResetPasswordRequest model) {
+            var existing = await _userClaimService.GetByToken(model.VerificationCode);
+            if (existing == null) {
+                throw new NotFoundException();
+            }
+            existing.IsClaimed = true;
+            if (model.Password != model.RetypePassword) {
+                throw new ValidationErrorException();
+            }
+            existing.User.Password = model.Password;
+            existing.User.PasswordChangedAt = DateTime.UtcNow;
+            var user = await _userService.Update(existing.User);
+            await _userClaimService.Update(existing);
+            
+            var updatedUser = _mapper.Map<IUser>(user);
+            await _notifyService.ResetPassword(updatedUser);
         }
         public async Task<IEnumerable<IUser>> GetAllAsync() => _mapper.Map<IEnumerable<IUser>>(await _userService.GetAll());
         public async Task<UserResponse> GetByIdAsync(int id) => _mapper.Map<UserResponse>(await _userService.GetById(id));

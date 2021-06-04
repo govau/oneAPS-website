@@ -126,5 +126,55 @@ digitalsquads@dta.gov.au
                 personalisation
             );
         }
+
+
+
+        public async Task VerifyResetPassword(IUser user, UserClaim userClaim) {
+            var personalisation = new Dictionary<string, dynamic>(){
+                {"subject", "Verify your intention to reset password"},
+                {"message", $@"
+Hi {user.Name},
+
+You have requested to reset your password.
+
+If you didn't make this request, please ignore this email, otherwise use the verification code below when resetting your password.
+
+Your verification code is: 
+#{userClaim.ClaimToken}
+
+Regards
+
+Digital Squads
+digitalsquads@dta.gov.au
+"},
+            };
+
+            await SendEmail(
+                user.EmailAddress,
+                personalisation
+            );
+        }
+        public async Task ResetPassword(IUser user) {
+            var personalisation = new Dictionary<string, dynamic>(){
+                {"subject", "Your password has been reset"},
+                {"message", $@"
+Hi {user.Name},
+
+Your password was reset recently.
+
+If you didn't make this request, please contact the digital squads team.
+
+Regards
+
+Digital Squads
+digitalsquads@dta.gov.au
+"},
+            };
+
+            await SendEmail(
+                user.EmailAddress,
+                personalisation
+            );
+        }
     }
 }

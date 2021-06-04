@@ -48,6 +48,16 @@ export interface IEmailVerificationType {
   userId: number;
 }
 
+export interface IVerifyResetPasswordType {
+  emailAddress: string;
+}
+
+export interface IResetPasswordType {
+  verificationCode: string;
+  password: string;
+  retypePassword: string;
+}
+
 export interface IApiFormError {
   path: string;
   message: string;

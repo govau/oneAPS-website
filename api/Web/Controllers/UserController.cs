@@ -62,6 +62,20 @@ namespace Dta.OneAps.Api.Web.Controllers {
             return Ok();
         }
 
+        [AllowAnonymous]
+        [HttpPost("resetPassword/verify")]
+        public async Task<IActionResult> VerifyResetPassword([FromBody] VerifyResetPasswordRequest request) {
+            await _userBusiness.VerifyResetPassword(request);
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [HttpPost("resetPassword")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordRequest request) {
+            await _userBusiness.ResetPassword(request);
+            return Ok();
+        }
+
         [Authorize(Roles = Roles.Admin)]
         [HttpGet]
         public async Task<IActionResult> GetAll() {

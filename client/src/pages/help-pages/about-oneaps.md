@@ -1,9 +1,7 @@
 ---
-title: What is oneAPS?
+title: About oneAPS Opportunities
 layout: help
 ---
-
-# About oneAPS Opportunities
 
 <nav class="au-inpage-nav-links" aria-label="in page navigation">
   <h2 class="au-inpage-nav-links__heading">On this page:</h2>

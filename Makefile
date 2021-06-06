@@ -17,11 +17,15 @@ show_log:
 
 setup: clean build_images restore
 
-clean: 
+clean_ui:
 	sudo rm -rf ./client/.cache
 	sudo rm -rf ./client/node_modules
+
+clean_client:
 	sudo rm -rf ./api/**/obj
 	sudo rm -rf ./api/**/bin
+
+clean: clean_api clean_client
 
 build_images:
 	docker-compose build --build-arg USER=${USER} --build-arg USER_ID=${CURRENT_UID} --build-arg GROUP_ID=${CURRENT_GID}

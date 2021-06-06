@@ -9,13 +9,8 @@ const Content: React.FC<{opportunityId: number}> = ({opportunityId}) => {
 
   return (
     <>
-      <h1>You have registered successfully</h1>
-      <p>Your next steps:</p>
-      <ul>
-        <li>Check your email for the one time verification code.</li>
-        <li><Link to="/login">Login</Link> using your email and password.</li>
-        <li>Enter the verification code from your email when prompted.</li>
-      </ul>
+      <h1>Your password is updated successfully</h1>
+      <p>You can now <Link to="/login">login</Link> with your email address and updated password</p>
       <p>If you have any questions, please contact <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>.</p>
     </>
   );

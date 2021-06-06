@@ -167,7 +167,7 @@ namespace Dta.OneAps.Api.Business {
             if (model.Password != model.RetypePassword) {
                 throw new ValidationErrorException();
             }
-            existing.User.Password = model.Password;
+            existing.User.Password = _encryptionUtil.Encrypt(model.Password);
             existing.User.PasswordChangedAt = DateTime.UtcNow;
             var user = await _userService.Update(existing.User);
             await _userClaimService.Update(existing);

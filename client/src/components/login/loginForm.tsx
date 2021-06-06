@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Form, Formik } from "formik";
-import { navigate } from "gatsby";
+import { navigate, Link } from "gatsby";
 import React, { useContext, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import { Aubtn, AuFormGroup } from "../../types/auds";
@@ -113,6 +113,7 @@ export const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
               width={"xl"}
               required
             />
+            <p><Link to="/forget-password/email">Forgot your password?</Link></p>
 
             <AuFormGroup>
               <Aubtn type="submit" onClick={submitForm} disabled={saving}>

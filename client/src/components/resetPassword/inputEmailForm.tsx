@@ -15,6 +15,7 @@ export const InputEmailForm: React.FC = () => {
 
   return (
     <>
+      <h1>Reset your password</h1>
       {errors && errors.length > 0 && (
         <PageAlert type="error" className="max-30">
           <>
@@ -62,9 +63,9 @@ export const InputEmailForm: React.FC = () => {
 
             <TextField
               id="emailAddress"
-              label="Email"
+              label="Your email address"
               width="lg"
-              hint="Please enter your email"
+              hint="Please enter email you registered with"
               type="email"
               required
             />

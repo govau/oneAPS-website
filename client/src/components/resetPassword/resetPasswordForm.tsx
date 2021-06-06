@@ -31,7 +31,7 @@ export const ResetPasswordForm: React.FC = () => {
           validationSchema={validationSchema}
           onSubmit={async (values, actions) => {
             if (await resetPassword(values) === true) {
-              navigate('/login');
+              navigate('/forget-password/success');
             }
           }}
         >

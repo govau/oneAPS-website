@@ -7,5 +7,6 @@ namespace Dta.OneAps.Api.Services {
         Task<UserClaim> GetById(int id);
         Task<UserClaim> GetByToken(string token);
         Task<UserClaim> SetClaimed(string token);
+        Task<UserClaim> Update(UserClaim userClaim);
     }
 }

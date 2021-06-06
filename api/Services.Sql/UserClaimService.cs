@@ -34,5 +34,11 @@ namespace Dta.OneAps.Api.Services.Sql {
                 .UserClaims
                 .Where(x => x.Id == id)
                 .SingleOrDefaultAsync();
+
+        public async Task<UserClaim> Update(UserClaim userClaim) {
+            var saved = base.Update<UserClaim>(userClaim);
+            await base.CommitAsync();
+            return saved;
+        }
     }
 }

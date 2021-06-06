@@ -1,7 +1,7 @@
-import { useState, useEffect, useContext } from 'react';
-import { getUser, emailVerification, resendEmailVerification } from '../services';
+import { useState, useContext } from 'react';
+import { getUser, emailVerification, resendEmailVerification, verifyResetPassword, resetPassword } from '../services';
 import { UserContext } from '../context';
-import { IEmailVerificationType, IApiFormError } from '../types';
+import { IEmailVerificationType, IVerifyResetPasswordType, IResetPasswordType, IApiFormError } from '../types';
 
 const processErrors = (e) => {
   let errors = [];
@@ -62,17 +62,42 @@ export const useUserHook = () => {
     setSending(false);
     return false;
   }
+  const verifyResetPasswordFn = async (data: IVerifyResetPasswordType) => {
+    setSending(true);
+    try {
+      var result = await verifyResetPassword(data);
+      setSending(false);
+      return true;
+    } catch(e) {
+      setErrors(processErrors(e));
+    }
+    setSending(false);
+    return false;
+  }
+  const resetPasswordFn = async (data: IResetPasswordType) => {
+    setSending(true);
+    try {
+      var result = await resetPassword(data);
+      setSending(false);
+      return true;
+    } catch(e) {
+      setErrors(processErrors(e));
+    }
+    setSending(false);
+    return false;
+  }
   return {
       getUserFn,
       logout,
       verifyEmail,
       resendVerifyEmail,
+      verifyResetPassword: verifyResetPasswordFn,
+      resetPassword: resetPasswordFn,
       user: data,
       loggedIn: user.token ? true : false,
       token: user.token,
       errors,
       saving,
       sending,
-      
     };
 };

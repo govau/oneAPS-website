@@ -24,7 +24,7 @@ Under an “Informal arrangement”, the host manager, home manager and employee
 
 <a href="https://www.apsc.gov.au/initiatives-and-programs/aps-mobility-framework/mobility-fundamentals" target="_blank" rel="external noreferrer">Mobility Fundamentals,</a> APS Mobility Framework
 
-![An image of six calendars showing different ways of chunking down work over the course of a month. For example, an employee may continue their regular duties most days and work every Friday on the oneAPS Opportunity. Or they may work a couple of hours on the oneAPS Opportunity one selected days.](https://github.com/Kristaleannegit/oneAPSOpportunities-guidance/blob/main/Calendar.jpg) 
+![An image of six calendars showing different ways of chunking down work over the course of a month. For example, an employee may continue their regular duties most days and work every Friday on the oneAPS Opportunity. Or they may work a couple of hours on the oneAPS Opportunity one selected days.](https://github.com/govau/oneAPS-website/blob/master/Calendar.jpg) 
 
 ## <span name="Help-us-shape-the-future-of-this-initiative">Help us shape the future of this initiative</span> 
 

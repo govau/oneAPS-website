@@ -17,12 +17,12 @@ show_log:
 
 setup: clean build_images restore
 
-clean_ui:
-	sudo rm -rf ./client/.cache
+clean_client:
+	sudo rm -rf ./client/.cache && \
 	sudo rm -rf ./client/node_modules
 
-clean_client:
-	sudo rm -rf ./api/**/obj
+clean_api:
+	sudo rm -rf ./api/**/obj && \
 	sudo rm -rf ./api/**/bin
 
 clean: clean_api clean_client

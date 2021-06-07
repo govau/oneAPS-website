@@ -97,9 +97,7 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
         <p>
           Feel free to post questions in the comments section at the bottom of
           the opportunity or you can reach out to us as
-            <a href="mailto:digitalsquads@dta.gov.au">
-            digitalsquads@dta.gov.au
-            </a>
+            <a href="mailto:specialist.advice@dta.gov.au">specialist.advice@dta.gov.au</a>
         </p>
       </>
     </DefaultLayout>

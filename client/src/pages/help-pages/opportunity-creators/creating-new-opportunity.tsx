@@ -57,12 +57,12 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
           </p>
         <h2>​​​​​​​Contact email</h2>
         <p>
-          This is the email address the applicant and Digital Squads team will
+          This is the email address the applicant and Digital Profession team will
           be using to contact you.
           </p>
         <h2>​​​​​​​Contact phone (optional)</h2>
         <p>
-          This is the phone number the applicant and Digital Squads team will
+          This is the phone number the applicant and Digital Profession team will
           be using to contact you if needed.
           </p>
         <h2>​​​​​​​Department/Agency</h2>
@@ -106,7 +106,7 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
         </p>
         <h2>​​​​​​​What you'll gain from this experience</h2>
         <p>
-          The goal of Digital Squads is to help participants learn, grow and
+          The goal of Digital Profession is to help participants learn, grow and
           network.
           </p>
         <p>

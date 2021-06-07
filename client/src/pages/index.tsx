@@ -16,11 +16,11 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
           <section className="container" style={{ marginBottom: '3em' }}>
             <PageAlert type="info">
               <>
-                <h2>A digital profession pilot program</h2>
+                <h2>A Digital Profession pilot program</h2>
                 <p>
-                  This site is part of a pilot program run by the Digital Professions at the Digital Transformation Agency.
+                  This site is part of a pilot program run by the Digital Profession at the Digital Transformation Agency.
                 </p>
-                <p>If you have any questions or feedback, please contact us at <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a></p>
+                <p>If you have any questions or feedback, please contact us at <a href="mailto:specialist.advice@dta.gov.au">specialist.advice@dta.gov.au</a></p>
               </>
             </PageAlert>
           </section>
@@ -34,29 +34,20 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
             </div>
             <div className="intro__text col-sm-12 col-md-6 col-md-pull-6">
               <h2>
-                A place to find flexible work opportunities across the APS to
-                help deliver outcomes for government and the citizens we all
-                serve.
+                A place to find flexible work opportunities across the Australian Federal Government to
+                help deliver outcomes for government and the citizens we all serve.
               </h2>
               <br />
               <p>
                 <p className="bolden-text">Want to post an opportunity?</p>
-                Anyone can post an opportunity on oneAPS.
+                All Federal Government employees can participate.
               </p>
               <p>
-                For more details on how to publish an opportunity see the help
-                guide.
+                You can chose to post an opportunity or apply for an opportunity.
               </p>
               <div style={{ marginTop: "3rem", marginBottom: "3rem" }}>
-                <Link to="post-opportunity" className="au-btn">
-                  Post an opportunity
-                </Link>
-              </div>
-              <div>
-                Want to find out more or have feedback? Contact{" "}
-                <a href="mailto:digitalsquads@dta.gov.au">
-                  digitalsquads@dta.gov.au
-                </a>
+                Checkout out our blog post <a target="_blank" href="https://www.dta.gov.au/blogs/broadening-horizons-through-oneaps-opportunity">"Boradening horizons through a oneAPS Opportunity"</a>{' '}
+                for a story of an opportunity in action.
               </div>
             </div>
           </section>
@@ -85,7 +76,7 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
               <div className="col-md-4 center-align">
                 <img src="../../make-difference.png"></img>
                 <p className="bolden-text">Make a difference</p>
-                <p>Use your talent on short term<br/>opportunities that are meaningful to you.</p>
+                <p>Use your talent on short term<br />opportunities that are meaningful to you.</p>
               </div>
             </div>
           </div>

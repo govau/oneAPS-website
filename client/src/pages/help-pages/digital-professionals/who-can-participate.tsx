@@ -42,9 +42,7 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
         <p>
           Once you have chosen an applicant for your opportunity, please
             inform{" "}
-          <a href="mailto:digitalsquads@dta.gov.au">
-            The DTA Digital Squads team
-            </a>
+          <a href="mailto:specialist.advice@dta.gov.au">specialist.advice@dta.gov.au</a>
         </p>
       </>
     </DefaultLayout>

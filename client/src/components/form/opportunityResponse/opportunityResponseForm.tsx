@@ -210,7 +210,12 @@ const OpportunityResponseForm: React.FC = () => {
                                 <TextField
                                   id="whyPickMe"
                                   label="Why me? (Your pitch)"
-                                  hint={<a target="_blank" href="/help-pages/digital-professionals/writing-personal-pitch">How to write a good pitch</a>}
+                                  hint={
+                                    <>
+                                      <p>A few paragraphs about who you are, what you offer and why you are interested in this opportunity</p>
+                                      <a target="_blank" href="/help-pages/digital-professionals/writing-personal-pitch">How to write a good pitch</a>
+                                    </>
+                                  }
                                   required
                                   as="textarea"
                                   width="xl"
@@ -219,7 +224,7 @@ const OpportunityResponseForm: React.FC = () => {
 
                                 <TextField
                                   id="resumeLink"
-                                  label="LinkedIn Profile URL"
+                                  label="LinkedIn Profile URL (optional)"
                                   hint="Ensure your LinkedIn profile is publicly accessible"
                                   type="text"
                                   width="xl"

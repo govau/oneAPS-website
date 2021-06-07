@@ -60,12 +60,13 @@ Your application for “{opportunity.JobTitle}” has been received.
 The opportunity creator will be in contact regarding the results of the opportunity.
 Good luck on your application!
 
-If you have any questions or would like to withdraw your application, please contact digitalsquads@dta.gov.au.
+If you have any questions, please contact specialist.advice@dta.gov.au.
 
 Regards
 
-Digital Squads
-digitalsquads@dta.gov.au
+Specialist Advice and Mobility Team
+Digital Profession
+specialist.advice@dta.gov.au
 "},
             };
             
@@ -92,8 +93,9 @@ Your verification code is:
 
 Regards
 
-Digital Squads
-digitalsquads@dta.gov.au
+Specialist Advice and Mobility Team
+Digital Profession
+specialist.advice@dta.gov.au
 "},
             };
 
@@ -116,8 +118,9 @@ Your verification code is:
 
 Regards
 
-Digital Squads
-digitalsquads@dta.gov.au
+Specialist Advice and Mobility Team
+Digital Profession
+specialist.advice@dta.gov.au
 "},
             };
 
@@ -144,8 +147,9 @@ Your verification code is:
 
 Regards
 
-Digital Squads
-digitalsquads@dta.gov.au
+Specialist Advice and Mobility Team
+Digital Profession
+specialist.advice@dta.gov.au
 "},
             };
 
@@ -162,12 +166,13 @@ Hi {user.Name},
 
 Your password was reset recently.
 
-If you didn't make this request, please contact the digital squads team.
+If you didn't make this request, please contact the digital profession team.
 
 Regards
 
-Digital Squads
-digitalsquads@dta.gov.au
+Specialist Advice and Mobility Team
+Digital Profession
+specialist.advice@dta.gov.au
 "},
             };
 

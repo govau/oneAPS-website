@@ -26,9 +26,7 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
         <p>
           When the opportunity participant has been chosen and notified,
             please email{" "}
-          <a href="mailto:digitalsquads@dta.gov.au">
-            The DTA Digital Squads team
-            </a>{" "}
+          <a href="mailto:specialist.advice@dta.gov.au">specialist.advice@dta.gov.au</a>{" "}
             to let us know.
           </p>
         <p>
@@ -199,13 +197,13 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
           you will need to address this situation. Temporary moves can be a
           difficult transition for employees; there may be a range of factors
           at play. You should discuss this with the employee and should also
-          consider a discussion with the home manager. The Digital Squads team
+          consider a discussion with the home manager. The Digital Profession team
           is here to assist you in this situation.
           </p>
         <p>
           In the event that you need to extend or shorten the employee’s
           temporary move, you should discuss this with the employee, home
-          manager, and the Digital Squads team. There may be additional
+          manager, and the Digital Profession team. There may be additional
           paperwork to complete to set out any changes to the original
           agreement.
           </p>

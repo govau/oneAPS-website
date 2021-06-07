@@ -155,10 +155,10 @@ const DefaultLayout: React.FC<Props> = ({
             {children}
         </div>
         <div className="center-align">
-          This site is part of a pilot program run by the Digital Squads team at the Digital Transformation Agency.
+          This is part of a pilot program run by the Digital Profession team at the Digital Transformation Agency.
           <br />
           If you have any questions or feedback, please contact us at{" "}
-          <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>
+          <a href="mailto:specialist.advice@dta.gov.au">specialist.advice@dta.gov.au</a>
         </div>
         <div style={{ marginTop: '1em', marginBottom: '3em' }}>
           <Footer path={location.pathname} />

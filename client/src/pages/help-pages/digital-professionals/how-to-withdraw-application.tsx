@@ -26,9 +26,7 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
           Currently the <span className="bolden-text">oneAPS platform</span>{" "}
             does not provide functionality to withdraw applications online. If
             you wish to withdraw an application, please contact{" "}
-          <a href="mailto:digitalsquads@dta.gov.au">
-            digitalsquads@dta.gov.au
-            </a>
+          <a href="mailto:specialist.advice@dta.gov.au">specialist.advice@dta.gov.au</a>
         </p>
       </>
     </DefaultLayout>

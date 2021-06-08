@@ -37,7 +37,7 @@ How you notify your successful applicant is up to you.
 
 Once you do decide, it would be good organise a chat between the host manager, home manager and successful applicant to make sure you are all on the same page. 
 
-See <a href="/help-pages/5-onboarding/"_blank" rel="external noreferrer">Onboarding</a> for more information. 
+See <a href="http://oneaps.gov.au/help-pages/5-onboarding/"_blank" rel="external noreferrer">Onboarding</a> for more information. 
 
 ## <span name="Notifying-unsuccessful-applicants">Notifying unsuccessful applicants</span> 
 

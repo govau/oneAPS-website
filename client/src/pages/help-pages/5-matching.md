@@ -37,7 +37,7 @@ How you notify your successful applicant is up to you.
 
 Once you do decide, it would be good organise a chat between the host manager, home manager and successful applicant to make sure you are all on the same page. 
 
-See <a href="/help-pages/6-onboarding/"_blank" rel="external noreferrer">Onboarding</a> for more information. 
+See <a href="/help-pages/5-onboarding/"_blank" rel="external noreferrer">Onboarding</a> for more information. 
 
 ## <span name="Notifying-unsuccessful-applicants">Notifying unsuccessful applicants</span> 
 
@@ -45,16 +45,16 @@ When you have confirmed someone for your opportunity, you will need to let other
 
 Your email may look something like: 
 
-*Hi [insert name],
+*Hi [insert name],*
 
-Thank you for your applying for our opportunity [insert name of opportunity]. 
+*Thank you for your applying for our opportunity [insert name of opportunity].*
 
-Unfortunately, on this occasion your application was not successful but we encourage you to apply for other opportunities in the future.
+*Unfortunately, on this occasion your application was not successful but we encourage you to apply for other opportunities in the future.*
 
-Keep an eye out for more short-term flexible opportunities at oneaps.gov.au  
+*Keep an eye out for more short-term flexible opportunities at oneaps.gov.au*  
 
-Best wishes,
+*Best wishes,*
 
-[insert your name]*
+*[insert your name]*
 
 

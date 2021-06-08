@@ -15,7 +15,7 @@ layout: help
   </ul>
 </nav>
 
-## <span name="Identifying-flexible-opportunities">Identifying flexible opportunities</span>
+## <span id="Identifying-flexible-opportunities">Identifying flexible opportunities</span>
 
 There are many types of digital opportunities you can post, depending on what you/your team need or are looking to do. Think of an opportunity like a **‘micro-assignment’** where APS staff can work on a task or in a role for a short period of time.
 
@@ -37,7 +37,7 @@ Examples include:
 
 Not sure exactly what skills you are looking for? Try the <a href="https://career-pathways.apps.b.cld.gov.au/" target="_blank" rel="external noreferrer">APS Career Pathfinder tool</a>
 
-## <span name="Posting-an-opportunity-is-quick-and-easy">Posting an opportunity is quick and easy</span> 
+## <span id="Posting-an-opportunity-is-quick-and-easy">Posting an opportunity is quick and easy</span> 
 
 When posting an opportunity you will be prompted to register an account for the oneAPS Opportunities site. This involves providing your contact details and validating your government email address. 
 
@@ -45,7 +45,7 @@ When you have an idea of what opportunity you would like to create, it takes les
 
 Don’t worry if you make a mistake – you can come back and edit your post later. 
 
-## <span name="Information-you-will-need">Information you will need</span> 
+## <span id="Information-you-will-need">Information you will need</span> 
 
 Your opportunity post will include:
 
@@ -56,7 +56,7 @@ Your opportunity post will include:
 -	A list of relevant skills/attributes needed
 -	Logistics such as how many people are needed, location, start and finish dates, the amount of time you need the person for (hours per week) and the level of security clearance needed to complete the opportunity.
 
-## <span name="How-to-write-a-great-opportunity-post">How to write a great opportunity post</span> 
+## <span id="How-to-write-a-great-opportunity-post">How to write a great opportunity post</span> 
 
 Well-written opportunities will attract better qualified and more informed applicants.
 

@@ -12,7 +12,7 @@ layout: help
 ## Contact the DTA
 When the opportunity participant has been chosen and notified, please contact the [DTA Specialist Advice and Mobility](mailto:specialist.advice@dta.gov.au "email") team to let us know.
 
-## Before the move <a name="before_the_move"></a>
+## <span id="before_the_move">Before the move</span>
 Use the mobility plan ([word template](/mobility-plan.docx)) with the opportunity participant and their home manager to understand everyone’s responsibilities, objectives and logistics.
 
 Here are some things that you should all have agreement on:
@@ -33,7 +33,7 @@ Here are some things that you should all have agreement on:
 
 Whatever is agreed in this plan will guide the placement as it moves forward.
 
-## Onboarding <a name="onboarding"></a>
+## <span id="onboarding">Onboarding</span>
 
 When planning your opportunity, it’s important that you consider what will be involved with onboarding the opportunity participant so they can get started as soon as possible. These temporary opportunities should be easy to administer so if it is possible to minimise the IT and security involved, that would be best.
 
@@ -64,7 +64,7 @@ If they don’t have their own you will need to speak with your IT support to or
 
 **Note** that it can take 1-2 weeks for IT and/or security areas to organise access, so keep that in mind in your planning.
 
-## Getting started on their first day <a name="get_started_first_day"></a>
+## <span id="get_started_first_day">Getting started on their first day</span>
 
 Onboarding someone on a temporary move to your team will be much the same as onboarding any other employee.
 
@@ -84,7 +84,7 @@ Onboarding someone on a temporary move to your team will be much the same as onb
 
 * Invite the employee to any relevant meetings.
 
-## Supporting temporary team members <a name="support_temp_team_members"></a>
+## <span id="support_temp_team_members">Supporting temporary team members</span>
 
 Supporting temporary team members throughout the experience can make a big difference to the success of the experience. Consider the following:
 

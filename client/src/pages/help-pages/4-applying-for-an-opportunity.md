@@ -13,9 +13,9 @@ layout: help
   </ul>
 </nav>
 
-## <span name="How-to-apply-for-an-opportunity">How to apply for an opportunity</span>
+## <span id="How-to-apply-for-an-opportunity">How to apply for an opportunity</span>
 
-Find opportunities on the <a href="https://oneaps.gov.au/opportunity" target="_blank" rel="external noreferrer">Find opportunities</a> page.
+Find opportunities on the <a href="/opportunity" target="_blank" rel="external noreferrer">Find opportunities</a> page.
 
 When you select “Apply for opportunity” you will be prompted to register an account. This involves providing your contact details and validating your government email address.
 
@@ -28,9 +28,9 @@ When you complete your application, your account contact details will be shared 
 
 While these opportunities are not as exhaustive as some full-time role applications, writing a good pitch will increase your chances of being selected.
 
-You can review or withdraw your application in <a href="https://oneaps.gov.au/dashboard" target="_blank" rel="external noreferrer">your profile dashboard</a>.
+You can review or withdraw your application in <a href="/dashboard" target="_blank" rel="external noreferrer">your profile dashboard</a>.
 
-## <span name="Writing-a-personal-pitch">Writing a personal pitch</span> 
+## <span id="Writing-a-personal-pitch">Writing a personal pitch</span> 
 
 Your pitch is a chance to tell the agency why you are the right person for the opportunity. It should clearly say who you are, what your offer is and what you’d like to gain from doing this opportunity.
 
@@ -61,7 +61,7 @@ Next, let them know why you want to work on this opportunity. Some ideas to incl
 - Desire to contribute to the oneAPS vision
 - Need a temporary change (it’s as good as a holiday!)
 
-## <span name="An-example-of-a-pitch">An example of a pitch</span> 
+## <span id="An-example-of-a-pitch">An example of a pitch</span> 
 
 > I am currently a Service Designer working in the Design Lab at the Department of Health. I most recently completed a discovery project with aged citizens to identify barriers to care in their homes. As a senior designer in the Design Lab I led the synthesis and service mapping component of this project, identifying opportunities to develop and test further.
 
@@ -71,7 +71,7 @@ Next, let them know why you want to work on this opportunity. Some ideas to incl
 
 > I am available to chat, look forward to hearing from you.
 
-## <span name="After-you-apply-for-an-opportunity">After you apply for an opportunity</span> 
+## <span id="After-you-apply-for-an-opportunity">After you apply for an opportunity</span> 
 
 The person who posted the opportunity will review your profile or application. 
 

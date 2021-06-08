@@ -12,7 +12,7 @@ layout: help
   </ul>
 </nav>
 
-## <span name="What-is-oneAPS-Opportunities">What is oneAPS Opportunities?</span>
+## <span id="What-is-oneAPS-Opportunities">What is oneAPS Opportunities?</span>
 
 As part of the <a href="https://www.dta.gov.au/help-and-advice/digital-profession" target="_blank" rel="external noreferrer">Digital Profession</a>, the DTA are trialing a new approach to uplift skills through digital talent mobility. 
 
@@ -24,7 +24,7 @@ Staff stay linked to their home teams using ‘Informal arrangements’. Staff r
 
 For further guidance on mobility for managers, employees, HR and executive, see the <a href="https://www.apsc.gov.au/initiatives-and-programs/aps-mobility-framework/mobility-fundamentals" target="_blank" rel="external noreferrer">APS Mobility Framework</a> by the APSC.
 
-## <span name="Who-is-it-for?">Who is it for?</span>
+## <span id="Who-is-it-for?">Who is it for?</span>
 
 Any Federal Government employee can create and apply for opportunities to access digital or data skills. 
 
@@ -36,7 +36,7 @@ When we say “digital skills”, we mean:
 
 This includes hardware technicians, agile delivery managers, business analysts, user researchers, human-centered designers and everything in between.
 
-## <span name="Benefits">Benefits</span>
+## <span id="Benefits">Benefits</span>
 
 - Tap into the digital talent to deliver better outcomes
 - Broaden staff skills and experiences

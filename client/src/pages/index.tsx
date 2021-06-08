@@ -35,19 +35,21 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
             <div className="intro__text col-sm-12 col-md-6 col-md-pull-6">
               <h2>
                 A place to find flexible work opportunities across the Australian Federal Government to
-                help deliver outcomes for government and the citizens we all serve.
+                help deliver outcomes for the citizens we all serve.
               </h2>
               <br />
+              <p>Want to get involved?</p>
               <p>
-                <p className="bolden-text">Want to post an opportunity?</p>
                 All Federal Government employees can participate.
               </p>
-              <p>
+              <p className="bolden-text">
                 You can chose to post an opportunity or apply for an opportunity.
               </p>
               <div style={{ marginTop: "3rem", marginBottom: "3rem" }}>
-                Checkout out our blog post <a target="_blank" href="https://www.dta.gov.au/blogs/broadening-horizons-through-oneaps-opportunity">"Boradening horizons through a oneAPS Opportunity"</a>{' '}
-                for a story of an opportunity in action.
+                Check out our <a target="_blank" href="https://www.dta.gov.au/blogs/broadening-horizons-through-oneaps-opportunity">blog post</a> for a story of an opportunity in action.
+              </div>
+              <div>
+                <Link to="/opportunity" className="au-btn">Find opportunities</Link>
               </div>
             </div>
           </section>
@@ -55,10 +57,7 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
         <section className="au-body" style={{ background: "#EBEBEB", marginTop: '2em', paddingTop: '2em', paddingBottom: '2em' }}>
           <div className="container">
             <div className="row">
-              <div
-                className="col-md-12 center-align"
-                style={{ marginBottom: "2rem" }}
-              >
+              <div className="col-md-12 center-align" style={{ marginBottom: "2rem" }}>
                 <h1>Why would you apply for an opportunity?</h1>
               </div>
             </div>

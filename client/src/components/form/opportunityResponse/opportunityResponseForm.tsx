@@ -213,7 +213,7 @@ const OpportunityResponseForm: React.FC = () => {
                                   hint={
                                     <>
                                       <p>A few paragraphs about who you are, what you offer and why you are interested in this opportunity</p>
-                                      <a target="_blank" href="/help-pages/digital-professionals/writing-personal-pitch">How to write a good pitch</a>
+                                      <a target="_blank" href="/help-pages/4-applying-for-an-opportunity/">How to write a good pitch</a>
                                     </>
                                   }
                                   required

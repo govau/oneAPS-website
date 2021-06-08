@@ -13,7 +13,7 @@ layout: help
 When the opportunity participant has been chosen and notified, please contact the [DTA Specialist Advice and Mobility](mailto:specialist.advice@dta.gov.au "email") team to let us know.
 
 ## Before the move <a name="before_the_move"></a>
-Use the mobility plan ([word template](https://github.com/govau/oneAPS-website/raw/master/client/src/pages/help-pages/Mobility%20plan.docx)) with the opportunity participant and their home manager to understand everyone’s responsibilities, objectives and logistics.
+Use the mobility plan ([word template](/mobility-plan.docx)) with the opportunity participant and their home manager to understand everyone’s responsibilities, objectives and logistics.
 
 Here are some things that you should all have agreement on:
 

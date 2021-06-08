@@ -17,7 +17,7 @@ module.exports = {
       },
       {
         text: "About oneAPS",
-        link: "/about",
+        link: "/help-pages/1-about-oneaps/",
       },
       {
         text: "Find opportunities",
@@ -26,10 +26,6 @@ module.exports = {
       {
         text: "Post an opportunity",
         link: "/post-opportunity",
-      },
-      {
-        text: "Help",
-        link: "/help",
       },
     ],
     footerLinks: [

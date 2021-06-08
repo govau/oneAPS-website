@@ -7,9 +7,9 @@ layout: help
   <h2 class="au-inpage-nav-links__heading">On this page:</h2>
   <ul class="au-link-list">
     <li><a href="#Reviewing-applications-for-your-opportunity">Reviewing applications for your opportunity</a></li>
-    <li><a href="Get-in-touch-for-a-chat">Get in touch for a chat</a></li>
-    <li><a href="Choosing-your-applicant">Choosing your applicant</a></li>
-    <li><a href="Notifying-unsuccessful-applicants">Notifying unsuccessful applicants</a></li>
+    <li><a href="#Get-in-touch-for-a-chat">Get in touch for a chat</a></li>
+    <li><a href="#Choosing-your-applicant">Choosing your applicant</a></li>
+    <li><a href="#Notifying-unsuccessful-applicants">Notifying unsuccessful applicants</a></li>
   </ul>
 </nav>
 

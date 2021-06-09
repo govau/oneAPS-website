@@ -43,7 +43,7 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
                 All Federal Government employees can participate.
               </p>
               <p className="bolden-text">
-                You can chose to post an opportunity or apply for an opportunity.
+                You can choose to post an opportunity or apply for an opportunity.
               </p>
               <div style={{ marginTop: "3rem", marginBottom: "3rem" }}>
                 Check out our <a target="_blank" href="https://www.dta.gov.au/blogs/broadening-horizons-through-oneaps-opportunity">blog post</a> for a story of an opportunity in action.

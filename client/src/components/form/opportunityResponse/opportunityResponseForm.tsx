@@ -1,8 +1,7 @@
 import { useLocation } from "@reach/router";
 import { Form, Formik } from "formik";
 import { Link, navigate } from "gatsby";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { UserContext } from "../../../context/UserContext";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Aubtn,
   AuFieldset,

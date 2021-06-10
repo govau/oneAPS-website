@@ -15,7 +15,7 @@ import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./opportunityResponseSchema";
-import { useOpportunityHook, useOpportunityResponseHook } from '../../../hooks';
+import { useOpportunityHook, useOpportunityResponseHook, useUserHook } from '../../../hooks';
 import { IOpportunityResponseType } from "../../../types";
 
 const OpportunityResponseForm: React.FC = () => {
@@ -28,7 +28,7 @@ const OpportunityResponseForm: React.FC = () => {
     disable: true,
     text: 'Upload'
   });
-  const user = useContext(UserContext);
+  const { user, loggedIn, getUserFn } = useUserHook();
   const fileUploadRef = useRef();
   const location = useLocation();
 
@@ -40,14 +40,22 @@ const OpportunityResponseForm: React.FC = () => {
 
   useEffect(() => {
     const load = async () => {
-      await loadFn(opportunityId);
-      await createFn({
-        opportunityId: opportunityId,
-        userId: user.user.userId,
-      });
+      await getUserFn();
     };
     load();
   }, []);
+  useEffect(() => {
+    const load = async () => {
+        await loadFn(opportunityId);
+        await createFn({
+          opportunityId: opportunityId,
+          userId: user.userId,
+        });
+    };
+    if (user) {
+      load();
+    }
+  }, [user]);
 
   const fileDownload = async () => {
     var response = await downloadFileFn(updatedData.id, updatedData.resumeUpload);
@@ -109,7 +117,7 @@ const OpportunityResponseForm: React.FC = () => {
           <li>Apply for opportunity</li>
         </ul>
       </nav>
-      {updatedData && user.token ? (
+      {updatedData && loggedIn ? (
         <>
           {updatedData.withdrawnAt ? (
             <>
@@ -296,10 +304,10 @@ const OpportunityResponseForm: React.FC = () => {
                                     </Aubtn>
                                     <Aubtn type="submit" style={{ marginLeft: '2em' }} onClick={() => {
                                       setFieldValue('isApply', true);
-                                    }} disabled={saving || !user.user.emailVerified}>
+                                    }} disabled={saving || !user.emailVerified}>
                                       {saving ? "Applying" : "Apply"}
                                     </Aubtn>
-                                    {!user.user.emailVerified &&
+                                    {!user.emailVerified &&
                                       <span style={{marginLeft: '1em'}}>To apply, please save and{' '}
                                         <Link
                                           to={`/register/verify-email?from=${encodeURIComponent(`/opportunity-response?opportunityId=${updatedData.opportunityId}`)}`}>

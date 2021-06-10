@@ -1,66 +1,56 @@
-import { graphql, useStaticQuery, Link } from "gatsby";
 import React, { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import { MenuItem, MenuItems } from "../../types/types";
 import AUmainNav, { AUmainNavContent } from '@gov.au/main-nav';
 
 interface Props {
   path: string;
 }
 
+const isActive = (currentPath, path) => {
+  if (path === '/') {
+    return currentPath === path;
+  }
+  return currentPath.startsWith(path);
+}
+
 const MainNav: React.FC<Props> = ({ path }) => {
-  const data = useStaticQuery(graphql`
-    query SiteQuery {
-      site {
-        siteMetadata {
-          title
-          menuLinks {
-            text
-            link
-          }
-        }
-      }
-    }
-  `);
   const user = useContext(UserContext);
 
-  const Links: MenuItems = data.site.siteMetadata.menuLinks;
-  let mainNavItems: MenuItems = Links.map((menuItem: MenuItem) => ({
-    text: menuItem.text,
-    link: menuItem.link,
-    active:
-      path.length > 1
-        ? path.replace(/\/$/, "") === menuItem.link
-        : path === menuItem.link,
-  }));
+  let mainNavItems = [{
+    text: "Home",
+    link: "/",
+    active: isActive(path, '/')
+  }, {
+    text: "About oneAPS",
+    link: "/help-pages/1-about-oneaps/",
+    active: isActive(path, '/help-pages')
+  }, {
+    text: "Find opportunities",
+    link: "/opportunity",
+    active: isActive(path, '/opportunity')
+  },
+  {
+    text: "Post an opportunity",
+    link: "/post-opportunity",
+    active: isActive(path, '/post-opportunity')
+  }];
+
   if (user.token) {
     mainNavItems.push({
       text: "My profile",
       link: "/dashboard",
-      active:
-        path.length > 1
-          ? path.replace(/\/$/, "") === "/dashboard"
-          : path === "/dashboard",
+      active: isActive(path, '/dashboard')
     });
   } else {
-    mainNavItems.push(
-      {
-        text: "Register",
-        link: "/register",
-        active:
-          path.length > 1
-            ? path.replace(/\/$/, "") === "/register"
-            : path === "/register",
-      },
-      {
-        text: "Login",
-        link: "/login",
-        active:
-          path.length > 1
-            ? path.replace(/\/$/, "") === "/login"
-            : path === "/login",
-      }
-    );
+    mainNavItems.push({
+      text: "Register",
+      link: "/register",
+      active: isActive(path, '/register')
+    }, {
+      text: "Login",
+      link: "/login",
+      active: isActive(path, '/login')
+    });
   }
 
   return (

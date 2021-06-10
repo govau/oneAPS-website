@@ -16,7 +16,7 @@ const isActive = (currentPath, path) => {
 const MainNav: React.FC<Props> = ({ path }) => {
   const user = useContext(UserContext);
 
-  let mainNavItems = [{
+  const always = [{
     text: "Home",
     link: "/",
     active: isActive(path, '/')
@@ -35,14 +35,15 @@ const MainNav: React.FC<Props> = ({ path }) => {
     active: isActive(path, '/post-opportunity')
   }];
 
+  let menu = [];
   if (user.token) {
-    mainNavItems.push({
+    menu = always.concat([{
       text: "My profile",
       link: "/dashboard",
       active: isActive(path, '/dashboard')
-    });
+    }]);
   } else {
-    mainNavItems.push({
+    menu = always.concat([{
       text: "Register",
       link: "/register",
       active: isActive(path, '/register')
@@ -50,7 +51,7 @@ const MainNav: React.FC<Props> = ({ path }) => {
       text: "Login",
       link: "/login",
       active: isActive(path, '/login')
-    });
+    }]);
   }
 
   return (
@@ -58,7 +59,7 @@ const MainNav: React.FC<Props> = ({ path }) => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
-            <NavContent items={mainNavItems} />
+            <NavContent items={menu} />
           </div>
         </div>
       </div>

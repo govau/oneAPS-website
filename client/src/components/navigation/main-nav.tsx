@@ -16,34 +16,47 @@ const isActive = (currentPath, path) => {
 const MainNav: React.FC<Props> = ({ path }) => {
   const user = useContext(UserContext);
 
-  const always = [{
-    text: "Home",
-    link: "/",
-    active: isActive(path, '/')
-  }, {
-    text: "About oneAPS",
-    link: "/help-pages/1-about-oneaps/",
-    active: isActive(path, '/help-pages')
-  }, {
-    text: "Find opportunities",
-    link: "/opportunity",
-    active: isActive(path, '/opportunity')
-  },
-  {
-    text: "Post an opportunity",
-    link: "/post-opportunity",
-    active: isActive(path, '/post-opportunity')
-  }];
-
   let menu = [];
   if (user.token) {
-    menu = always.concat([{
+    menu = [{
+      text: "Home",
+      link: "/",
+      active: isActive(path, '/')
+    }, {
+      text: "About oneAPS",
+      link: "/help-pages/1-about-oneaps/",
+      active: isActive(path, '/help-pages')
+    }, {
+      text: "Find opportunities",
+      link: "/opportunity",
+      active: isActive(path, '/opportunity')
+    }, {
+      text: "Post an opportunity",
+      link: "/post-opportunity",
+      active: isActive(path, '/post-opportunity')
+    }, {
       text: "My profile",
       link: "/dashboard",
       active: isActive(path, '/dashboard')
-    }]);
+    }];
   } else {
-    menu = always.concat([{
+    menu = [{
+      text: "Home",
+      link: "/",
+      active: isActive(path, '/')
+    }, {
+      text: "About oneAPS",
+      link: "/help-pages/1-about-oneaps/",
+      active: isActive(path, '/help-pages')
+    }, {
+      text: "Find opportunities",
+      link: "/opportunity",
+      active: isActive(path, '/opportunity')
+    }, {
+      text: "Post an opportunity",
+      link: "/post-opportunity",
+      active: isActive(path, '/post-opportunity')
+    }, {
       text: "Register",
       link: "/register",
       active: isActive(path, '/register')
@@ -51,7 +64,7 @@ const MainNav: React.FC<Props> = ({ path }) => {
       text: "Login",
       link: "/login",
       active: isActive(path, '/login')
-    }]);
+    }];
   }
 
   return (

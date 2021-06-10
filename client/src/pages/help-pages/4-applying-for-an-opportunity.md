@@ -15,9 +15,9 @@ layout: help
 
 ## <span id="How-to-apply-for-an-opportunity">How to apply for an opportunity</span>
 
-Find opportunities on the <a href="/opportunity" target="_blank" rel="external noreferrer">Find opportunities</a> page.
+Browse opportunities on the <a href="/opportunity" target="_blank" rel="external noreferrer">Find opportunities</a> page.
 
-When you select “Apply for opportunity” you will be prompted to register an account. This involves providing your contact details and validating your government email address.
+When you select 'Apply for opportunity' you will be prompted to register an account. This involves providing your contact details and validating your government email address.
 
 Once you’re logged in, the application is short and easy. It includes: 
 
@@ -28,13 +28,11 @@ When you complete your application, your account contact details will be shared 
 
 While these opportunities are not as exhaustive as some full-time role applications, writing a good pitch will increase your chances of being selected.
 
-You can review or withdraw your application in <a href="/dashboard" target="_blank" rel="external noreferrer">your profile dashboard</a>.
-
 ## <span id="Writing-a-personal-pitch">Writing a personal pitch</span> 
 
-Your pitch is a chance to tell the agency why you are the right person for the opportunity. It should clearly say who you are, what your offer is and what you’d like to gain from doing this opportunity.
+Your pitch is a chance to tell the agency why you are the right person for the opportunity. It should clearly say who you are, what you have to offer and what you’d like to gain from doing this opportunity.
 
-Getting started:
+**Getting started:**
 
 ### 1. Who you are 
 
@@ -50,32 +48,34 @@ If you are less experienced in the digital skill asked for, talk about your inte
 
 ### 3. Why you are interested in this opportunity 
 
-Next, let them know why you want to work on this opportunity. Some ideas to include are:
+Let them know why you want to work on this opportunity. Some ideas to include are:
 
 - Your motivation
 - Desire to get experience working at this agency
+- Wish to be involved in coaching/mentoring
 - Desire to work with different people with different skills 
 - Your interest in the specific topic 
-- Wish to be involved in coaching/mentoring
 - Wish to develop skills
 - Desire to contribute to the oneAPS vision
 - Need a temporary change (it’s as good as a holiday!)
 
 ## <span id="An-example-of-a-pitch">An example of a pitch</span> 
 
-> I am currently a Service Designer working in the Design Lab at the Department of Health. I most recently completed a discovery project with aged citizens to identify barriers to care in their homes. As a senior designer in the Design Lab I led the synthesis and service mapping component of this project, identifying opportunities to develop and test further.
+*I am currently a Service Designer working in the Design Lab at the Department of Health. I most recently completed a discovery project with aged citizens to identify barriers to care in their homes. As a senior designer in the Design Lab I led the synthesis and service mapping component of this project, identifying opportunities to develop and test further.*
 
-> My strengths are looking at the big picture (systems thinking) and looking at all the touchpoints and connections (or dis-connections). My experience of over 10 years in service design and developing service blueprints on a variety of complex health and welfare problems will most certainly be of value working on this opportunity. 
+*My strengths are looking at the big picture (systems thinking) and looking at all the touchpoints and connections (or dis-connections). My experience of over 10 years in service design and developing service blueprints on a variety of complex health and welfare problems will most certainly be of value working on this opportunity.*
 
-> I would really like the opportunity to do some meaningful work at the Department of Education, Skills and Employment. I have a work history in secondary education and having children myself I am very interested in the subject of preparing our future workforce. 
+*I would really like the opportunity to do some meaningful work at the Department of Education, Skills and Employment. I have a work history in secondary education and having children myself I am very interested in the subject of preparing our future workforce.*
 
-> I am available to chat, look forward to hearing from you.
+*I am available to chat, look forward to hearing from you.*
 
 ## <span id="After-you-apply-for-an-opportunity">After you apply for an opportunity</span> 
 
+You can review or withdraw your application in your profile dashboard. 
+
 The person who posted the opportunity will review your profile or application. 
 
-They may reach out to you to organise a chat and see if you are a good match for the work. 
+They may reach out to you to organise a chat and see if you are a good match for the work and team.
 
 You will also get an email if you are not selected. 
 

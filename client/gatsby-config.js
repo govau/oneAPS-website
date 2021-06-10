@@ -10,24 +10,6 @@ module.exports = {
     serve.`,
     author: `Digital Transformation Agency`,
     siteUrl: `https://oneAPS.gov.au/`,
-    menuLinks: [
-      {
-        text: "Home",
-        link: "/",
-      },
-      {
-        text: "About oneAPS",
-        link: "/help-pages/1-about-oneaps/",
-      },
-      {
-        text: "Find opportunities",
-        link: "/opportunity",
-      },
-      {
-        text: "Post an opportunity",
-        link: "/post-opportunity",
-      },
-    ],
     footerLinks: [
       {
         text: "Privacy Policy",

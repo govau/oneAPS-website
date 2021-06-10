@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-import AUmainNav, { AUmainNavContent } from '@gov.au/main-nav';
+import { Nav, NavContent } from '../../types/auds';
 
 interface Props {
   path: string;
@@ -54,15 +54,15 @@ const MainNav: React.FC<Props> = ({ path }) => {
   }
 
   return (
-    <AUmainNav dark className="nav" >
+    <Nav dark className="nav" >
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
-            <AUmainNavContent items={mainNavItems} />
+            <NavContent items={mainNavItems} />
           </div>
         </div>
       </div>
-    </AUmainNav>
+    </Nav>
   );
 };
 

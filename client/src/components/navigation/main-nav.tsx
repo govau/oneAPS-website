@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import { Nav, NavContent } from '../../types/auds';
 
@@ -15,10 +15,10 @@ const isActive = (currentPath, path) => {
 
 const MainNav: React.FC<Props> = ({ path }) => {
   const user = useContext(UserContext);
+  const [menu, setMenu] = useState([]);
 
-  let menu = [];
-  if (user.token) {
-    menu = [{
+  useEffect(() => {
+    const always = [{
       text: "Home",
       link: "/",
       active: isActive(path, '/')
@@ -34,38 +34,26 @@ const MainNav: React.FC<Props> = ({ path }) => {
       text: "Post an opportunity",
       link: "/post-opportunity",
       active: isActive(path, '/post-opportunity')
-    }, {
-      text: "My profile",
-      link: "/dashboard",
-      active: isActive(path, '/dashboard')
     }];
-  } else {
-    menu = [{
-      text: "Home",
-      link: "/",
-      active: isActive(path, '/')
-    }, {
-      text: "About oneAPS",
-      link: "/help-pages/1-about-oneaps/",
-      active: isActive(path, '/help-pages')
-    }, {
-      text: "Find opportunities",
-      link: "/opportunity",
-      active: isActive(path, '/opportunity')
-    }, {
-      text: "Post an opportunity",
-      link: "/post-opportunity",
-      active: isActive(path, '/post-opportunity')
-    }, {
-      text: "Register",
-      link: "/register",
-      active: isActive(path, '/register')
-    }, {
-      text: "Login",
-      link: "/login",
-      active: isActive(path, '/login')
-    }];
-  }
+    if (user.token) {
+      setMenu(always.concat([{
+        text: "My profile",
+        link: "/dashboard",
+        active: isActive(path, '/dashboard')
+      }]));
+    } else {
+      setMenu(always.concat([{
+        text: "Register",
+        link: "/register",
+        active: isActive(path, '/register')
+      }, {
+        text: "Login",
+        link: "/login",
+        active: isActive(path, '/login')
+      }]));
+    }
+  }, [user]);
+  
 
   return (
     <Nav dark className="nav" >

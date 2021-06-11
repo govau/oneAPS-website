@@ -149,6 +149,10 @@ namespace Dta.OneAps.Api.Business {
             var result = _mapper.Map<OpportunityResponseSaveResponse>(saved);
             var agency = _lookupService.Get("agency", existing.Opportunity.Agency);
             await _notifyService.SuccessfullyApplied(existing.Opportunity, agency, user);
+            foreach (var ou in existing.Opportunity.OpportunityUser) {
+                await _notifyService.ApplicationReceived(existing.Opportunity, agency, ou.User);
+            }
+            
             
             return result;
         }

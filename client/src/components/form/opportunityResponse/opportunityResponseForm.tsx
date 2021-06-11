@@ -1,8 +1,7 @@
 import { useLocation } from "@reach/router";
 import { Form, Formik } from "formik";
 import { Link, navigate } from "gatsby";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { UserContext } from "../../../context/UserContext";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Aubtn,
   AuFieldset,
@@ -15,7 +14,7 @@ import ClientErrorDisplay from "../../blocks/clientErrors";
 import PageAlert from "../../blocks/pageAlert";
 import TextField from "../fields/TextField";
 import { initialValues, validationSchema } from "./opportunityResponseSchema";
-import { useOpportunityHook, useOpportunityResponseHook } from '../../../hooks';
+import { useOpportunityHook, useOpportunityResponseHook, useUserHook } from '../../../hooks';
 import { IOpportunityResponseType } from "../../../types";
 
 const OpportunityResponseForm: React.FC = () => {
@@ -28,7 +27,7 @@ const OpportunityResponseForm: React.FC = () => {
     disable: true,
     text: 'Upload'
   });
-  const user = useContext(UserContext);
+  const { user, loggedIn, getUserFn } = useUserHook();
   const fileUploadRef = useRef();
   const location = useLocation();
 
@@ -40,14 +39,22 @@ const OpportunityResponseForm: React.FC = () => {
 
   useEffect(() => {
     const load = async () => {
-      await loadFn(opportunityId);
-      await createFn({
-        opportunityId: opportunityId,
-        userId: user.user.userId,
-      });
+      await getUserFn();
     };
     load();
   }, []);
+  useEffect(() => {
+    const load = async () => {
+        await loadFn(opportunityId);
+        await createFn({
+          opportunityId: opportunityId,
+          userId: user.userId,
+        });
+    };
+    if (user) {
+      load();
+    }
+  }, [user]);
 
   const fileDownload = async () => {
     var response = await downloadFileFn(updatedData.id, updatedData.resumeUpload);
@@ -109,7 +116,7 @@ const OpportunityResponseForm: React.FC = () => {
           <li>Apply for opportunity</li>
         </ul>
       </nav>
-      {updatedData && user.token ? (
+      {updatedData && loggedIn ? (
         <>
           {updatedData.withdrawnAt ? (
             <>
@@ -210,7 +217,12 @@ const OpportunityResponseForm: React.FC = () => {
                                 <TextField
                                   id="whyPickMe"
                                   label="Why me? (Your pitch)"
-                                  hint={<a target="_blank" href="/help-pages/digital-professionals/writing-personal-pitch">How to write a good pitch</a>}
+                                  hint={
+                                    <>
+                                      <p>A few paragraphs about who you are, what you offer and why you are interested in this opportunity</p>
+                                      <a target="_blank" href="/help-pages/4-applying-for-an-opportunity/">How to write a good pitch</a>
+                                    </>
+                                  }
                                   required
                                   as="textarea"
                                   width="xl"
@@ -219,7 +231,7 @@ const OpportunityResponseForm: React.FC = () => {
 
                                 <TextField
                                   id="resumeLink"
-                                  label="LinkedIn Profile URL"
+                                  label="LinkedIn Profile URL (optional)"
                                   hint="Ensure your LinkedIn profile is publicly accessible"
                                   type="text"
                                   width="xl"
@@ -291,10 +303,10 @@ const OpportunityResponseForm: React.FC = () => {
                                     </Aubtn>
                                     <Aubtn type="submit" style={{ marginLeft: '2em' }} onClick={() => {
                                       setFieldValue('isApply', true);
-                                    }} disabled={saving || !user.user.emailVerified}>
+                                    }} disabled={saving || !user.emailVerified}>
                                       {saving ? "Applying" : "Apply"}
                                     </Aubtn>
-                                    {!user.user.emailVerified &&
+                                    {!user.emailVerified &&
                                       <span style={{marginLeft: '1em'}}>To apply, please save and{' '}
                                         <Link
                                           to={`/register/verify-email?from=${encodeURIComponent(`/opportunity-response?opportunityId=${updatedData.opportunityId}`)}`}>

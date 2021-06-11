@@ -1,78 +1,70 @@
-import { graphql, useStaticQuery, Link } from "gatsby";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
-import { MenuItem, MenuItems } from "../../types/types";
-import AUmainNav, { AUmainNavContent } from '@gov.au/main-nav';
+import { Nav, NavContent } from '../../types/auds';
 
 interface Props {
   path: string;
 }
 
-const MainNav: React.FC<Props> = ({ path }) => {
-  const data = useStaticQuery(graphql`
-    query SiteQuery {
-      site {
-        siteMetadata {
-          title
-          menuLinks {
-            text
-            link
-          }
-        }
-      }
-    }
-  `);
-  const user = useContext(UserContext);
+const isActive = (currentPath, path) => {
+  if (path === '/') {
+    return currentPath === path;
+  }
+  return currentPath.startsWith(path);
+}
 
-  const Links: MenuItems = data.site.siteMetadata.menuLinks;
-  let mainNavItems: MenuItems = Links.map((menuItem: MenuItem) => ({
-    text: menuItem.text,
-    link: menuItem.link,
-    active:
-      path.length > 1
-        ? path.replace(/\/$/, "") === menuItem.link
-        : path === menuItem.link,
-  }));
-  if (user.token) {
-    mainNavItems.push({
-      text: "My profile",
-      link: "/dashboard",
-      active:
-        path.length > 1
-          ? path.replace(/\/$/, "") === "/dashboard"
-          : path === "/dashboard",
-    });
-  } else {
-    mainNavItems.push(
-      {
+const MainNav: React.FC<Props> = ({ path }) => {
+  const user = useContext(UserContext);
+  const [menu, setMenu] = useState([]);
+
+  useEffect(() => {
+    const always = [{
+      text: "Home",
+      link: "/",
+      active: isActive(path, '/')
+    }, {
+      text: "About oneAPS",
+      link: "/help-pages/1-about-oneaps/",
+      active: isActive(path, '/help-pages')
+    }, {
+      text: "Find opportunities",
+      link: "/opportunity",
+      active: isActive(path, '/opportunity')
+    }, {
+      text: "Post an opportunity",
+      link: "/post-opportunity",
+      active: isActive(path, '/post-opportunity')
+    }];
+    if (user.token) {
+      setMenu(always.concat([{
+        text: "My profile",
+        link: "/dashboard",
+        active: isActive(path, '/dashboard')
+      }]));
+    } else {
+      setMenu(always.concat([{
         text: "Register",
         link: "/register",
-        active:
-          path.length > 1
-            ? path.replace(/\/$/, "") === "/register"
-            : path === "/register",
-      },
-      {
+        active: isActive(path, '/register')
+      }, {
         text: "Login",
         link: "/login",
-        active:
-          path.length > 1
-            ? path.replace(/\/$/, "") === "/login"
-            : path === "/login",
-      }
-    );
-  }
+        active: isActive(path, '/login')
+      }]));
+    }
+  }, [user]);
+  
 
   return (
-    <AUmainNav dark className="nav" >
+    <Nav dark className="nav" >
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12">
-            <AUmainNavContent items={mainNavItems} />
+            <NavContent items={menu} />
           </div>
         </div>
       </div>
-    </AUmainNav>
+    </Nav>
   );
 };
 

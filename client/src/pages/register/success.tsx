@@ -16,7 +16,7 @@ const Content: React.FC<{opportunityId: number}> = ({opportunityId}) => {
         <li><Link to="/login">Login</Link> using your email and password.</li>
         <li>Enter the verification code from your email when prompted.</li>
       </ul>
-      <p>If you have any questions, please contact <a href="mailto:digitalsquads@dta.gov.au">digitalsquads@dta.gov.au</a>.</p>
+      <p>If you have any questions, please contact <a href="mailto:specialist.advice@dta.gov.au">specialist.advice@dta.gov.au</a>.</p>
     </>
   );
 }

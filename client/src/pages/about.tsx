@@ -29,7 +29,7 @@ const AboutPage: React.FC<PageContext> = ({ pageContext, location }) => {
         <div className="col-sm-12 col-md-6 col-md-pull-6">
           <h2>What oneAPS is</h2>
           <p>
-            As part of the <a href="https://www.dta.gov.au/help-and-advice/digital-profession/join-digital-profession" target="_blank">Digital Profession</a>, our Digital Squads team are trialing a whole-of-government program called oneAPS Opportunities (working title). This program aims to assist agencies to come together to work on government priorities and uplift digital capabilities through digital talent mobility.
+            As part of the <a href="https://www.dta.gov.au/help-and-advice/digital-profession/join-digital-profession" target="_blank">Digital Profession</a>, our Digital Profession team are trialing a whole-of-government program called oneAPS Opportunities (working title). This program aims to assist agencies to come together to work on government priorities and uplift digital capabilities through digital talent mobility.
           </p>
           <h2>What the program does</h2>
           <p>

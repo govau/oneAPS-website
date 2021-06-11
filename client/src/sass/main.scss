@@ -358,37 +358,14 @@ html {
   color: gray;
 }
 
-.nav {
-  background-color: $AU-colordark-background !important;
-  border-color: $AU-colordark-foreground-action !important;
-}
-.nav.au-main-nav.au-main-nav--dark a {
-  color: #fff;
-}
-.nav.au-main-nav.au-main-nav--dark .au-main-nav__menu {
-  background-color: $AU-colordark-background !important;
-}
-.nav.au-main-nav.au-main-nav--dark a:hover, nav.au-main-nav.au-main-nav--dark nav.au-main-nav__toggle:hover {
-  color: #fff;
-  background-color: $AU-colordark-background !important;
-}
-.nav.au-main-nav.au-main-nav--dark .nav.au-main-nav__toggle:hover, .nav.au-main-nav.au-main-nav--dark a:hover {
-  color: #fff;
-  background-color: #16263b !important;
-}
-.nav.au-main-nav.au-main-nav--dark .active a:hover {
-  background-color: #16263b !important;
-  border-color: #16263b !important;
-}
-.nav.au-main-nav.au-main-nav--dark .active a {
-  background-color: #16263b !important;
-  border-color: #16263b !important;
-}
-
 
 .flare {
   background-image: url("/flare.png");
   background-repeat: no-repeat;
   background-position: right;
   background-size: 40%;
+}
+
+.about .au-sidenav__title {
+  display: none;
 }

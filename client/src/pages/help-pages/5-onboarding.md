@@ -3,17 +3,18 @@ title: Onboarding
 layout: help
 ---
 
-# Onboarding
 * [Before the move](#before_the_move)
 * [Onboarding](#onboarding)
 * [Getting started on their first day](#get_started_first_day)
 * [Supporting temporary team members](#support_temp_team_members)
 
 ## Contact the DTA
-When the opportunity participant has been chosen and notified, please contact the [DTA Specialist Advice and Mobility](mailto:specialist.advice@dta.gov.au "email") team to let us know.
+
+When the successful opportunity participant has been chosen and notified, please contact the [DTA Specialist Advice and Mobility](mailto:specialist.advice@dta.gov.au "email") team to let us know.
 
 ## <span id="before_the_move">Before the move</span>
-Use the mobility plan ([word template](/mobility-plan.docx)) with the opportunity participant and their home manager to understand everyone’s responsibilities, objectives and logistics.
+
+You can use the mobility plan ([word template](/mobility-plan.docx)) with the opportunity participant and their home manager to understand everyone’s responsibilities, objectives and logistics.
 
 Here are some things that you should all have agreement on:
 
@@ -21,13 +22,13 @@ Here are some things that you should all have agreement on:
 
 * What are the immediate expectations? What are the team’s longer-term goals?
 
-* What are the agency’s or branches priorities? What projects or work will be most important?
+* What are the agency’s or branch's priorities? What projects or work will be most important?
 
 * What working relationship style suits your team?
 
 * Who are the key people that should be introduced across the broader organisation?
 
-* What key resources or standard operating procedures is required for the role?
+* What key resources or standard operating procedures are required for the role?
 
 * What does the participant want to get out of the experience? What are their goals, and how can these be met within the team?
 
@@ -44,11 +45,9 @@ There are some questions that you will need to consider:
 
 For example will you setup a shared GovTeams space for the participant to use, or do you need to contact your IT support to see if you can invite external guests to collaborate in your system.
 
-
 **What shared tools will the participant need access to?**
 
-For example you may wish to consider getting them a temporary license, depending on the tools you use. It would best best to check with them before on what they currently have access to.
-
+For example you may wish to consider getting the opportunity participant a temporary license, depending on the tools you use. It would best to check with them before on what they currently have access to.
 
 **How will you conduct team rituals/meetings if needed?**
 
@@ -60,7 +59,7 @@ If it’s a small number of days then you may find that signing them in and esco
 
 **Will they be bringing their own device or will they need access to a device from your agency?**
 
-If they don’t have their own you will need to speak with your IT support to organise. If they do bring their own device you will need to organise WIFI access for them.
+If they don’t have their own you will need to speak with your IT support to organise a device for them. If they do bring their own device you will need to organise WIFI access for them.
 
 **Note** that it can take 1-2 weeks for IT and/or security areas to organise access, so keep that in mind in your planning.
 
@@ -70,27 +69,29 @@ Onboarding someone on a temporary move to your team will be much the same as onb
 
 * Simple acts can make a big difference:
 
-    - Assign any new temporary team members a ‘buddy’ for the first few weeks to help them with on-boarding, and answer questions
+    - Assign any new temporary team members a ‘buddy’ to help them with onboarding and answer questions
 
     - If the employee is working in a different office than yourself, organise someone in your team that is based in that office, or a buddy from another team to greet and set them up
 
-    - Have a welcome introduction to the people in the branch.
+    - Have a welcome introduction to the people in the branch
 
     - Have a team meeting to welcome them and introduce who they’ll be working with, and discuss ways of working preferences
 
 * Induct them into the office and show the emergency exits, bathrooms, kitchen, first aid kit, stationary, and let them know if there are any housekeeping rules
 
-* Share any written guides or processes that have been developed by the team so they have access.
+* Share any written guides or processes that have been developed by the team.
 
 * Invite the employee to any relevant meetings.
 
 ## <span id="support_temp_team_members">Supporting temporary team members</span>
 
-Supporting temporary team members throughout the experience can make a big difference to the success of the experience. Consider the following:
+Supporting temporary team members throughout the experience can make a big difference to the success of the experience. 
 
-* Schedule fortnightly, or monthly one-on-one meetings to talk about the work at a broader level than the day-to-day. The employee is in your care for their temporary move so invest the same amount of time and thought as you would a permanent employee.
+Consider the following:
 
-* Check in with each other in the morning and at the end of the day to see how they are going and if they have any questions – you can always change the frequency later if this proves too much or not enough.
+* Schedule regular catch ups. The employee is in your care for their temporary move so invest the same amount of time and thought as you would a permanent employee.
+
+* Check in with each other in the morning and at the end of the day on days you are working together to see how they are going and if they have any questions – you can always change the frequency later if this proves too much or not enough.
 
 * When they’ve been assigned a task, walk them through the process a few times; it shouldn’t be expected that the employee will pick it up straight away if it’s a new way of working.
 
@@ -98,8 +99,8 @@ Supporting temporary team members throughout the experience can make a big diffe
 
 If an employee on a temporary move is not meeting your expectations, you will need to address this situation. Temporary moves can be a difficult transition for employees; there may be a range of factors at play. You should discuss this with the employee and should also consider a discussion with the home manager. The Specialist Advice and Mobility team is here to assist you in this situation.
 
-If you need to extend or shorten the employee’s temporary move, you should discuss this with the employee, home manager, and the Specialist Advice and Mobility team. There may be additional paperwork to complete to set out any changes to the original agreement.
+If you need to extend or shorten the employee’s temporary move, you should discuss this with the employee, home manager, and the Specialist Advice and Mobility team. There may be additional paperwork to complete to set up any changes to the original agreement.
 
-Temporary staff must be provided with a safe environment. You have the primary duty of care and responsibility under relevant jurisdiction’s work health and safety legislation while the opportunity participant is working for you. Note that the participant is still covered by their home jurisdiction’s workers’ compensation insurance scheme.
+Temporary staff must be provided with a safe environment in line with government Work Health and Safety Guidelines. You have the primary duty of care and responsibility under relevant jurisdiction’s work health and safety legislation while the opportunity participant is working for you. Note that the participant is still covered by their home jurisdiction’s workers’ compensation insurance scheme.
 
 

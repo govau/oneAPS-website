@@ -15,11 +15,11 @@ layout: help
 
 ## <span id="Reviewing-applications-for-your-opportunity">Reviewing applications for your opportunity</span>
 
-When you post an opportunity, you will be notified of applications received by email. 
+After you post an opportunity, you will be notified by email each time an application is submitted. 
 
-To review your applications, log in to oneAPS Opportunities and go to “My profile”. 
+To review received applications, log in to oneAPS Opportunities and go to 'My profile'. 
 
-Here you will be able to read pitches from applicants as to why they would like to participate in your opportunity and what skills they bring to the opportunity. 
+Here you will be able to read pitches from applicants about what skills they have and why they would like to participate in your opportunity. 
 
 Some applicants may also share a link to a public profile such as LinkedIn or they may have chosen to upload their resume.
 
@@ -47,7 +47,7 @@ Your email may look something like:
 
 > *Hi [insert name],*
 > 
-> *Thank you for your applying for our opportunity [insert name of opportunity].*
+> *Thank you for applying for our opportunity [insert name of opportunity].*
 > 
 > *Unfortunately, on this occasion your application was not successful but we encourage you to apply for other opportunities in the future.*
 >

@@ -45,6 +45,18 @@ module.exports = {
         jsxPragma: `jsx`, // defaults to "React"
         allExtensions: true, // defaults to false
       },
+    }, {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // The property ID; the tracking code won't be generated without it
+        trackingId: "G-3HQK4D29HY",
+        // Defines where to place the tracking script - `true` in the head and `false` in the body
+        head: true,
+        // Avoids sending pageview hits from custom paths
+        exclude: ["/preview/**", "/do-not-track/me/too/"],
+        // Delays sending pageview hits on route update (in milliseconds)
+        pageTransitionDelay: 0,
+      },
     },
   ],
 };

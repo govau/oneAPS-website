@@ -76,6 +76,32 @@ specialist.advice@dta.gov.au
             );
         }
 
+        public async Task ApplicationReceived(Opportunity opportunity, Lookup agency, User user) {
+            var personalisation = new Dictionary<string, dynamic>(){
+                {"subject", $"You have received an application"},
+                {"message", $@"
+Hi {user.Name},
+
+You have received an application for “{opportunity.JobTitle}”.
+
+The response to the application can be view in your profile.
+
+If you have any questions, please contact specialist.advice@dta.gov.au.
+
+Regards
+
+Specialist Advice and Mobility Team
+Digital Profession
+specialist.advice@dta.gov.au
+"},
+            };
+            
+            await SendEmail(
+                user.EmailAddress,
+                personalisation
+            );
+        }
+
         public async Task EmailVerification(IUser user, UserClaim userClaim) {
             var personalisation = new Dictionary<string, dynamic>(){
                 {"subject", "Email address confirmation"},

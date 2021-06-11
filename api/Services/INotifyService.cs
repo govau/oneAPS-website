@@ -5,6 +5,7 @@ using Dta.OneAps.Api.Shared;
 namespace Dta.OneAps.Api.Services {
     public interface INotifyService {
         Task SuccessfullyApplied(Opportunity opportunity, Lookup agency, IUser user);
+        Task ApplicationReceived(Opportunity opportunity, Lookup agency, User user);
         Task EmailVerification(IUser user, UserClaim userClaim);
         Task ResendEmailVerification(IUser user, UserClaim userClaim);
         Task VerifyResetPassword(IUser user, UserClaim userClaim);

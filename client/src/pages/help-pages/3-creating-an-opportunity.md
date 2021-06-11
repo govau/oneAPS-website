@@ -3,8 +3,6 @@ title: Creating an opportunity
 layout: help
 ---
 
-# Creating an opportunity
-
 <nav class="au-inpage-nav-links" aria-label="in page navigation">
   <h2 class="au-inpage-nav-links__heading">On this page:</h2>
   <ul class="au-link-list">
@@ -21,9 +19,9 @@ There are many types of digital opportunities you can post, depending on what yo
 
 We encourage opportunities that are:
 
-- From a few days full time to part time for a few months
+- From a couple of hours to a few days or a few months
 - Able to offer flexible working arrangements (for example, completed remotely) 
-- Focused on digital and data skills and capabilities (ICT capabilities and human-centred capabilities such as service design and user research).
+- Focused on digital and data skills and capabilities (ICT capabilities and human-centred capabilities such as design and research).
 
 Examples include: 
 
@@ -35,7 +33,7 @@ Examples include:
 - Subject matter expert advice
 - Event volunteers
 
-Not sure exactly what skills you are looking for? Try the <a href="https://career-pathways.apps.b.cld.gov.au/" target="_blank" rel="external noreferrer">APS Career Pathfinder tool</a>
+Not sure exactly what skills you are looking for? Feel free to get in touch with the Specialist Advice and Mobility Team at <a href="mailto:specialist.advice@dta.gov.au" target="_blank" rel="external noreferrer">specialist.advice@dta.gov.au</a>
 
 ## <span id="Posting-an-opportunity-is-quick-and-easy">Posting an opportunity is quick and easy</span> 
 
@@ -60,7 +58,7 @@ Your opportunity post will include:
 
 Well-written opportunities will attract better qualified and more informed applicants.
 
-The following tips will help you write clear, descriptive and successful opportunity announcements.
+The following tips will help you write clear and descriptive opportunity announcements.
 
 ### Keep opportunities small and simple
 

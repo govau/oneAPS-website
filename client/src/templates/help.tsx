@@ -60,7 +60,7 @@ const Help: React.FC<PageContext> = ({ pageContext, location }) => {
   return (
     <DefaultLayout pageContext={pageContext} location={location}>
       <>
-        <SEO title="Help" />
+        <SEO title={frontmatter.title} />
         <nav className="au-breadcrumbs" aria-label="breadcrumb">
           <ul className="au-link-list au-link-list--inline">
             <li>

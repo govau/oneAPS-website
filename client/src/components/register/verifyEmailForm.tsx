@@ -83,10 +83,11 @@ export const VerifyEmailForm: React.FC<VerifyEmailProps> = ({ fromPage }: Verify
               <TextField id="verificationCode" label="Verification code" width={"md"} required />
 
               <p>
-                You can try <a href="" onClick={async (e) => {
+              You can try <a href="" onClick={async (e) => {
                     e.preventDefault();
                     if (!sending) {
                       await resendVerifyEmail();
+                      navigate(`/register/send-verification-code?from=${fromPage ? encodeURIComponent(fromPage) : ''}`);
                     }
                   }}>sending a new verification code</a> to "{user.emailAddress}" if you didn't recieve an email.
               </p>

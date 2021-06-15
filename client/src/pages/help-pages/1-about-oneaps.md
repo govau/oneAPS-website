@@ -12,23 +12,23 @@ layout: help
   </ul>
 </nav>
 
-## <span name="What-is-oneAPS-Opportunities">What is oneAPS Opportunities?</span>
+## <span id="What-is-oneAPS-Opportunities">What is oneAPS Opportunities?</span>
 
-As part of the <a href="https://www.dta.gov.au/help-and-advice/digital-profession" target="_blank" rel="external noreferrer">Digital Profession</a>, the DTA are trialing a new approach to uplift skills through digital talent mobility. 
+As part of the <a href="https://www.dta.gov.au/help-and-advice/digital-profession" target="_blank" rel="external noreferrer">Digital Profession</a>, the DTA are trialling a new approach to uplift skills through digital talent mobility. 
 
 oneAPS Opportunities enables managers to access digital professionals from across the Federal Government to assist with short-term flexible work opportunities.
 
 The program is inspired by gig economy platforms such as Freelancer, Airtasker and <a href="https://openopps.usajobs.gov/" target="_blank" rel="external noreferrer">US Government Open Opportunities</a>.
 
-Staff stay linked to their home teams using ‘Informal arrangements’. Staff retains pay and conditions in line with the home organisation’s enterprise agreement and remains on their home organisation’s payroll.
+Staff stay connected to their home teams using ‘Informal arrangements’. Staff retain pay and conditions in line with the home organisation’s enterprise agreement and remains on their home organisation’s payroll.
 
 For further guidance on mobility for managers, employees, HR and executive, see the <a href="https://www.apsc.gov.au/initiatives-and-programs/aps-mobility-framework/mobility-fundamentals" target="_blank" rel="external noreferrer">APS Mobility Framework</a> by the APSC.
 
-## <span name="Who-is-it-for?">Who is it for?</span>
+## <span id="Who-is-it-for?">Who is it for?</span>
 
-Any Federal Government employee can create and apply for opportunities to access digital or data skills. 
+Any Federal Government employee can create and apply for opportunities. 
 
-When we say “digital skills”, we mean: 
+When we say 'digital skills', we mean: 
 - People who work in ICT or manage ICT teams
 - People who design and deliver digital policies and services 
 - Digital leaders
@@ -36,10 +36,27 @@ When we say “digital skills”, we mean:
 
 This includes hardware technicians, agile delivery managers, business analysts, user researchers, human-centered designers and everything in between.
 
-## <span name="Benefits">Benefits</span>
+## <span id="Benefits">Benefits</span>
+
+### For employees:
+
+- Make connections
+- Showcase your skills
+- Gain experience in other agencies
+- Learn by doing
+- Make a difference on meaningful opportunities
+
+### For host managers:
 
 - Tap into the digital talent to deliver better outcomes
+- Uplift your team's capabilities
+- Build networks with other organisations
+- Learn from new perspectives and ways of working
+- Secure expertise to solve complex problems
+
+### For home managers:
 - Broaden staff skills and experiences
+- Retain talent and build employee engagement
 - Develop professional networks
 - Be recognised as a great leader for developing talent
-- Contribute to the vision of one APS working better together
+- Contribute to the vision of oneAPS working better together

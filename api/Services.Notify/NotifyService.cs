@@ -84,7 +84,7 @@ Hi {user.Name},
 
 You have received an application for “{opportunity.JobTitle}”.
 
-The response to the application can be view in your profile.
+The response to the application can be viewed in your profile.
 
 If you have any questions, please contact specialist.advice@dta.gov.au.
 

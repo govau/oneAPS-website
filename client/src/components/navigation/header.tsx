@@ -18,7 +18,7 @@ const Header: React.FC<Props> = ({ siteTitle, path }) => {
                 <div className="au-header__text">
                   <h1 className="au-header__heading">{siteTitle}</h1>
                   <div className="au-header__subline">
-                    {<>A Digital Profession <span style={{ fontWeight: 'bolder' }}>pilot</span> Program</>}
+                    {<>A Digital Profession <span style={{ fontWeight: 'bolder' }}>mobility pilot</span> program</>}
                   </div>
                 </div>
               </a>

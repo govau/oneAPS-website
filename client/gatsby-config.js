@@ -45,6 +45,13 @@ module.exports = {
         jsxPragma: `jsx`, // defaults to "React"
         allExtensions: true, // defaults to false
       },
+    }, {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          "G-3HQK4D29HY",
+        ],
+      },
     },
   ],
 };

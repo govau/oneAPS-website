@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Dta.OneAps.Api.Services.Entities;
 
 namespace Dta.OneAps.Api.Services.Sql {
     public class ReportService : DatabaseOperationService, IReportService {
@@ -16,6 +15,7 @@ namespace Dta.OneAps.Api.Services.Sql {
             var now = DateTime.Now;
             var sevenDaysAgo = now.AddDays(-7).Date;
             var startOfMonth = now.AddDays(-now.Day+1).Date;
+            var startOfNextMonth = now.AddMonths(1).AddDays(-now.Day+1).Date;
             return new {
                 today = now.Date,
                 opportunity = new {
@@ -25,19 +25,36 @@ namespace Dta.OneAps.Api.Services.Sql {
                 user = new {
                     registered = new {
                         total = await _context.User.CountAsync(),
-                        last7Days = await _context.User.Where(u => u.CreatedAt <= sevenDaysAgo).CountAsync(),
-                        startOfMonth = await _context.User.Where(u => u.CreatedAt <= startOfMonth).CountAsync(),
+                        last7Days = await _context.User.Where(u =>
+                            u.CreatedAt >= sevenDaysAgo
+                        ).CountAsync(),
+                        startOfMonth = await _context.User.Where(u => 
+                            u.CreatedAt >= startOfMonth &&
+                            u.CreatedAt < startOfNextMonth
+                        ).CountAsync(),
                     },
                     login = new {
-                        last7Days = await _context.User.Where(u => u.LoggedInAt <= sevenDaysAgo).CountAsync(),
-                        startOfMonth = await _context.User.Where(u => u.LoggedInAt <= startOfMonth).CountAsync()
+                        last7Days = await _context.User.Where(u =>
+                            u.LoggedInAt >= sevenDaysAgo
+                        ).CountAsync(),
+                        startOfMonth = await _context.User.Where(u =>
+                            u.LoggedInAt >= startOfMonth &&
+                            u.LoggedInAt < startOfNextMonth
+                        ).CountAsync()
                     }
                 },
                 applications = new {
                     started = await _context.OpportunityResponse.CountAsync(),
                     applied = await _context.OpportunityResponse.Where(or => or.SubmittedAt != null).CountAsync(),
-                    last7Days = await _context.OpportunityResponse.Where(or => or.SubmittedAt != null && or.SubmittedAt <= sevenDaysAgo).CountAsync(),
-                    startOfMonth = await _context.OpportunityResponse.Where(or => or.SubmittedAt != null && or.SubmittedAt <= startOfMonth).CountAsync(),
+                    last7Days = await _context.OpportunityResponse.Where(or =>
+                        or.SubmittedAt != null &&
+                        or.SubmittedAt >= sevenDaysAgo
+                    ).CountAsync(),
+                    startOfMonth = await _context.OpportunityResponse.Where(or =>
+                        or.SubmittedAt != null &&
+                        or.SubmittedAt >= startOfMonth &&
+                        or.SubmittedAt < startOfNextMonth
+                    ).CountAsync(),
                 }
             };
         }

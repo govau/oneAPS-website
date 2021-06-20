@@ -24,7 +24,7 @@ namespace Dta.OneAps.Api.Services.Sql {
                 user = new {
                     registered = await _context.User.CountAsync(),
                     last7Days = await _context.User.Where(u => u.LoggedInAt <= sevenDaysAgo).CountAsync(),
-                    fromStartOfMonth = await _context.User.Where(u => u.LoggedInAt <= startOfMonth).CountAsync()
+                    startOfMonth = await _context.User.Where(u => u.LoggedInAt <= startOfMonth).CountAsync()
                 },
                 opportunityResponse = new {
                     total = await _context.OpportunityResponse.CountAsync(),

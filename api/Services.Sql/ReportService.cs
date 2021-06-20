@@ -16,8 +16,8 @@ namespace Dta.OneAps.Api.Services.Sql {
             var now = DateTime.Now;
             var sevenDaysAgo = now.AddDays(-7).Date;
             var startOfMonth = now.AddDays(-now.Day+1).Date;
-            System.Console.WriteLine(startOfMonth);
             return new {
+                today = now.Date,
                 opportunity = new {
                     total = await _context.Opportunity.CountAsync(),
                     published = await _context.Opportunity.Where(o => o.PublishedAt != null).CountAsync(),

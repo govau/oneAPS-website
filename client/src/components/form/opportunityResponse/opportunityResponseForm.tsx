@@ -20,6 +20,7 @@ import { IOpportunityResponseType } from "../../../types";
 const OpportunityResponseForm: React.FC = () => {
   const [saving, setSaving] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
+  const [saved, setSaved] = useState<boolean>(false);
   const [uploadBtn, setUploadBtn] = useState<{
     disable: boolean,
     text: string
@@ -76,11 +77,9 @@ const OpportunityResponseForm: React.FC = () => {
       resumeLink,
       whyPickMe,
     });
+    setSaving(false);
     if (result) {
-      setSaving(false);
       navigate(`/successfully-applied/?opportunityId=${updatedData.opportunityId}`);
-    } else {
-      setSaving(false);
     }
   };
 
@@ -94,10 +93,9 @@ const OpportunityResponseForm: React.FC = () => {
       whyPickMe,
     });
     if (result) {
-      setSaving(false);
-    } else {
-      setSaving(false);
+      setSaved(true);
     }
+    setSaving(false);
   };
 
   return (
@@ -301,7 +299,7 @@ const OpportunityResponseForm: React.FC = () => {
                                     }} disabled={saving}>
                                       {saving ? "Saving" : "Save"}
                                     </Aubtn>
-                                    <Aubtn type="submit" style={{ marginLeft: '2em' }} onClick={() => {
+                                    <Aubtn id="btnApply" type="submit" style={{ marginLeft: '2em' }} onClick={() => {
                                       setFieldValue('isApply', true);
                                     }} disabled={saving || !user.emailVerified}>
                                       {saving ? "Applying" : "Apply"}
@@ -313,6 +311,16 @@ const OpportunityResponseForm: React.FC = () => {
                                             verify your email
                                         </Link>.
                                       </span>
+                                    }
+                                    {saved && 
+                                      <PageAlert type="success" className="max-30">
+                                        <>
+                                          <h2>Your application has been saved successfully.</h2>
+                                          <p>
+                                            You can <a href="#btnApply"><b>apply</b></a> for this opportunity when your application is ready.
+                                          </p>
+                                        </>
+                                      </PageAlert>
                                     }
                                   </AuFormGroup>
                                 )}

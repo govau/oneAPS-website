@@ -57,6 +57,8 @@ export const useOpportunityHook = () => {
     try {
       var result = await updateOpportunity(formData, user.token);
       setData(result.data);
+      setSaving(false);
+      setErrors([]);
       return {
         data: result.data,
         success: true

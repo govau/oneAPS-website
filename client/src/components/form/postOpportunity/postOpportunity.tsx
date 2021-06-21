@@ -19,6 +19,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
   const agency = useLookupHook('agency', 'an agency');
   const securityclearance = useLookupHook('securityclearance', 'a security clearance');
   const { clearFn, loadFn, createOpporunityFn, updateOpporunityFn, saving, errors, data } = useOpportunityHook();
+  const [saved, setSaved] = useState<boolean>(false);
 
   useEffect(() => {
     const load = async () => {
@@ -116,7 +117,11 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                     }
                   }
                   if (success) {
-                    navigate(`/successfully-posted?opportunityId=${opportunityId}`);
+                    if (values.isPosting) {
+                      navigate(`/successfully-posted?opportunityId=${opportunityId}`);
+                    } else {
+                      setSaved(true);
+                    }
                   }
                 }}
               >
@@ -269,7 +274,7 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                         {saving ? "Saving" : "Save"}
                       </Aubtn>
                       {(!data || (data && !data.publishedAt)) && <>
-                        <Aubtn type="submit" style={{ marginLeft: '2em' }} onClick={() => {
+                        <Aubtn id="btnPost" type="submit" style={{ marginLeft: '2em' }} onClick={() => {
                           setFieldValue('isPosting', true);
                         }} disabled={saving || !user.emailVerified}>
                           {saving ? "Posting" : "Post"}
@@ -282,8 +287,22 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                             </Link>.
                           </span>
                         }
-                        
                       </>}
+                      {saved && 
+                        <PageAlert type="success" className="max-30">
+                          <>
+                            <h2>Your opportunity has been saved successfully.</h2>
+                            {data && data.publishedAt ? 
+                              <p>
+                                Your changes are now live.
+                              </p>
+                            : <p>
+                                You can <a href="#btnPost"><b>post</b></a> this opportunity when it is ready.
+                              </p>
+                            }
+                          </>
+                        </PageAlert>
+                      }
                     </AuFormGroup>
                   </Form>
                 )}

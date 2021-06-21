@@ -55,6 +55,9 @@ namespace Dta.OneAps.Api.Services.Sql {
                         or.SubmittedAt >= startOfMonth &&
                         or.SubmittedAt < startOfNextMonth
                     ).CountAsync(),
+                    withdrawn = await _context.OpportunityResponse.Where(or =>
+                        or.WithdrawnAt != null
+                    ).CountAsync(),
                 }
             };
         }

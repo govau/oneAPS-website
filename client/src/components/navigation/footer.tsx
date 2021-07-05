@@ -58,7 +58,7 @@ const Footer: React.FC<Props> = ({ path }) => {
                         {path === "/" && (
                           <span>
                             {" "}
-                            Illusatrations sourced from{" "}
+                            Illustrations sourced from{" "}
                             <a href="https://icons8.com/ouch/style/marginalia/">
                               icons8
                             </a>

@@ -182,12 +182,12 @@ Request for your own personal information may be made to:
 **Email** 
 <a href="mailto:foi@dta.gov.au">foi@dta.gov.au</a>
    
-**Post** 
-FOI Officer 
-Digital Transformation Agency 
-PO Box 457 
+**Post**  
+FOI Officer  
+Digital Transformation Agency  
+PO Box 457  
 Canberra City 
-ACT 2601 
+ACT 2601
 
 We will respond to request to access (and where relevant, correct) your own personal information within 30 days of receiving the request.  If we are required or permitted to refuse access, we will give you a written notice setting out: 
 

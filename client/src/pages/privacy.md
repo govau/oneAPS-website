@@ -35,7 +35,7 @@ Information about your interactions with us, such as:
 
 * opportunities you’ve posted 
 
-* applications for opportunities you’ve made 
+* opportunities you’ve submitted responses for 
 
 * feedback and complaints 
 

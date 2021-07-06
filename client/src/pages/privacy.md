@@ -171,7 +171,7 @@ If we make a correction and we have disclosed the incorrect information to other
 
 If we refuse to correct your personal information, you can ask us to associate with it (for example, attach or link) a statement that you believe the information is incorrect and why. 
 
-You also have the right under the Freedom of Information Act 1982 to request access to documents that we hold and ask for information that we hold about you to be changed or annotated if it is incomplete, incorrect, out-of- date or misleading.   
+You also have the right under the Freedom of Information Act 1982 to request access to documents that we hold and ask for information that we hold about you to be changed or annotated if it is incomplete, incorrect, out-of-date or misleading.   
 
 ## How to contact us 
 

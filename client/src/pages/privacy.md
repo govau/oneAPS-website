@@ -29,7 +29,7 @@ Information about you and your circumstances, such as your:
 
 * employment information such as role title and APS department or agency 
 
-* professional details, such as your pitch, LinkedIn profile URL, and a resume 
+* professional details, such as your pitch, LinkedIn profile URL, and a résumé 
 
 Information about your interactions with us, such as: 
 

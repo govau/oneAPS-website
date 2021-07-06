@@ -204,10 +204,10 @@ Complaints can be made to:
 **Email** 
 <a href="mailto:privacy@dta.gov.au">privacy@dta.gov.au</a>
 
-**Post** 
-Privacy Officer 
-Digital Transformation Agency 
-PO Box 457 
+**Post**  
+Privacy Officer  
+Digital Transformation Agency  
+PO Box 457  
 Canberra City 
 ACT 2601 
 

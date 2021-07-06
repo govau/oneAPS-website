@@ -77,7 +77,7 @@ We may collect your personal information when it is reasonably necessary for del
 
 ### For market and user research 
 
-We may share your personal information to conduct statistical analysis, market research and user to improve service delivery. We may engage external companies to conduct this research on our behalf. 
+We may share your personal information to conduct statistical analysis, market research and user research to improve service delivery. We may engage external companies to conduct this research on our behalf. 
 
 We will first ask your permission before sharing your information. If you do not wish to participate in the market research, please contact us.  
 

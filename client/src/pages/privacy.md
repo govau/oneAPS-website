@@ -213,4 +213,14 @@ ACT 2601
 
 If we receive a complaint from you, we will acknowledge your complaint within 3 business days of receiving the complaint.   
 
-We will respond to your complaint within 30 days (or another timeframe agreed with you) of receiving your complaint and explain the actions we have taken or propose to take to address the issues raised in your complaint.  If you are not satisfied with DTA’s response to your complaint, you may ask for a review by a senior officer within DTA.  You may also lodge a complaint to the Office of the Australian Information Commissioner by email to <a href="mailto:enquiries@oaic.gov.au">enquiries@oaic.gov.au</a> or by post to GPO Box 5218, Sydney NSW 2001. 
+We will respond to your complaint within 30 days (or another timeframe agreed with you) of receiving your complaint and explain the actions we have taken or propose to take to address the issues raised in your complaint.  If you are not satisfied with DTA’s response to your complaint, you may ask for a review by a senior officer within DTA.  You may also lodge a complaint to the Office of the Australian Information Commissioner.
+
+To lodge a complaint to the Office of the Australian Information Commissioner:
+
+**Email**   
+<a href="mailto:enquiries@oaic.gov.au">enquiries@oaic.gov.au</a> 
+
+**Post**    
+GPO Box 5218  
+Sydney NSW  
+2001  

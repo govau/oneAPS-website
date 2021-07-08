@@ -222,5 +222,4 @@ To lodge a complaint to the Office of the Australian Information Commissioner:
 
 **Post**    
 GPO Box 5218  
-Sydney NSW  
-2001  
+Sydney NSW 2001  

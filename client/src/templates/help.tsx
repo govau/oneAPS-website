@@ -10,7 +10,14 @@ const Help: React.FC<PageContext> = ({ pageContext, location }) => {
 
   const data = useStaticQuery(graphql`
       query MyQuery {
-        allMarkdownRemark(sort: {fields: fields___slug}) {
+        allMarkdownRemark(
+          filter: {
+            fileAbsolutePath: {
+              regex: "/help-pages/"
+            }
+          },
+          sort: {fields: fields___slug}
+        ) {
           nodes {
             fields {
               slug

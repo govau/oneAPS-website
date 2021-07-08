@@ -197,7 +197,7 @@ We will respond to request to access (and where relevant, correct) your own pers
 
 ## How to make a complaint 
 
-If you wish to make a complaint about how DTA’s has handled your personal information, please do so in writing.  If you need help lodging a complaint, you can contact the Privacy Officer on 02 6120 8595. 
+If you wish to make a complaint about how the DTA has handled your personal information, please do so in writing.  If you need help lodging a complaint, you can contact the Privacy Officer on 02 6120 8595. 
 
 Complaints can be made to: 
 

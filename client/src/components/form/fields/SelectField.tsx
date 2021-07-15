@@ -24,9 +24,10 @@ interface SelectFieldProps {
 const SelectField: React.FC<SelectFieldProps> = (props: SelectFieldProps) => {
   const [field, meta] = useField({ name: props.id, ...props });
   const error = meta.touched && meta.error ? meta.error : "";
+  const status = error ? "invalid" : "valid"
 
   return (
-    <AuFormGroup status={error ? "invalid" : "valid"}>
+    <AuFormGroup status={status}>
       <AuLabel htmlFor={props.id} text={props.label} />
       {error && <AuErrorText text={meta.error} id={`${props.id}--error`} />}
       {props.hint && <AuHintText text={props.hint} />}
@@ -34,6 +35,7 @@ const SelectField: React.FC<SelectFieldProps> = (props: SelectFieldProps) => {
         {...props}
         {...field}
         aria-describedby={error && `${props.id}--error`}
+        status={status}
       />
     </AuFormGroup>
   );

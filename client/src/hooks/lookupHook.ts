@@ -21,7 +21,7 @@ export const useLookupHook = (name: lookupType, label?: string) => {
       const result = await loadLookup(name);
       let data = result.data;
       if (label) {
-        data = [{ text: `Please select ${label}`, value: null }].concat(result.data);
+        data = [{ text: `Please select ${label}`, value: '' }].concat(result.data);
       }
       setLookupData({
         loaded: true,

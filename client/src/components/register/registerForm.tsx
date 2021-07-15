@@ -112,7 +112,7 @@ export const RegisterForm: React.FC = () => {
             <TextField
               id="mobile"
               label="Contact number"
-              width="m"
+              width="md"
               type="text"
               required
             />

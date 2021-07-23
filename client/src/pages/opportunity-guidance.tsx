@@ -20,6 +20,7 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
             <li>Post an opportunity</li>
           </ul>
         </nav>
+        <h1>Post an opportunity</h1>
       </>
     </DefaultLayout>
   );

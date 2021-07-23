@@ -21,6 +21,14 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
           </ul>
         </nav>
         <h1>Post an opportunity</h1>
+        <p>
+          We are trialling a new approach to mobility in government. Here's some
+          information to help you decide if this is the right place for you.
+        </p>
+        <section>
+          <h2>Who can post an opportunity?</h2>
+          <p>Any Commonwealth government employee can post an opportunity.</p>
+        </section>
       </>
     </DefaultLayout>
   );

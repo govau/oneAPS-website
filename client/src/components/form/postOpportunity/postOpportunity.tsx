@@ -151,6 +151,12 @@ const PostOpportunityForm: React.FC<{ opportunityId?: number }> = ({ opportunity
                       <ClientErrorDisplay errors={errors} />
                     )}
 
+                    <PageAlert type="info" className="max-30">
+                        <p>Do not post sensitive or classified information. The Digital Professions 
+                          will moderate site content, including the removal of content, in line with 
+                          the APS Code of Conduct.</p>
+                    </PageAlert>
+
                     <AuFieldset className="mt-2 mb-0">
                       <TextField
                         id="jobTitle"

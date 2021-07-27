@@ -22,7 +22,7 @@ const MainNav: React.FC<Props> = ({ path }) => {
     }, {
       text: "About oneAPS",
       link: "/help-pages/1-about-oneaps/",
-      active: isActive(path, '/help-pages')
+      active: isActive(path, '/help-pages/1-about-oneaps/')
     }, {
       text: "Find opportunities",
       link: "/opportunity",

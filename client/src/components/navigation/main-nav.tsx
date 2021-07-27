@@ -32,8 +32,8 @@ const MainNav: React.FC<Props> = ({ path }) => {
       active: isActive(path, '/opportunity')
     }, {
       text: "Post an opportunity",
-      link: "/post-opportunity",
-      active: isActive(path, '/post-opportunity')
+      link: "/opportunity-guidance",
+      active: isActive(path, '/opportunity-guidance')
     }];
     if (user.token) {
       setMenu(always.concat([{

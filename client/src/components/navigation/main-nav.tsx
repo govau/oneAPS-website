@@ -7,10 +7,7 @@ interface Props {
 }
 
 const isActive = (currentPath, path) => {
-  if (path === '/') {
-    return currentPath === path;
-  }
-  return currentPath.startsWith(path);
+  return currentPath === path;
 }
 
 const MainNav: React.FC<Props> = ({ path }) => {
@@ -25,15 +22,15 @@ const MainNav: React.FC<Props> = ({ path }) => {
     }, {
       text: "About oneAPS",
       link: "/help-pages/1-about-oneaps/",
-      active: isActive(path, '/help-pages')
+      active: isActive(path, '/help-pages/1-about-oneaps/')
     }, {
       text: "Find opportunities",
       link: "/opportunity",
       active: isActive(path, '/opportunity')
     }, {
       text: "Post an opportunity",
-      link: "/post-opportunity",
-      active: isActive(path, '/post-opportunity')
+      link: "/opportunity-guidance",
+      active: isActive(path, '/opportunity-guidance')
     }];
     if (user.token) {
       setMenu(always.concat([{

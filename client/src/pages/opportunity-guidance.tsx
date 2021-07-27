@@ -49,7 +49,7 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
           <ul className="accepted-list">
             <li>A few hours or days to a few months long</li>
             <li>Seeking digital or data skills</li>
-            <li>Able to be completed flexibly through remote working or part time hours</li>
+            <li>Able to be completed flexibly through remote working or part-time hours</li>
             <li>Do not need full onboarding to your organisation’s ICT systems</li>
             <li>Low risk</li>
             <li>Able to be completed through an informal arrangement</li>

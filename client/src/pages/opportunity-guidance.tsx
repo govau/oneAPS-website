@@ -82,6 +82,7 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
           <h2 id="shape-the-future">Help us shape the future of this initiative</h2>
           <p>As this is a pilot, we will have a few touchpoints along the way to get your feedback and provide support.</p>
           <p>We will also encourage you to share your story when the opportunity is completed.</p>
+          <Link className="au-btn margin-top-1" to="/post-opportunity">Continue</Link>
         </section>
       </>
     </DefaultLayout>

@@ -48,6 +48,17 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
             <li>Opportunities which contain Sensitive or Classified information</li>
           </ul>
         </section>
+        <section>
+          <h2>How it works</h2>
+          <p>An opportunity is kind of like a 'micro-assignment' where APS staff can work on a task, in a role, or on a project for a short period of time.</p>
+          <p>Informal arrangements are usually supported by an email agreement between a host manager, home manager and staff member.</p>
+          <p>Under an informal arrangement:</p>
+          <ul>
+            <li>Staff retain pay and conditions in line with the home organisation’s enterprise agreement</li>
+            <li>Staff remain on home organisation's payroll</li>
+            <li>Staff can work between the organisations (e.g. a two-three day split, or 'week on week off')</li>
+          </ul>
+        </section>
       </>
     </DefaultLayout>
   );

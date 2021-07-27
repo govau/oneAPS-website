@@ -29,6 +29,25 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
           <h2>Who can post an opportunity?</h2>
           <p>Any Commonwealth government employee can post an opportunity.</p>
         </section>
+        <section>
+          <h2>What opportunities can I post?</h2> 
+          <p>We encourage opportunities that are:</p>
+          <ul className="accepted-list">
+            <li>A few hours or days to a few months long</li>
+            <li>Seeking digital or data skills (link to our guidance page on digital and data)</li>
+            <li>Able to be completed flexibly through remote working or part time hours</li>
+            <li>Do not need full onboarding to your organisation’s ICT systems</li>
+            <li>Low risk</li>
+            <li>Able to be completed through an informal arrangement</li>
+          </ul>
+          <p>The following opportunities do not fit the program:</p>
+          <ul className="not-accepted-list">
+            <li>Secondments or temporary transfers</li>
+            <li>Opportunities where there is a change to pay and conditions</li>
+            <li>Time sensitive or high-risk opportunities</li>
+            <li>Opportunities which contain Sensitive or Classified information</li>
+          </ul>
+        </section>
       </>
     </DefaultLayout>
   );

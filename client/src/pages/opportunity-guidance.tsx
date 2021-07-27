@@ -64,6 +64,11 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
           <img alt="Simple monthly calendar showing how opportunities can be split between regular duties." src="/calendar.jpeg" />
           <p>For more information, see <Link to="/help-pages/3-creating-an-opportunity/">Creating an opportunity</Link></p>
         </section>
+        <section>
+          <h2>Help us shape the future of this initiative</h2>
+          <p>As this is a pilot, we will have a few touchpoints along the way to get your feedback and provide support.</p>
+          <p>We will also encourage you to share your story when the opportunity is completed.</p>
+        </section>
       </>
     </DefaultLayout>
   );

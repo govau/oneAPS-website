@@ -59,6 +59,11 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
             <li>Staff can work between the organisations (e.g. a two-three day split, or 'week on week off')</li>
           </ul>
         </section>
+        <section>
+          <h2>Examples of different ways you might access a staff member's time across a month</h2>
+          <img alt="Simple monthly calendar showing how opportunities can be split between regular duties." src="/calendar.jpeg" />
+          <p>For more information, see <Link to="/help-pages/3-creating-an-opportunity/">Creating an opportunity</Link></p>
+        </section>
       </>
     </DefaultLayout>
   );

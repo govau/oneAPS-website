@@ -7,10 +7,7 @@ interface Props {
 }
 
 const isActive = (currentPath, path) => {
-  if (path === '/') {
-    return currentPath === path;
-  }
-  return currentPath.startsWith(path);
+  return currentPath === path;
 }
 
 const MainNav: React.FC<Props> = ({ path }) => {

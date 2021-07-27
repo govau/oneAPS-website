@@ -24,6 +24,7 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
         <nav className="au-inpage-nav-links" aria-label="in page navigation">
           <h2 className="au-inpage-nav-links__heading">On this page:</h2>
           <ul className="au-link-list">
+            <li><a href="#overview">Overview</a></li>
             <li><a href="#who-can-post-an-opportunity">Who can post an opportunity?</a></li>
             <li><a href="#what-opportunities-can-I-post">What opportunities can I post?</a></li>
             <li><a href="#how-it-works">How it works</a></li>
@@ -31,10 +32,13 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
             <li><a href="#shape-the-future">Help us shape the future of this initiative</a></li>
           </ul>
         </nav>
-        <p>
-          We are trialling a new approach to mobility in government. Here's some
-          information to help you decide if this is the right place for you.
-        </p>
+        <section>
+          <h2 id="overview">Overview</h2>
+          <p>
+            We are trialling a new approach to mobility in government. Here's some
+            information to help you decide if this is the right place for you.
+          </p>
+        </section>
         <section>
           <h2 id="who-can-post-an-opportunity">Who can post an opportunity?</h2>
           <p>Any Commonwealth government employee can post an opportunity.</p>

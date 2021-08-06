@@ -146,6 +146,7 @@ namespace Dta.OneAps.Api.Services.Static {
             new Lookup() {Value = "NationalMuseumofAustralia", Text = "National Museum of Australia"},
             new Lookup() {Value = "NationalOffshorePetroleumSafetyandEnvironmentalManagementAuthority", Text = "National Offshore Petroleum Safety and Environmental Management Authority"},
             new Lookup() {Value = "NationalPortraitGalleryofAustralia", Text = "National Portrait Gallery of Australia"},
+            new Lookup() {Value = "NationalRecoveryandResilienceAgency", Text = "National Recovery and Resilience Agency"},
             new Lookup() {Value = "NationalTransportCommission", Text = "National Transport Commission"},
             new Lookup() {Value = "NBNCoLimited", Text = "NBN Co Limited"},
             new Lookup() {Value = "NDISQualityandSafeguardsCommission", Text = "NDIS Quality and Safeguards Commission"},

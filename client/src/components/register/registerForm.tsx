@@ -24,7 +24,7 @@ export const RegisterForm: React.FC = () => {
     setErrorList([]);
     const { emailAddress, password, name, agency, mobile } = formData;
     try {
-      const result = await axios.post(`/api/user/register`, {
+      const result = await axios.post(`/api/User/register`, {
         name,
         emailAddress,
         password,

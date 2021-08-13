@@ -74,7 +74,7 @@ export const uploadFile = async (id: number, toSave: FormData, token: string) =>
 
 
 export const downloadFile = async (id: number, filename: string, token: string) => {
-  const result = await axios.get(`/api/opportunityresponse/${id}/download?filename=${filename}`, {
+  const result = await axios.get(`/api/OpportunityResponse/${id}/download?filename=${filename}`, {
     responseType: 'blob',
     headers: {
       Authorization: `bearer ${token}`,

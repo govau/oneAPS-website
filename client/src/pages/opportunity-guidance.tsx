@@ -21,17 +21,6 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
           </ul>
         </nav>
         <h1>Post an opportunity</h1>
-        <nav className="au-inpage-nav-links" aria-label="in page navigation">
-          <h2 className="au-inpage-nav-links__heading">On this page:</h2>
-          <ul className="au-link-list">
-            <li><a href="#overview">Overview</a></li>
-            <li><a href="#who-can-post-an-opportunity">Who can post an opportunity?</a></li>
-            <li><a href="#what-opportunities-can-I-post">What opportunities can I post?</a></li>
-            <li><a href="#how-it-works">How it works</a></li>
-            <li><a href="#staff-member-time-examples">Examples of different ways you might access a staff member's time across a month</a></li>
-            <li><a href="#shape-the-future">Help us shape the future of this initiative</a></li>
-          </ul>
-        </nav>
         <section>
           <h2 id="overview">Overview</h2>
           <p>

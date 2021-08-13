@@ -29,7 +29,7 @@ export const LoginForm: React.FC<LoginProps> = ({ fromPage }: LoginProps) => {
     const { email, password } = formData;
     user.updateToken();
     try {
-      const result = await axios.post(`/api/user/authenticate`, {
+      const result = await axios.post(`/api/User/authenticate`, {
         EmailAddress: email,
         password,
       });

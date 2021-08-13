@@ -10,7 +10,7 @@ export const loadLookup = async (name: lookupType) => {
     })
   }
 
-  return await axios.get(`/api/lookup`, {
+  return await axios.get(`/api/Lookup`, {
     params: {
       name,
     },

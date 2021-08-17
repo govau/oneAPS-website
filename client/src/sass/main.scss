@@ -369,3 +369,27 @@ html {
 .about .au-sidenav__title {
   display: none;
 }
+
+.accepted-list {
+  list-style-image: url("../../static/accept.svg");
+}
+
+.not-accepted-list {
+  list-style-image: url("../../static/cancel.svg");
+}
+
+.margin-top-1 {
+  margin-top: 1rem;
+}
+
+.workflow {
+  .workflow-item {
+    margin: 2rem 2rem 0 0;
+    text-align: center;
+  }
+  
+  .workflow-text {
+    margin-top: 0;
+    width: 10rem;
+  }
+}

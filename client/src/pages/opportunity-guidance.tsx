@@ -61,7 +61,7 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
               <p className="workflow-text">Complete opportunity</p>
             </li>
           </ol>
-          <p>For more information, see <Link to="/help-pages/3-creating-an-opportunity/">Creating an opportunity</Link></p>
+          <p>For more information, see <Link to="/help-pages/3-creating-an-opportunity/">Creating an opportunity</Link>.</p>
         </section>
         <section>
           <h2 id="shape-the-future" className="au-display-md">Help us shape the future of this initiative</h2>

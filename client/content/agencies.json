@@ -1,0 +1,758 @@
+[
+    {
+        "value": "AAFCompany(TrusteeofArmyAmenitiesFundandMessesTrustFund)",
+        "text": "AAF Company (Trustee of Army Amenities Fund and Messes Trust Fund)"
+    },
+    {
+        "value": "AboriginalHostelsLimited",
+        "text": "Aboriginal Hostels Limited"
+    },
+    {
+        "value": "AdministrativeAppealsTribunal",
+        "text": "Administrative Appeals Tribunal"
+    },
+    {
+        "value": "AgedCareQualityandSafetyCommission",
+        "text": "Aged Care Quality and Safety Commission"
+    },
+    {
+        "value": "AirservicesAustralia",
+        "text": "Airservices Australia"
+    },
+    {
+        "value": "AnindilyakwaLandCouncil",
+        "text": "Anindilyakwa Land Council"
+    },
+    {
+        "value": "ArmyandAirForceCanteenService",
+        "text": "Army and Air Force Canteen Service"
+    },
+    {
+        "value": "AsbestosSafetyandEradicationAgency",
+        "text": "Asbestos Safety and Eradication Agency"
+    },
+    {
+        "value": "ASCPtyLtd",
+        "text": "ASC Pty Ltd"
+    },
+    {
+        "value": "Attorney-General'sDepartment",
+        "text": "Attorney-General's Department"
+    },
+    {
+        "value": "AustraliaBusinessArtsFoundation(CreativePartnershipsAustralia)",
+        "text": "Australia Business Arts Foundation (Creative Partnerships Australia)"
+    },
+    {
+        "value": "AustraliaCouncil",
+        "text": "Australia Council"
+    },
+    {
+        "value": "AustralianBroadcastingCorporation",
+        "text": "Australian Broadcasting Corporation"
+    },
+    {
+        "value": "AustralianBuildingandConstructionCommission",
+        "text": "Australian Building and Construction Commission"
+    },
+    {
+        "value": "AustralianBureauofStatistics",
+        "text": "Australian Bureau of Statistics"
+    },
+    {
+        "value": "AustralianCentreforInternationalAgriculturalResearch",
+        "text": "Australian Centre for International Agricultural Research"
+    },
+    {
+        "value": "AustralianCommissionforLawEnforcementIntegrity",
+        "text": "Australian Commission for Law Enforcement Integrity"
+    },
+    {
+        "value": "AustralianCommissiononSafetyandQualityinHealthCare",
+        "text": "Australian Commission on Safety and Quality in Health Care"
+    },
+    {
+        "value": "AustralianCommunicationsandMediaAuthority",
+        "text": "Australian Communications and Media Authority"
+    },
+    {
+        "value": "AustralianCompetitionandConsumerCommission",
+        "text": "Australian Competition and Consumer Commission"
+    },
+    {
+        "value": "AustralianCriminalIntelligenceCommission",
+        "text": "Australian Criminal Intelligence Commission"
+    },
+    {
+        "value": "AustralianCurriculum,AssessmentandReportingAuthority",
+        "text": "Australian Curriculum, Assessment and Reporting Authority"
+    },
+    {
+        "value": "AustralianDigitalHealthAgency",
+        "text": "Australian Digital Health Agency"
+    },
+    {
+        "value": "AustralianElectoralCommission",
+        "text": "Australian Electoral Commission"
+    },
+    {
+        "value": "AustralianFederalPolice",
+        "text": "Australian Federal Police"
+    },
+    {
+        "value": "AustralianFilm,TelevisionandRadioSchool",
+        "text": "Australian Film, Television and Radio School"
+    },
+    {
+        "value": "AustralianFinancialSecurityAuthority",
+        "text": "Australian Financial Security Authority"
+    },
+    {
+        "value": "AustralianFisheriesManagementAuthority",
+        "text": "Australian Fisheries Management Authority"
+    },
+    {
+        "value": "AustralianHearingServices(HearingAustralia)",
+        "text": "Australian Hearing Services (Hearing Australia)"
+    },
+    {
+        "value": "AustralianHumanRightsCommission",
+        "text": "Australian Human Rights Commission"
+    },
+    {
+        "value": "AustralianInstituteforTeachingandSchoolLeadershipLimited",
+        "text": "Australian Institute for Teaching and School Leadership Limited"
+    },
+    {
+        "value": "AustralianInstituteofAboriginalandTorresStraitIslanderStudies",
+        "text": "Australian Institute of Aboriginal and Torres Strait Islander Studies"
+    },
+    {
+        "value": "AustralianInstituteofCriminology",
+        "text": "Australian Institute of Criminology"
+    },
+    {
+        "value": "AustralianInstituteofFamilyStudies",
+        "text": "Australian Institute of Family Studies"
+    },
+    {
+        "value": "AustralianInstituteofHealthandWelfare",
+        "text": "Australian Institute of Health and Welfare"
+    },
+    {
+        "value": "AustralianInstituteofMarineScience",
+        "text": "Australian Institute of Marine Science"
+    },
+    {
+        "value": "AustralianLawReformCommission",
+        "text": "Australian Law Reform Commission"
+    },
+    {
+        "value": "AustralianMaritimeSafetyAuthority",
+        "text": "Australian Maritime Safety Authority"
+    },
+    {
+        "value": "AustralianMilitaryForcesReliefTrustFund",
+        "text": "Australian Military Forces Relief Trust Fund"
+    },
+    {
+        "value": "AustralianNationalAuditOffice",
+        "text": "Australian National Audit Office"
+    },
+    {
+        "value": "AustralianNationalMaritimeMuseum",
+        "text": "Australian National Maritime Museum"
+    },
+    {
+        "value": "AustralianNationalPreventiveHealthAgency",
+        "text": "Australian National Preventive Health Agency"
+    },
+    {
+        "value": "AustralianNationalUniversity",
+        "text": "Australian National University"
+    },
+    {
+        "value": "AustralianNavalInfrastructurePtyLtd",
+        "text": "Australian Naval Infrastructure Pty Ltd"
+    },
+    {
+        "value": "AustralianNuclearScienceandTechnologyOrganisation",
+        "text": "Australian Nuclear Science and Technology Organisation"
+    },
+    {
+        "value": "AustralianOfficeofFinancialManagement",
+        "text": "Australian Office of Financial Management"
+    },
+    {
+        "value": "AustralianPesticidesandVeterinaryMedicinesAuthority",
+        "text": "Australian Pesticides and Veterinary Medicines Authority"
+    },
+    {
+        "value": "AustralianPostalCorporation",
+        "text": "Australian Postal Corporation"
+    },
+    {
+        "value": "AustralianPrudentialRegulationAuthority",
+        "text": "Australian Prudential Regulation Authority"
+    },
+    {
+        "value": "AustralianPublicServiceCommission",
+        "text": "Australian Public Service Commission"
+    },
+    {
+        "value": "AustralianRadiationProtectionandNuclearSafetyAgency",
+        "text": "Australian Radiation Protection and Nuclear Safety Agency"
+    },
+    {
+        "value": "AustralianRailTrackCorporationLimited",
+        "text": "Australian Rail Track Corporation Limited"
+    },
+    {
+        "value": "AustralianReinsurancePoolCorporation",
+        "text": "Australian Reinsurance Pool Corporation"
+    },
+    {
+        "value": "AustralianRenewableEnergyAgency",
+        "text": "Australian Renewable Energy Agency"
+    },
+    {
+        "value": "AustralianResearchCouncil",
+        "text": "Australian Research Council"
+    },
+    {
+        "value": "AustralianSecretIntelligenceService",
+        "text": "Australian Secret Intelligence Service"
+    },
+    {
+        "value": "AustralianSecuritiesandInvestmentsCommission",
+        "text": "Australian Securities and Investments Commission"
+    },
+    {
+        "value": "AustralianSecurityIntelligenceOrganisation",
+        "text": "Australian Security Intelligence Organisation"
+    },
+    {
+        "value": "AustralianSignalsDirectorate",
+        "text": "Australian Signals Directorate"
+    },
+    {
+        "value": "AustralianSkillsQualityAuthority(NationalVocationalEducationandTrainingRegulator)",
+        "text": "Australian Skills Quality Authority (National Vocational Education and Training Regulator)"
+    },
+    {
+        "value": "AustralianSportsCommission",
+        "text": "Australian Sports Commission"
+    },
+    {
+        "value": "AustralianSportsFoundationLimited",
+        "text": "Australian Sports Foundation Limited"
+    },
+    {
+        "value": "AustralianStrategicPolicyInstituteLimited",
+        "text": "Australian Strategic Policy Institute Limited"
+    },
+    {
+        "value": "AustralianTaxationOffice",
+        "text": "Australian Taxation Office"
+    },
+    {
+        "value": "AustralianTradeandInvestmentCommission(Austrade)",
+        "text": "Australian Trade and Investment Commission (Austrade)"
+    },
+    {
+        "value": "AustralianTransactionReportsandAnalysisCentre",
+        "text": "Australian Transaction Reports and Analysis Centre"
+    },
+    {
+        "value": "AustralianTransportSafetyBureau",
+        "text": "Australian Transport Safety Bureau"
+    },
+    {
+        "value": "AustralianWarMemorial",
+        "text": "Australian War Memorial"
+    },
+    {
+        "value": "BundanonTrust",
+        "text": "Bundanon Trust"
+    },
+    {
+        "value": "BureauofMeteorology",
+        "text": "Bureau of Meteorology"
+    },
+    {
+        "value": "CancerAustralia",
+        "text": "Cancer Australia"
+    },
+    {
+        "value": "CentralLandCouncil",
+        "text": "Central Land Council"
+    },
+    {
+        "value": "CivilAviationSafetyAuthority",
+        "text": "Civil Aviation Safety Authority"
+    },
+    {
+        "value": "CleanEnergyFinanceCorporation",
+        "text": "Clean Energy Finance Corporation"
+    },
+    {
+        "value": "CleanEnergyRegulator",
+        "text": "Clean Energy Regulator"
+    },
+    {
+        "value": "ClimateChangeAuthority",
+        "text": "Climate Change Authority"
+    },
+    {
+        "value": "CoalMiningIndustry(LongServiceLeaveFunding)Corporation",
+        "text": "Coal Mining Industry (Long Service Leave Funding) Corporation"
+    },
+    {
+        "value": "Comcare",
+        "text": "Comcare"
+    },
+    {
+        "value": "CommonwealthGrantsCommission",
+        "text": "Commonwealth Grants Commission"
+    },
+    {
+        "value": "CommonwealthScientificandIndustrialResearchOrganisation",
+        "text": "Commonwealth Scientific and Industrial Research Organisation"
+    },
+    {
+        "value": "CommonwealthSuperannuationCorporation",
+        "text": "Commonwealth Superannuation Corporation"
+    },
+    {
+        "value": "CottonResearchandDevelopmentCorporation",
+        "text": "Cotton Research and Development Corporation"
+    },
+    {
+        "value": "DefenceHousingAustralia",
+        "text": "Defence Housing Australia"
+    },
+    {
+        "value": "DepartmentofAgriculture,WaterandtheEnvironment",
+        "text": "Department of Agriculture, Water and the Environment"
+    },
+    {
+        "value": "DepartmentofDefence",
+        "text": "Department of Defence"
+    },
+    {
+        "value": "DepartmentofEducation,SkillsandEmployment",
+        "text": "Department of Education, Skills and Employment"
+    },
+    {
+        "value": "DepartmentofFinance",
+        "text": "Department of Finance"
+    },
+    {
+        "value": "DepartmentofForeignAffairsandTrade",
+        "text": "Department of Foreign Affairs and Trade"
+    },
+    {
+        "value": "DepartmentofHealth",
+        "text": "Department of Health"
+    },
+    {
+        "value": "DepartmentofHomeAffairs",
+        "text": "Department of Home Affairs"
+    },
+    {
+        "value": "DepartmentofIndustry,Science,EnergyandResources",
+        "text": "Department of Industry, Science, Energy and Resources"
+    },
+    {
+        "value": "DepartmentofInfrastructure,Transport,RegionalDevelopmentandCommunications",
+        "text": "Department of Infrastructure, Transport, Regional Development and Communications"
+    },
+    {
+        "value": "DepartmentofParliamentaryServices",
+        "text": "Department of Parliamentary Services"
+    },
+    {
+        "value": "DepartmentofSocialServices",
+        "text": "Department of Social Services"
+    },
+    {
+        "value": "DepartmentoftheHouseofRepresentatives",
+        "text": "Department of the House of Representatives"
+    },
+    {
+        "value": "DepartmentofthePrimeMinisterandCabinet",
+        "text": "Department of the Prime Minister and Cabinet"
+    },
+    {
+        "value": "DepartmentoftheSenate",
+        "text": "Department of the Senate"
+    },
+    {
+        "value": "DepartmentoftheTreasury",
+        "text": "Department of the Treasury"
+    },
+    {
+        "value": "DepartmentofVeterans'Affairs",
+        "text": "Department of Veterans' Affairs"
+    },
+    {
+        "value": "DigitalTransformationAgency",
+        "text": "Digital Transformation Agency"
+    },
+    {
+        "value": "DirectorofNationalParks",
+        "text": "Director of National Parks"
+    },
+    {
+        "value": "ExportFinanceAustralia(EFA)",
+        "text": "Export Finance Australia (EFA)"
+    },
+    {
+        "value": "FairWorkCommission",
+        "text": "Fair Work Commission"
+    },
+    {
+        "value": "FairWorkOmbudsmanandRegisteredOrganisationsCommissionEntity",
+        "text": "Fair Work Ombudsman and Registered Organisations Commission Entity"
+    },
+    {
+        "value": "FederalCourtofAustralia",
+        "text": "Federal Court of Australia"
+    },
+    {
+        "value": "FinancialAdviserStandardsandEthicsAuthorityLtd",
+        "text": "Financial Adviser Standards and Ethics Authority Ltd"
+    },
+    {
+        "value": "FisheriesResearchandDevelopmentCorporation",
+        "text": "Fisheries Research and Development Corporation"
+    },
+    {
+        "value": "FoodStandardsAustraliaNewZealand",
+        "text": "Food Standards Australia New Zealand"
+    },
+    {
+        "value": "FutureFundManagementAgency",
+        "text": "Future Fund Management Agency"
+    },
+    {
+        "value": "GeoscienceAustralia",
+        "text": "Geoscience Australia"
+    },
+    {
+        "value": "GrainsResearchandDevelopmentCorporation",
+        "text": "Grains Research and Development Corporation"
+    },
+    {
+        "value": "GreatBarrierReefMarineParkAuthority",
+        "text": "Great Barrier Reef Marine Park Authority"
+    },
+    {
+        "value": "IndependentHospitalPricingAuthority",
+        "text": "Independent Hospital Pricing Authority"
+    },
+    {
+        "value": "IndependentParliamentaryExpensesAuthority",
+        "text": "Independent Parliamentary Expenses Authority"
+    },
+    {
+        "value": "IndigenousBusinessAustralia",
+        "text": "Indigenous Business Australia"
+    },
+    {
+        "value": "IndigenousLandandSeaCorporation",
+        "text": "Indigenous Land and Sea Corporation"
+    },
+    {
+        "value": "InfrastructureandProjectFinancingAgency",
+        "text": "Infrastructure and Project Financing Agency"
+    },
+    {
+        "value": "InfrastructureAustralia",
+        "text": "Infrastructure Australia"
+    },
+    {
+        "value": "Inspector-GeneralofTaxation",
+        "text": "Inspector-General of Taxation"
+    },
+    {
+        "value": "IPAustralia",
+        "text": "IP Australia"
+    },
+    {
+        "value": "MoorebankIntermodalCompanyLimited",
+        "text": "Moorebank Intermodal Company Limited"
+    },
+    {
+        "value": "Murray-DarlingBasinAuthority",
+        "text": "Murray-Darling Basin Authority"
+    },
+    {
+        "value": "NationalArchivesofAustralia",
+        "text": "National Archives of Australia"
+    },
+    {
+        "value": "NationalAustraliaDayCouncilLimited",
+        "text": "National Australia Day Council Limited"
+    },
+    {
+        "value": "NationalBloodAuthority",
+        "text": "National Blood Authority"
+    },
+    {
+        "value": "NationalCapitalAuthority",
+        "text": "National Capital Authority"
+    },
+    {
+        "value": "NationalCompetitionCouncil",
+        "text": "National Competition Council"
+    },
+    {
+        "value": "NationalDisabilityInsuranceSchemeLaunchTransitionAgency(NationalDisabilityInsuranceAgency)",
+        "text": "National Disability Insurance Scheme Launch Transition Agency (National Disability Insurance Agency)"
+    },
+    {
+        "value": "NationalDroughtandNorthQueenslandFloodResponseandRecoveryAgency",
+        "text": "National Drought and North Queensland Flood Response and Recovery Agency"
+    },
+    {
+        "value": "NationalFasterRailAgency",
+        "text": "National Faster Rail Agency"
+    },
+    {
+        "value": "NationalFilmandSoundArchiveofAustralia",
+        "text": "National Film and Sound Archive of Australia"
+    },
+    {
+        "value": "NationalGalleryofAustralia",
+        "text": "National Gallery of Australia"
+    },
+    {
+        "value": "NationalHealthandMedicalResearchCouncil",
+        "text": "National Health and Medical Research Council"
+    },
+    {
+        "value": "NationalHealthFundingBody",
+        "text": "National Health Funding Body"
+    },
+    {
+        "value": "NationalHousingFinanceandInvestmentCorporation",
+        "text": "National Housing Finance and Investment Corporation"
+    },
+    {
+        "value": "NationalIndigenousAustraliansAgency",
+        "text": "National Indigenous Australians Agency"
+    },
+    {
+        "value": "NationalLibraryofAustralia",
+        "text": "National Library of Australia"
+    },
+    {
+        "value": "NationalMentalHealthCommission",
+        "text": "National Mental Health Commission"
+    },
+    {
+        "value": "NationalMuseumofAustralia",
+        "text": "National Museum of Australia"
+    },
+    {
+        "value": "NationalOffshorePetroleumSafetyandEnvironmentalManagementAuthority",
+        "text": "National Offshore Petroleum Safety and Environmental Management Authority"
+    },
+    {
+        "value": "NationalPortraitGalleryofAustralia",
+        "text": "National Portrait Gallery of Australia"
+    },
+    {
+        "value": "NationalRecoveryandResilienceAgency",
+        "text": "National Recovery and Resilience Agency"
+    },
+    {
+        "value": "NationalTransportCommission",
+        "text": "National Transport Commission"
+    },
+    {
+        "value": "NBNCoLimited",
+        "text": "NBN Co Limited"
+    },
+    {
+        "value": "NDISQualityandSafeguardsCommission",
+        "text": "NDIS Quality and Safeguards Commission"
+    },
+    {
+        "value": "NorthQueenslandWaterInfrastructureAuthority",
+        "text": "North Queensland Water Infrastructure Authority"
+    },
+    {
+        "value": "NorthernAustraliaInfrastructureFacility",
+        "text": "Northern Australia Infrastructure Facility"
+    },
+    {
+        "value": "NorthernLandCouncil",
+        "text": "Northern Land Council"
+    },
+    {
+        "value": "OfficeofNationalIntelligence",
+        "text": "Office of National Intelligence"
+    },
+    {
+        "value": "OfficeofParliamentaryCounsel",
+        "text": "Office of Parliamentary Counsel"
+    },
+    {
+        "value": "OfficeoftheAuditingandAssuranceStandardsBoard",
+        "text": "Office of the Auditing and Assurance Standards Board"
+    },
+    {
+        "value": "OfficeoftheAustralianAccountingStandardsBoard",
+        "text": "Office of the Australian Accounting Standards Board"
+    },
+    {
+        "value": "OfficeoftheAustralianInformationCommissioner",
+        "text": "Office of the Australian Information Commissioner"
+    },
+    {
+        "value": "OfficeoftheCommonwealthOmbudsman",
+        "text": "Office of the Commonwealth Ombudsman"
+    },
+    {
+        "value": "OfficeoftheDirectorofPublicProsecutions",
+        "text": "Office of the Director of Public Prosecutions"
+    },
+    {
+        "value": "OfficeoftheInspector-GeneralofIntelligenceandSecurity",
+        "text": "Office of the Inspector-General of Intelligence and Security"
+    },
+    {
+        "value": "OfficeoftheOfficialSecretarytotheGovernor-General",
+        "text": "Office of the Official Secretary to the Governor-General"
+    },
+    {
+        "value": "OfficeoftheSpecialInvestigator",
+        "text": "Office of the Special Investigator"
+    },
+    {
+        "value": "OldParliamentHouse",
+        "text": "Old Parliament House"
+    },
+    {
+        "value": "OrganandTissueAuthority",
+        "text": "Organ and Tissue Authority"
+    },
+    {
+        "value": "OutbackStoresPtyLtd",
+        "text": "Outback Stores Pty Ltd"
+    },
+    {
+        "value": "ParliamentaryBudgetOffice",
+        "text": "Parliamentary Budget Office"
+    },
+    {
+        "value": "ProductivityCommission",
+        "text": "Productivity Commission"
+    },
+    {
+        "value": "ProfessionalServicesReview",
+        "text": "Professional Services Review"
+    },
+    {
+        "value": "RAAFWelfareRecreationalCompany",
+        "text": "RAAF Welfare Recreational Company"
+    },
+    {
+        "value": "RegionalInvestmentCorporation",
+        "text": "Regional Investment Corporation"
+    },
+    {
+        "value": "ReserveBankofAustralia",
+        "text": "Reserve Bank of Australia"
+    },
+    {
+        "value": "RoyalAustralianAirForceVeteransResidencesTrustFund",
+        "text": "Royal Australian Air Force Veterans Residences Trust Fund"
+    },
+    {
+        "value": "RoyalAustralianAirForceWelfareTrustFund",
+        "text": "Royal Australian Air Force Welfare Trust Fund"
+    },
+    {
+        "value": "RoyalAustralianMint",
+        "text": "Royal Australian Mint"
+    },
+    {
+        "value": "RoyalAustralianNavyCentralCanteensBoard(RoyalAustralianNavyCentralCanteensFund)",
+        "text": "Royal Australian Navy Central Canteens Board (Royal Australian Navy Central Canteens Fund)"
+    },
+    {
+        "value": "RoyalAustralianNavyReliefTrustFund",
+        "text": "Royal Australian Navy Relief Trust Fund"
+    },
+    {
+        "value": "RuralIndustriesResearchandDevelopmentCorporation(tradingasAgriFuturesAustralia)",
+        "text": "Rural Industries Research and Development Corporation (trading as AgriFutures Australia)"
+    },
+    {
+        "value": "SafeWorkAustralia",
+        "text": "Safe Work Australia"
+    },
+    {
+        "value": "ScreenAustralia",
+        "text": "Screen Australia"
+    },
+    {
+        "value": "SeafarersSafety,RehabilitationandCompensationAuthority",
+        "text": "Seafarers Safety, Rehabilitation and Compensation Authority"
+    },
+    {
+        "value": "ServicesAustralia",
+        "text": "Services Australia"
+    },
+    {
+        "value": "SnowyHydroLtd",
+        "text": "Snowy Hydro Ltd"
+    },
+    {
+        "value": "SpecialBroadcastingServiceCorporation",
+        "text": "Special Broadcasting Service Corporation"
+    },
+    {
+        "value": "SportIntegrityAustralia",
+        "text": "Sport Integrity Australia"
+    },
+    {
+        "value": "SydneyHarbourFederationTrust",
+        "text": "Sydney Harbour Federation Trust"
+    },
+    {
+        "value": "TertiaryEducationQualityandStandardsAgency",
+        "text": "Tertiary Education Quality and Standards Agency"
+    },
+    {
+        "value": "TiwiLandCouncil",
+        "text": "Tiwi Land Council"
+    },
+    {
+        "value": "TorresStraitRegionalAuthority",
+        "text": "Torres Strait Regional Authority"
+    },
+    {
+        "value": "TourismAustralia",
+        "text": "Tourism Australia"
+    },
+    {
+        "value": "WineAustralia",
+        "text": "Wine Australia"
+    },
+    {
+        "value": "WorkplaceGenderEqualityAgency",
+        "text": "Workplace Gender Equality Agency"
+    },
+    {
+        "value": "WreckBayAboriginalCommunityCouncil",
+        "text": "Wreck Bay Aboriginal Community Council"
+    },
+    {
+        "value": "WSACoLimited",
+        "text": "WSA Co Limited"
+    }
+]

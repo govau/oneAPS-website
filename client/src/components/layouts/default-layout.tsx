@@ -98,7 +98,7 @@ const DefaultLayout: React.FC<Props> = ({
       }
       try {
         const result = await axios.get(
-          `/api/user/ping`, {
+          `/api/User/ping`, {
           headers: {
             'Authorization': `bearer ${session.token}`
           }

@@ -43,6 +43,24 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
         </section>
         <section>
           <h2 id="how-it-works" className="au-display-md">How it works</h2>
+          <ol className="au-link-list au-link-list--inline workflow">
+            <li className="margin-1 workflow-item">
+              <img alt="" src="/desktop.png"/>
+              <p className="workflow-text">Post opportunity</p>
+            </li>
+            <li className="margin-1 workflow-item">
+              <img alt="" src="/application.png"/>
+              <p className="workflow-text">Decide on an applicant</p>
+            </li>
+            <li className="margin-1 workflow-item">
+              <img alt="" src="/agreement.png"/>
+              <p className="workflow-text">Agree on an informal arrangement</p>
+            </li>
+            <li className="margin-1 workflow-item">
+              <img alt="" src="/completion.png"/>
+              <p className="workflow-text">Complete opportunity</p>
+            </li>
+          </ol>
           <p>For more information, see <Link to="/help-pages/3-creating-an-opportunity/">Creating an opportunity</Link></p>
         </section>
         <section>

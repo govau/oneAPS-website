@@ -381,3 +381,15 @@ html {
 .margin-top-1 {
   margin-top: 1rem;
 }
+
+.workflow {
+  .workflow-item {
+    margin: 2rem 2rem 0 0;
+    text-align: center;
+  }
+  
+  .workflow-text {
+    margin-top: 0;
+    width: 10rem;
+  }
+}

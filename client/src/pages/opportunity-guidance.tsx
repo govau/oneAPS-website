@@ -64,7 +64,7 @@ const OpportunityGuidancePage: React.FC<PageContext> = ({
           <p>For more information, see <Link to="/help-pages/3-creating-an-opportunity/">Creating an opportunity</Link>.</p>
         </section>
         <section>
-          <Link className="au-btn margin-top-1" to="/post-opportunity">Continue</Link>
+          <Link className="au-btn margin-top-1" to="/post-opportunity">Continue to post opportunity</Link>
         </section>
       </>
     </DefaultLayout>

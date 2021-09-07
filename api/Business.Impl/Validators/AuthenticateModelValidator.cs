@@ -7,7 +7,7 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(u => u.EmailAddress)
             .NotEmpty()
             .Matches(".+@.+(\\.edu\\.au|\\.gov\\.au)")
-            .WithMessage("'Email Address' must be a gov.au email.");
+            .WithMessage("'Email Address' must be an Australian government email.");
 
             RuleFor(u => u.Password).NotEmpty();
         }

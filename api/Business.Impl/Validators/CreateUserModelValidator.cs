@@ -14,7 +14,7 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(u => u.EmailAddress)
             .NotEmpty()
             .Matches(".+@.+(\\.edu\\.au|\\.gov\\.au)")
-            .WithMessage("{PropertyValue} must be a gov.au {PropertyName}");
+            .WithMessage("{PropertyValue} must be an Australian government {PropertyName}");
             
             RuleFor(u => u.Agency)
             .NotEmpty()

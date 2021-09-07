@@ -5,7 +5,7 @@ export const emailValidation = yup
   .email("Enter a valid email")
   .required("Email is required")
   .max(255)
-  .matches(/.gov.au$/, "Only government emails are allowed to apply");
+  .matches(/\.gov\.au$/, "Only government emails are allowed to apply");
 
 export const passwordValidation = yup
   .string()

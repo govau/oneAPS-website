@@ -105,7 +105,7 @@ export const RegisterForm: React.FC = () => {
               id="emailAddress"
               label="Email"
               width="lg"
-              hint="You must have a gov.au email address to register"
+              hint="You must have an Australian government email address to register"
               type="email"
               required
             />

@@ -9,7 +9,7 @@ namespace Dta.OneAps.Api.Business.Validators {
             RuleFor(u => u.Mobile).NotEmpty().MaximumLength(10);
             RuleFor(u => u.EmailAddress)
                 .NotEmpty()
-                .Matches(".+@.+\\.gov\\.au").WithMessage("{PropertyValue} must be a gov.au {PropertyName}");
+                .Matches(".+@.+(\\.edu\\.au|\\.gov\\.au)").WithMessage("{PropertyValue} must be a gov.au {PropertyName}");
             RuleFor(u => u.Agency)
                 .NotEmpty()
                 .Must(e => lookupService.Get("Agency", e) != null).WithMessage("{PropertyValue} is not a valid {PropertyName}.");

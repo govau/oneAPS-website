@@ -10,7 +10,7 @@ layout: help
 
 ## Contact the DTA
 
-When the successful opportunity participant has been chosen and notified, please contact the [DTA Specialist Advice and Mobility](mailto:specialist.advice@dta.gov.au "email") team to let us know.
+When you have chosen and notified your opportunity participant, please contact our team at [specialist.advice@apsc.gov.au](mailto:specialist.advice@apsc.gov.au "email") team to let us know.
 
 ## <span id="before_the_move">Before the move</span>
 

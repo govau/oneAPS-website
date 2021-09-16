@@ -38,4 +38,4 @@ As this is a pilot, we will have a few touchpoints along the way to get your fee
 
 We will also encourage you to share your story when the opportunity is completed.
 
-If you have any questions or feedback, please contact us at <a href="mailto:specialist.advice@dta.gov.au" target="_blank" rel="external noreferrer">specialist.advice@dta.gov.au</a>
+If you have any questions or feedback, please contact us at <a href="mailto:specialist.advice@apsc.gov.au" target="_blank" rel="external noreferrer">specialist.advice@apsc.gov.au</a>

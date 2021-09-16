@@ -14,7 +14,7 @@ layout: help
 
 ## <span id="What-is-oneAPS-Opportunities">What is oneAPS Opportunities?</span>
 
-As part of the <a href="https://www.dta.gov.au/help-and-advice/digital-profession" target="_blank" rel="external noreferrer">Digital Profession</a>, the DTA are trialling a new approach to uplift skills through digital talent mobility. 
+The <a href="https://www.digitalprofession.gov.au/" target="_blank" rel="external noreferrer">Digital Profession</a> is trialling a new approach to uplift skills through digital talent mobility. 
 
 oneAPS Opportunities enables managers to access digital professionals from across the Federal Government to assist with short-term flexible work opportunities.
 

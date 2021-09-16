@@ -19,9 +19,10 @@ There are many types of digital opportunities you can post, depending on what yo
 
 We encourage opportunities that are:
 
-- From a couple of hours to a few days or a few months
-- Able to offer flexible working arrangements (for example, completed remotely) 
-- Focused on digital and data skills and capabilities (ICT capabilities and human-centred capabilities such as design and research).
+- A few hours or days to a few months long
+- Seeking digital or data skills
+- Able to be completed flexibly by remote working or part-time
+- Do not need onboarding to your organisation’s ICT systems
 
 Examples include: 
 
@@ -33,7 +34,14 @@ Examples include:
 - Subject matter expert advice
 - Event volunteers
 
-Not sure exactly what skills you are looking for? Feel free to get in touch with the Specialist Advice and Mobility Team at <a href="mailto:specialist.advice@dta.gov.au" target="_blank" rel="external noreferrer">specialist.advice@dta.gov.au</a>
+The following opportunities do not fit the program:
+
+- Secondments or temporary transfers
+- Opportunities where there is a change to pay and conditions
+- Time sensitive or high-risk opportunities
+- Opportunities which contain Sensitive or Classified information
+
+Not sure exactly what skills you are looking for? Feel free to get in touch with us at <a href="mailto:specialist.advice@apsc.gov.au" target="_blank" rel="external noreferrer">specialist.advice@apsc.gov.au</a>
 
 ## <span id="Posting-an-opportunity-is-quick-and-easy">Posting an opportunity is quick and easy</span> 
 

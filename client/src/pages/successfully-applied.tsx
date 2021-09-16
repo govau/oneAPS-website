@@ -18,7 +18,7 @@ const Content: React.FC<{opportunityId: number}> = ({opportunityId}) => {
       <>
         <h1>You have applied for an opportunity</h1>
         <p>Your application for {data.jobTitle} has been received.</p>
-        <p>If you have any questions, please contact <a href="mailto:specialist.advice@dta.gov.au">specialist.advice@dta.gov.au</a>.</p>
+        <p>If you have any questions, please contact <a href="mailto:specialist.advice@apsc.gov.au">specialist.advice@apsc.gov.au</a>.</p>
         <p>Your next steps</p>
           <ul>
             <li><Link to={`/opportunity`}>Find</Link> more opportunities</li>

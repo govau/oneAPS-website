@@ -11,7 +11,7 @@ const Content: React.FC<{opportunityId: number}> = ({opportunityId}) => {
     <>
       <h1>Your password is updated successfully</h1>
       <p>You can now <Link to="/login">login</Link> with your email address and updated password</p>
-      <p>If you have any questions, please contact <a href="mailto:specialist.advice@dta.gov.au">specialist.advice@dta.gov.au</a>.</p>
+      <p>If you have any questions, please contact <a href="mailto:specialist.advice@apsc.gov.au">specialist.advice@apsc.gov.au</a>.</p>
     </>
   );
 }

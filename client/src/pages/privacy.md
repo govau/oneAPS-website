@@ -11,7 +11,7 @@ The Privacy Act 1988 requires us to have a privacy policy. This privacy policy o
 
 **Personal information** is information or an opinion about an identified individual or an individual who is reasonably identifiable. 
 
-This policy is written in simple language. This policy applies to the oneAPS Opportunities pilot website managed by the Digital Transformation Agency (DTA). 
+This policy is written in simple language. This policy applies to the oneAPS Opportunities pilot website managed by the Australian Public Service Commission (APSC). 
 
 ## What we collect 
 

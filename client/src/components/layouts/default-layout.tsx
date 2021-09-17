@@ -155,7 +155,7 @@ const DefaultLayout: React.FC<Props> = ({
             {children}
         </div>
         <div className="center-align">
-          This is part of a pilot program run by the Digital Profession team at the Digital Transformation Agency.
+          This is part of a pilot program run by the Digital Profession team at the Australian Public Service Commission.
           <br />
           If you have any questions or feedback, please contact us at{" "}
           <a href="mailto:specialist.advice@apsc.gov.au">specialist.advice@apsc.gov.au</a>

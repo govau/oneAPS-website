@@ -18,7 +18,7 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
               <>
                 <h2>A Digital Profession pilot program</h2>
                 <p>
-                  This site is part of a pilot program run by the Digital Profession at the Digital Transformation Agency.
+                  This site is part of a pilot program run by the Digital Profession at the Australian Public Service Commission.
                 </p>
                 <p>If you have any questions or feedback, please contact us at <a href="mailto:specialist.advice@apsc.gov.au">specialist.advice@apsc.gov.au</a></p>
               </>

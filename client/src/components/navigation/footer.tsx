@@ -71,7 +71,7 @@ const Footer: React.FC<Props> = ({ path }) => {
                 <div className="col-md-3 col-md-pull-9">
                   <p className="footer__affiliate">
                     <span>An initiative of the </span>
-                    <span>Digital Transformation Agency </span>
+                    <span>Australian Public Service Commission </span>
                     <span className="footer__affiliate-link">
                       <a
                         className="au-cta-link  au-cta-link--dark"

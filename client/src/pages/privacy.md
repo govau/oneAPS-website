@@ -203,19 +203,12 @@ We will respond to request to access (and where relevant, correct) your own pers
 
 ## How to make a complaint 
 
-If you wish to make a complaint about how the DTA has handled your personal information, please do so in writing.  If you need help lodging a complaint, you can contact the Privacy Officer on 02 6120 8595. 
+If you wish to make a complaint about how the DTA has handled your personal information, please do so in writing.
 
 Complaints can be made to: 
 
 **Email** 
-<a href="mailto:privacy@dta.gov.au">privacy@dta.gov.au</a>
-
-**Post**  
-Privacy Officer  
-Digital Transformation Agency  
-PO Box 457  
-Canberra City 
-ACT 2601 
+<a href="mailto:privacy@apsc.gov.au">privacy@apsc.gov.au</a>
 
 If we receive a complaint from you, we will acknowledge your complaint within 3 business days of receiving the complaint.   
 

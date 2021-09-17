@@ -151,7 +151,7 @@ We also review the quality of personal information before we use or disclose it.
 
 This site is hosted and stored in Australia in secure, government-accredited facilities. To help protect the privacy of the data and personal information we collect and hold, we maintain physical, technical and administrative safeguards. 
 
-Access to your personal information is restricted to DTA employees working on the oneAPS Opportunities pilot who need it to provide services to you and to the Opportunity creator who is seeking a person to fulfill their opportunity. We take steps to protect the security of the personal information we hold from both internal and external threats by: 
+Access to your personal information is restricted to APSC employees working on the oneAPS Opportunities pilot who need it to provide services to you and to the Opportunity creator who is seeking a person to fulfill their opportunity. We take steps to protect the security of the personal information we hold from both internal and external threats by: 
 
 * regularly assessing the risk of misuse, interference, loss, and unauthorised access, modification or disclosure of that information 
 
@@ -203,7 +203,7 @@ We will respond to request to access (and where relevant, correct) your own pers
 
 ## How to make a complaint 
 
-If you wish to make a complaint about how the DTA has handled your personal information, please do so in writing.
+If you wish to make a complaint about how the APSC has handled your personal information, please do so in writing.
 
 Complaints can be made to: 
 
@@ -212,7 +212,7 @@ Complaints can be made to:
 
 If we receive a complaint from you, we will acknowledge your complaint within 3 business days of receiving the complaint.   
 
-We will respond to your complaint within 30 days (or another timeframe agreed with you) of receiving your complaint and explain the actions we have taken or propose to take to address the issues raised in your complaint.  If you are not satisfied with DTA’s response to your complaint, you may ask for a review by a senior officer within DTA.  You may also lodge a complaint to the Office of the Australian Information Commissioner.
+We will respond to your complaint within 30 days (or another timeframe agreed with you) of receiving your complaint and explain the actions we have taken or propose to take to address the issues raised in your complaint.  If you are not satisfied with APSC’s response to your complaint, you may ask for a review by a senior officer within APSC.  You may also lodge a complaint to the Office of the Australian Information Commissioner.
 
 To lodge a complaint to the Office of the Australian Information Commissioner:
 

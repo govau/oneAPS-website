@@ -11,6 +11,6 @@ At this stage you may consider:
 
 ## Providing feedback and sharing your story
 
-As this is a pilot, the DTA Specialist Advice and Mobility team may wish to interview key people involved to understand their experiences and their feedback on how to improve the program.
+As this is a pilot, the APSC Specialist Advice and Mobility team may wish to interview key people involved to understand their experiences and their feedback on how to improve the program.
 
 If you enjoyed the program, we would appreciate if you would encourage other colleagues to get involved.  

@@ -8,7 +8,7 @@ layout: help
 * [Getting started on their first day](#get_started_first_day)
 * [Supporting temporary team members](#support_temp_team_members)
 
-## Contact the DTA
+## Contact the APSC
 
 When you have chosen and notified your opportunity participant, please contact our team at [specialist.advice@apsc.gov.au](mailto:specialist.advice@apsc.gov.au "email") team to let us know.
 

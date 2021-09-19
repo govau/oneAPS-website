@@ -10,7 +10,7 @@ layout: help
 
 ## Contact the APSC
 
-When you have chosen and notified your opportunity participant, please contact our team at [specialist.advice@apsc.gov.au](mailto:specialist.advice@apsc.gov.au "email") team to let us know.
+When you have chosen and notified your opportunity participant, please contact our team at [specialist.advice@apsc.gov.au](mailto:specialist.advice@apsc.gov.au "email") to let us know.
 
 ## <span id="before_the_move">Before the move</span>
 

@@ -46,7 +46,7 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
                 You can choose to post an opportunity or apply for an opportunity.
               </p>
               <div style={{ marginTop: "3rem", marginBottom: "3rem" }}>
-                Check out our <a target="_blank" href="https://www.dta.gov.au/blogs/broadening-horizons-through-oneaps-opportunity">blog post</a> for a story of an opportunity in action.
+                Check out our <a target="_blank" href="https://www.digitalprofession.gov.au/blog/using-oneaps-uplift-team-skills-and-knowledge" rel="noopener">blog post</a> for a story of an opportunity in action.
               </div>
               <div>
                 <Link to="/opportunity" className="au-btn">Find opportunities</Link>

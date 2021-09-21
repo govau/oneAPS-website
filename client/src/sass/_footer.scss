@@ -1,26 +1,6 @@
 .footer__affiliate {
   @include AU-fontgrid(xs);
 
-  .au-cta-link {
-    @include AU-fontgrid(xs);
-    display: inline-block;
-    font-weight: normal;
-    margin-top: 0;
-
-    &:after {
-      content: "";
-      @include AU-space(width, 0.75unit);
-      @include AU-space(height, 0.75unit);
-      @include AU-space(margin-left, 0.25unit);
-      display: inline-block;
-      vertical-align: middle;
-    }
-
-    &:hover:after {
-      @include AU-space(margin-left, 0.5unit);
-    }
-  }
-
   @include AU-media(md) {
     @include AU-space(padding, 0.5unit 0 0.5unit 1unit);
     border-left: solid 1px $AU-colordark-foreground-border;

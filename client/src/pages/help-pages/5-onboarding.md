@@ -8,9 +8,9 @@ layout: help
 * [Getting started on their first day](#get_started_first_day)
 * [Supporting temporary team members](#support_temp_team_members)
 
-## Contact the DTA
+## Contact the APSC
 
-When the successful opportunity participant has been chosen and notified, please contact the [DTA Specialist Advice and Mobility](mailto:specialist.advice@dta.gov.au "email") team to let us know.
+When you have chosen and notified your opportunity participant, please contact our team at [specialist.advice@apsc.gov.au](mailto:specialist.advice@apsc.gov.au "email") to let us know.
 
 ## <span id="before_the_move">Before the move</span>
 

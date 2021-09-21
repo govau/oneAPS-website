@@ -36,7 +36,7 @@ const Footer: React.FC<Props> = ({ path }) => {
           <div className="container-fluid">
             <FooterNav>
               <div className="row">
-                <div className="col-md-offset-1 col-md-8 col-md-push-3">
+                <div className="col-md-8 col-md-push-4">
                   <h4>Community</h4>
                   <ul className="au-link-list au-link-list--inline">
                     {Links.map((item: any, i: number) => (
@@ -68,18 +68,10 @@ const Footer: React.FC<Props> = ({ path }) => {
                     </p>
                   </FooterEnd>
                 </div>
-                <div className="col-md-3 col-md-pull-9">
+                <div className="col-md-4 col-md-pull-8">
                   <p className="footer__affiliate">
                     <span>An initiative of the </span>
-                    <span>Digital Transformation Agency </span>
-                    <span className="footer__affiliate-link">
-                      <a
-                        className="au-cta-link  au-cta-link--dark"
-                        href="https://www.dta.gov.au/our-projects"
-                      >
-                        More projects
-                      </a>
-                    </span>
+                    <span>Australian Public Service Commission </span>
                   </p>
                 </div>
               </div>

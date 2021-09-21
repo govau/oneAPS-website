@@ -8,7 +8,7 @@ module.exports = {
     description: `A place to find flexible work opportunities across the APS to
     help deliver outcomes for government and the citizens we all
     serve.`,
-    author: `Digital Transformation Agency`,
+    author: `Australian Public Service Commission`,
     siteUrl: `https://oneAPS.gov.au/`,
     footerLinks: [
       {

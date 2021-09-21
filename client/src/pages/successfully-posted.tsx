@@ -32,7 +32,7 @@ const View: React.FC<{opportunityId: number}> = ({ opportunityId }) => {
               <p>More information about <Link to={"/help-pages/5-matching"}>Matching an applicant</Link>.</p>
               <h2>Share your feedback</h2>
               <p>As this is a pilot, we appreciate your feedback so we can improve our service.</p>
-              <p><a href="https://dta.syd1.qualtrics.com/jfe/form/SV_5t2zgcu4m6VHT0O" rel="noopener noreferrer" target="_blank">Complete a 3 minute survey</a>.</p>
+              <p><a href="https://apscommission.syd1.qualtrics.com/jfe/form/SV_57112z3fizC9d8W" rel="noopener noreferrer" target="_blank">Complete a 3 minute survey</a>.</p>
             </>
           )}
           {!data.publishedAt && (

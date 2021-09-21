@@ -18,9 +18,9 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
               <>
                 <h2>A Digital Profession pilot program</h2>
                 <p>
-                  This site is part of a pilot program run by the Digital Profession at the Digital Transformation Agency.
+                  This site is part of a pilot program run by the Digital Profession at the Australian Public Service Commission.
                 </p>
-                <p>If you have any questions or feedback, please contact us at <a href="mailto:specialist.advice@dta.gov.au">specialist.advice@dta.gov.au</a></p>
+                <p>If you have any questions or feedback, please contact us at <a href="mailto:specialist.advice@apsc.gov.au">specialist.advice@apsc.gov.au</a></p>
               </>
             </PageAlert>
           </section>
@@ -46,7 +46,7 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
                 You can choose to post an opportunity or apply for an opportunity.
               </p>
               <div style={{ marginTop: "3rem", marginBottom: "3rem" }}>
-                Check out our <a target="_blank" href="https://www.dta.gov.au/blogs/broadening-horizons-through-oneaps-opportunity">blog post</a> for a story of an opportunity in action.
+                Check out our <a target="_blank" href="https://www.digitalprofession.gov.au/blog/using-oneaps-uplift-team-skills-and-knowledge" rel="noopener">blog post</a> for a story of an opportunity in action.
               </div>
               <div>
                 <Link to="/opportunity" className="au-btn">Find opportunities</Link>

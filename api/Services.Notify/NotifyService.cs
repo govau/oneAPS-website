@@ -60,13 +60,13 @@ Your application for “{opportunity.JobTitle}” has been received.
 The opportunity creator will be in contact regarding the results of the opportunity.
 Good luck on your application!
 
-If you have any questions, please contact specialist.advice@dta.gov.au.
+If you have any questions, please contact specialist.advice@apsc.gov.au.
 
 Regards
 
 Specialist Advice and Mobility Team
 Digital Profession
-specialist.advice@dta.gov.au
+specialist.advice@apsc.gov.au
 "},
             };
             
@@ -86,13 +86,13 @@ You have received an application for “{opportunity.JobTitle}”.
 
 The response to the application can be viewed in your profile.
 
-If you have any questions, please contact specialist.advice@dta.gov.au.
+If you have any questions, please contact specialist.advice@apsc.gov.au.
 
 Regards
 
 Specialist Advice and Mobility Team
 Digital Profession
-specialist.advice@dta.gov.au
+specialist.advice@apsc.gov.au
 "},
             };
             
@@ -121,7 +121,7 @@ Regards
 
 Specialist Advice and Mobility Team
 Digital Profession
-specialist.advice@dta.gov.au
+specialist.advice@apsc.gov.au
 "},
             };
 
@@ -146,7 +146,7 @@ Regards
 
 Specialist Advice and Mobility Team
 Digital Profession
-specialist.advice@dta.gov.au
+specialist.advice@apsc.gov.au
 "},
             };
 
@@ -175,7 +175,7 @@ Regards
 
 Specialist Advice and Mobility Team
 Digital Profession
-specialist.advice@dta.gov.au
+specialist.advice@apsc.gov.au
 "},
             };
 
@@ -198,7 +198,7 @@ Regards
 
 Specialist Advice and Mobility Team
 Digital Profession
-specialist.advice@dta.gov.au
+specialist.advice@apsc.gov.au
 "},
             };
 

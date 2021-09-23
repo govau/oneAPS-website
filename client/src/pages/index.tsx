@@ -16,11 +16,11 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
           <section className="container" style={{ marginBottom: '3em' }}>
             <PageAlert type="info">
               <>
-                <h2>A Digital Profession pilot program</h2>
+                <h2>We're moving</h2>
                 <p>
-                  This site is part of a pilot program run by the Digital Profession at the Australian Public Service Commission.
+                  We're moving oneAPS Opportunities to a new home in the Digital Profession from 1 October. <a href="https://digitalprofession.gov.au/join-digital-profession" rel="noreferrer noopener">Join the Digital Profession</a> as a Practitioner to post and find short-term mobility opportunities across government.
                 </p>
-                <p>If you have any questions or feedback, please contact us at <a href="mailto:specialist.advice@apsc.gov.au">specialist.advice@apsc.gov.au</a></p>
+                <p>If you have any questions or feedback, please contact us at <a href="mailto:specialist.advice@apsc.gov.au">specialist.advice@apsc.gov.au</a>.</p>
               </>
             </PageAlert>
           </section>

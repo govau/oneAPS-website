@@ -97,31 +97,31 @@ const DefaultLayout: React.FC<Props> = ({
     updateRefreshToken,
   });
 
-  useEffect(() => {
-    const ping = async () => {
-      let session = getSession();
-      if (!session) {
-        return;
-      }
-      try {
-        const result = await axios.get(
-          `/api/User/ping`, {
-          headers: {
-            'Authorization': `bearer ${session.token}`
-          }
-        }
-        );
-        if (result.status === 200) {
-          session.refreshToken = result.data.refreshToken;
-          setSession(session);
-          return;
-        }
-      } catch (e) {
-        logout();
-      }
-    }
-    ping();
-  }, []);
+  // useEffect(() => {
+  //   const ping = async () => {
+  //     let session = getSession();
+  //     if (!session) {
+  //       return;
+  //     }
+  //     try {
+  //       const result = await axios.get(
+  //         `/api/User/ping`, {
+  //         headers: {
+  //           'Authorization': `bearer ${session.token}`
+  //         }
+  //       }
+  //       );
+  //       if (result.status === 200) {
+  //         session.refreshToken = result.data.refreshToken;
+  //         setSession(session);
+  //         return;
+  //       }
+  //     } catch (e) {
+  //       logout();
+  //     }
+  //   }
+  //   ping();
+  // }, []);
 
 
   let crumbs = [];

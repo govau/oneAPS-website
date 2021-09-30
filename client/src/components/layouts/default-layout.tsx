@@ -53,6 +53,13 @@ const DefaultLayout: React.FC<Props> = ({
   children,
 }) => {
 
+  const redirect = location.pathname !== '/'
+  if (redirect) {
+    useEffect(() => {
+      navigate('/');
+    }, [])
+  }
+
   const updateToken = (token: string, refreshToken: string, user: UserType) => {
     if (token) {
       setSession({
@@ -90,31 +97,31 @@ const DefaultLayout: React.FC<Props> = ({
     updateRefreshToken,
   });
 
-  useEffect(() => {
-    const ping = async () => {
-      let session = getSession();
-      if (!session) {
-        return;
-      }
-      try {
-        const result = await axios.get(
-          `/api/User/ping`, {
-          headers: {
-            'Authorization': `bearer ${session.token}`
-          }
-        }
-        );
-        if (result.status === 200) {
-          session.refreshToken = result.data.refreshToken;
-          setSession(session);
-          return;
-        }
-      } catch (e) {
-        logout();
-      }
-    }
-    ping();
-  }, []);
+  // useEffect(() => {
+  //   const ping = async () => {
+  //     let session = getSession();
+  //     if (!session) {
+  //       return;
+  //     }
+  //     try {
+  //       const result = await axios.get(
+  //         `/api/User/ping`, {
+  //         headers: {
+  //           'Authorization': `bearer ${session.token}`
+  //         }
+  //       }
+  //       );
+  //       if (result.status === 200) {
+  //         session.refreshToken = result.data.refreshToken;
+  //         setSession(session);
+  //         return;
+  //       }
+  //     } catch (e) {
+  //       logout();
+  //     }
+  //   }
+  //   ping();
+  // }, []);
 
 
   let crumbs = [];
@@ -133,14 +140,14 @@ const DefaultLayout: React.FC<Props> = ({
     }
   `);
 
-  return (
+  return !redirect && (
     <div className="au-body">
       <UserContext.Provider value={currentUser}>
         <div className="header-wrapper">
           <div style={{background: '#c91a78', color: '#fff'}}>
             <div className="container" style={{padding: '5px 0px' }}>
               <span style={{background: '#000', padding: '3px', textTransform: 'uppercase', fontWeight: 'bolder', marginRight: '5px'}}>Pilot</span>
-              From 1 October, <a style={{color: '#fff'}} href="https://digitalprofession.gov.au/join-digital-profession" rel="noreferrer noopener">join the Digital Profession</a> to post and find short-term mobility opportunities.
+              This site is "Read only". From 1 October, <a style={{color: '#fff'}} href="https://digitalprofession.gov.au/join-digital-profession" rel="noreferrer noopener">join the Digital Profession</a> to post and find short-term mobility opportunities.
             </div>
           </div>
           <div>

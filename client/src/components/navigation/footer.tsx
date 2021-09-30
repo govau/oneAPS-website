@@ -37,14 +37,14 @@ const Footer: React.FC<Props> = ({ path }) => {
             <FooterNav>
               <div className="row">
                 <div className="col-md-8 col-md-push-4">
-                  <h4>Community</h4>
+                  {/* <h4>Community</h4>
                   <ul className="au-link-list au-link-list--inline">
                     {Links.map((item: any, i: number) => (
                       <li key={i}>
                         <a href={item.link}>{item.text}</a>
                       </li>
                     ))}
-                  </ul>
+                  </ul> */}
                   <FooterEnd>
                     <p>
                       <small>

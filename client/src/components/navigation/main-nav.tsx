@@ -19,36 +19,9 @@ const MainNav: React.FC<Props> = ({ path }) => {
       text: "Home",
       link: "/",
       active: isActive(path, '/')
-    }, {
-      text: "About oneAPS",
-      link: "/help-pages/1-about-oneaps/",
-      active: isActive(path, '/help-pages/1-about-oneaps/')
-    }, {
-      text: "Find opportunities",
-      link: "/opportunity",
-      active: isActive(path, '/opportunity')
-    }, {
-      text: "Post an opportunity",
-      link: "/opportunity-guidance",
-      active: isActive(path, '/opportunity-guidance')
     }];
-    if (user.token) {
-      setMenu(always.concat([{
-        text: "My profile",
-        link: "/dashboard",
-        active: isActive(path, '/dashboard')
-      }]));
-    } else {
-      setMenu(always.concat([{
-        text: "Register",
-        link: "/register",
-        active: isActive(path, '/register')
-      }, {
-        text: "Login",
-        link: "/login",
-        active: isActive(path, '/login')
-      }]));
-    }
+
+    setMenu(always);
   }, [user]);
   
 

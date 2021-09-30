@@ -29,8 +29,8 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
             <div className="col-sm-12 col-md-6 col-md-push-6 intro__img">
               <img
                 className="au-responsive-media-img"
-                src="../../better-together.jpg"
-                alt="Six happy people standing under text that says 'working better together'"
+                src="../../one-aps-move.jpeg"
+                alt="A truck carrying a billboard of six happy people standing under text that says 'oneAPS opportunities' moving in the same direction as the 'Digital Profession members community' street sign."
               ></img>
             </div>
             <div className="intro__text col-sm-12 col-md-6 col-md-pull-6">

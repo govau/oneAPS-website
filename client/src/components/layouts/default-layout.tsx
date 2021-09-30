@@ -53,6 +53,13 @@ const DefaultLayout: React.FC<Props> = ({
   children,
 }) => {
 
+  const redirect = location.pathname !== '/'
+  if (redirect) {
+    useEffect(() => {
+      navigate('/');
+    }, [])
+  }
+
   const updateToken = (token: string, refreshToken: string, user: UserType) => {
     if (token) {
       setSession({
@@ -133,7 +140,7 @@ const DefaultLayout: React.FC<Props> = ({
     }
   `);
 
-  return (
+  return !redirect && (
     <div className="au-body">
       <UserContext.Provider value={currentUser}>
         <div className="header-wrapper">

@@ -16,14 +16,12 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
           <section className="container" style={{ marginBottom: '3em' }}>
             <PageAlert type="info">
               <>
-                <h2>We're moving</h2>
-                <p>
-                  We're moving oneAPS Opportunities to a new home in the Digital Profession from 1 October. <a href="https://digitalprofession.gov.au/join-digital-profession" rel="noreferrer noopener">Join the Digital Profession</a> as a Practitioner to post and find short-term mobility opportunities across government.
-                </p>
-                <p>
-                  We're still working on finding the best short-term mobility solution for the APS. This new phase of short-term mobility opportunities is another way for us to learn what our users need. We're excited to test the next phase of the short-term mobility opportunities and we welcome your feedback.
-                </p>
-                <p>If you have any questions or feedback, please contact us at <a href="mailto:specialist.advice@apsc.gov.au">specialist.advice@apsc.gov.au</a>.</p>
+                <h2>We've moved to the Digital Profession</h2>
+                <p>From 1 October, <a href="https://digitalprofession.gov.au/join-digital-profession" rel="noreferrer noopener">join the Digital Profession</a> as a Practitioner to post and find short-term mobility opportunities across government.</p>
+                <p>We're still working on finding the best short-term mobility solution for the APS. This new phase of short-term mobility opportunities is another way for us to learn what our users need.</p>
+                <p>We're excited to test the next phase of the short-term mobility opportunities and we welcome your feedback:</p>
+                <p><a href="https://apscommission.syd1.qualtrics.com/jfe/form/SV_eM8ATOa6Vfq1OCy" rel="noopener noreferrer" target="_blank">Complete 3 minute survey</a></p>
+                <p>If you have any questions or feedback, contact us at <a href="mailto:specialist.advice@apsc.gov.au">specialist.advice@apsc.gov.au</a>.</p>
               </>
             </PageAlert>
           </section>

@@ -49,9 +49,9 @@ const IndexPage: React.FC<PageContext> = ({ pageContext, location }) => {
               <div style={{ marginTop: "3rem", marginBottom: "3rem" }}>
                 Check out our <a target="_blank" href="https://www.digitalprofession.gov.au/blog/using-oneaps-uplift-team-skills-and-knowledge" rel="noopener">blog post</a> for a story of an opportunity in action.
               </div>
-              <div>
+              {/* <div>
                 <Link to="/opportunity" className="au-btn">Find opportunities</Link>
-              </div>
+              </div> */}
             </div>
           </section>
         </div>
